@@ -1,0 +1,389 @@
+\documentclass[openany]{book}
+\input{new_preamble}
+\input{letterfonts}
+\input{macros}
+\usepackage{fancyhdr}
+\usepackage{titlesec}  % Opzionale, per controllo avanzato sui titoli
+
+\pagestyle{fancy}
+
+% Definizione dell'intestazione per pagine dispari (Odd)
+\fancyhead[LO]{\textbf{\thepage}}  % Numero di pagina in grassetto a sinistra
+\fancyhead[RO]{\rightmark}         % Capitolo e sezione a destra
+
+% Definizione dell'intestazione per pagine pari (Even)
+\fancyhead[LE]{\leftmark}          % Capitolo e sezione a sinistra
+\fancyhead[RE]{\textbf{\thepage}}  % Numero di pagina in grassetto a destra
+
+% Cancella il footer
+\fancyfoot{}
+
+% Personalizzazione della linea orizzontale
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Personalizza il comando per segnare il capitolo
+\renewcommand{\chaptermark}[1]{%
+  \markboth{\thechapter.\ #1}{}}
+
+% Personalizza il comando per segnare la sezione (include il capitolo)
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}}
+\title{Appunti di Complementi di Analisi Matematica 2}
+\author{Francesco Sermi}
+\date{\today}
+
+\begin{document}
+	\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	{\huge\bfseries Appunti di Complementi di AM 2 \par}
+	\vspace{2cm}
+	{\Large\itshape Francesco Sermi\par}
+	\vfill
+	{\large \hfill Pisa, \today \par}
+	\end{titlepage}
+	\tableofcontents
+	\chapter{Spazi euclidei}
+	In questo capitolo, ci soffermeremo su alcuni risultati che possono essere ottenuti considerando uno spazio euclideo e sullo studio della sua topologia, siccome molti concetti dell'Analisi 1 devono essere concettualmente rivisti per poter essere generalizzati a spazi di dimensione diversa da 1.
+	\section{Spazio euclideo e prodotto scalare}
+	Partiamo ricordando al lettore la definizione di prodotto scalare/hermitiano e di \textbf{spazio euclideo}:
+	\begin{definition}[prodotto scalare/hermitiano]
+	dato $V$ spazio vettoriale sul campo $\mathbb{R}$ ($\mathbb{C}$) si definisce prodotto scalare (hermitiano) un'applicazione $\varphi: V \times V \to \mathbb{R}$ ($\varphi: V \times V \to \mathbb{C}$) che gode delle seguenti proprietà:
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item lineare nella prima componente, ovvero
+		$$
+		\forall \underline{v}, \underline{w}, \underline{z}, \forall \alpha, \beta \in \mathbb{R}, \varphi(\alpha \underline{v} + \beta \underline{w}, \underline{z}) = \alpha \varphi(\underline{v}, \underline{z}) + \beta \varphi(\underline{w}, \underline{z})
+		$$
+		\item lineare nella seconda componente, ovvero
+		$$
+		\forall \underline{v}, \underline{w}, \underline{z}, \forall \alpha \beta \in \mathbb{R}, \varphi(\underline{v}, \alpha \underline{w} + \beta \underline{z}) = \alpha \varphi(\underline{v}, \underline{w}) + \beta \varphi(\underline{v}, \underline{z})
+		$$
+		\item simmetrica, ovvero
+		$$
+		\forall \underline{v}, \underline{w} \in V \, \, , \varphi(\underline{v}, \underline{w}) = \varphi(\underline{w}, \underline{v})
+		$$
+	\end{enumerate}
+	(sostituendo $\mathbb{C}$ al posto di $\mathbb{R}$ si ottengono le proprietà che rendono identificano un prodotto hermitiano)
+	\end{definition}
+	\begin{definition}[spazio euclideo]
+		uno spazio vettoriale $V$ munito di un prodotto scalare $\varphi: V \times V \to \mathbb{R}$ (analogamente nel caso di un prodotto hermitiano) definito positivo ($\forall \underline{v} \neq \underline{0}, \varphi(\underline{v}, \underline{v}) > 0$) si dice \textbf{spazio euclideo}
+	\end{definition}
+	\begin{remark}
+	Quando un prodotto scalare/hermitiano è definito positivo, diciamo che è \textbf{coercivo}. Durante questo documento capiterà spesso di riferirci a questa proprietà con questo termine
+	\end{remark}
+	\noindent Introduciamo qualche notazione a noi utile:
+	\begin{itemize}
+		\item $E_n$: spazio affine euclideo di dimensione finita $n$;
+		\item $\mathbb{E}_n$: spazio vettoriale euclideo, ottenuto fissando un'origine in $E_n$;
+	\end{itemize}
+	Sappiamo, dal corso di Geometria, che, fissando una base $\mathcal{B}$ di $\mathbb{E}_n$, le coordinate di un generico vettore $\underline{x} \in \mathbb{E}_n$ sono univoche e definendo la funzione $\varphi: \mathbb{E}_n \to \mathbb{R}^n$ tale che $\underline{x} \in \mathbb{E}_n \mapsto [\underline{x}]_{\mathcal{B}}$, dove con $[\underline{x}]_{\mathcal{B}}$ indichiamo il vettore delle coordinate del vettore $\underline{x}$ rispetto alla base $\mathcal{B}$ nello spazio $\mathbb{E}_n$. \\
+Per comodità, noi vorremmo che questa base fosse anche ortonormale per semplificare la trattazione (l'esistenza è garantita, ovviamente, dal teorema di Lagrange). 
+\begin{definition}[base ortonormale]
+	sia $\mathcal{B} = \{ \underline{v}_1, \ldots \underline{v}_n \}$, diciamo che essa è una base ortonormale se
+	$$
+	\innerprod {\underline{v}_i} {\underline{v}_j} = \delta_{ij} = \begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases}	
+	$$
+\end{definition}
+\begin{remark}
+	Se con la norma indotta dal prodotto scalare lo spazio è completo, allora $\mathbb{E}_n$ è uno spazio di Hilbert.
+\end{remark}
+\noindent Indichiamo adesso fissata la base ortonormale $(\underline{e}_1, \ldots \underline{e}_n)$. Osserviamo che, dati $\underline{v}, \underline{w}$, allora
+$$
+\innerprod {\underline{v}}{\underline{w}} = \innerprod{\sum_{j=1}^n x_j \underline{v}_j}{\sum_{i=1}^n y_i \underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_j y_i \innerprod{\underline{v}_j}{\underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_i y_i \delta_{ij} = \sum_{i=1}^n x_i y_i
+$$
+\begin{definition}[norma]
+	Sia $V$ uno spazio vettoriale reale (o complesso). Si definisce norma un'applicazione $|| \cdot ||: V \to \mathbb{R}$ ($|| \cdot ||: V \to \mathbb{C}$) che verifica le seguenti condizioni:
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $||\underline{v}|| \geq 0 \, \, \forall \underline{v} \in V$
+		\item $|| \underline{v} || = 0 \iff \underline{v} = \underline{0}$
+		\item $|| \lambda \underline{v} || = | \lambda | || \underline{v} || \, \, \forall \lambda \in \mathbb{R}, \forall \underline{v} \in V$
+		\item $|| \underline{v} + \underline{w} || \leq || \underline{v} || + || \underline{w} || \, \, \forall \underline{v}, \underline{w} \in V$
+	\end{enumerate}
+	(analogamente per uno spazio definito su $\mathbb{C}$ sostituendo $\mathbb{C}$ a $\mathbb{R}$)
+\end{definition}
+\noindent \textbf{Notazione}: la norma di un vettore verrà indicata all'interno di questo documento, per comodità, sia con $||\cdot||$ e sia con $|\cdot|$
+\begin{remark}
+Osserviamo che se $(V, \varphi)$ è uno spazio euclideo allora $|| \cdot || = \sqrt{\varphi(\cdot, \cdot)}$ è una norma: il prodotto scalare \emph{induce} una norma su $V$. Mostreremo più avanti il punto $\circled{4}$ (ovvero la proprietà \emph{meno} banale fra quelle) usando la norma indotta dal prodotto scalare
+\end{remark}
+\noindent Sapendo che $\mathbb{E}_n \simeq \mathbb{R}^n$(quando quest'ultimo è munito di un prodotto scalare definito positivo naturalmente) possiamo effettuare tutte le dimostrazioni in $\mathbb{R}^n$ e queste saranno naturalmente valide in tutti gli spazi euclidei di dimensione finita $n$. 
+\begin{theorem} Sia $(V, \varphi)$ uno spazio euclideo. Allora $$\forall \underline{v}, \underline{w} \in V, \innerprod{\underline{v}}{\underline{w}} = ||\underline{v}|| \, || \underline{w} || \cos{\hat{\theta}}$$
+dove $\hat{\theta}$ è l'angolo convesso fra i due vettori $\underline{v}$ e $\underline{w}$
+\end{theorem}
+\begin{proof}
+consideriamo due vettori $\underline{v} \in \mathbb{E}_2$ con $|| \underline{v} || = || \underline{w} || = 1$. Prendiamo per semplicità $\underline{v} = \underline{e}_1$ e si osserva che
+$$
+\innerprod{\underline{e}_1}{\underline{w}} = \cos{\hat{\theta}}
+$$
+Questo segue banalmente dall'interpretazione geometrica del prodotto scalare canonico. \\
+Per estendere la validità di questo risultato a tutti i $\underline{v} \neq \underline{e}_1$ si osserva che $\exists R \in \text{SO}(\mathbb{E}_2): R\underline{e}_1 = \underline{v}$ e dunque, considerando $R^{-1}(\underline{w})$ (l'esistenza di un'inversa è garantita dal fatto che $R \in \text{SO}(2)$) e sappiamo che:
+$$
+\innerprod{\underline{e}_1}{R^{-1}(\underline{w})} = \innerprod{R \underline{e}_1}{(R \circ R^{-1})\underline{w}} = \cos{\hat{\theta}}
+$$
+e, siccome 
+A questo punto, dati due vettori qualunque $\underline{v}$ e $\underline{w}$ non di norma unitaria, possiamo utilizzare il ragionamento procedente osservando che:
+$$
+\innerprod{\frac{\underline{v}}{|\underline{v}|}} {\frac{\underline{w}}{|\underline{w}|}} = \cos{\hat{\theta}}
+$$
+ma allora, si osserva che:
+$$
+\frac{1}{|\underline{v}|} \cdot \frac{1}{|\underline{w}|} \innerprod{\underline{v}} {\underline{w}} = \cos{\hat{\theta}} \implies \innerprod{\underline{v}}{ \underline{w}} = |\underline{v}| |\underline{w}| \cos{\hat{\theta}}
+$$
+dunque la tesi (in $\mathbb{E}_2$). Per generalizzare questo concetto a qualunque spazio, noi sappiamo che possiamo considerare il piano $\pi = \text{Span}(\underline{v}, \underline{w})$ e considerare il loro angolo $\hat{\theta}$ convesso giacente in questo piano.
+\end{proof}
+\begin{prop}[Disuguaglianza di Cauchy-Schwarz]
+$$\forall \underline{v}, \underline{w} \in \mathbb{E}_n, \, | \innerprod{\underline{v}}{\underline{w}} | \leq ||\underline{v}|| \, ||\underline{w}||$$
+\end{prop}
+\begin{proof}
+Consideriamo $\lambda \in \mathbb{R}$ e sappiamo che, per coercività del prodotto scalare, che:
+$$
+\forall \underline{v}, \underline{w} \in \mathbb{E}_n, \, \innerprod {\underline{v} + \lambda \underline{w}} {\underline{v} + \lambda \underline{w}} > 0
+$$
+ma per bilinearità del prodotto scalare abbiamo che
+$$
+\innerprod {\underline{v} + \lambda \underline{w}} {\underline{v} + \lambda \underline{w}} = \innerprod{\underline{v}}{\underline{v}} + 2\lambda \innerprod{\underline{v}} {\underline{w}} + \lambda^2 \innerprod{\underline{w}}{\underline{w}}> 0
+$$
+dunque l'equazione in $\lambda$
+$$
+\innerprod{\underline{v}}{\underline{v}} + 2\lambda \innerprod{\underline{v}} {\underline{w}} + \lambda^2 \innerprod{\underline{w}}{\underline{w}} = 0
+$$
+non deve avere soluzione, il che implica che
+$$
+\Delta = 4\innerprod{\underline{v}}{\underline{w}}^2 - 4 \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} < 0 \implies \innerprod{\underline{v}}{\underline{w}}^2 < \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} \implies |\innerprod{\underline{v}}{\underline{w}}| < ||\underline{v}|| \, ||\underline{w}||
+$$
+\end{proof}
+\begin{prop}[Disuguaglianza triangolare] \hfill \\
+$ \forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $|\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|$
+	\item $||\underline{v}| - |\underline{w}|| \leq |\underline{v} - \underline{w}|$
+\end{enumerate}
+\end{prop}
+\begin{proof}
+osserviamo che
+$$
+|\underline{v} + \underline{w}|^2 = \innerprod{\underline{v} + \underline{w}}{\underline{v} + \underline{w}} = \innerprod{\underline{v}}{\underline{v}} + 2\innerprod{\underline{v}}{\underline{w}} + \innerprod{\underline{w}}{\underline{w}} = |\underline{v}|^2 + 2 \innerprod{\underline{v}}{\underline{w}} + |\underline{w}|^2 \stackrel{\text{dis. di Cauchy-Schwarz}}{\leq} |\underline{v}|^2 + 2|\underline{v}| \, |\underline{w}| + |\underline{w}|^2
+$$
+dunque
+$$
+|\underline{v} + \underline{w}|^2 \leq |\underline{v}|^2 + 2|\underline{v}| \, |\underline{w}| + |\underline{w}|^2 = (|\underline{v}| + |\underline{w}|)^2 \implies |\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|
+$$
+e si ottiene la tesi del punto $\circled{1}$. \\
+Il punto $\circled{2}$ si ottiene come corollario del primo punto osservando che
+$$
+|\underline{v}| = |\underline{v} + \underline{w} - \underline{w}| \leq |\underline{v} - \underline{w}| + |\underline{w}| \implies |\underline{v}| - |\underline{w}| \leq |\underline{v} - \underline{w}| 
+$$
+ma ragionando in maniera identica sul vettore $\underline{w}$ si osserva che
+$$
+|\underline{w}| = |\underline{w} - \underline{v} + \underline{v}| \leq |\underline{w} - \underline{v}| + |\underline{v}| \implies |\underline{w}| - |\underline{v}| \leq |\underline{w} - \underline{v}|= |\underline{v} - \underline{w}|
+$$
+dunque possiamo concludere che
+$$
+||\underline{v}| - |\underline{w}|| \leq |\underline{v} - \underline{w}|
+$$
+ottenendo la tesi
+\end{proof}
+\begin{remark}
+Come avevo detto in una osservazione, ogni prodotto scalare definito positivo induce sempre una norma. La dimostrazione qua sopra non fa uso di nessuna proprietà specifiche del prodotto scalare canonico di $\mathbb{R}^n$, dunque può essere usata per ogni norma indotta dal prodotto scalare definito positivo di qualunque spazio euclideo
+\end{remark}
+\section{Il prodotto vettoriale}
+\noindent In $\mathbb{R}^3$ (ma in generale in qualunque spazio euclideo di dimensione $3$) è anche possibile definire l'operazione di prodotto vettoriale, molto utile per trattare (come vedremo più avanti) l'orientazione delle superfici. \\
+Fissando una base ortonormale $\{\underline{e_1}, \underline{e_2}, \underline{e_3} \}$ di $\mathbb{E}_3$, definendo questa operazione $\times: V \times V \to V$ assegnando i prodotti elementari secondo l'invarianza per permutazioni cicliche, ponendo che
+$$
+\underline{e_1} \times \underline{e_2} = \underline{e_3}
+$$
+e, per invarianza per permutazioni cicliche, dovremo avere che
+\begin{align*}
+&\underline{e_3} \times  \underline{e_1} = \underline{e_2} \\
+&\underline{e_2} \times \underline{e_3} = \underline{e_1}
+\end{align*}
+Le permutazioni non cicliche invece fanno variare il segno dunque avremo, per il vettore $\underline{e_1}$
+\begin{align}
+	\begin{cases}
+		\underline{e_1} \times \underline{e_2} = \underline{e_3} \\
+		\underline{e_1} \times \underline{e_3} = - \underline{e_2} \\
+		\underline{e_2} \times \underline{e_3} = \underline{e_1}
+	\end{cases}
+\end{align}
+Le regole che abbiamo visto possono essere anche facilmente ottenute tramite la cosiddetta \emph{regola della mano destra}: indicando la direzione del primo vettore con il pollice (in questo caso $\underline{e_1}$) e con l'indice il secondo vettore (in questo caso $\underline{e_2}$), ottenendo sul pollice la direzione del terzo vettore. \\
+Vogliamo inoltre che questo prodotto vettoriale sia \emph{bilineare}. \\
+Dati adesso due vettori $\underline{v}$ e $\underline{w} \in E_3$ abbiamo che $\underline{v}, \underline{w} \in \text{Span}(\underline{e_1}, \underline{e_2}, \underline{e_3})$ dunque avremo che:
+\begin{align*}
+&\underline{v} = x_1 \underline{e_1} + x_2 \underline{e_2} + x_3 \underline{e_3} &
+&\underline{w} = y_1 \underline{e_1} + y_2 \underline{e_2} + y_3 \underline{e_3}
+\end{align*}
+e studiamo quali saranno le coordinate del prodotto vettoriale fra questi due:
+\begin{align*}
+&\underline{v} \times \underline{w} =  (x_1 \underline{e_1} + x_2 \underline{e_2} + x_3 \underline{e_3}) \times (y_1 \underline{e_1} + y_2 \underline{e_2} + y_3 \underline{e_3}) = \\
+	&= (x_1 y_2 - x_2 y_1)( \underline{e_1} \times \underline{e_2}) + (x_1 y_3 - x_3 y_1) (\underline{e_1} \times \underline{e_3}) + (x_2 y_3 - x_3 y_2) (\underline{e_2} \times \underline{e_3})
+\end{align*}
+dunque definiamo una matrice $C$ di questa forma:
+\begin{align}
+C = \begin{pmatrix}
+	x_1 & y_1 \\
+	x_2 & y_2 \\
+	x_3 & y_3 
+\end{pmatrix}
+\end{align}
+e ne consideriamo i minori:
+\begin{align}
+M_{ij}(C) = \text{det}\begin{pmatrix}
+	x_i & y_i \\
+	x_j & y_j
+\end{pmatrix} = x_i y_j - x_j y_i
+\end{align}
+dunque otteniamo una nuova formula:
+$$
+\underline{v} \times \underline{w} = M_{12}(C)(\underline{e_1} \times \underline{e_2}) + M_{23}(C) (\underline{e_2} \times \underline{e_3}) + M_{13}(C) (\underline{e_1} \times \underline{e_3}) = M_{12}(C)\underline{e_3} + M_{23}(C)\underline{e_1} - M_{13}(C) \underline{e_2}
+$$
+usando le proprietà del determinante, sappiamo che $M_{13}(C) = -M_{31}(C)$ dunque
+$$
+\underline{v} \times \underline{w} = M_{12}(C) \underline{e_3} + M_{23}(C) \underline{e_1} + M_{31} \underline{e_2}
+$$
+abbiamo dunque dimostrato la seguente proposizione
+\begin{prop} dati i vettori $\underline{v}, \underline{w} \in \mathbb{E}_3$ allora $\exists x_1, \ldots, x_3, y_1, \ldots y_3 \in \mathbb{R}$ tali che $\underline{v} = x_1 \underline{e_1} + x_2 \underline{e_2} + x_2 \underline{e_3}$ e $\underline{w} = y_1 \underline{e_1} + y_2 \underline{e_2} + y_3 \underline{e_3}$. Posta la matrice $C$ tale che
+$$
+C = \begin{pmatrix}
+	x_1 & y_1 \\
+	x_2 & y_2 \\
+	x_3 & y_3
+\end{pmatrix}
+$$
+allora
+	\begin{equation}
+\underline{v} \times \underline{w} = M_{23}(C)\underline{e_1} + M_{31}(C)\underline{e_2} + M_{12}(C)\underline{e_3}
+\end{equation}
+\end{prop}
+\begin{remark}
+si noti come i numeri siano tutti disposti secondo permutazioni cicliche: questo può essere un buon trucco per ricordarsela.
+\end{remark}
+\begin{cor}[matrice del prodotto vettoriale] siano $\underline{v}, \underline{w} \in \mathbb{E}_3$ e siano $x_1, \ldots x_3$ e $y_1, \ldots y_3$ le rispettive coordinate rispetto alla base ortonormale $\mathcal{B} = \{ \underline{e_1}, \underline{e_2}, \underline{e_3}\}$ di $\mathbb{E}_3$. Allora
+\begin{equation}
+\underline{v} \times \underline{w} = \text{det}\begin{pmatrix}
+	x_1 & y_1 & \underline{e_1} \\
+	x_2 & y_2 & \underline{e_2} \\
+	x_3 & y_3 & \underline{e_3}
+\end{pmatrix}
+\end{equation}
+\label{cor:pr_vett_det}
+\end{cor}
+\begin{proof}
+si osservi che, procedendo con uno sviluppo di Laplace lungo la terza colonna abbiamo che:
+$$
+\text{det}\begin{pmatrix}
+x_1 & y_1 & \underline{e_1} \\
+	x_2 & y_2 & \underline{e_2} \\
+	x_3 & y_3 & \underline{e_3}
+\end{pmatrix} = \underline{e_1} M_{23}(C) - \underline{e_2}M_{13}(C) + \underline{e_3} M_{12}(C) = M_{23}(C) \underline{e_1} + M_{31}(C) \underline{e_2} + M_{12}(C) \underline{e_3}
+$$
+\end{proof}
+\begin{prop}[matrice del prodotto misto]
+siano dati i vettori $\underline{v}=x_1 \underline{e_1} + x_2 \underline{e_2} + x_3 \underline{e_3}$ e $\underline{w} = y_1 \underline{e_1} + y_2 \underline{e_2} + y_3 \underline{e_3}$ e $\underline{z} = \xi_1 \underline{e_1} + \xi_2 \underline{e_2} + \xi_3 \underline{z_3}$. Allora
+\begin{equation}
+\innerprod{\underline{v} \times \underline{w}}{\underline{z}} = \text{det}\begin{pmatrix}
+	x_1 & y_1 & \xi_1 \\
+	x_2 & y_2 & \xi_2 \\
+	x_3 & y_3 & \xi_3
+\end{pmatrix}
+\end{equation}
+\label{prop:prod_mist}
+\end{prop}
+\begin{proof}
+	sappiamo che $\underline{v} \times \underline{w} = M_{23}(C)\underline{e_1} + M_{31}(C) \underline{e_2} + M_{12}(C) \underline{e_3}$ dunque $\innerprod{\underline{v} \times \underline{w}}{\underline{z}} = M_{23}(C)\xi_1 + M_{31}(C)\xi_2 + M_{12}(C)\xi_3$. D'altra parte definendo la matrice 
+	$$M=\begin{pmatrix}
+		x_1 & y_1 & \xi_1 \\
+		x_2 & y_2 & \xi_2 \\
+		x_3 & y_3 & \xi_3
+	\end{pmatrix} 
+$$
+allora si osserva che
+$$
+\innerprod{\underline{v} \times \underline{w}}{\underline{z}} = \text{cof}_{13}(M)\xi_1 + \text{cof}_{23}(M)\xi_2 + \text{cof}_{33}(M) \xi_3 = \text{det}(M)
+$$
+dunque la tesi.
+\end{proof}
+\begin{cor}[$\underline{v} \times \underline{w} \perp \text{Span}(\underline{v}, \underline{w})$]
+Dati due vettori $\underline{v}, \underline{w} \in \mathbb{E}_3$ allora
+$$
+\underline{v} \times \underline{w} \, \perp \text{Span}(\underline{v}, \underline{w})
+$$
+\end{cor}
+\begin{proof}
+dalla proposizione \ref{prop:prod_mist} sappiamo che
+$$
+\innerprod{\underline{v} \times \underline{w}}{\underline{v}} = \text{det}\begin{pmatrix}
+	x_1 & y_1 & x_1 \\
+	x_2 & y_2 & x_2 \\
+	x_3 & y_3 & x_3
+\end{pmatrix} = 0
+$$
+per proprietà del determinante. Similmente per il vettore $\underline{w}$. Dunque abbiamo che $\underline{v} \times \underline{w} \perp \underline{v}$ e $\underline{v} \times \underline{w} \perp \underline{w}$ che implica che $\underline{v} \times \underline{w}$ è perpendicolare a qualunque combinazione lineare dei vettori $\underline{v}$ e $\underline{w}$, quindi $\underline{v} \times \underline{w} \perp \text{Span}(\underline{v}, \underline{w})$ ovvero la tesi.
+\end{proof}
+\begin{prop}
+Sia $R \in \text{SO}(3)$ e siano dati $\underline{v}, \underline{w} \in \mathbb{E}_3$. Allora
+\begin{equation}
+R(\underline{v} \times \underline{w}) = R\underline{v} \times R\underline{w}
+\end{equation}
+\end{prop}
+\begin{proof}
+Sia $\underline{u} \in \mathbb{E}_3$ e consideriamo il seguente prodotto scalare:
+\begin{align*}
+\innerprod{R\underline{v} \times R\underline{w}}{R\underline{u}} &= \text{det}\begin{pmatrix}
+R\underline{v} & R\underline{w} & R\underline{u}
+\end{pmatrix} \\
+&= \text{det}\left(R \begin{pmatrix}
+\underline{v} & \underline{w} & \underline{u} 
+\end{pmatrix}\right)
+\end{align*}
+Usando il teorema di Binet abbiamo che
+$$
+\innerprod{R\underline{v} \times R\underline{w}}{R\underline{u}} = \text{det}\left(R \begin{pmatrix}
+\underline{v} & \underline{w} & \underline{u} 
+\end{pmatrix}\right) = \text{det}(R)\text{det}\begin{pmatrix}
+\underline{v} & \underline{w} & \underline{u} 
+\end{pmatrix} = \text{det}\begin{pmatrix}
+	\underline{v} & \underline{w} & \underline{u}
+\end{pmatrix}
+$$
+dove abbiamo usato l'ipotesi che $R \in \text{SO}(3)$ dunque $\text{det}(R) = 1$ e siccome sappiamo che $R$ è un'isometria allora
+$$
+\innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}} = \text{det}\begin{pmatrix} \underline{v} & \underline{w} & \underline{u} \end{pmatrix} = \innerprod{\underline{v} \times \underline{w}}{\underline{u}} = \innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}}
+$$
+ma allora $\innerprod{R\underline{v} \times R\underline{w}}{R\underline{u}} = \innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}} \implies \innerprod{R(\underline{v} \times \underline{w}) - (R\underline{v} \times R\underline{w})}{R\underline{u}} = 0$. Ma allora, per la coercività del prodotto scalare, abbiamo necessariamente che
+$$
+R(\underline{v} \times \underline{w}) = R\underline{v} \times R\underline{w}
+$$
+\end{proof}
+\begin{prop}
+Se $\underline{v}, \underline{w} \in \mathbb{R}^3, \underline{v} \perp \underline{w}$ e $|\underline{v}| = |\underline{w}| = 1$ allora
+$$
+|\underline{v} \times \underline{w}| = 1
+$$
+\end{prop}
+\begin{proof}
+Dati $\underline{v}$ e $\underline{w}$ con $\underline{v} \perp \underline{w}$, allora $\{\underline{v}, \underline{w}, \underline{v} \times \underline{w} \}$ è una base. Siccome appartengono a $\mathbb{R}^3$ e sono perpendicolari, allora sappiamo che $\exists R \in \text{SO}(3): R\underline{v} = \underline{e_1}$, $R\underline{w} = \underline{e_2}$ e $R(\underline{v} \times \underline{w}) = \underline{e_3}$ dunque
+$$
+|\underline{v} \times \underline{w}| = 1 = |R\underline{e_1} \times R\underline{e_2}|= |R(\underline{e_1} \times \underline{e_2})| = |\underline{v} \times \underline{w}| \implies |\underline{v} \times \underline{w}| = 1
+$$
+\end{proof}
+\begin{cor}[modulo del prodotto vettoriale di vettori perpendicolari]
+siano $\underline{v}, \underline{w} \in \mathbb{E}_3$ e $\underline{v} \perp \underline{w}$ allora:
+$$
+	|\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}|
+$$
+\end{cor}
+\begin{proof}
+siccome $\underline{v} \perp \underline{w}$ allora $\frac{\underline{v}}{|\underline{v}|} \perp \frac{\underline{w}}{|\underline{w}|}$. Ma allora possiamo applicare a questi due vettori la proposizione precedente, dunque:
+$$
+\Big|\frac{\underline{v}}{|\underline{v}|} \times \frac{\underline{w}}{|\underline{w}|} \Big| = 1 = \frac{1}{|\underline{v}| \, |\underline{w}|} |\underline{v} \times \underline{w}| \implies |\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}|
+$$
+\end{proof}
+\begin{prop}[area del parallelogramma]
+Siano $\underline{v}, \underline{w} \in \mathbb{E}_3$. Allora $$|\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}| \sin{\hat{\theta}}$$
+dove $\hat{\theta}$ è l'angolo convesso fra i due vettori
+\end{prop}
+\begin{proof}
+possiamo "ortogonalizzare" il vettore $\underline{v}$ usando il procedimento di Grand-Schmit, dunque
+$$|\underline{v} \times \underline{w}|^2 = \Big|	\left( \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w} \right) \times \underline{w} \Big|^2 = \Big| \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|w|^2} \underline{w} \Big|^2 |\underline{w} |^2 = $$
+\end{proof}
+\end{document}

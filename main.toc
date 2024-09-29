@@ -1,0 +1,5 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Spazi euclidei}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Spazio euclideo e prodotto scalare}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Il prodotto vettoriale}{5}{section.1.2}%
