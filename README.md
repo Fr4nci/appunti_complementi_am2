@@ -1,4 +1,4 @@
 # Notes of the course "Complementi di Analisi Matematica 2"
 
-Some notes I reorganised for the course "Complementi di Analisi Matematica 2" i'm currently attending at the University of Pisa, held by Valentino Magnani. If you found some errors, please let me know.
-The course is intended as a brief introduction to multivariable calculus, since lots of topics that usually are related to the course "Analisi 2" of other italian universities are already been done in the one-year course of "Analisi Matematica" of the first year.
+These are notes I've reorganized from the course 'Complementi di Analisi Matematica 2,' which I'm currently taking at the University of Pisa. The course is taught by Valentino Magnani.
+Please let me know if you find any errors. The course serves as a concise introduction to multivariable calculus. Unlike many similar courses at other Italian universities, it assumes that students have already completed the first-year 'Analisi Matematica' course and are familiar with its topics.
