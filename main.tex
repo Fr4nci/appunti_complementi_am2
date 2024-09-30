@@ -319,6 +319,31 @@ $$
 $$
 per proprietà del determinante. Similmente per il vettore $\underline{w}$. Dunque abbiamo che $\underline{v} \times \underline{w} \perp \underline{v}$ e $\underline{v} \times \underline{w} \perp \underline{w}$ che implica che $\underline{v} \times \underline{w}$ è perpendicolare a qualunque combinazione lineare dei vettori $\underline{v}$ e $\underline{w}$, quindi $\underline{v} \times \underline{w} \perp \text{Span}(\underline{v}, \underline{w})$ ovvero la tesi.
 \end{proof}
+\begin{cor}[norma del prodotto vettoriale]
+Siano $\underline{v}, \underline{w} \in \mathbb{E}_3$ con $\underline{v} = x_1 \underline{e_1} + x_2 \underline{e_2} + x_3 \underline{e_3}$ e $\underline{w} = y_1 \underline{e_1} + y_2 \underline{e_2} + y_3 \underline{e_3}$. Allora, ponendo
+$$
+C = \begin{pmatrix}
+	x_1 & y_1 \\
+	x_2 & y_2 \\
+	x_3 & y_3 
+\end{pmatrix}
+$$
+allora
+$$
+|\underline{v} \times \underline{w}| = \sqrt{M_{23}(C)^2 + M_{12}(C)^2 + M_{31}(C)^2} 
+$$
+\label{cor:norm_cross_prod}
+\end{cor}
+\begin{proof}
+Osserviamo, per la proposizione \ref{prop:prod_mist}, che
+\begin{align*}
+&\innerprod{\underline{v} \times \underline{w}}{\underline{v} \times \underline{w}} = \text{det}\begin{pmatrix}
+\underline{v} & \underline{w} & \underline{v} \times \underline{w}
+\end{pmatrix} = M_{23}(C) (\underline{v} \times \underline{w})_1 + M_{31}(C) (\underline{v} \times \underline{w})_2 + M_{12}(C) (\underline{v} \times \underline{w})_3 = \\
+&= M_{23}(C)^2 + M_{31}(C)^2 + M_{12}(C)^2
+\end{align*}
+\noindent dunque $|\underline{v} \times \underline{w}| = \sqrt{M_{23}(C)^2 + M_{31}(C)^2 + M_{12}(C)^2}$
+\end{proof}
 \begin{prop}
 Sia $R \in \text{SO}(3)$ e siano dati $\underline{v}, \underline{w} \in \mathbb{E}_3$. Allora
 \begin{equation}
@@ -359,6 +384,7 @@ Se $\underline{v}, \underline{w} \in \mathbb{R}^3, \underline{v} \perp \underlin
 $$
 |\underline{v} \times \underline{w}| = 1
 $$
+\label{prop:norm_unit_cross_prod}
 \end{prop}
 \begin{proof}
 Dati $\underline{v}$ e $\underline{w}$ con $\underline{v} \perp \underline{w}$, allora $\{\underline{v}, \underline{w}, \underline{v} \times \underline{w} \}$ è una base. Siccome appartengono a $\mathbb{R}^3$ e sono perpendicolari, allora sappiamo che $\exists R \in \text{SO}(3): R\underline{v} = \underline{e_1}$, $R\underline{w} = \underline{e_2}$ e $R(\underline{v} \times \underline{w}) = \underline{e_3}$ dunque
@@ -384,6 +410,107 @@ dove $\hat{\theta}$ è l'angolo convesso fra i due vettori
 \end{prop}
 \begin{proof}
 possiamo "ortogonalizzare" il vettore $\underline{v}$ usando il procedimento di Grand-Schmit, dunque
-$$|\underline{v} \times \underline{w}|^2 = \Big|	\left( \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w} \right) \times \underline{w} \Big|^2 = \Big| \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|w|^2} \underline{w} \Big|^2 |\underline{w} |^2 = $$
+\begin{align*}|\underline{v} \times \underline{w}|^2 = \Bigg| &\left( \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w} \right) \times \underline{w} \Bigg|^2 = \Bigg| \underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w} \Bigg|^2 |\underline{w}|^2 = \innerprod{\underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w}}{\underline{v} - \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w}} |\underline{w}|^2 = \\
+&= |\underline{w}|^2 \left( \innerprod{\underline{v}}{\underline{v}} - 2 \innerprod{\underline{v}}{\frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \underline{w}} + \frac{(\innerprod{\underline{v}}{\underline{w}})^2}{|\underline{w}|^2} \innerprod{\underline{w}}{\underline{w}} \right) = \\
+&= |\underline{w}|^2 \left( \innerprod{\underline{v}}{\underline{v}} - 2 \frac{\innerprod{\underline{v}}{\underline{w}}}{|\underline{w}|^2} \innerprod{\underline{v}}{\underline{w}} + \frac{(\innerprod{\underline{v}}{\underline{w}})^2}{|\underline{w}|^2} \innerprod{\underline{w}}{\underline{w}} \right) = \\
+&= |\underline{w}|^2 \left( \innerprod{\underline{v}}{\underline{v}} - \frac{(\innerprod{\underline{v}}{\underline{w}})^2}{|\underline{w}|^2} \right)
+\end{align*}
+Sappiamo adesso che $\innerprod{\underline{v}}{\underline{w}} = |\underline{v}| \, |\underline{w}|\cos{\hat{\theta}}$, dunque
+$$
+|\underline{w}|^2 \left(|\underline{v}|^2 - |\underline{v}^2|\cos^2{\hat{\theta}} \right) = |\underline{v}|^2 |\underline{w}|^2 (1-\cos^2{\hat{\theta}}) = |\underline{v}|^2 |\underline{w}|^2 \sin^2{\hat{\theta}}
+$$
+ma allora se ne conclude che
+$$
+|\underline{v} \times \underline{w}|^2 = |\underline{v}|^2 |\underline{w}|^2 \sin^2{\hat{\theta}} \implies |\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}|\sin{\hat{\theta}}
+$$
+e questo conclude la dimostrazione.
 \end{proof}
+\begin{remark}
+Unendo quest'ultima proposizione con il corollario \ref{cor:norm_cross_prod} possiamo facilmente vedere che
+$$
+|\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}| \sin{\hat{\theta}} = \sqrt{M_{23}(C)^2 + M_{12}(C)^2 + M_{31}(C)^2}
+$$
+\end{remark}
+\begin{definition}[base positivamente orientata]
+diremo che tre vettori $\underline{v}, \underline{w}, \underline{z} \in \mathbb{E}_3$ linearmente indipendenti sono una base positivamente orientata se
+$$
+\text{det}\begin{pmatrix}
+	\underline{v} & \underline{w} & \underline{z}
+\end{pmatrix} > 0
+$$
+\end{definition}
+\begin{remark}
+La base canonica di $\mathbb{R}^3$ è positivamente orientata, siccome
+$$
+\text{det}\begin{pmatrix}
+	1 & 0 & 0 \\
+	0 & 1 & 0 \\
+	0 & 0 & 1
+\end{pmatrix} = \text{det}(I) = 1
+$$
+\end{remark}
+\begin{prop}
+	Se $\underline{v}, \underline{w} \in \mathbb{R}^3$ sono linearmente indipendenti, allora l'insieme $\mathcal{B} = \{\underline{v}, \underline{w}, \underline{v} \times \underline{w} \}$ è una base positivamente orientata
+\label{prop:base_pos_orient}
+\end{prop}
+\begin{proof}
+banalmente
+$$
+\text{det}\begin{pmatrix}
+	\underline{v} & \underline{w} & \underline{v} \times \underline{w} \end{pmatrix} = \innerprod{\underline{v} \times \underline{w}}{\underline{v} \times \underline{w}} = |\underline{v} \times \underline{w}|^2 >  0
+$$
+\end{proof}
+\begin{remark}
+Una base positivamente orientata si può sempre rappresentare con la regola della mano destra: il vettore $\underline{v}$ è rappresentato dall'indice, il vettore $\underline{w}$ è rappresentato dal dito medio e il pollice invece rappresenta $\underline{v} \times \underline{w}$.
+\end{remark}
+\noindent Infine, per concludere per adesso la lista dei teoremi sul prodotto vettoriale, abbiamo che:
+\begin{prop}
+Una base ortonormale $\{ \underline{v} , \underline{w} , \underline{v} \times \underline{w} \}$ è positivamente orientata se e solo se $\underline{z} = \underline{v} \times \underline{w}$
+\end{prop}
+\begin{proof} \hfill \\
+$\boxed{\Leftarrow} \,$: già mostrato per la proposizione \ref{prop:base_pos_orient} \\
+$\boxed{\Rightarrow} \,$: supponiamo di avere la seguente base ortonormale positivamente orientata $\{\underline{i}, \underline{j}, \underline{k} \}$, allora abbiamo che questa segue la regola della mano destra, dunque $\underline{i} \times \underline{j} = \alpha \underline{k}$ con $k \in \mathbb{R}$. Ma allora, per la proposizione \ref{prop:norm_unit_cross_prod}, abbiamo che $|\alpha \underline{k}|=1$ (siccome $\underline{v} \perp \underline{w}$) dunque $\underline{i} \times \underline{j} = \underline{k}$. 	
+\end{proof}
+\section{Topologia di $\mathbb{R}^n$}
+Come visto dal corso di Analisi Matematica del primo anno, possiamo pensare $\mathbb{R}^n$ come uno spazio metrico se consideriamo la distanza indotta dal prodotto scalare. \\
+Possiamo dunque andare a definire le \textbf{palle}:
+\begin{definition}[palle aperte e chiuse]
+Sia $x \in \mathbb{R}^n$ e fissiamo $r > 0$. Allora definiamo la palla aperta di raggio $r$ nella seguente maniera
+$$
+B(x, r) = \{ z \in \mathbb{R}^n: |z-x| < r \}
+$$
+e la palla chiusa di raggio $r$ nella seguente maniera
+$$
+\mathbb{B}(x, r) = \{ z \in \mathbb{R}^n: |z - x| \leq r \}
+$$
+con centro $x$ e raggio $r$.
+\end{definition}
+\noindent Ma cosa vuol dire palla aperta? In generale possiamo definire la nozione di insieme aperto nella seguente maniera:
+\begin{definition}[insieme aperto]
+$A \subset \mathbb{R}^n$ è un insieme aperto se $\forall y \in A \exists r > 0: B(\underline{y}, r_y) \subset A$
+\end{definition}
+\begin{exercise}
+Mostrare che $B(x, r)$ è un aperto $\forall x \, \forall r$
+\end{exercise}
+\begin{proof}[Svolgimento]
+Sia $x \in \mathbb{R}^n$ e sia fissato $r > 0$. Allora scelto $y \in B(x, r)$ sappiamo che preso $\varepsilon = r - |x - y| > 0$ allora 
+possiamo definire la palla $B(y, \varepsilon)$ e prendere $z \in B(y, \varepsilon)$ e osservare che
+$$
+|z-x| \leq |z-y| + |y-x| < r - |x-y| + |x-y| = r
+$$
+dunque $|z-x| < r$ il che implica che $B(y, \varepsilon) \subset B(x, r)$
+\end{proof}
+\begin{exercise}
+Siano $\{A_j: j \in J \}$ una famiglia di aperti (non necessariamente numerabile), allora $\bigcup\limits_{j \in J} A_j$ è un insieme aperto.
+\end{exercise}
+\begin{proof}[Svolgimento]
+si osserva che, siccome $A_j$ è un insieme aperto $\forall j$, allora $\forall a \in A_j \implies \exists r > 0: B(a, r) \subset A_j$, ma allora $B(a, r) \subset \bigcup\limits_{j \in J} A_j$
+\end{proof}
+
+\chapter{Successioni e funzioni continue}
+In questo capitolo andremo a definire il concetto di successione e vedere il forte collegamento presente fra esse e il concetto di continuità in più variabili. \\
+Ricordiamo al lettore che una successione a valori in un insieme $A$ è una funzione $x_k: \mathbb{N} \to A$. Vediamo adesso come si definisce il concetto di \emph{successione convergente} in più variabili
+\begin{definition}[convergenza di una successione]
+diremo che $\{x_k \} \subset \mathbb{R}^n$ è una successione convergente a $z \in \mathbb{R}^n$ se $\lim\limits_{k \to +\infty} |x_k - z| = 0$.
+\end{definition}
 \end{document}
