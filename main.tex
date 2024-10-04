@@ -158,6 +158,7 @@ $ \forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
 	\item $|\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|$
 	\item $||\underline{v}| - |\underline{w}|| \leq |\underline{v} - \underline{w}|$
 \end{enumerate}
+\label{prop:dis_triang}
 \end{prop}
 \begin{proof}
 osserviamo che
@@ -513,4 +514,83 @@ Ricordiamo al lettore che una successione a valori in un insieme $A$ è una funz
 \begin{definition}[convergenza di una successione]
 diremo che $\{x_k \} \subset \mathbb{R}^n$ è una successione convergente a $z \in \mathbb{R}^n$ se $\lim\limits_{k \to +\infty} |x_k - z| = 0$.
 \end{definition}
+\begin{remark}
+Naturalmente se $\underline{x_k} = (x_{k_1}, x_{k_2}, \ldots x_{k_n}) \in \mathbb{R}^n$ converge a $\underline{z} = (z_1, z_2, \ldots z_n) \iff \lim\limits_{k \to \infty} x_{k_i} = z_i \, \forall i \in 1, \ldots n$
+\end{remark}
+\begin{example}
+Consideriamo la successione $\underline{x_k} = (e^{-k} + 1,(-1)^k)$. Per il precedente teorema questa successione è convergente.
+\end{example}
+\begin{prop}[Unicità del limite]
+Il limite di una successione è unico. 
+Se $\underline{x_k} \in \mathbb{R}^n \, \, \forall k$ converge a $\underline{z} \in \mathbb{R}^n$ allora $z$ è unico.
+\end{prop}
+\begin{proof}
+Supponiamo per assurdo che $\underline{x_k}$ converga a $\underline{z}$ e $\underline{y}$ con $\underline{z} \neq \underline{y}$. Allora
+$$
+|\underline{z} - \underline{y}| \leq |\underline{x_k} - \underline{z}| + |\underline{x_k} - \underline{y}| \stackrel{k \to +\infty}{\to} 0 \implies z = y
+$$
+\end{proof}
+
+\begin{prop}
+Se $\underline{x_k} \to \underline{x}$ allora $|\underline{x_k}| \to |\underline{x}|$
+\end{prop}
+\begin{proof}
+si osserva che, dalla proposizione \ref{prop:dis_triang}, si ha che
+$$
+||\underline{x_k}| - |\underline{x}|| \leq |\underline{x_k} - \underline{x}| \stackrel{k \to +\infty}{\to} 0
+$$
+\end{proof}
+Mostriamo adesso una banale proposizione, le cui conseguenze sono tuttavia banali
+\begin{prop}[spazio vettoriale delle successioni convergenti]
+Se $\underline{x_k} \to \underline{x}$ e $\underline{y_k} \to \underline{y}$ allora $\forall \lambda, \mu \in \mathbb{R}, \, \lambda \underline{x_k} + \mu \underline{y_k} \to \lambda \underline{x} + \mu \underline{y}$ 
+\end{prop}
+\begin{proof}
+osserviamo che
+$$
+|\lambda \underline{x_k} + \mu \underline{y_k} - \lambda \underline{x} - \mu \underline{y}| = |\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})|
+$$
+Per la proposizione \ref{prop:dis_triang} abbiamo che
+$$
+|\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})| \leq |\lambda| |\underline{x_k} - \underline{x}| + |\mu| |\underline{y_k} - \underline{y}| \stackrel{k \to +\infty}{\to} 0
+$$
+dunque la tesi
+\end{proof}
+\begin{remark}
+l'importanza di questa dimostrazione sta nel fatto che questo teorema dimostra che l'insieme delle successioni convergenti in $\mathbb{R}^n$ forma uno spazio vettoriale che è chiuso rispetto all'addizione $+_{\mathbb{R}}$ e prendendo come prodotto per scalare $*_\mathbb{R}$
+\end{remark}
+\noindent Adesso andiamo a mostrare una proprietà che segue direttamente dalla topologia di $\mathbb{R}^n$ (in spazi topologici qualunque non è sempre valido)
+\begin{prop}[caratterizzazione degli insiemi chiusi]
+	Un insieme $A \subset \mathbb{R}^n$ è chiuso se e solo se $\forall \underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$ allora $z \in A$. Formalmente
+	$$
+	(A \subset \mathbb{R}^n \text{è chiuso}) \iff (\forall \underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k \implies z \in A) 
+	$$
+\end{prop}
+\begin{proof}
+$\boxed{\Rightarrow}$: Se $A$ è chiuso, considerando una generica $\underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$, allora $\forall r > 0$ dato che $|\underline{x_k} - \underline{z}| \to 0 \, \exists k_r \in \mathbb{N}$ tale che $|\underline{x_k} - \underline{z}| < r \, \forall k \geq k_r \implies \underline{x_k} \in B(z, r) \implies B(z, r) \cap A \neq \emptyset \implies z \in \bar{A}$. Siccome A è chiuso allora $\bar{A} = A$ dunque $z \in A$. \\
+$\boxed{\Leftarrow}$: Sia $\underline{w} \in \bar{A} \implies B(\underline{w}, \frac{1}{k}) \cap A \neq \emptyset \, \forall k \geq 1$ quindi esiste una successione $\underline{x_k}$ (potremmo prendere per esempio $\underline{w-\frac{1}{k}}$). Ma allora $|\underline{x_k} - \underline{w}| < \frac{1}{k} \implies \underline{x_k} = \underline{w} \implies \underline{w} \in A$ per la seconda proprietà, ma allora $\bar{A} \subset A \implies \bar{A} = A$ e dunque $A$ è chiuso per definizione. 
+\end{proof}
+\noindent Questa proprietà è molto importante, siccome garantisce l'equivalenza fra \textbf{chiusura sequenziale} e \textbf{chiusura} (che negli spazi topologici non è generalmente garantito) in $\mathbb{R}^n$. \\
+In $\mathbb{R}^n$, dato un insieme $A \subset \mathbb{R}^n$, se vogliamo verificare che sia chiuso sarà dunque necessario verificare che ogni successione $\underline{x_k}$ tali che $\forall k, \underline{x_k} \in A$ avremo che $\underline{x_k} \to \underline{x} \in A$, ovvero che ogni successione convergente in $A$ converga ad un punto che appartiene ad $A$.
+\section{Funzioni continue}
+\begin{definition}[funzioni continue]
+Una funzione $f: A \to \mathbb{R}$ con $A \subset \mathbb{R}^m$ si dice continua in $\underline{z} \in A$ se $$\forall \underline{x_k} \in A, \underline{x_k} \to \underline{z}, \, \lim\limits_{k \to +\infty} f(\underline{x_k}) = f(\underline{z})$$
+\end{definition}
+\begin{remark}
+Diremo che $f: A \to \mathbb{R}$ con $A \subset \mathbb{R}^n$ è continua in $A$ se è continua $\forall \underline{x} \in A$.
+\end{remark}
+\noindent Andiamo a ricordare un concetto molto importante:
+\begin{definition}[apertura relativa]
+Fissato $A \subset \mathbb{R}^n$ diremo che $S \subset A$ è aperto in $A$ se $\exists \Omega \subset \mathbb{R}^n$ aperto tale che $$S = A \cap \Omega$$
+\end{definition}
+\begin{theorem}[teorema C1]
+Sia $f: A \to \mathbb{R}^m$ con $A \subset \mathbb{R}^n$. Allora $f$ è continua $\iff \forall U \subset \mathbb{R}^m$ aperto $f^{-1}(U)$ è aperto in $A$
+\end{theorem}
+\begin{proof}
+$\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U \subset \mathbb{R}^m$ aperto tale che $f^{-1}(U)$ non è aperto in $A$. Allora $\exists z \in f^{-1}(U)$ tale che $\forall k \geq 1, B(\underline{z}, \frac{1}{k}) \not\subset f^{-1}(U)$. Ma questo implica che $\exists \underline{x_k} \in A \cap B(\underline{z}, \frac{1}{k})$ tale che $\underline{x_k} \not\in f^{-1}(U)$. Ma allora 
+$$
+|\underline{x_k} - \underline{w}| < \frac{1}{k} \to 0 \implies f(\underline{x_k}) \to f(\underline{z})
+$$
+ma allora $f(x_k) \in U^c$. \ \footnote{se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione} \\ Il fatto che $f(z) \not\in U$ contraddice l'ipotesi iniziale. \\
+$\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})}| \geq \sigma$ per $k$ sufficientemente grande.
+\end{proof}
 \end{document}
