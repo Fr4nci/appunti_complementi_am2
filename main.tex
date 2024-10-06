@@ -44,6 +44,27 @@
 	{\large \hfill Pisa, \today \par}
 	\end{titlepage}
 	\tableofcontents
+	\chapter*{Notazioni}
+	Riporto all'inizio del libro le notazioni adottate all'interno di questo documento:
+	\begin{itemize}[label=\hspace{-0.5em}]
+		\item $\lim$ limite		
+		\item $\frac{\partial f}{\partial x_i}, \partial_{e_i} f, \partial_{x_i} f, f_{x_i}$ derivata parziale rispetto a $x_i$
+		\item $\frac{\partial f}{\partial v}, \partial_v f$ derivata direzionale rispetto a $v$
+		\item $\nabla$ gradiente
+		\item $\nabla \cdot A$ divergenza del campo vettoriale $A$
+		\item $\nabla \times A$ rotore del campo vettoriale $A$
+		\item $\underline{v}$ vettore (alcune volte senza il trattino)
+		\item $||\cdot||, |\cdot|$ norma
+		\item $\innerprod{\cdot}{\cdot}$ prodotto scalare/hermitiano
+		\item $a \times b, a \wedge b$ prodotto vettoriale
+		\item $\text{Int}(A)$ parte interna di A
+		\item $\bar{A}$ chiusura di A
+		\item $\partial A$ derivato di A
+		\item $B(x_0, r)$ palla aperta di raggio $r$ centrata in $x_0$
+		\item $\mathbb{B}(x_0, r)$ palla chiusa di raggio $r$ centrata in $x_0$
+		\item $o(f)$ o-piccolo di $f$
+		\item $O(f)$ O-grande di $f$
+	\end{itemize}
 	\chapter{Spazi euclidei}
 	In questo capitolo, ci soffermeremo su alcuni risultati che possono essere ottenuti considerando uno spazio euclideo e sullo studio della sua topologia, siccome molti concetti dell'Analisi 1 devono essere concettualmente rivisti per poter essere generalizzati a spazi di dimensione diversa da 1.
 	\section{Spazio euclideo e prodotto scalare}
@@ -779,7 +800,12 @@ Siano $A \subseteq \mathbb{R}^n, x_0 \in A, f: A \to \mathbb{R}$ e $\alpha > 0$.
 \begin{proof}
 Analoga alla dimostrazione fatta sopra
 \end{proof}
-\noindent L'ultima proposizione si può anche riscrivere dicendo che se $f=O(|x-x_0|^\alpha)$ allora abbiamo necessariamente, per $x \to x_0$, che $\sup\limits_{A \cap B(x_0, \delta) \setminus \{ x_0 \}} \Bigg| \frac{f(x)}{|x-x_0|^{\alpha}} \Bigg| < +\infty$.
+\noindent L'ultima proposizione si può anche riscrivere dicendo che se $f=O(|x-x_0|^\alpha)$ allora abbiamo necessariamente, per $x \to x_0$, che $\sup\limits_{A \cap B(x_0, \delta) \setminus \{ x_0 \}} \Bigg| \frac{f(x)}{|x-x_0|^{\alpha}} \Bigg| < +\infty$. \\
+Osserviamo che
+$$
+\lim_{x \to x_0} f(x) = l \iff f(x) = l + o(1) \text{ per } x \to x_0
+$$
+e quindi potremmo (con tanta buona volontà) andare a riscrivere tutta la teoria appena fatta sui limiti in più variabili tramite i simboli di Landau. Ciò non verrà fatto, ma li useremo per introdurre, come avevo accennato, il calcolo differenziale.
 \chapter{Calcolo differenziale}
 In questo capitolo andremo a sviscerare il concetto di derivata quando abbiamo a che fare con funzioni vettoriali (sia nell'insieme di definizione che nell'insieme di arrivo) e come sia possibile ottenere massimi e minimi di una funzione introducendo dei concetti sofisticati come la \emph{matrice jacobiana} e la \emph{matrice hessiana}.
 \section{Funzione differenziabile}
@@ -811,7 +837,7 @@ $$
 f(x_0 + h) - f(x_0) - L(h) = o(|h|) \implies \frac{f(x_0 + h) - f(x_0) - L(h)}{|h|} \to 0 \implies f \text{ è differenziabile in } x_0
 $$
 \end{proof}
-\noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione lineare affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, un'approssimazione del primo ordine. \\
+\noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione lineare affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, diciamo essere un'approssimazione del primo ordine. \\
 Dopo questa definizione siamo persino pronti a definire il concetto di derivata direzionale, nozione strettamente connessa a quella di differenziabilità.
 \begin{definition}[derivata direzionale]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$, $f: \Omega \to \mathbb{R}^n$ e sia $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Definiamo la derivata direzionale rispetto a $v$ il limite (se esiste!)
