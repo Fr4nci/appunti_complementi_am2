@@ -790,4 +790,85 @@ $$
 $$
 dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il differenziale di $f$ in $x_0$. La matrice $Df(x_0) \in \mathbb{R}^{m \times n}$ che rappresenta $df(x_0)$ rispetto alla base canonica è detta \textbf{matrice jacobiana} di $f$ in $x_0$.
 \end{definition}
+\begin{remark}
+Naturalmente diremo che $f$ è differenziabile in $\Omega$ se è differenziabile $\forall x \in \Omega$.
+\end{remark}
+\noindent Come avevo anticipato alla fine dello scorso capitolo, possiamo rendere molto semplice la trattazione del calcolo differenziabile tramite i simboli di Landau. Mostriamo per esempio la seguente proposizione:
+\begin{prop}
+$f: \Omega \to \mathbb{R}^m$ con $\Omega \subseteq \mathbb{R}^n$ aperto. Diremo che $f$ è differenziabile in $x_0 \in \Omega \iff \exists L:\mathbb{R}^n \to \mathbb{R}^m$ lineare tale che $f(x_0 + h) = f(x_0) + L(h) + o(h)$ per $h \to 0 \iff $(cambio di variabile) $\exists L: \mathbb{R}^n \to \mathbb{R}^m$ lineare tale che $f(x) = f(x_0) + L(x-x_0) + o(x-x_0)$ per $x \to x_0$.
+\end{prop}
+\begin{proof}
+Se $f$ è differenziabile in $x_0 \in \Omega$, sappiamo che $\exists L : \mathbb{R}^n \to \mathbb{R}^m$ tale che
+$$
+\frac{f(x_0 + h) - f(x_0) - L(h)}{|h|} \to 0 \implies f(x_0 + h) - f(x_0) - L(h) = o(|h|) \text{ per } h \to 0
+$$
+che è equivalente (per cambiamento di variabile) a:
+$$
+f(x) = f(x_0) + L(x-x_0) + o(|x-x_0|) \text{ per } x \to x_0
+$$
+Il viceversa è analogo, siccome se
+$$
+f(x_0 + h) - f(x_0) - L(h) = o(|h|) \implies \frac{f(x_0 + h) - f(x_0) - L(h)}{|h|} \to 0 \implies f \text{ è differenziabile in } x_0
+$$
+\end{proof}
+\noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione lineare affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, un'approssimazione del primo ordine. \\
+Dopo questa definizione siamo persino pronti a definire il concetto di derivata direzionale, nozione strettamente connessa a quella di differenziabilità.
+\begin{definition}[derivata direzionale]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$, $f: \Omega \to \mathbb{R}^n$ e sia $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Definiamo la derivata direzionale rispetto a $v$ il limite (se esiste!)
+$$
+\partial_v f(x_0) = \lim_{t \to 0} \frac{f(x_0 + tv) - f(x_0)}{t}
+$$
+\end{definition}
+\noindent Nel caso in cui $v = e_i$ la derivata direzionale è detta derivata parziale rispetto a $x_i$.
+\begin{remark}
+La derivata parziale rispetto a $x_i$ è, di fatto, la derivata di una funzione di una sola variabile. Pertanto queste posso essere svolte tenendo "costanti" le altre variabili $x_j$ con $j \neq i$ e calcolare la derivata come usualmente si faceva ad Analisi 1
+\end{remark}
+\noindent Ricollegandoci all'osservazione fatta qua sopra, infatti, possiamo osservare che:
+$$
+\partial_{e_1} f(x_0) = \lim_{t \to 0} \frac{f(x_0 + te_1) - f(x_0)}{t} = \lim_{t \to 0} \frac{f(x_1 + t, x_2, \ldots) - f(x_1, x_2, \ldots )}{t}
+$$
+Siamo adesso pronti ad enunciare il seguente risultato, che ci dà qualche informazione su come sia il differenziale:
+\begin{theorem}[teorema DF1]
+Se $f: \Omega \to \mathbb{R}$ è differenziabile in $x_0$ allora $\exists \partial_v f \, \forall v \in \mathbb{R}^n \setminus \{ \underline{0} \}$ e vale che
+$$
+df(x_0) = \partial_v f(x_0)
+$$
+\end{theorem}
+\begin{proof}
+Siccome $f$ è differenziabile in $x_0 \in \Omega$ allora $\exists L: \mathbb{R}^n \to \mathbb{R}$ tale che $f(x_0 + tv) = f(x_0) + L(tv) + o(|tv|)$ dove $|tv| \to 0$ per $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Ma questo allora implica che
+\begin{align*}
+&\frac{f(x_0 + tv) - f(x_0) - L(|tv|)}{t} \to 0 \implies \frac{f(x_0 + tv) - f(x_0) - tL(v)}{t} \to 0 \implies \lim_{t \to 0} (\frac{f(x_0 + tv) - f(x_0)}{t} - L(v)) \to 0 \implies \\ &\implies \exists \partial_v f(x_0) = L(v) = df(x_0)(v)
+\end{align*}
+\end{proof}
+\begin{theorem}[rappresentazione e unicità del differenziale]
+Se $f: \Omega \to \mathbb{R}$ è differenziabile in $x_0 \in \Omega$  allora il differenziabile di $f$ nel punto $x_0 \in \Omega$ è unico e
+$$
+df(x_0)(\xi_1, \ldots \xi_n) = \sum_{j=1}^n \xi_j \frac{\partial f}{\partial x_j}(x_0)
+$$
+\end{theorem}
+\begin{proof}
+Preso $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$, allora 
+$$
+v = \sum \xi_i e_i \simeq (\xi_1, \ldots, \xi_n) \implies df(x_0)(v) = \sum_{j = 1}^n \xi_j df(x_0)(e_j) = \sum_{j=1}^n \xi_j \partial_{e_j} f(x_0)
+$$
+dove abbiamo solamente sfruttato la linearità della funzione differenziabile e il fatto che $df(x_0)(e_j) = \frac{\partial f}{\partial x_j}(x_0)$. L'unicità del differenziabile deriva dal fatto che se supponiamo per assurdo che esista $L' \neq df(x_0)$ lineare, tali che $L(v) = df(x_0)(v) \, \forall v \in \mathbb{R}^n \setminus \{ \underline{0} \}$ allora preso un $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$ avremo che:
+$$
+L(v) = \sum_j^n \xi_j L(e_j) = \sum_j^n \xi_j df(x_0)(e_j) = df(x_0)(v)
+$$
+dove tutte queste uguaglianze sono ottenute sfruttando la linearità di $L$ e $df(x_0)$. L'unica possibilità (siccome questa è una relazione valida per ogni vettore) è che $L(e_j) = df(x_0)(e_j) \, \forall j$ ma allora queste due applicazioni lineari coincidono, giungendo ad un assurdo. Quindi il differenziale $df(x_0)$ è unico.
+\end{proof}
+\noindent Possiamo dunque definire il concetto di gradiente:
+\begin{definition}[gradiente di una funzione]
+Sia $f: \Omega \to \mathbb{R}$ con $\Omega \subseteq \mathbb{R}^n$, $x_0 \in \Omega$ e $f$ differenziabile in $x_0$. Allora definiamo il gradiente $$\nabla{f(x_0)} = (\frac{\partial f}{\partial x_1}(x_0), \ldots, \frac{\partial f}{\partial x_n}(x_0)) = \sum_{i=1}^n \frac{\partial f}{\partial x_i}f(x_0)e_i \in \mathbb{R}^n$$
+\end{definition}
+\begin{remark}
+Il gradiente di $f$ nel punto $x_0$ è di fatto il vettore che ha come componenti le derivate parziali di $f$
+\end{remark}
+\noindent Dalla formula precedente è possibile ricavare che
+$$
+df(x_0)(v) = \innerprod{\nabla{f(x_0)}}{v}
+$$
+\begin{remark}
+Da qua possiamo vedere il grandissimo problema di definire il gradiente: per definire le derivate parziali, di fatto, abbiamo solamente fatto riferimento alla natura da "spazio metrico" di $\mathbb{R}^n$, quindi in generale potremmo andare a definire la derivata su una classe maggiore di insiemi rispetto che a $\mathbb{R}$ e $\mathbb{C}$. Per definire il gradiente, però, abbiamo richiesto il prodotto scalare, che è una condizione decisamente più forte che alla semplice distanza.
+\end{remark}
 \end{document}
