@@ -680,7 +680,7 @@ $f: C \to \mathbb{R}$ continua, $C$ è connesso per archi $\implies f(C) \subset
 \begin{proof}
 Dal precedente teorema segue, naturalmente, che $f(C)$ è connesso per archi. Mostriamo che è un intervallo: dati $t, s \in f(C), \exists \Gamma: [0,1] \to f(C) \subset \mathbb{R}$ continua tale che $\Gamma(0) = t$ e $\Gamma(1) = s$. Dunque $[t,s] \subseteq \Gamma([0, 1]) \subseteq f(C) \implies f(C)$ è un intervallo
 \end{proof}
-Da questo corollario è anche possibile anche dimostrare la seguente proposizione
+\noindent Da questo corollario è anche possibile anche dimostrare la seguente proposizione
 \begin{prop}
 Sia $A$ connesso per archi e sia $f: A \to \mathbb{R}$ continua. Allora
 \begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -713,7 +713,7 @@ $$
 \begin{remark}
 In generale tutte queste definizioni che stiamo dando funzionano in qualunque spazio metrico $(X,d)$ sostituendo al posto dell'usuale distanza euclidea definita in $\mathbb{R}^n$ la distanza $d$.
 \end{remark}
-Potremo scrivere anche le definizioni per gli altri due casi che ci restano, ma è banale e lo lasciamo come semplice esercizio teorico al lettore. \\
+\noindent Potremo scrivere anche le definizioni per gli altri due casi che ci restano, ma è banale e lo lasciamo come semplice esercizio teorico al lettore. \\
 \begin{theorem}[caratterizzazione del limite per successioni]
 Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in \partial A, v \in \mathbb{R}^m$. Abbiamo che
 $$
@@ -736,4 +736,58 @@ $$\lim\limits_{x \to x_0} h(x) = \lim\limits_{x \to x_0} g(x) = l \implies \lim_
 \begin{proof}
 La dimostrazione è analoga a quella di Analisi 1 con qualche accorgimento sugli insiemi di definizione
 \end{proof}
+\noindent Prima di procedere sulla parte del calcolo differenziale, diamo una breve introduzione ai simboli di Landau (i cosiddetti o-piccoli e O-grandi) che semplificano notevolmente il calcolo in più variabili:
+\begin{definition}[o-piccolo]
+Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
+$$
+f = o(g) \text{ per } x \to x_0
+$$
+se $$\forall \varepsilon > 0 \, \exists \delta > 0 : |f(x)| \leq \varepsilon |g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
+\end{definition}
+\begin{definition}[O-grande]
+Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
+$$
+f = O(g) \text{ per } x \to x_0
+$$
+se $$\exists M > 0, \delta > 0 : |f(x)| \leq M|g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} $$
+\end{definition}
+\begin{exercise}
+Se $f$ è un o-piccolo di $g$ allora $f$ è O-grande di $g$
+\end{exercise}
+\begin{proof}
+Segue direttamente dalla definizione, siccome se $f = o(g)$ allora $\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |g(x)| \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$, dunque fissando $M = \varepsilon > 0$ allora sappiamo che esiste un $\delta(\varepsilon)$ per cui
+$$
+|f(x)| \leq M |g(x)| \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}
+$$ 
+dunque risulta che $f$ è un O-grande di $g$, ovvero la tesi.
+\end{proof}
+\begin{prop}
+Siano $A \subseteq \mathbb{R}^n, x_0 \in  A$ e $f: A \to \mathbb{R}^m$ e $\alpha > 0$. Allora abbiamo
+$$
+f(x) = o(|x-x_0|^\alpha) \text{ per } \, x \to x_0 \iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
+$$
+\end{prop}
+\begin{proof}
+la dimostrazione è banale, siccome 
+\begin{align*}
+&\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |x-x_0|^\alpha \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \iff \forall \varepsilon > 0 \exists \delta > 0: \frac{|f(x)|}{|x-x_0|^\alpha} \leq \varepsilon \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \\ &\iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
+\end{align*}
+\end{proof}
+\begin{prop}
+Siano $A \subseteq \mathbb{R}^n, x_0 \in A, f: A \to \mathbb{R}$ e $\alpha > 0$. Allora abbiamo che $$f(x) = O(|x-x_0|^\alpha) \text{ per } x \to x_0 \iff \exists M, \delta > 0: \frac{f(x)}{|x-x_0|^\alpha} \leq M \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
+\end{prop}
+\begin{proof}
+Analoga alla dimostrazione fatta sopra
+\end{proof}
+\noindent L'ultima proposizione si può anche riscrivere dicendo che se $f=O(|x-x_0|^\alpha)$ allora abbiamo necessariamente, per $x \to x_0$, che $\sup\limits_{A \cap B(x_0, \delta) \setminus \{ x_0 \}} \Bigg| \frac{f(x)}{|x-x_0|^{\alpha}} \Bigg| < +\infty$.
+\chapter{Calcolo differenziale}
+In questo capitolo andremo a sviscerare il concetto di derivata quando abbiamo a che fare con funzioni vettoriali (sia nell'insieme di definizione che nell'insieme di arrivo) e come sia possibile ottenere massimi e minimi di una funzione introducendo dei concetti sofisticati come la \emph{matrice jacobiana} e la \emph{matrice hessiana}.
+\section{Funzione differenziabile}
+\begin{definition}[funzione differenziabile in un punto e matrice jacobiana]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $x_0 \in \Omega$. Diremo che $f: \Omega \to \mathbb{R}^m$ è differenziabile in $x_0$ se $\exists L: \mathbb{R}^n \to \mathbb{R}^m$ lineare tale che
+$$
+\frac{f(x_0 + h)-f(x) - L(h)}{|h|} \stackrel{h \to 0}{\to} 0
+$$
+dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il differenziale di $f$ in $x_0$. La matrice $Df(x_0) \in \mathbb{R}^{m \times n}$ che rappresenta $df(x_0)$ rispetto alla base canonica è detta \textbf{matrice jacobiana} di $f$ in $x_0$.
+\end{definition}
 \end{document}
