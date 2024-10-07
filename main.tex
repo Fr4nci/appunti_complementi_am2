@@ -705,8 +705,8 @@ Dal precedente teorema segue, naturalmente, che $f(C)$ è connesso per archi. Mo
 \begin{prop}
 Sia $A$ connesso per archi e sia $f: A \to \mathbb{R}$ continua. Allora
 \begin{enumerate}[label=\protect\circled{\arabic*}]
-	\item Se $\exists \max\limits_{A} f, \min\limits_{B} f$ allora $f(A) = [\min\limits_{A} f, \max\limits_{A} f]$
-	\item Se $\not\exists \max\limits_{A} f, \exists \min\limits_{B} f$ allora $f(A)=[\min\limits_{A} f, \sup\limits_{A} f)$
+	\item Se $\exists \max\limits_{A} f, \min\limits_{A} f$ allora $f(A) = [\min\limits_{A} f, \max\limits_{A} f]$
+	\item Se $\not\exists \max\limits_{A} f, \exists \min\limits_{A} f$ allora $f(A)=[\min\limits_{A} f, \sup\limits_{A} f)$
 \end{enumerate}
 \end{prop}
 \begin{exercise}
@@ -715,7 +715,7 @@ Mostrare la proposizione precedente
 \begin{proof}
 Per il corollario sappiamo che $f(A)$ è un intervallo. \\
 Se il minimo e il massimo della funzione sono ben definiti, allora l'immagine è banalmente contenuta fra il minimo e il massimo la cui esistenza è garantita dal teorema di Weierstrass. \\
-Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di generalità, che $\not\exists \max\limits_{A} f$. Se supponiamo per assurdo che $f(A)$ non sia un intervallo allora esisterebbe un $x \in f(A)$ tale che $x$ non è compreso fra $\min_{A} f$ e $\sup_{A} f$: allora, per un $\delta$ sufficientemente piccolo, posso trovare un intorno di $x$ tale che $\sup\limits_A f < x - \varepsilon < x \in f(A)$ il che va contro la definizione di estremo superiore di $f$ come minimo dei maggioranti di $f(A)$.
+Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di generalità, che $\not\exists \max\limits_{A} f$. Naturalmente, per caratterizzazione del $\sup$ abbiamo che $\forall \varepsilon > 0, \sup\limits_{A}{f} - \varepsilon \in f(A)$, dunque $\exists x \in A: f(x) = \sup\limits_{A}{f}$, dunque $[\min\limits_{A} f, f(x)] \subseteq [\min\limits_A{f}, \sup\limits_{A}{f})$, dunque $f(C)$ è ancora un intervallo.
 \end{proof}
 \section{Accenni ai limiti in più variabili}
 \begin{definition}[definizione di limite]
@@ -885,7 +885,7 @@ dove tutte queste uguaglianze sono ottenute sfruttando la linearità di $L$ e $d
 \end{proof}
 \noindent Possiamo dunque definire il concetto di gradiente:
 \begin{definition}[gradiente di una funzione]
-Sia $f: \Omega \to \mathbb{R}$ con $\Omega \subseteq \mathbb{R}^n$, $x_0 \in \Omega$ e $f$ differenziabile in $x_0$. Allora definiamo il gradiente $$\nabla{f(x_0)} = (\frac{\partial f}{\partial x_1}(x_0), \ldots, \frac{\partial f}{\partial x_n}(x_0)) = \sum_{i=1}^n \frac{\partial f}{\partial x_i}f(x_0)e_i \in \mathbb{R}^n$$
+Sia $f: \Omega \to \mathbb{R}$ con $\Omega \subseteq \mathbb{R}^n$, $x_0 \in \Omega$ e $f$ differenziabile in $x_0$. Allora definiamo il gradiente $$\nabla{f(x_0)} = \left( \frac{\partial f}{\partial x_1}(x_0), \ldots, \frac{\partial f}{\partial x_n}(x_0) \right) = \sum_{i=1}^n \frac{\partial f}{\partial x_i}f(x_0)e_i \in \mathbb{R}^n$$
 \end{definition}
 \begin{remark}
 Il gradiente di $f$ nel punto $x_0$ è di fatto il vettore che ha come componenti le derivate parziali di $f$
@@ -897,4 +897,60 @@ $$
 \begin{remark}
 Da qua possiamo vedere il grandissimo problema di definire il gradiente: per definire le derivate parziali, di fatto, abbiamo solamente fatto riferimento alla natura da "spazio metrico" di $\mathbb{R}^n$, quindi in generale potremmo andare a definire la derivata su una classe maggiore di insiemi rispetto che a $\mathbb{R}$ e $\mathbb{C}$. Per definire il gradiente, però, abbiamo richiesto il prodotto scalare, che è una condizione decisamente più forte che alla semplice distanza.
 \end{remark}
+\noindent Cerchiamo adesso di capire che cosa rappresenta il gradiente. Il gradiente possiamo vederlo come la direzione in cui la funzione ha la massima pendenza\footnote{questo è particolarmente comodo, per gli algoritmi locali di minimizzazione o massimizzazione, in cui si sfrutta la pendenza della funzione nel punto per trovare i massimi e i minimi locali.}. Per vedere questo possiamo considerare il vettore $v = \frac{\nabla f(x_0)}{|\nabla f(x_0)|}$ e considerando il vettore $w \in \mathbb{R}^n$ tale che $|w| = 1$ allora
+$$
+\partial_w f(x_0) = \innerprod{\nabla{f(x_0)}}{w} \leq |\nabla{f(x_0)}||w| = |\nabla{f(x_0)}|
+$$
+per la disuguaglianza di Cauchy-Schwarz. Tuttavia si osserva che
+$$
+|\nabla{f(x_0)}| = \innerprod{\nabla{f(x_0)}}{v} = \innerprod{\nabla{f(x_0)}}{\nabla{f(x_0)}} \frac{1}{|\nabla{f(x_0)}|} = \partial_v f(x_0)
+$$
+dunque
+$$
+\partial_w f(x_0) \leq \partial_v f(x_0)
+$$
+\section{Spazio duale}
+Ricordiamo la definizione di spazio duale:
+\begin{definition}[spazio duale]
+Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, definiamo lo spazio duale $V^{*}$ come lo spazio vettoriale dei funzionali lineari $f: V \to \mathbb{K}$. In simboli
+$$
+V^{*} = \{f \, | \, f: V \to \mathbb{K} \}
+$$
+\end{definition}
+\noindent Introduciamo, a questo punto, le funzioni proiezioni $\pi_i: \mathbb{R}^n \to \mathbb{R}$ tali che $x = (x_1, \ldots, x_n) \mapsto x_i$, ovvero le funzioni che associano l'$i$-esima componente del vettore $x \in \mathbb{R}^n$. \\
+Osserviamo naturalmente che
+$$
+|\pi_i(x)| = |x_i| \leq |x| \, \forall x \in \mathbb{R}^n
+$$ 
+e notiamo che le funzioni proiezioni sono lineari e se $L: \mathbb{R}^n \to \mathbb{R}$ è lineare, allora
+$$
+L(x) = L(\sum_{i=1}^n x_i e_i) = \sum_{i=1}^n x_i L(e_i) = \sum_{i=1}^n \pi_i(x) L(e_i)
+$$
+e, naturalmente, per come è definita $L$ abbiamo che $L(e_i) = a_i \, \forall i$, quindi ogni funzione lineare da $\mathbb{R}^n$ a $\mathbb{R}$ è una combinazione lineare delle funzioni lineari $\pi_i$. \\
+Passando in $\mathbb{R}^n$, osserviamo che queste funzioni proiezioni sono una base dello spazio duale $(\mathbb{R}^n)^{*}$ e definiamo $dx_i = \pi_i$. \\
+\begin{prop}
+Sia $f: \Omega \to \mathbb{R}, f$ differenziabile in $x_0 \in \Omega$. Allora
+$$
+df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0)dx_i = \partial_{x_1} f(x_0)dx_1 + \ldots + \partial_{x_n} f(x_0)dx_n \in (\mathbb{R}^n)^{*}
+$$
+\end{prop}
+\begin{proof}
+Dato $v=(\xi_1, \ldots \xi_n)$ allora
+$$
+df(x_0)(v) = \sum_{i=1}^n \xi_i \partial_{x_i} f(x_0) = \sum_{i=1}^n \pi_i(v) \partial_{x_i} f(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0) dx_i(v) \implies df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0)
+$$
+\end{proof}
+\begin{remark}
+Data $f: \Omega \to \mathbb{R}$, possiamo allora vedere il differenziale come una funzione che ad ogni punto $p \in \Omega$ associa $df(p) \in (\mathbb{R}^n)^{*}$, ovvero $df: \Omega \mapsto (\mathbb{R}^n)^{*}$
+$$
+df(p) = \sum_{i=1}^n df(p)dx_i \, \forall p \in \Omega
+$$
+\end{remark}
+Alla luce dell'osservazione qua sopra possiamo dunque dare la seguente definizione:
+\begin{definition}[1-forma differenziale]
+Diremo che $\omega: \Omega \to (\mathbb{R}^n)^{*}$ con $\Omega \subseteq \mathbb{R}^n$ aperto è una $1$-forma differenziale su $\Omega$. Inoltre, $\forall p \in \Omega$ avremo un'unica $n$-upla di coefficiente $(a_1(p), \ldots a_n(p))$ dipendenti da $p$ tali che
+$$
+\omega(x) = \sum_{i=1}^n a_i(x)dx_i
+$$
+\end{definition}
 \end{document}
