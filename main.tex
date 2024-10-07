@@ -4,7 +4,7 @@
 \input{macros}
 \usepackage{fancyhdr}
 \usepackage{titlesec}  % Opzionale, per controllo avanzato sui titoli
-
+\setlength{\parindent}{0pt}
 \pagestyle{fancy}
 
 % Definizione dell'intestazione per pagine dispari (Odd)
@@ -561,7 +561,7 @@ $$
 ||\underline{x_k}| - |\underline{x}|| \leq |\underline{x_k} - \underline{x}| \stackrel{k \to +\infty}{\to} 0
 $$
 \end{proof}
-Mostriamo adesso una banale proposizione, le cui conseguenze sono tuttavia banali
+\noindent Mostriamo adesso una banale proposizione, le cui conseguenze non sono così "scontate".
 \begin{prop}[spazio vettoriale delle successioni convergenti]
 Se $\underline{x_k} \to \underline{x}$ e $\underline{y_k} \to \underline{y}$ allora $\forall \lambda, \mu \in \mathbb{R}, \, \lambda \underline{x_k} + \mu \underline{y_k} \to \lambda \underline{x} + \mu \underline{y}$ 
 \end{prop}
@@ -954,6 +954,6 @@ $$
 $$
 \end{definition}
 \begin{remark}
-In generale quando abbiamo a che fare con $\omega$ $1$-forma differenziale è anche possibile andare a definire
+\noindent In generale quando abbiamo a che fare con $\omega$ $1$-forma differenziale è anche possibile andare a definire
 \end{remark}
 \end{document}
