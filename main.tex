@@ -857,8 +857,9 @@ Siamo adesso pronti ad enunciare il seguente risultato, che ci dà qualche infor
 \begin{theorem}[teorema DF1]
 Se $f: \Omega \to \mathbb{R}$ è differenziabile in $x_0$ allora $\exists \partial_v f \, \forall v \in \mathbb{R}^n \setminus \{ \underline{0} \}$ e vale che
 $$
-df(x_0) = \partial_v f(x_0)
+df(x_0)(v) = \partial_v f(x_0)
 $$
+\label{thm:teorema_df1}
 \end{theorem}
 \begin{proof}
 Siccome $f$ è differenziabile in $x_0 \in \Omega$ allora $\exists L: \mathbb{R}^n \to \mathbb{R}$ tale che $f(x_0 + tv) = f(x_0) + L(tv) + o(|tv|)$ dove $|tv| \to 0$ per $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Ma questo allora implica che
@@ -924,7 +925,7 @@ $$
 $$ 
 e notiamo che le funzioni proiezioni sono lineari e se $L: \mathbb{R}^n \to \mathbb{R}$ è lineare, allora
 $$
-L(x) = L(\sum_{i=1}^n x_i e_i) = \sum_{i=1}^n x_i L(e_i) = \sum_{i=1}^n \pi_i(x) L(e_i)
+L(x) = L \left( \sum_{i=1}^n x_i e_i \right) = \sum_{i=1}^n x_i L(e_i) = \sum_{i=1}^n \pi_i(x) L(e_i)
 $$
 e, naturalmente, per come è definita $L$ abbiamo che $L(e_i) = a_i \, \forall i$, quindi ogni funzione lineare da $\mathbb{R}^n$ a $\mathbb{R}$ è una combinazione lineare delle funzioni lineari $\pi_i$. \\
 Passando in $\mathbb{R}^n$, osserviamo che queste funzioni proiezioni sono una base dello spazio duale $(\mathbb{R}^n)^{*}$ e definiamo $dx_i = \pi_i$. \\
@@ -937,7 +938,9 @@ $$
 \begin{proof}
 Dato $v=(\xi_1, \ldots \xi_n)$ allora
 $$
-df(x_0)(v) = \sum_{i=1}^n \xi_i \partial_{x_i} f(x_0) = \sum_{i=1}^n \pi_i(v) \partial_{x_i} f(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0) dx_i(v) \implies df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0)
+df(x_0)(v) = \sum_{i=1}^n \xi_i df(x_0)(e_i) = \sum_{i=1}^n \pi_i(v) \partial_{x_i} f(x_0)$$
+dove l'ultima uguaglianza si è ottenuta osservando che $xi_j = \pi_j(v) = dx_j(v)$. A questo punto allora, ricordando che $df(x_0)(e_1) = \partial_{x_i} f(x_0)$ (per il teorema \ref{thm:teorema_df1}), otteniamo la tesi, siccome
+$$\sum_{i=1}^n \partial_{x_i} f(x_0) dx_i(v) \implies df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0) dx_i
 $$
 \end{proof}
 \begin{remark}
@@ -954,6 +957,82 @@ $$
 $$
 \end{definition}
 \begin{remark}
-\noindent In generale quando abbiamo a che fare con $\omega$ $1$-forma differenziale è anche possibile andare a definire
+\noindent Quando abbiamo a che fare con $\omega$ $1$-forma differenziale possiamo andare a definrie delle funzioni $a_1(x), \ldots a_n(x): \Omega \to \mathbb{R}$ tali che
+$$
+\omega(x) = \sum_{j=0}^n a_j(x)dx_j
+$$
 \end{remark}
+\begin{definition}[campo vettoriale]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, diremo che $F$ è un campo vettoriale se $F: \Omega \to \mathbb{R}^n$, ovvero $F(p) = \sum\limits_{j=1}^n f_j(p)e_j = (f_1(p), \ldots f_n(p))$ ove $f_j: \Omega \to \mathbb{R}$ sono le componenti di $F$
+\end{definition}
+\begin{remark}
+Se $\omega: \Omega \to (\mathbb{R}^n)^{*}$ è una 1-forma differenziale e $F: \Omega \to \mathbb{R}^n$ è un campo vettoriale, allora $\innerprod{\omega}{F}: \Omega \to \mathbb{R}$ tale che $p \mapsto \omega(p)F(p)$ è uno scalare, ovvero è indipendente dal fatto che utilizziamo le basi canoniche per rappresentare $\omega$ e $F$. In questo caso diremo che la 1-forma differenziale $\omega$ si è contratta su $F$
+\end{remark}
+Enunciamo adesso il risultato più importante di questo capitolo:
+\begin{theorem}
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $p_0 \in \Omega$ e sia $f: \Omega \to \mathbb{R}^m$ ($\iff f=(f_1, \ldots f_m)$ con $f_j: \Omega \to \mathbb{R} \, \forall j$). Allora 
+$$
+f \text{ è differenziabile in } p_0 \iff \text{ogni componente di } f_j \text{ è differenziabile in } p_0
+$$
+In ogni caso avremo che
+$$
+D(f(x_0)) = \begin{pmatrix}
+\nabla{f_1(p_0)} \\
+\nabla{f_2(p_0)} \\
+\vdots \\
+\nabla{f_m(p_0)} \\
+\end{pmatrix} \in \mathbb{R}^{m \times n}
+$$
+\end{theorem}
+\begin{proof} \hspace{1em} \\
+$\boxed{\Rightarrow}$: se $f$ è differenziabile allora possiamo definire la funzione $\pi_i \circ df(p_0): \mathbb{R}^n \to \mathbb{R}$ e sappiamo che
+\begin{equation}
+f(x) = f(p_0) + df(p_0)(x-p_0) + o(x-p_0) 
+\label{eq:appl_aff}
+\end{equation}
+e osserviamo, ricordando che $x_i \leq |x|$ con dove $x_i$ rappresenta l'$i$-esima, che
+\begin{align*}
+&\frac{|\pi_i \circ o(x-p_0)|}{|x-p_0|} \leq \frac{|o(x-p_0)|}{|x-p_0|} \to 0 \\
+&\implies \pi_i \circ o(x-p_0) = o(x-p_0)
+\end{align*}
+dove l'ultima affermazione segue, banalmente, dal teorema del confronto. \\
+Componendo $\pi_i$ all'applicazione lineare affine otteniamo che
+$$
+\pi_i \circ f(x) = f_i(p_0) + (df(p_0))_i (x-p_0) + o(x-p_0) \, \text{per } x \to p_0 
+$$
+Per l'unicità del differenziale di $f_i$ (che ricordiamo essere una funzione $\Omega \to \mathbb{R}$, dunque sappiamo, per il teorema precedente, che il suo differenziale è unico) segue che
+$$
+\pi_i \circ L(x) = df_i(p_0)(x) = \innerprod{\nabla{f(p_0)}}{x}
+$$
+il che naturalmente implica che
+$$
+L(x) = \sum_{i=1}^m L_i(x) e_i = \sum_{i=1}^m (\pi_i \circ L)(x) e_i = \sum_{i=1}^m \innerprod{\nabla{f_i(x_0)}}{x} e_i = \begin{pmatrix} \partial_{x_1} f_1(p_0) & \ldots & \partial_{x_n} f_1(p_0) \\
+\vdots & \vdots & \vdots \\
+\partial_{x_1} f_m(p_0) & \ldots & \partial_{x_n} f_m(p_0)  \end{pmatrix} \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix} = Df(x_0)x
+$$
+E questo mostra la tesi. \\
+$\boxed{\Leftarrow}$: se $f_i$ è differenziabile in $p_0 \, \forall i \in 1, \ldots, n$ definiamo $df_i(x_0): \mathbb{R}^n \to \mathbb{R}$ e osserviamo che
+\begin{align*}
+&f(p_0 + h) - f(p_0) = \sum_{i=1}^m (f_i(p_0 + h) - f_i(p_0))e_i = \sum_{i=1}^m (df_i(p_0)(h) + o(h))e_i = \sum_{i=1}^m df_i(p_0)(h)e_i + \sum_{i=1}^m o_i(h)e_i = L(h) + o(h) \implies \\
+&\implies f \text{ è differenziale in } p_0
+\end{align*}
+dove, naturalmente, abbiamo che
+$$
+L(h) = \sum_{i=1}^m \innerprod{\nabla{f(p_0)}}{h}e_i = Df(x_0)h
+$$
+Abbiamo dunque ottenuto la tesi.
+\end{proof}
+\begin{cor}
+Il teorema precedente mostra anche come il differenziale sia unico anche nel caso di funzioni vettoriali.
+\end{cor}
+\begin{theorem}[del differenziale totale]
+Sia $f: \Omega \to \mathbb{R}, \Omega \subseteq \mathbb{R}^n$ aperto e $p_0 \in \Omega$. Se $$\exists \partial_{x_j} f: B(p_0, r) \to \mathbb{R} \, \forall j \in \{1, \ldots n\} \text{ con } B(p_0, r) \subseteq \Omega$$ e se 
+$$
+\partial_{x_j} f \text{ sono tutte continue in } p_0 \, \forall j \in \{1, \ldots, n \}$$ allora $f$ è differenziale in $p_0$
+\end{theorem}
 \end{document}
