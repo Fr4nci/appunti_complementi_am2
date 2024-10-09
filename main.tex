@@ -585,6 +585,7 @@ l'importanza di questa dimostrazione sta nel fatto che questo teorema dimostra c
 	$$
 	(A \subset \mathbb{R}^n \text{è chiuso}) \iff (\forall \underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k \implies z \in A) 
 	$$
+	\label{prop:caratt_chiusi}
 \end{prop}
 \begin{proof} \hspace{1em} \newline
 $\boxed{\Rightarrow}$: Se $A$ è chiuso, considerando una generica $\underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$, allora $\forall r > 0$ dato che $|\underline{x_k} - \underline{z}| \to 0 \, \exists k_r \in \mathbb{N}$ tale che $|\underline{x_k} - \underline{z}| < r \, \forall k \geq k_r \implies \underline{x_k} \in B(z, r) \implies B(z, r) \cap A \neq \emptyset \implies z \in \bar{A}$. Siccome A è chiuso allora $\bar{A} = A$ dunque $z \in A$. \\
@@ -612,7 +613,7 @@ $\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U 
 $$
 |\underline{x_k} - \underline{w}| < \frac{1}{k} \to 0 \implies f(\underline{x_k}) \to f(\underline{z})
 $$
-ma allora $f(x_k) \in U^c$. \ \footnote{se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione} \\ Il fatto che $f(z) \not\in U$ contraddice l'ipotesi iniziale. \\
+ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Il fatto che $f(z) \not\in U$ (siccome $U^c$ è chiuso abbiamo che, per la proposizione \ref{prop:caratt_chiusi}, ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$) e ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
 $\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
 \end{proof}
 \begin{theorem}[teorema della permanenza del segno]
