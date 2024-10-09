@@ -1036,4 +1036,58 @@ Sia $f: \Omega \to \mathbb{R}, \Omega \subseteq \mathbb{R}^n$ aperto e $p_0 \in 
 $$
 \partial_{x_j} f \text{ sono tutte continue in } p_0 \, \forall j \in \{1, \ldots, n \}$$ allora $f$ è differenziale in $p_0$
 \end{theorem}
+\begin{proof}
+Consideriamo $h=\sum\limits_{j=1}^n h_j e_j = (h_1, \ldots h_n)$. Osserviamo che posto
+$$
+L(h) = \sum_{j=1}^n \partial_j f(p_0)h_j
+$$
+possiamo notare come
+$$
+f(p_0 + h) - f(p_0) - L(h) = f(p_0 + h) - f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) - f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) - \ldots - f(p_0)
+$$
+possiamo raggruppare a 2 a due i termini, notando che:
+$$
+\left( f(p_0 + h) - f(p_0 + \sum_{i=1}^{n-1} h_j e_j \right) + \left( f(p_0 + \sum_{i=1}^{n-1} h_j e_j) - f(p_0 + \sum_{i=1}^{n-2} h_j e_j) \right) + \ldots + \left( f(p_0 + h_1) - f(p_0) \right)
+$$
+al raggruppamento $j$-esimo teniamo fisso la $n-j+1$ componente dell'argomento della funzione sulla sinistra, pertanto possiamo applicare il teorema di Lagrange se definiamo una funzione dipendente esclusivamente dalla variabile $h_j$, dunque:
+\begin{align*}
+&f(p_0 + h) - f(p_0) - L(h) = \partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) h_n + \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) h_{n-1} + \ldots = \\
+&= o(1)h_n + \ldots + o(1)h_1
+\end{align*}
+e per $|h| \to 0$ osserviamo che $o(1)h_j \leq o(1)|h| \implies \frac{o(1)h_j}{|h|} \leq \frac{o(1)|h|}{|h|} = o(1) \implies o(j)h_j = o(h)$ e chiaramente $\frac{o(1)h_n + \ldots o(1)h_1}{|h|} \to 0$. Dunque 
+$$
+f(p_0 + h) - f(p_0) - L(h) = o(h)
+$$
+ovvero la tesi.
+\end{proof}
+\section{Interpretazione geometrica delle derivate prime}
+Nel caso delle funzioni a singola variabile, la derivata di $f: \Omega \to \mathbb{R}$ (dove $\Omega \subseteq \mathbb{R}$ aperto) nel punto $x_0 \in \Omega$ rappresenta il coefficiente angolare della retta tangente al grafico della funzione $f$ nel punto $(x_0, f(x_0))$. In più variabili la differenziabilità che significato ha? \\
+Mostriamo innanzitutto che una funzione a singola variabile a valori in $R$ derivabile è equivalente a dire che essa è differenziabile:
+\begin{prop}[differenzialità $\iff$ derivabilità]
+Sia $f: \Omega \to \mathbb{R}$ con $\Omega \subseteq \mathbb{R}$ aperto e sia $x_0 \in \Omega$. Allora
+$$
+f \text{ è differenziabile in } x_0 \iff f \text{ è derivabile in }x_0
+$$
+\end{prop}
+\begin{proof} \hspace{1em} \\
+$\boxed{\Rightarrow}$: osserviamo che se $f$ è derivabile in $x_0$ allora
+$$
+\lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = f'(x_0) \implies \lim_{x \to x_0} \frac{f(x) - f(x_0) - f'(x_0)(x-x_0)}{x-x_0} = 0
+$$
+ma per definizione di $o$-piccolo abbiamo che
+$$
+f(x)-f(x_0) - f'(x_0)(x-x_0) = o(x-x_0) \implies f(x_0 + h) - f(x_0) - f'(x_0)h = o(h)
+$$
+dunque\footnote{il cambio di variabile l'ho fatto per tirare fuori la definizione di differenziabilità per come l'avevamo espressa} $f(x)$ è differenziabile siccome $L(h)=f'(x_0)(h)$ è una funzione lineare. \\
+$\boxed{\Leftarrow}$: osserviamo che se $f$ è differenziabile in $x_0$ allora
+$$
+f(x) - f(x_0) - L(x-x_0) = o(x-x_0)
+$$
+dove $L(x-x_0) = a(x_0)(x-x_0)$ (siccome le uniche funzioni lineari in $\mathbb{R}$ sono le rette e, nel nostro caso, il coefficiente angolare dipenderà sicuramente dal punto $x_0$ considerato e questo motiva la notazione usata), ottenendo che
+$$
+\frac{f(x)-f(x_0)}{x-x_0} - a(x_0) = 0 \text{ per } x \to x_0
+$$
+dunque $\lim\limits_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = a(x_0) = f'(x_0)$ (per unicità del limite).
+\end{proof}
+Dunque la differenziabilità è l'unica nozione che generalizza il concetto di derivabilità a dimensioni superiori a $1$. Però ha ancora una valenza geometrica?
 \end{document}
