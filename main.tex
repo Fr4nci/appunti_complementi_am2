@@ -1089,5 +1089,113 @@ $$
 $$
 dunque $\lim\limits_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = a(x_0) = f'(x_0)$ (per unicità del limite).
 \end{proof}
-Dunque la differenziabilità è l'unica nozione che generalizza il concetto di derivabilità a dimensioni superiori a $1$. Però ha ancora una valenza geometrica?
+Dunque la differenziabilità è l'unica nozione che generalizza il concetto di derivabilità a dimensioni superiori a $1$. Però ha ancora una valenza geometrica? \\
+Per rispondere a questa domanda dobbiamo ricordare al lettore qualche concetto proveniente dal corso di Geometria: sappiamo che l'equazione di un piano in $\mathbb{R}^3$ è data dalla formula
+$$
+ax + by + cz + d = 0
+$$
+L'equazione per questo piano può essere ottenuta in due modi: il primo consiste nel trovare una base del piano e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più il vettore $v$ appartenente alla base, da cui si ottiene .Possiamo facilmente estendere questa definizione per dimensione arbitraria, osservando che presi $u < n = \dim{\mathbb{R}^n}$ vettori linearmente indipendenti allora possiamo individuare facilmente, tramite la nozione di prodotto scalare, il piano generato da tutti questi vettori ortogonali: infatti, se indichiamo con $W^{\perp}$ il sottospazio vettoriale costituito da questi vettori $u$, basterà trovare una base per il radicale di $W^{\perp}$ (che, grazie all'ipotesi di non degenerità del prodotto scalare euclideo, sappiamo essere $(W^{\perp})^{\perp} = W$) e possiamo banalmente concludere che ogni combinazione lineari dei vettori della base di $W$ sarà dunque perpendicolare a ogni combinazione lineare dei vettori della base di $W^{\perp}$. Possiamo vedere che questo procedimento porta alla formula vista prima: sapendo che un piano $\pi$, in $\mathbb{R}^3$, ha dimensione pari a 2, allora $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$, possiamo prendere un generico vettore $v = (a, b, c)$ (la base del nostro $(\pi)^{\perp}$) e osservare che, se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ siamo interessati a verificare che, preso $P = (x, y, z)$, allora
+$$
+\vec{P_0P} \perp v
+$$
+dunque
+$$
+\begin{pmatrix}
+	x - x_0 & y-y_0 & z-z_0
+\end{pmatrix} \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+a \\
+b \\
+c
+\end{pmatrix} = 0 \implies
+a(x-x_0) + b(y-y_0) + c(z-z_0) = 0
+$$
+da cui possiamo facilmente ottenere che
+$$
+ax+by +cz + d  = 0
+$$
+ponendo $d = - ax_0 - by_0 - cz_0$. Dunque, ripensando al procedimento effettuato, possiamo ben motivare la seguente definizione
+\begin{definition}[piano in uno spazio euclideo]
+Un piano nello spazio euclideo $\mathbb{R}^3$ (oppure un iperpiano di dimensione $n-1$ in $\mathbb{R}^{n-1}$) si può vedere come il luogo geometrico dei punti perpendicolari ad una data direzione $v = (a, b, c) \neq 0_{\mathbb{R}^3}$ (equivalentemente, per l'iperpiano, $v=(x_1, \ldots x_n) \neq 0_{\mathbb{R}^n}$). Dunque, preso $p \in \mathbb{R}^3$ (per l'iperpiano $p \in \mathbb{R}^n$), possiamo trovare l'equazione cartesiana del piano passante per $p \in \mathbb{R}^3$ (per l'iperpiano $p \in \mathbb{R}^n$) perpendicolare a $v$ tramite la seguente relazione:
+\begin{equation}
+\innerprod{(x, y, z) - p}{v}
+\end{equation}
+\label{def:iperpiano}
+\end{definition}
+Sia adesso $f: \Omega \to \mathbb{R}$, con $\Omega \subseteq \mathbb{R}^m$ aperto con $f$ differenziabile in $p_0 \in \Omega$. Allora osserviamo che
+\begin{align*}
+\pi &= \{ (x, L_p(x)) : x \in \mathbb{R}^n \} = \{ (x, t) \in \mathbb{R}^{n+1} : t = f(p) + \innerprod{\nabla{f(p)}}{x-p} \} = \\
+&= \{ (x, t) \in \mathbb{R}^{n+1} : \innerprod{\begin{pmatrix} -\nabla{f(x_0)}, & 1 \end{pmatrix}}{\begin{pmatrix} x-p, & t-f(p) \end{pmatrix}} = 0 \}
+\end{align*}
+Dunque possiamo interpretare come la differenziabilità della funzione in un punto come quella funzione che descrive il piano tangente alla funzione nel punto.
+\section{Legame fra differenziabilità e continuità}
+Mostriamo adesso il legame fra differenziabilità e continuità. Per fare questo dobbiamo mostrare il seguente lemma:
+\begin{lemma}
+Ogni funzione lineare $L: \mathbb{R}^n \to \mathbb{R}^m$ continua e se $A = (a_{ij}) \in \mathbb{R}^{m \times n}$ è la sua matrice allora $|Lx| \leq || A || |x|  \, \forall x \in \mathbb{R}^n$, dove
+$$
+|| A || = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
+$$
+\end{lemma}
+\begin{proof}
+Dalla regola del prodotto matriciale abbiamo che
+$$
+|Lx| = \Bigg| \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)e_i \Bigg|^2 = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij}^2 \right)  \left( \sum_{j=1}^n x_j^2 \right) = || A ||^2 |x|^2
+$$
+e possiamo osservare che $L$ è continua, infatti se $x_0 \in \mathbb{R}^n$
+$$
+|Lx - Lx_0| \leq |L(x-x_0)| \leq || A || |x-x_0|
+$$
+pertanto se $p_k \to x_0$ allora
+$$
+|Lp_k - Lx_0| \leq || A || |p_k-x_0| \stackrel{k \to +\infty}{\to} 0
+$$
+\end{proof}
+A questo punto possiamo dunque mostrare la seguente proposizione
+\begin{prop}
+Se $f: \Omega \to \mathbb{R}^m, p_0 \in \Omega$ differenziabile in $p_0$, allora $f$ è continua in $p_0$
+\end{prop}
+\begin{proof}
+Osserviamo che se $f$ è differenziale in $p_0$ allora $\exists df(p_0): \Omega \to \mathbb{R}^m$ tale che
+$$
+f(p_0 + h) = f(p_0) + df(p_0)h + o(h) \stackrel{h \to 0}{\to} f(p_0)
+$$
+in quanto $df(p_0)$ è lineare e quindi continua in $\mathbb{R}^n$ e $o(h) \stackrel{h \to 0}{\to} 0$
+\end{proof}
+\begin{theorem}[teorema di Fermat]
+Siano $\Omega \subseteq \mathbb{R}^n$ aperto e $f: \Omega \to \mathbb{R}$. Supponiamo che $x_0 \in \Omega$ sia un punto di minimo (o massimo) locale e che $f$ sia differenziabile in $x_0$. Allora
+\begin{align*}
+&\nabla{f(x_0)} = 0 & &\text{oppure} &df(x_0) = 0 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Possiamo supporre senza perdita di generalità che $x_0$ sia un punto di minimo locale e considerare la funzione $g(t)$ tale che
+$$
+t \stackrel{g}{\mapsto} f(x_0 + te_j) \text{ per } |t| < \sigma
+$$
+ovvero $x_0 + te_j \in B(x_0, \sigma) \subseteq \Omega$, osservando che ha un minimo locale in $t=0$
+$$
+\frac{d}{dt} \left( f(x_0 + te_j) \right){\big|_{t=0}} = \partial_{x_j} f(x_0) = 0
+$$
+dove l'ultima eguaglianza segue dal teorema di Fermat per funzioni di variabile singola. Possiamo ripetere lo stesso procedimento $\forall j \in \{1, \ldots n \}$ e dunque si ottiene la tesi.
+\end{proof}
+\begin{remark}
+In realtà l'ipotesi che la funzione sia differenziabile non è indispensabile, siccome è più che sufficiente richiedere l'esistenza delle derivate parziale.
+\end{remark}
+\begin{definition}[punto critico]
+Diremo che $x_0 \in \Omega$ è un punto critico di $f: \Omega \to \mathbb{R}$ differenziabile in $x_0$ se $\nabla{f(x_0)} = 0$. Similmente diremo che $f(x_0)$ è un valore critico di $f$.
+\end{definition}
+\begin{theorem}[differenziale della composizione]
+Sia $f: \Omega \to \mathbb{R}^m, g: U \to \mathbb{R}^k$ con $\Omega \subseteq \mathbb{R}^n$ aperto, $U \subseteq \mathbb{R}^m$ aperto, $f(\Omega) \subseteq U$ e sia $p_0 \in \Omega$. Allora se $f$ differenziabile in $p_0$ e $g$ differenziabile in $f(p_0)$ allora
+$$
+g \circ f: \Omega \to \mathbb{R}^k \text{ è differenziabile in } p_0
+$$
+Inoltre, in tal caso, avremo che
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $d(g \circ f)(p_0) = dg(f(p_0)) \circ df(p_0)$
+	\item $D(g \circ f)(p_0) = (Dg(f(p_0))(Df(p_0))$
+\end{enumerate}
+\end{theorem}
 \end{document}
