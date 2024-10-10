@@ -1198,4 +1198,22 @@ Inoltre, in tal caso, avremo che
 	\item $D(g \circ f)(p_0) = (Dg(f(p_0))(Df(p_0))$
 \end{enumerate}
 \end{theorem}
+\begin{proof}
+Osserviamo che, per l'ipotesi di differenziabilità di $f$, abbiamo che
+$$
+f(x) = f(p_0) + df(p_0)(p-p_0) + o(|p-p_0|) \text{ per } p \to p_0 \in \Omega
+$$
+e, siccome $g$ è differenziabile in $f(p_0)$, abbiamo che
+$$
+g(x) = g(f(p_0)) + dg(f(p_0))[f(x) - f(p_0)] + o(|f(x) - f(p_0)|)
+$$
+ma allora
+$$
+g(x) = g(f(p_0)) + dg(f(p_0))[df(p_0)(p-p_0) + o(|p-p_0|)] + o(|f(x) - f(p_0)|)
+$$
+ovvero
+$$
+g(x) = g(f(p_0)) + \left( dg(f(p_0)) \circ df(p_0) \right) (x - p_0) + dg(f(x_0))o(|x-x_0|) + o(|f(x)-f(p_0)|) 
+$$
+\end{proof}
 \end{document}
