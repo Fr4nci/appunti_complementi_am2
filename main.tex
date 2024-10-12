@@ -29,6 +29,7 @@
 % Personalizza il comando per segnare la sezione (include il capitolo)
 \renewcommand{\sectionmark}[1]{%
   \markright{\thesection\ #1}}
+\pgfplotsset{compat=newest}
 \title{Appunti di Complementi di Analisi Matematica 2}
 \author{Francesco Sermi}
 \date{\today}
@@ -41,6 +42,39 @@
 	\vspace{2cm}
 	{\Large\itshape Francesco Sermi\par}
 	\vfill
+	\begin{tikzpicture}
+    % Definisco lo stile dei vettori
+    \tikzset{vector/.style={-stealth, thick, color=black}}
+
+    % Parametri per il punto di contatto
+    \def\xo{1}
+    \def\yo{2}
+    \def\zo{5} % Calcola z0 = f(x0, y0)
+
+    % Derivate parziali della funzione f(x, y) = x^2 + y^2 nel punto (x0, y0)
+    \def\fx{2*\xo} % = 2
+    \def\fy{2*\yo} % = 4
+
+    % Disegno la superficie
+    \begin{axis}[
+        width=12cm,
+        view={60}{30}, % Angolazione impostata
+        axis lines=middle,
+        zlabel={$f(x,y)$},
+        clip=false,
+        domain=-5:5,
+        y domain=-5:5,
+        samples=30,
+        colormap/hot,
+        z buffer=sort
+    ]
+
+    % Grafico della superficie con colore visibile
+    \addplot3[surf, opacity=0.8, shader=interp]
+        {x^2 - y^2}; % Superficie f(x, y) = x^2 + y^2
+    \end{axis}
+\end{tikzpicture}
+	\vfill	
 	{\large \hfill Pisa, \today \par}
 	\end{titlepage}
 	\tableofcontents
@@ -817,6 +851,51 @@ $$
 $$
 dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il differenziale di $f$ in $x_0$. La matrice $Df(x_0) \in \mathbb{R}^{m \times n}$ che rappresenta $df(x_0)$ rispetto alla base canonica è detta \textbf{matrice jacobiana} di $f$ in $x_0$.
 \end{definition}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    % Definisco lo stile dei vettori
+    \tikzset{vector/.style={-stealth, thick, color=black}}
+
+    % Parametri per il punto di contatto
+    \def\xo{1}
+    \def\yo{2}
+    \def\zo{5} % Calcola z0 = f(x0, y0)
+
+    % Derivate parziali della funzione f(x, y) = x^2 + y^2 nel punto (x0, y0)
+    \def\fx{2*\xo} % = 2
+    \def\fy{2*\yo} % = 4
+
+    % Disegno la superficie
+    \begin{axis}[
+        width=12cm,
+        view={40}{10}, % Angolazione impostata
+        axis lines=middle,
+        zlabel={$f(x,y)$},
+        clip=false,
+        domain=-5:5,
+        y domain=-5:5,
+        samples=30,
+        colormap/hot,
+        z buffer=sort
+    ]
+
+    % Grafico della superficie con colore visibile
+    \addplot3[surf, opacity=0.8, shader=interp]
+        {x^2 + y^2}; % Superficie f(x, y) = x^2 + y^2
+
+    % Disegno del piano tangente al punto (x0, y0)
+    \addplot3[surf, opacity=0.7, fill=blue!50, domain=0:3, y domain=0:4]
+        {(\zo + \fx*(x - \xo) + \fy*(y - \yo))}; % Piano tangente
+
+    % Punto di contatto sulla superficie
+    \addplot3[mark=*, mark options={color=black}, only marks] coordinates {(\xo,\yo,\zo)};
+    \node at (axis cs: \xo,\yo,\zo+0.2) [anchor=south east] {$P(x_0, y_0, z_0)$};
+    \end{axis}
+\end{tikzpicture}
+\caption{Nozione di differenziabilità da un punto di vista geometrico: la funzione $x^2 + y^2$ è differenziabile nel punto $x_0=(1, 2, 5)$ e, dunque, possiamo approssimare la funzione in un intorno di $x_0$ alla funzione alla funzione lineare $L$ tale che $L(x, y) = 5 + 2(x-1) + 4(y-2)$}
+\end{figure}
 \begin{remark}
 Naturalmente diremo che $f$ è differenziabile in $\Omega$ se è differenziabile $\forall x \in \Omega$.
 \end{remark}
@@ -1214,6 +1293,14 @@ $$
 ovvero
 $$
 g(x) = g(f(p_0)) + \left( dg(f(p_0)) \circ df(p_0) \right) (x - p_0) + dg(f(x_0))o(|x-x_0|) + o(|f(x)-f(p_0)|) 
+$$
+Ma adesso osserviamo che
+$$
+\Bigg| \frac{dg(f(x_0))o(|x-x_0|)}{|x-x_0|} \Bigg| \leq ||Dg(f(x_0))|| \frac{o(|x-x_0|)}{|x-x_0|} = o(1) \implies dg(f(x_0))o(|x-x_0|) = o(|x-x_0|)
+$$
+e, inoltre, osserviamo che
+$$
+o(|f(x)-f(x_0)|) = o(|df(x_0)(x-x_0) + o(|x-x_0|)|)
 $$
 \end{proof}
 \end{document}
