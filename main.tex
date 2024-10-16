@@ -98,6 +98,7 @@
 		\item $\mathbb{B}(x_0, r)$ palla chiusa di raggio $r$ centrata in $x_0$
 		\item $o(f)$ o-piccolo di $f$
 		\item $O(f)$ O-grande di $f$
+		\item $\sum_{n}$ gruppo (rispetto all'operazione di composizione di funzioni) delle permutazioni $\sigma: \{1, \ldots n \} \to \{1, \ldots n \}$ bigettive.
 	\end{itemize}
 	\chapter{Spazi euclidei}
 	In questo capitolo, ci soffermeremo su alcuni risultati che possono essere ottenuti considerando uno spazio euclideo e sullo studio della sua topologia, siccome molti concetti dell'Analisi 1 devono essere concettualmente rivisti per poter essere generalizzati a spazi di dimensione diversa da 1.
@@ -841,9 +842,13 @@ $$
 \lim_{x \to x_0} f(x) = l \iff f(x) = l + o(1) \text{ per } x \to x_0
 $$
 e quindi potremmo (con tanta buona volontà) andare a riscrivere tutta la teoria appena fatta sui limiti in più variabili tramite i simboli di Landau. Ciò non verrà fatto, ma li useremo per introdurre, come avevo accennato, il calcolo differenziale.
+
 \chapter{Calcolo differenziale}
-In questo capitolo andremo a sviscerare il concetto di derivata quando abbiamo a che fare con funzioni vettoriali (sia nell'insieme di definizione che nell'insieme di arrivo) e come sia possibile ottenere massimi e minimi di una funzione introducendo dei concetti sofisticati come la \emph{matrice jacobiana} e la \emph{matrice hessiana}.
+
+In questo capitolo andremo a generalizzare il concetto di derivata  alle funzioni vettoriali (sia nell'insieme di definizione che nell'insieme di arrivo). Tutto ciò avverrà passando, naturalmente, per la definizione di funzione differenziabile e, successivamente, andando ad enunciare i teoremi riguardo all'esistenza e l'unicità del differenziale, soffermandosi in particolare modo nell'individuare delle espressioni per il differenziale, il gradiente e la matrice jacobiana e, per poi passare, alle derivate seconde, necessarie per lo studio dei massimi e dei minimi tramite lo studio della matrice hessiana. 
+
 \section{Funzione differenziabile}
+
 \begin{definition}[funzione differenziabile in un punto e matrice jacobiana]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $x_0 \in \Omega$. Diremo che $f: \Omega \to \mathbb{R}^m$ è differenziabile in $x_0$ se $\exists L: \mathbb{R}^n \to \mathbb{R}^m$ lineare tale che
 $$
@@ -852,7 +857,7 @@ $$
 dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il differenziale di $f$ in $x_0$. La matrice $Df(x_0) \in \mathbb{R}^{m \times n}$ che rappresenta $df(x_0)$ rispetto alla base canonica è detta \textbf{matrice jacobiana} di $f$ in $x_0$.
 \end{definition}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
     % Definisco lo stile dei vettori
@@ -990,8 +995,7 @@ dunque
 $$
 \partial_w f(x_0) \leq \partial_v f(x_0)
 $$
-\section{Spazio duale}
-Ricordiamo la definizione di spazio duale:
+Per poter ampliare la nostra teoria ed esprimere correttamente il differenziale è necessario riprendere la definizione di spazio duale dal corso di Geometria:
 \begin{definition}[spazio duale]
 Sia $V$ uno spazio vettoriale sul campo $\mathbb{K}$, definiamo lo spazio duale $V^{*}$ come lo spazio vettoriale dei funzionali lineari $f: V \to \mathbb{K}$. In simboli
 $$
@@ -1229,10 +1233,10 @@ dunque $\lim\limits_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = a(x_0) = f'(x_0)$ (p
 \end{proof}
 Dunque la differenziabilità è l'unica nozione che generalizza il concetto di derivabilità a dimensioni superiori a $1$. Però ha ancora una valenza geometrica? \\
 Per rispondere a questa domanda dobbiamo ricordare al lettore qualche concetto proveniente dal corso di Geometria: sappiamo che l'equazione di un piano in $\mathbb{R}^3$ è data dalla formula
-$$
+\begin{equation}
 ax + by + cz + d = 0
-$$
-L'equazione per questo piano può essere ottenuta in due modi: il primo consiste nel trovare una base del piano e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più il vettore $v$ appartenente alla base, da cui si ottiene .Possiamo facilmente estendere questa definizione per dimensione arbitraria, osservando che presi $u < n = \dim{\mathbb{R}^n}$ vettori linearmente indipendenti allora possiamo individuare facilmente, tramite la nozione di prodotto scalare, il piano generato da tutti questi vettori ortogonali: infatti, se indichiamo con $W^{\perp}$ il sottospazio vettoriale costituito da questi vettori $u$, basterà trovare una base per il radicale di $W^{\perp}$ (che, grazie all'ipotesi di non degenerità del prodotto scalare euclideo, sappiamo essere $(W^{\perp})^{\perp} = W$) e possiamo banalmente concludere che ogni combinazione lineari dei vettori della base di $W$ sarà dunque perpendicolare a ogni combinazione lineare dei vettori della base di $W^{\perp}$. Possiamo vedere che questo procedimento porta alla formula vista prima: sapendo che un piano $\pi$, in $\mathbb{R}^3$, ha dimensione pari a 2, allora $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$, possiamo prendere un generico vettore $v = (a, b, c)$ (la base del nostro $(\pi)^{\perp}$) e osservare che, se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ siamo interessati a verificare che, preso $P = (x, y, z)$, allora
+\end{equation}
+L'equazione qua sopra può essere ottenuta in due modi: il primo consiste nel trovare una base del piano e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più il vettore $v$ appartenente alla base, da cui si ottiene. Possiamo facilmente estendere questa definizione per dimensione arbitraria, osservando che presi $u < n = \dim{\mathbb{R}^n}$ vettori linearmente indipendenti allora possiamo individuare facilmente, tramite la nozione di prodotto scalare, il piano generato da tutti questi vettori ortogonali: infatti, se indichiamo con $W^{\perp}$ il sottospazio vettoriale costituito da questi vettori $u$, basterà trovare una base per il radicale di $W^{\perp}$ (che, grazie all'ipotesi di non degenerità del prodotto scalare euclideo, sappiamo essere $(W^{\perp})^{\perp} = W$) e possiamo banalmente concludere che ogni combinazione lineari dei vettori della base di $W$ sarà dunque perpendicolare a ogni combinazione lineare dei vettori della base di $W^{\perp}$. Possiamo vedere che questo procedimento porta alla formula vista prima: sapendo che un piano $\pi$, in $\mathbb{R}^3$, ha dimensione pari a 2, allora $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$, possiamo prendere un generico vettore $v = (a, b, c)$ (la base del nostro $(\pi)^{\perp}$) e osservare che, se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ siamo interessati a verificare che, preso $P = (x, y, z)$, allora
 $$
 \vec{P_0P} \perp v
 $$
@@ -1302,6 +1306,75 @@ f(p_0 + h) = f(p_0) + df(p_0)h + o(h) \stackrel{h \to 0}{\to} f(p_0)
 $$
 in quanto $df(p_0)$ è lineare e quindi continua in $\mathbb{R}^n$ e $o(h) \stackrel{h \to 0}{\to} 0$
 \end{proof}
+\section{Derivate di ordine successivo}
+Per trattare i massimi e i minimi in più variabili è necessario ricostruire il comportamento della funzione anche al "secondo ordine" (riprendendo la terminologia del polinomio di Taylor che verrà comunque ripreso più avanti), ovvero osservare le derivate seconde (che non abbiamo ancora introdotto, però la sostanza rimane a grandi linee quella nel caso ad una singola variabile): se nel caso delle funzioni a singola variabile non era necessario studiare la concavità della funzione (che ricordiamo essere il comportamento al secondo ordine della funzione a variabile singola), nel caso a più variabile è quasi inevitabile (a meno che non si voglia procedere per ragionamenti più "raffinati"). Andiamo dunque a vedere il concetto di derivate di ordine superiore al primo. \\
+In generale, presa la funzione $f: \Omega \to \mathbb{R}, \Omega \subseteq \mathbb{R}^n$ aperto tale che $\exists \partial_{x_i}f: \Omega \to \mathbb{R}$ con $i \in \{ 1, \ldots n \}$, allora la derivata parziale rispetto a $x_i$ o anche derivata parziale $i$-esima può ammettere un'ulteriore derivata parziale rispetto a $x_j$:
+$$
+\partial_{x_j}(\partial_{x_i} f) = \frac{\partial^2 f}{\partial x_j \partial x_i} = (f_{x_i})_{x_j} = f_{x_i x_j}
+$$
+(si faccia attenzione alla notazione, in cui viene \textbf{sempre} specificato l'ordine in cui sono fatte le derivate). Di fatto potremmo definire anche le derivate terze, quarte, ecc.
+$$
+\partial_{x_3} \partial_{x_2} \partial_{x_1} f = f_{x_1 x_2 x_3} = \frac{\partial^3}{\partial x_3 \partial x_2 \partial x_1}
+$$
+In generale, ove esistono, le derivate di ordine $k$ possono essere denotate nella seguente maniera:
+$$
+\partial_{x_{i_k}} \partial_{x_{i_{k-1}}} \ldots \partial_{x_{i_1}} f = \frac{\partial^k f}{\partial_{x_{i_k}} \ldots \partial_{x_{i_1}}} = f_{x_{i_1} \ldots x_{i_k}}
+$$
+tale derivata parziale iterata diremo essere la derivata parziale di ordine $k$ o derivata parziale $k$-esima rispetto a $x_{i_1}, \ldots x_{i_k}$
+\begin{theorem}[di Schwarz]
+Sia $f:\Omega \to \mathbb{R}, x_0 \in \Omega \subseteq \mathbb{R}^n$ con $\Omega$ aperto e $\exists \partial_{x_i} f, \partial_{x_j} f, \partial_{x_i x_j} f, \partial_{x_j x_i} f$ continue in $x_0$. Allora
+$$
+\partial_{x_i x_j} f(x_0) = \partial_{x_j x_i} f(x_0)
+$$
+\end{theorem}
+\begin{proof}
+Consideriamo la funzione 
+$$
+\varphi(\tau) = f(x_0 + \tau e_i + t e_j) - f(x_0 + \tau e_i)
+$$
+dove $t$ è sufficientemente piccolo e fissato, dunque:
+$$
+\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - (f(x_0 + te_j) - f(x_0)) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - f(x_0 + te_j) + f(x_0)
+$$
+Adesso sappiamo, per il teorema di Lagrange, che
+$$
+\varphi(t) - \varphi(0) = \varphi'(\theta t)t
+$$
+con $0 < \theta < 1$. Possiamo "accorpare" i termini come
+$$\varphi(t) - \varphi(0) = [(f(x_0 + te_i + te_j)-f(x_0 + te_j)) - (f(x_0 + te_i) - f(x_0))]t$$
+e, per il teorema di Lagrange, definendo le funzioni $z(\tau) = f(x_0 + \tau e_i + t e_j$ e $h(\tau) = f(x_0 + \tau e_i)$ allora avremo che
+$$
+\varphi(t) - \varphi(0) = [(z(t) - z(0)) - (h(t) - h(0))]t = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t
+$$
+Possiamo riapplicare nuovamente il teorema di Lagrange su questa differenza, osservando che
+$$
+[\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j) - f(x_0 + \theta te_i))]t = \partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + te_j)t^2
+$$
+Ripetendo questo ragionamento invertendo gli indici, possiamo dunque concludere, per continuità delle derivate seconde nel punto $x_0$, che:
+$$
+\lim_{t \to 0} \frac{\varphi(t) - \varphi(0)}{t^2} = \partial_{x_i} \partial_{x_j} f(x_0) = \partial_{x_j} \partial_{x_i} f(x_0)
+$$
+\end{proof}
+\begin{remark}
+Con degli argomenti più sofisticati è possibile indebolire ulteriormente le ipotesi richiedendo che le derivate parziali siano differenziabili in $p_0$.
+\end{remark}
+\begin{theorem}[teorema di Schwarz di ordine superiore]
+Sia $f: \Omega \to \mathbb{R}, \Omega$ aperto e $\Omega \subseteq \mathbb{R}^n$ fino all'ordine $k$ e siano continue in $\xi \in \Omega$. Allora per ogni scelta di indici $1 \leq i_1, \ldots, i_k \leq n$ abbiamo
+$$
+\frac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \ldots \partial x_{i_k}}(\xi) = \frac{\partial^k f}{\partial x_{\sigma(1)} \partial x_{\sigma(2)} \ldots \partial x_{\sigma(k)}}(\xi)
+$$
+dove $\sigma \in \sum_{k}$.
+\end{theorem}
+\begin{proof}
+La dimostrazione è omessa siccome è un banale corollario del precedente teorema di Schwarz.
+\end{proof}
+E' adesso comodo introdurre i cosiddetti spazi funzionali $C^k(\Omega)$, con $k \in \mathbb{N} \setminus \{ 0 \}$:
+\begin{definition}[spazio $C^k$]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $k \in \mathbb{N} \setminus \{ 0 \}$. Definiamo
+$$
+C^k (\Omega) = \{ f: \Omega \to \mathbb{R}: \forall l \in \{1, \ldots k\} \, \exists \partial_{x_{i_1}} \partial_{x_{i_2}} \partial_{x_{i_3}} \ldots 
+$$
+\end{definition}
 \section{Massimi e minimi in più variabili}
 Lo studio dei massimi e dei minimi è naturalmente cruciale in ogni scienza, ma non solo: molto spesso molti aspettidel quotidiano sono facilmente modellizzabili da funzioni di cui spesso è necessario trovare i valori di massimo o minimo. Così come nel caso a singola variabile, vogliamo individuare un procedimento analitico per la ricerca di essi e, pertanto, ci dilungheremo nella presentazione di qualche risultato teorico molto importante che ci aiuterà a fare questo:
 \begin{theorem}[teorema di Fermat]
@@ -1327,18 +1400,4 @@ In realtà l'ipotesi che la funzione sia differenziabile non è indispensabile, 
 \begin{definition}[punto critico]
 Diremo che $x_0 \in \Omega$ è un punto critico di $f: \Omega \to \mathbb{R}$ differenziabile in $x_0$ se $\nabla{f(x_0)} = 0$. Similmente diremo che $f(x_0)$ è un valore critico di $f$.
 \end{definition}
-Per trattare i massimi e i minimi in più variabili è necessario ricostruire il comportamento della funzione anche al "secondo ordine" (riprendendo la terminologia del polinomio di Taylor che verrà comunque ripreso più avanti), ovvero osservare le derivate seconde (che non abbiamo ancora introdotto, però la sostanza rimane a grandi linee quella nel caso ad una singola variabile): se nel caso delle funzioni a singola variabile non era necessario studiare la concavità della funzione (che ricordiamo essere il comportamento al secondo ordine della funzione a variabile singola), nel caso a più variabile è quasi inevitabile (a meno che non si voglia procedere per ragionamenti più "raffinati"). Andiamo dunque a vedere il concetto di derivate di ordine superiore al primo. \\
-In generale, presa la funzione $f: \Omega \to \mathbb{R}, \Omega \subseteq \mathbb{R}^n$ aperto tale che $\exists \partial_{x_i}f: \Omega \to \mathbb{R}$ con $i \in \{ 1, \ldots n \}$, allora la derivata parziale rispetto a $x_i$ o anche derivata parziale $i$-esima può ammettere un'ulteriore derivata parziale rispetto a $x_j$:
-$$
-\partial_{x_j}(\partial_{x_i} f) = \frac{\partial^2 f}{\partial x_j \partial x_i} = (f_{x_i})_{x_j} = f_{x_i x_j}
-$$
-(si faccia attenzione alla notazione, in cui viene \textbf{sempre} specificato l'ordine in cui sono fatte le derivate). Di fatto potremmo definire anche le derivate terze, quarte, ecc.
-$$
-\partial_{x_3} \partial_{x_2} \partial_{x_1} f = f_{x_1 x_2 x_3} = \frac{\partial^3}{\partial x_3 \partial x_2 \partial x_1}
-$$
-In generale, ove esistono, le derivate di ordine $k$ possono essere denotate nella seguente maniera:
-$$
-\partial_{x_{i_k}} \partial_{x_{i_{k-1}}} \ldots \partial_{x_{i_1}} f = \frac{\partial^k f}{\partial_{x_{i_k}} \ldots \partial_{x_{i_1}}} = f_{x_{i_1} \ldots x_{i_k}}
-$$
-tale derivata parziale iterata diremo essere la derivata parziale di ordine $k$ o derivata parziale $k$-esima rispetto a $x_{i_1}, \ldots x_{i_k}$
 \end{document}
