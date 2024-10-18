@@ -1397,12 +1397,46 @@ $$
 \partial_{x_l} \partial_{x_{l-1}} \ldots \partial_{x_1} f = \partial_{x_{\sigma(l)}} \partial_{x_{\sigma(l-1)}} \ldots \partial_{x_{\sigma_{1}}} f
 $$
 \end{theorem}
+\begin{proof}
+Segue banalmente dal teorema precedente.
+\end{proof}
+Questo teorema è molto importante siccome stabilisce che, per funzioni di classe $C^k$, l'ordine con cui deriviamo per ottenere una derivata parziale iterata non modifica la derivata. \\
+Adesso abbiamo tutti gli strumenti per introdurre i differenziali di ordine superiore
+\begin{definition}[differenziali di ordine superiore]
+	Sia $f \in C^k(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$ e preso $1 \leq l \leq k$ definiamo:
+	$$
+	d^l f(x_0) = \sum_{i_1, \ldots, i_l = 1}^n \frac{\partial^l f}{\partial x_{i_1} \ldots \partial x_{i_l}} h_{i_1} \ldots h_{i_l}
+	$$
+	posto $h=(h_1, \ldots h_n) \in \mathbb{R}^n$ allora diciamo che $d^l f(x_0):\mathbb{R}^n \to \mathbb{R}$ è detto differenziale di ordine $l$
+\end{definition}
+\begin{remark}
+Sia $f \in C^k (\Omega), x_0 \in \Omega, v \in \mathbb{R}^n$ con $v = (\xi_1, \ldots \xi_n) = \sum_{j=1}^n \xi_j e_j$. Allora abbiamo che
+\begin{align*}
+&\frac{d}{dt} f(x_0 + tv) = \sum_{i=1}^n \partial_{x_i} f (x_0 + tv) \xi_i \implies \frac{d^2}{dt^2} f(x_0 + tv) = \sum_{i_1, i_2 = 1}^{n} \partial_{x_{i_1}} \partial_{x_{i_2}} f(x_0 + tv) \xi_{i_1} \xi_{i_2}\stackrel{\text{per induz.}}{\implies} \\ &\stackrel{\text{per induz.}}{\implies} \frac{d^k f}{dt^k} f(x_0 + tv) = d^k f(x_0 + tv) \implies \\
+\end{align*}
+\begin{equation}
+\implies \boxed{\frac{\partial^k f}{\partial v^k} f(x_0) = d^l f(x_0)(v)}
+\end{equation}
+\end{remark}
+Come per le derivate prime, possiamo "definire" anche una matrice delle derivate. Particolarmente importante, oltre alla matrice jacobiana, è la matrice hessiana, ovvero la matrice delle derivate seconde:
+\begin{equation}
+Hf(x_0) = \begin{pmatrix}
+\frac{\partial^2 f}{\partial x_1^2}(x_0) & \frac{\partial^2 f}{\partial x_2 \partial x_1}(x_0) & \ldots & \frac{\partial^2 f}{\partial x_n \partial x_1}(x_0) \\
+\frac{\partial^2 f}{\partial x_1 \partial x_2}(x_0) & \frac{\partial^2 f}{\partial x_2 \partial x_2}(x_0) & \ldots & \frac{\partial f}{\partial x_n \partial x_2}(x_0) \\
+\vdots & \vdots & \ldots & \vdots \\
+\frac{\partial^2 f}{\partial x_n \partial x_1}(x_0) & \frac{\partial f}{\partial x_n \partial x_2}(x_0) & \ldots & \frac{\partial f}{\partial x_n \partial x_n}(x_0)
+\end{pmatrix}
+\end{equation}
+Per il teorema di Schwarz, abbiamo che per funzioni di cui esistono derivate seconde continue, allora 
+$$
+Hf(x_0) = Hf(x_0)^T
+$$
 \section{Massimi e minimi in più variabili}
 Lo studio dei massimi e dei minimi è naturalmente cruciale in ogni scienza, ma non solo: molto spesso molti aspettidel quotidiano sono facilmente modellizzabili da funzioni di cui spesso è necessario trovare i valori di massimo o minimo. Così come nel caso a singola variabile, vogliamo individuare un procedimento analitico per la ricerca di essi e, pertanto, ci dilungheremo nella presentazione di qualche risultato teorico molto importante che ci aiuterà a fare questo:
 \begin{theorem}[teorema di Fermat]
 Siano $\Omega \subseteq \mathbb{R}^n$ aperto e $f: \Omega \to \mathbb{R}$. Supponiamo che $x_0 \in \Omega$ sia un punto di minimo (o massimo) locale e che $f$ sia differenziabile in $x_0$. Allora
 \begin{align*}
-&\nabla{f(x_0)} = 0 & &\text{oppure} &df(x_0) = 0 
+&\nabla{f(x_0)} = 0 & &\text{o equivalentemente} &df(x_0) = 0 
 \end{align*}
 \end{theorem}
 \begin{proof}
