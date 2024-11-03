@@ -47,6 +47,7 @@
 
 \usepackage{tikzsymbols}
 \usepackage{float}
+\usepackage[toc, page]{appendix}
 \renewcommand\qedsymbol{$\square$}
 \usepackage{hyperref}
 \usepackage{mwe}
@@ -80,3 +81,5 @@
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 \newcommand{\innerprod}[2]{\langle #1, #2 \rangle}
+\renewcommand\appendixpagename{Appendici}
+\renewcommand\appendixtocname{Appendici}

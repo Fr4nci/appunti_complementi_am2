@@ -1,4 +1,4 @@
-\documentclass[openany]{book}
+\documentclass[openany, italian]{book}
 \input{new_preamble}
 \input{letterfonts}
 \input{macros}
@@ -189,6 +189,7 @@ dunque la tesi (in $\mathbb{E}_2$). Per generalizzare questo concetto a qualunqu
 \end{proof}
 \begin{prop}[Disuguaglianza di Cauchy-Schwarz]
 $$\forall \underline{v}, \underline{w} \in \mathbb{E}_n, \, | \innerprod{\underline{v}}{\underline{w}} | \leq ||\underline{v}|| \, ||\underline{w}||$$
+\label{prop:dis_cs}
 \end{prop}
 \begin{proof}
 Consideriamo $\lambda \in \mathbb{R}$ e sappiamo che, per coercività del prodotto scalare, che:
@@ -1431,8 +1432,179 @@ Per il teorema di Schwarz, abbiamo che per funzioni di cui esistono derivate sec
 $$
 Hf(x_0) = Hf(x_0)^T
 $$
+dunque la matrice hessiana è una matrice quadrata simmetrica. Inoltre, in virtù della definizione fatta prima sui differenziali di ordine successivo, avremo che
+$$
+d^2 f(x_0)(v) = \innerprod{v}{Hf(x_0)(v)}
+$$
+e quindi è omogeneo di grado $2$, ovvero
+\begin{align*}
+&d^2 f(x_0)(tv) = t^2 d^2 f(x_0)(v) & &\forall t \in \mathbb{R}, \forall v \in \mathbb{R}^n
+\end{align*}
+In sintesi $df^2 (x_0): \mathbb{R}^n \to \mathbb{R}$ è un polinomio omogeneo (di cui daremo la definizione formale nel prossimo paragrafo) di secondo grado in $n$ variabili. \\
+\section{Funzioni polinomiali omogenee e polinomio di Taylor}
+Riprendiamo il concetto di forma quadratica dal corso di Geometria
+\begin{definition}[forma quadratica]
+$g: \mathbb{R}^n \to \mathbb{R}$ è una forma quadratica se $\exists A = A^T \in \mathbb{R}^n$ tale che $q(x)=\innerprod{x}{Ax} \iff q(x) = \sum\limits_{i,j=1}^n a_{ij}x_i x_j$ con $A = (a_{ij})_{i=1, \ldots n \atop j=1, \ldots, n}$
+\end{definition}
+\begin{prop}
+Sia $q(x)$ una forma quadratica, allora 
+$$
+q(x) = \sum_{i=1}^n a_{ii}x_i^2 + 2 \sum_{i \leq i < j \leq n} a_{ij} x_i x_j
+$$
+pertanto possiamo scrivere il nostro polinomio $q(x)$ quadratico e omogeneo come
+$$
+h(x) = \innerprod{x}{Bx}
+$$
+dove
+\begin{equation*}
+B = \begin{pmatrix}
+b_{11} & \frac{b_{12}}{2} & \frac{b_{13}}{2} & \ldots & \frac{b_{1n}}{2} \\
+\frac{b_{21}}{2} & b_{22} & \frac{b_{23}}{2} & \ldots & \frac{b_{2n}}{2} \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+\frac{b_{n1}}{2} & \frac{b_{n2}}{2} & \ldots & \ldots & b_{nn}
+\end{pmatrix}
+\end{equation*}
+\end{prop}
+\begin{proof}
+In virtù della definizione precedente sappiamo che 
+$$
+q(x) = \sum_{i, j=1}^n b_{ij} x_i x_j = \sum_{i=1}^n a_ii x_i^2 + \sum_{1 \leq i < j \leq n} b_{ij} x_i x_j 
+$$
+con un semplice "riarrangiamento" dei termini presenti. Si vede facilmente che
+$$
+B = \begin{pmatrix}
+b_{11} & \frac{b_{12}}{2} & \ldots & \frac{b_{1n}}{2} \\
+\frac{b_{21}}{2} & b_{22} & \ldots & \frac{b_{2n}}{2} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{b_{n1}}{2} & \ldots & \ldots & b_{nn}
+\end{pmatrix}
+$$
+dunque, utilizzando le semplici proprietà dei prodotti scalari, abbiamo che
+$$
+ q(x) = \innerprod{x}{Bx}
+$$
+\end{proof}
+Possiamo generalizzare questo concetto anche a polinomi di $n$ variabili $P: \mathbb{R}^n \to \mathbb{R}$
+\begin{definition}[polinomio di $n$ variabili omogeneo]
+Sia $P:\mathbb{R}^n \to \mathbb{R}$ un polinomio in $n$ variabili, quindi esiste una famiglia di numeri $c_{i_1, \ldots i_l} \in \mathbb{R}, 1 \leq l \leq k$ tale che
+$$
+P(x) = \sum_{l=1}^k \sum_{(i_1, \ldots i_l) \in \mathcal{I}_l} c_{i_1, \ldots i_l} x_{i_1} \ldots x_{i_l}
+$$
+dove $\mathcal{I}_l \subseteq \mathbb{N}^2$ è un sottoinsieme di indici, diremo che $P$ è omogeneo di grado $k \geq 1$ se
+\begin{align*}
+\forall x \in \mathbb{R}^n \, \forall t \in \mathbb{R}, P(tx) = t^k P(x)
+\end{align*}
+tutti i polinomi omogenei di grado $k$ saranno quindi della forma
+$$
+P(x) = \sum_{(i_1, \ldots i_l) \in \mathcal{I}_k} c_{i_1, \ldots, i_k} x_{i_1} \ldots x_{i_k}
+$$
+\end{definition}
+Il differenziale $d^k f(x_0): \mathbb{R}^n \to \mathbb{R}$ di ordine $k$ è un polinomio in $n$ variabili omogeneo di ordine $k$. Abbiamo infatti per $t \in \mathbb{R}, x \in \mathbb{R}^n$
+$$
+d^k f(x_0) = \sum_{i_1, \ldots i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}}(tx_{i_1})(tx_{i_2}) \ldots (tx_{i_k}) = t^k \sum_{i_1, \ldots, i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}} x_1 \ldots x_{i_k} = t^k d^k f(x_0)
+$$
+Possiamo a questo punto definire il polinomio di Taylor
+\begin{definition}[polinomio di Taylor di $f$ in $x_0$ di ordine $k$]
+Sia $f \in C^{k}(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto. Definiamo il polinomio di Taylor di $f$ nel punto $x_0 \in \Omega$ di ordine $k$ come quel polinomio di grado $\leq k$ tale che
+$$
+P_k(f, x_0)(x) = \sum_{i=0}^k \frac{d^i f(x_0)(x-x_0)}{i!}, x \in \mathbb{R}^n
+$$
+\end{definition}
+Andiamo adesso a studiare alcune proprietà che caratterizzano il polinomio di Taylor, partendo dalla seguente proposizione
+\begin{prop}
+Sia $f \in C^k(\Omega)$, $x_0 \in \Omega$. Allora, per ogni $1 \leq i_1, \ldots, i_l \leq n$ e $1 \leq l \leq k$,
+$$
+\partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) = \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0)(x_0)
+$$
+
+\end{prop}
+\begin{proof}
+Consideriamo
+$$
+\partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0) = \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \sum_{p=0}^{k} \frac{1}{p!} \sum_{j_1, \ldots j_p = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0)(x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}).
+$$
+Naturalmente abbiamo che, siccome stiamo derivando $l$ volte, le prime $l$ derivate vanno a $0$, dunque i primi contributi in questa sommatoria saranno dati da $p \geq l$ e, siccome stiamo operando su sommatorie finite, possiamo sfruttare la linearità delle derivate parziali su somme finite:
+\begin{align*}
+&\sum_{p=l}^k \frac{1}{p!} \sum_{j_1, \ldots, j_p = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \, \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}) \right) = \\
+&\quad = \frac{1}{l!} \sum_{j_1, \ldots, j_l = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_l}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_l} - x_{0_{j_l}}) \right) \\
+&\quad\quad + \sum_{p=l+1}^k \frac{1}{p!} \sum_{j_1, \ldots, j_p = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}) \right).
+\end{align*}
+Ora osserviamo che il secondo termine di questa addizione è nullo per $x \to x_0$ mentre per il primo termine, in virtù del fatto $f \in C^k (\Omega)$, abbiamo che le derivate, indipendentemente dall'ordine, saranno tutte uguali, dunque avremo che
+\begin{align*}
+&\partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0) = \frac{1}{l!} \sum_{j_1, \ldots, j_l = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_l}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0j_1}) \ldots (x_{j_l} - x_{0j_l}) \right) + \\
+&\sum_{p=l+1}^k \frac{1}{p!} \sum_{j_1, \ldots, j_p = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0j_1}) \ldots (x_{j_p} - x_{0j_p}) \right)
+\end{align*}
+Osserviamo che la sommatoria $\sum\limits_{p=l+1}^n \frac{1}{p!} \sum\limits_{j_1, \ldots j_l}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}) \right)$ tende a $0$ per $x \to x_0$ siccome se valutata in $x_0$, per continuità dei termini, tende a $0$. Per quanto riguarda il primo termine, osserviamo che della sommatoria sugli indici $j_1, \ldots j_l$ \emph{sopravvive} solamente i termini con indici che rappresentano una permutazione di $(i_1, \ldots i_l)$ che, in virtù del teorema di Schwarz di ordine superiore, abbiamo che le derivate, indipendentemente dall'ordine in cui deriviamo, coincidono
+$$
+\sum_{\sigma: \{i_1, \ldots i_l \} \to \{ i_1, \ldots, i_l \} \atop \sigma \text{ bigettiva }} \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) = \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) l!
+$$
+da cui segue la tesi, in quanto
+$$
+\partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0) = \frac{1}{\cancel{l!}} \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) \cancel{l!} + o(1) \text{ per } x \to x_0
+$$
+\end{proof}
+\begin{theorem}[formula di Taylor]
+Se $f \in C^k ( \Omega ), x_0 \in \Omega, \Omega \subseteq \mathbb{R}^n$ aperto, allora abbiamo che
+$$
+f(x) = P_k(f, x_0) + o(|x-x_0|^k) = \sum_{j=0}^k \frac{1}{j!} d^j f(x_0)(x-x_0) + o(|x-x_0|^k) \text{ per } x \to x_0
+$$
+\end{theorem}
+\begin{proof}
+Faremo questa dimostrazione per induzione su $k$. Per ora studiamo la funzione $g(x)=f(x)-P_k(f, x_0)(x)$ senza fissare un particolare valore di $k$ (vogliamo innanzitutto studiare quali sono i passaggi comuni a tutti i valori di $k$). Osserviamo, grazie alla proposizione precedente, che $g(x_0) = 0$ e $\forall 1 \leq i_1, \ldots, i_l \leq n$ e $\forall 1 \leq l \leq k$. \\
+Facciamo il cambio di variabile $x = x_0 + h$ e consideriamo il caso in cui $k=1$: proviamo a questo punto che $g(x_0+h) = g(x_0 + h) - g(x_0)$ siccome $g(x_0) = 0$. Ma allora
+$$
+g(x_0 + h) - g(x_0) = \int_0^1 \frac{d}{dt} g(x_0 + th)dt = \int_0^1 \partial_h g(x_0 + th)dt = \int_0^1 dg(x_0 + th)(h)dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th) h_j dt
+$$
+dove queste eguaglianze derivano dalla semplice osservazione del seguente fatto:
+$$
+\partial_h g(x_0 + th) = \lim_{\Delta t \to 0} \frac{g(x_0 + (t+\Delta t)h) - g(x_0 + th)}{\Delta t} = \frac{d}{dt} g(x_0 + th)
+$$
+e le altre dalle proprietà del differenziale e del gradiente. Concludiamo che
+$$
+g(x_0 + h) = \int_{0}^1 \innerprod{\nabla g(x_0 + th)}{h}dt
+$$
+da cui segue, tramite la \ref{prop:dis_cs} (disuguaglianza di Cauchy-Schwarz), che 
+$$
+|g(x_0 + h)| = |\int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt | \leq |\int_{0}^{1} |\innerprod{\nabla g(x_0+th)}{h}|dt| \leq ||\int_0^1 \nabla g(x_0 + th)|| \, ||h||
+$$
+e poiché $\nabla g(x_0) = 0$ allora
+$$
+\int_0^1 |\nabla g(x_0 + th)| = o(1) \, \, \text{per h } \to 0
+$$
+dunque $g(x_0 + h) \leq o(h) \implies g(x_0 + h) = o(h)$, ovvero $g(x)=o(x-x_0)$. Abbiamo quindi mostrato il caso $k=1$, ma adesso, supponendo che questo sia vero per induzione per $k-1$, e sapendo che $\partial_{x_{i_1}} \ldots \partial_{x_{i_k}} g(x_0) = 0 \, \forall i_1 \ldots i_k \in \{1, \ldots n \}$, vogliamo adesso mostrare che $g(x_0 + h) = o(h^{k})$. \\
+Osserviamo che $\partial_{x_i} g$ soddisfa le ipotesi della proprietà induttiva per $k-1$, infatti abbiamo che
+$$
+\partial_{x_i} g(x_0) = 0
+$$
+e naturalmente
+$$
+\partial_{x_{i_1}} \ldots \partial_{x_{i_{k-1}}} \partial_{x_i} g(x_0) = 0 \, \forall i_1, \ldots, i_{k-1} \in \{1, \ldots n\}
+$$
+dunque, per ipotesi induttiva, abbiamo che
+$$
+\partial_{x_i} g = o(|h|^{k-1})
+$$
+da cui segue che
+\begin{align*}
+&g(x_0 + h) = \int_0^1 \innerprod{\nabla g(x_0 + th)}{h}dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th)h_j \stackrel{\text{ip. induttiva}}{=} \int_0^1 \sum_{j=1}^n o_j(|th|^{k-1})h_j dt = \\ &= \int_0^1 \sum_{j=1}^n o_j(|h|^{k-1})h_j dt \implies |g(x_0+h)| \leq |h| \int_0^1 |(o_1(|h|^{k-1}, \ldots o_n(|h|^{k-1}))|dt = o(|h|^k) \, \text{ per } h \to 0
+\end{align*}
+ovvero la tesi.
+\end{proof}
+Siamo adesso pronti a mostrare l'unicità del teorema di Taylor, tuttavia abbiamo bisogno di qualche lemma preliminare:
+\begin{lemma}
+Sia $P:\mathbb{R}^n \to \mathbb{R}$ un polinomio in $n$-variabili di ordine $k \geq 1$. Se $P(x) = o(|x|^k) \text{ per } x \to 0 \implies P = 0$
+\end{lemma}
+\begin{proof}
+$$
+P(x) = \sum_{|\alpha| \leq k} c_{\alpha}x^{\alpha} \neq 0, c_{\alpha} \in \mathbb{R} \implies P(x) = \sum_{|\alpha| = j_0} c_{\alpha} x^{\alpha} + o(|x|^{j_0}) = q(x) + o(|x|^{j_0})
+$$
+per qualche $j_0 \in \{1, \ldots k \}$, dove $q$ è un polinomio omogeneo di grado $j_0$ non nullo, ovvero 
+$$
+q(\lambda x) = \lambda^{j_0} q(x) \, \, \forall \lambda \in \mathbb{R} \, \forall x \in \mathbb{R}
+$$
+\end{proof}
 \section{Massimi e minimi in più variabili}
-Lo studio dei massimi e dei minimi è naturalmente cruciale in ogni scienza, ma non solo: molto spesso molti aspettidel quotidiano sono facilmente modellizzabili da funzioni di cui spesso è necessario trovare i valori di massimo o minimo. Così come nel caso a singola variabile, vogliamo individuare un procedimento analitico per la ricerca di essi e, pertanto, ci dilungheremo nella presentazione di qualche risultato teorico molto importante che ci aiuterà a fare questo:
+Lo studio dei massimi e dei minimi è naturalmente cruciale in ogni scienza, ma non solo: molto spesso molti aspetti del quotidiano sono facilmente modellizzabili da funzioni di cui spesso è necessario trovare i valori di massimo o minimo. Così come nel caso a singola variabile, vogliamo individuare un procedimento analitico per la ricerca di essi e, pertanto, ci dilungheremo nella presentazione di qualche risultato teorico molto importante che ci aiuterà a fare questo:
 \begin{theorem}[teorema di Fermat]
 Siano $\Omega \subseteq \mathbb{R}^n$ aperto e $f: \Omega \to \mathbb{R}$. Supponiamo che $x_0 \in \Omega$ sia un punto di minimo (o massimo) locale e che $f$ sia differenziabile in $x_0$. Allora
 \begin{align*}
@@ -1456,4 +1628,8 @@ In realtà l'ipotesi che la funzione sia differenziabile non è indispensabile, 
 \begin{definition}[punto critico]
 Diremo che $x_0 \in \Omega$ è un punto critico di $f: \Omega \to \mathbb{R}$ differenziabile in $x_0$ se $\nabla{f(x_0)} = 0$. Similmente diremo che $f(x_0)$ è un valore critico di $f$.
 \end{definition}
+\begin{appendices}
+\chapter{Notazione multi-indice}
+La notazione multi-indice si può facilmente introdurre vedendola come un modo compatto di scrivere le cose. La realtà delle cose è un po' diversa, soprattutto se si guardano le cose da un punto di vista della combinatoria multinomiale
+\end{appendices}
 \end{document}
