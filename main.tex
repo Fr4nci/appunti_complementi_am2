@@ -33,7 +33,6 @@
 \title{Appunti di Complementi di Analisi Matematica 2}
 \author{Francesco Sermi}
 \date{\today}
-
 \begin{document}
 	\begin{titlepage}
 	\centering
@@ -1766,6 +1765,7 @@ Ora, si possono trovare bizzeffe di esempi in cui in un particolare punto si ann
         {x^2 - y^2}; % Superficie f(x, y) = x^2 + y^2
     \end{axis}
 \end{tikzpicture}
+\label{fig:punto_sella}
 \caption{Grafico della funzione $f(x, y) = x^2 - y^2$: come è possibile vedere il punto $(0, 0)$ non è né un punto di minimo locale né un punto di massimo locale: si tratta di un \emph{punto di sella}}
 \end{figure}
 Enunciamo il seguente criterio
@@ -1805,7 +1805,93 @@ dove $\Lambda = \begin{pmatrix} \lambda_1 & 0 & \ldots & 0 \\
 $$
 \innerprod{Ax}{x} = \innerprod{C^T \Lambda Cx}{Cx} = \innerprod{\Lambda Cx}{Cx} =  \innerprod{\Lambda Cx}{Cx} \stackrel{y=Cx}{=} \innerprod{\Lambda y}{y} = \sum_{j=1}^n \lambda_j y_j^2
 $$
+Osserviamo che, grazie al teorema spettrale, $\forall j \in \{1, \ldots, n \} \, \exists v_j \in \mathbb{S}^{n-1} : e_j = Cv_j$ dove $v_j$ è il $j-$esimo autovettore
+$$
+Av_j = C^{-1} \Lambda Cv_j = C^{-1} \Lambda e_j = C^{-1} (\lambda_j e_j) = \lambda (C^{-1} e_j) = \lambda_j v_j
+$$
+dunque
+$$
+\innerprod{Hf(x_0)v_j}{v_j} = \lambda_j
+$$
+Dalla formula di Taylor concludiamo che
+$$
+f(x_0 + tv_j) = f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)tv_j}{tv_j} + o(|tv_j|^2) = f(x_0) + t^2(\frac{\lambda_j}{2} + o(1))
+$$
+poiché $Hf(x_0)$ non è né definita positiva né definita negativa avremo che $\lambda_j > 0$ e $\lambda_j < 0$ dunque la precedente uguaglianza, unita al ragionamento compiuto nella dimostrazione del teorema precedente portano alla tesi.
 \end{proof}
+\begin{remark}
+In questa dimostrazione comprendiamo come mai si chiamino \emph{punti di sella}: nel caso $n=2$ (ovvero in due dimensioni) con la seguente matrice hessiana
+$$
+Hf(x_0) = \begin{pmatrix}
+2 & 0 \\
+0 & -2
+\end{pmatrix}
+$$
+vuol dire che la funzione, lungo una direzione, assume un massimo locale in quel punto e nell'altra un minimo. La funzione $f(x,y)=x^2-y^2$ (Figura \ref{fig:punto_sella}) nel punto $(0,0)$ lungo la direzione $x$ ha un punto minimo (basti osservare la restrizione della funzione a $y=0$, per cui otteniamo $f(x, 0)=x^2$) e un punto di massimo (basti osservare la restrizione della funzione a $x=0$, per cui otteniamo $f(0, y) = -y^2$). Il motivo della terminologia \emph{punto di sella} deriva proprio del fatto che in due dimensione assume proprio la forma di una sella.
+\end{remark}
+Il problema è capire come si comporta nei punti per cui è presente un autovalore nullo: purtroppo, quando l'hessiana è semi-definita abbiamo bisogno di procedere tramite dei ragionamenti più sofisticati che dipendono da caso a caso.
+\section{Funzione inversa e funzioni implicite}
+Uno dei problemi molto ricorrenti nello studio della matematica e nelle scienze è il risolvere un'equazione del tipo
+$$
+f(x) = 0
+$$
+Nel corso di Geometria si è visto che nel caso di applicazioni lineari affini e invertibili $L: \mathbb{R}^n \to \mathbb{R}^n$, ci si chiedeva per $x \in \mathbb{R}^n$ avevamo che
+$$
+Lx = \underline{0} \implies Ax + B = \underline{0} \implies Ax = -B
+$$
+e riducevamo il problema ad un sistema lineare non omogeneo che aveva soluzione unica se $\det{A} \neq 0$ e $B \in \text{Span}\{ A^1, A^2, \ldots, A^n \}$. \\
+Nel caso di funzioni differenziabili è possibile dire qualcosa? \\
+Dal caso affine in generale possiamo innanzitutto intuire che per $f$ differenziabile bisogna assumere che $\det{Df(x_0)} \neq 0$, però cos'altro possiamo dire? \\
+Innanzitutto, fissato $\Omega \subseteq \mathbb{R}^n$ e definiamo lo spazio di tutte le funzioni vettoriali di classe $C^k$ e a valori in $A \subseteq \mathbb{R}^m$:
+\begin{definition}[spazio delle funzioni vettoriali di classe $C^k$]
+Sia $\Omega \subseteq \mathbb{R}^n, A \subseteq \mathbb{R}^m$ e $k \in \mathbb{N}$. Allora definiamo lo spazio delle funzioni vettoriali di classe $C^k$ come
+$$
+C^k(\Omega,A) = \{f: \Omega \to A, f = (f_1, \ldots, f_m) \wedge \forall j \in \{1, \ldots m \}, f_j \in C^k(\Omega) \}
+$$
+\end{definition}
+Adesso siamo pronti ad enunciare il seguente teorema, di cui non forniremo la dimostrazione, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
+\begin{theorem}[teorema della funzione inversa]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
+Allora $\exists r > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, r)}} \in C^{k}(B(x_0, r), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, r)}})^{-1}:U \to B(x_0, r)$, abbiamo che
+$g \in C^k(U, B(x_0, r))$ con
+$$
+Dg(y) = (Df(g(y))^{-1} \, \forall y \in U
+$$
+\begin{proof}[Idea della dimostrazione]
+Nella dimostrazione è presente un richiamo al teorema di Newton in più variabili: di fatto noi vogliamo studiare le soluzioni all'equazione \\
+FINIRE DI SCRIVERLA
+\end{proof}
+Tramite il teorema della funzione inversa è possibile caratterizzare le funzioni implicite, ovvero tutte quelle funzioni in cui non è possibile andare ad esplicitare precisamente una particolare variabile. Il teorema della funzione inversa ci assicura che ogni funzione è localmente invertibile, conseguentemente, in un certo senso, ci dice che è possibile esplicitare localmente una particolare variabile di questa funzione. Andiamo ad enunciare questo teorema
+\begin{theorem}[teorema della funzione implicita rispetto a $x$]
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $x_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e sia $f \in C^k (\Omega)$, $\partial_y f(x_0) \neq 0$
+$$\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1}-\delta, x_{0_1}+\delta) \times (x_{0_2} - \sigma, x_{0_2}+\sigma) = \{(t, \varphi(t)) : |t-x_{0_1}| < \delta \}$$
+ovvero esiste una funzione $\varphi: (x_{0_1} - \delta, x_{0_1} + \delta) \to (x_{0_2}-\sigma, x_{0_2} + \sigma)$ tale che $\varphi(x_{0_1}) = x_{0_2}$ e dunque
+$$
+f(t, \varphi(t)) = f(x_0)
+$$
+Inoltre
+$$
+\varphi'(t)=-\frac{\partial_x f(t, \varphi(t))}{\partial_y f(t, \varphi(t))} \, \forall t \in (x_{0_1} - \delta, x_{0_2} + \delta)
+$$
+\end{theorem}
+Sebbene questo enunciato posso apparire complicato, quello che sta dicendo è semplicemente che posso invertire la funzione implicita $f$ nell'interno di un punto $x_0 \in \Omega$. La grande differenza rispetto alle applicazioni lineari è il fatto che
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (naturalmente le applicazioni lineari sono le funzioni più regolari che esistano, quindi è naturale che adesso sia necessario porre delle condizioni);
+	\item è necessario conoscere almeno un valore della funzione $f$: nel caso del teorema è il punto $x_0 \in \Omega$, il quale svolge la funzione di una sorta di "ancora" per definire il comportamento locale della funzione
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Idea della dimostrazione]
+L'equazione
+$$
+f(x,y) = f(x_0) \text{ con } x_0 \in \Omega
+$$
+ha altre soluzioni oltre a $x_0$. La condizione di $\partial_y f(x_0) \neq 0$ ci consente di effettuare un cambiamento delle coordinate del nostro sistema
+FINIRE DI SCRIVERE
+\end{proof}
+
+
+
+
 
 
 
