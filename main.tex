@@ -33,6 +33,10 @@
 \title{Appunti di Complementi di Analisi Matematica 2}
 \author{Francesco Sermi}
 \date{\today}
+\pgfplotsset{
+	compat = newest,
+	colormap/violet
+}
 \begin{document}
 	\begin{titlepage}
 	\centering
@@ -886,7 +890,6 @@ dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il dif
         domain=-5:5,
         y domain=-5:5,
         samples=50,
-        colormap/violet,
         z buffer=sort
     ]
 
@@ -1761,7 +1764,6 @@ Ora, si possono trovare bizzeffe di esempi in cui in un particolare punto si ann
         domain=-5:5,
         y domain=-5:5,
         samples=50,
-        colormap/violet,
         z buffer=sort
     ]
     % Grafico della superficie con colore visibile
@@ -1883,6 +1885,7 @@ $$
 \varphi'(t)=-\frac{\partial_x f(t, \varphi(t))}{\partial_y f(t, \varphi(t))} \, \forall t \in (x_{0_1} - \delta, x_{0_2} + \delta)
 $$
 \end{theorem}
+\hspace{1cm} \\
 Sebbene questo enunciato posso apparire complicato, quello che sta dicendo è semplicemente che posso invertire la funzione implicita $f$ nell'interno di un punto $x_0 \in \Omega$. La grande differenza rispetto alle applicazioni lineari è il fatto che
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (naturalmente le applicazioni lineari sono le funzioni più regolari che esistano, quindi è naturale che adesso sia necessario porre delle condizioni);
@@ -1890,41 +1893,41 @@ Sebbene questo enunciato posso apparire complicato, quello che sta dicendo è se
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-L'equazione
+Presa la funzione $f(x,y)$ possiamo considerare la funzione
 $$
-f(x,y) = f(x_0) \text{ con } x_0 \in \Omega
+\tilde{F}(x, y)=(x, f(x, y))
 $$
-ha altre soluzioni oltre a $x_0$. La condizione di $\partial_y f(x_0) \neq 0$ ci consente di effettuare un cambiamento delle coordinate del nostro sistema e, dunque, scegliere
+ed osservare che la condizione di $\partial_y f(x_0) \neq 0$ ci consente di invertire localmente la funzione $F$ siccome
 $$
-(x, y) \mapsto (x, f(x,y))
-$$
-e poniamo $\tilde{f}(x, y) = (x, f(x, y))$. \\
-Le soluzioni che soddisfano questa equazione in questo nuovo sistema di coordinate saranno una retta e possiamo andare ad invertire la nostra funzione localmente, infatti considerando
-$$
-\tilde{f}(x_0, y_0) = (x_0, f(x_0, y_0)) \implies D\tilde{f}(x_0, y_0) = \begin{pmatrix}
+D\tilde{f}(x_0, y_0) = \begin{pmatrix}
 1 & 0 \\
 \partial_x f(x_0, y_0) & \partial_y f(x_0, y_0)
 \end{pmatrix}
 $$
-avremo che il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero e questo ci consente di usare il teorema della funzione inversa a questa funzione. Conseguentemente, esisterà una funzione $\tilde{g}$ tale che $\tilde{f}(\tilde{g}(x, y)) = (x, y) = \tilde{f}(g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) \implies$
+e, dunque, il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero, il che ci consente di applicare il teorema della funzione inversa a $\tilde{F}$. Conseguentemente, esisterà un intorno $U$ di $(x_0, f(x_0, y_0))$ tale che $\exists \tilde{g}: U \to \Omega$ tale che, ricordando che se $f: X \to Y$ e $g=f^{-1}: Y \to X$ allora $f(g(y))=y \, \, \forall y \in Y$,  allora $F(\tilde{g}(x, y)) = (x, y) \, \, \forall (x, y) \in U$. Ma, posto $\tilde{g}(x,y)=(g_1(x, y), g_2(x, y))$, possiamo dedurre che
 $$
-\implies \begin{cases}
+F(\tilde{g}(x, y)) = F((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
+$$
+permettendoci di concludere che
+$$
+\forall (x, y) \in U, \, (x, y) = F(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) = \implies \begin{cases}
 g_1(x, y) = x \\
 f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
 \end{cases}
 $$
-dunque ponendo $g(x) = g_2(x, f(x_0, y_0))$ otteniamo che
+permettendoci, in conclusione, di giungere alla tesi definendo $\varphi(x) = g_2(x, f(x_0, y_0))$
 $$
-f(x, g(x)) = f(x_0, y_0)
+f(x, \varphi(x)) = f(x, g_2(x, f(x_0, y_0)) = f(x_0, y_0)
 $$
-Per dimostrare la formula della derivata basta derivare quest'ultima relazione:
+Per dimostrare la formula della derivata basta derivare quest'ultima relazione rispetto ad $x$:
 $$
-\partial_x f(x, g(x)) + \partial_y f(x, g(x)) \partial_x g(x) = 0 \implies \partial_x g(x) = - \frac{\partial_x f(x, g(x))}{\partial_y f(x, g(x))}
+\partial_x f(x, \varphi(x)) = \partial_x f(x_0, y_0) \implies \partial_x f(x, \varphi(x)) + \partial_y f(x, \varphi(x)) \partial_x \varphi(x) = 0 \implies \partial_x \varphi(x) = - \frac{\partial_x f(x, g(x))}{\partial_y f(x, g(x))}
 $$
 \end{proof}
 \begin{remark}
-Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0)$: infatti, la versione più generale del teorema richiede esclusivamente che il gradiente della funzione $f$ sia diverso da zero, in maniera tale da "riorganizzare" il determinante di $\tilde{f}$ nella dimostrazione sopra per non farlo diventare $0$.
+Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede esclusivamente che il gradiente della funzione $f$ sia diverso da zero, rifacendo la dimostrazione ma definendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$.
 \end{remark}
+Con qualche piccolo accorgimento, la dimostrazione fatta qua sopra è valida anche per $\Omega \subseteq \mathbb{R}^{n}$ 
 \begin{definition}[curva regolare]
 Diremo che $C \subseteq \mathbb{R}^2$ è una curva regolare se $\exists \Omega \subseteq \mathbb{R}^2$ aperto tale che $C = f^{-1}(f(x_0)) \subseteq \Omega$ dove $f \in C^k (\Omega)$ e $\nabla f(x) \neq (0, 0) \, \forall x \in C$. \\
 Evidenziando la regolarità di $C$, diremo che $C$ è una curva di classe $C^k$
