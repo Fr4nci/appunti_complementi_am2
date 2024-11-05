@@ -7,8 +7,10 @@ The document is divided into key chapter of the course of "Analisi Matematica 2"
 * Eucliden space and Topology of $\mathbb{R}^n$
 * Sequence and continuos functions
 * Differentiable functions
+
 IN PROGRESS
 * Regular curves and surfaces
-TODO:
+
+TO-DO:
 * Integrals and differential forms
 * others
