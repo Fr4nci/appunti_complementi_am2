@@ -45,8 +45,8 @@
 	\vspace{2cm}
 	{\Large\itshape Francesco Sermi\par}
 	\vfill
-	\begin{tikzpicture}
-    % Definisco lo stile dei vettori
+    \begin{tikzpicture}
+	% Definisco lo stile dei vettori
     \tikzset{vector/.style={-stealth, thick, color=black}}
 
     % Parametri per il punto di contatto
@@ -1821,7 +1821,7 @@ $$
 $$
 Dalla formula di Taylor concludiamo che
 $$
-f(x_0 + tv_j) = f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)tv_j}{tv_j} + o(|tv_j|^2) = f(x_0) + t^2(\frac{\lambda_j}{2} + o(1))
+f(x_0 + tv_j) = f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)tv_j}{tv_j} + o(|tv_j|^2) = f(x_0) + t^2 \left( \frac{\lambda_j}{2} + o(1) \right)
 $$
 poiché $Hf(x_0)$ non è né definita positiva né definita negativa avremo che $\lambda_j > 0$ e $\lambda_j < 0$ dunque la precedente uguaglianza, unita al ragionamento compiuto nella dimostrazione del teorema precedente portano alla tesi.
 \end{proof}
@@ -1837,7 +1837,7 @@ vuol dire che la funzione, lungo una direzione, assume un massimo locale in quel
 \end{remark}
 Il problema è capire come si comporta nei punti per cui è presente un autovalore nullo: purtroppo, quando l'hessiana è semi-definita abbiamo bisogno di procedere tramite dei ragionamenti più sofisticati che dipendono da caso a caso.
 
-\chapter{Curve e superfici in regolari}
+\chapter{Curve e superfici regolari}
 In questo capitolo ci si sofferma nello studio delle curve e della superfici regolari, con particolare riguardo alla caratterizzazione delle curve tramite pre-immagini di funzioni implicite e lo studio dei massimi e i minimi di una funzione vincolata. Questo è particolarmente utile nello studio di alcuni tipi di problemi che possono capitare nella vita di tutti in giorni, in cui si è interessati a dei massimi o dei minimi vincolati ad una curva oppure ad una superficie.
 
 \section{Teorema della funzione inversa}
@@ -1868,13 +1868,39 @@ $$
 Dg(y) = (Df(g(y))^{-1} \, \forall y \in U
 $$
 \begin{proof}[Idea della dimostrazione]
-Nella dimostrazione è presente un richiamo al teorema di Newton in più variabili: di fatto noi vogliamo studiare le soluzioni all'equazione \\
-FINIRE DI SCRIVERLA
+Nella dimostrazione è presente un richiamo al teorema di Newton in più variabili: come avevo accennato, noi vogliamo studiare le soluzioni all'equazione 
+$$
+f(x) = 0
+$$
+allora noi possiamo definire, siccome $f$ è differenziabile, una funzione del tipo
+$$
+f(x) - f(\xi) = \eta
+$$
 \end{proof}
 \section{Teorema delle funzioni implicite o del Dini}
-Tramite il teorema della funzione inversa è possibile caratterizzare le funzioni implicite, ovvero tutte quelle funzioni in cui non è possibile andare ad esplicitare precisamente una particolare variabile. Il teorema della funzione inversa ci assicura che ogni funzione è localmente invertibile, conseguentemente, in un certo senso, ci dice che è possibile esplicitare localmente una particolare variabile di questa funzione. Andiamo ad enunciare questo teorema
+Un argomento che si vogliono trattare sono le curve e le superfici. In generale, possiamo vedere queste con due approcci:
+\begin{itemize}
+	\item un approccio "parametrico", in cui parametrizziamo la superficie che vogliamo rappresentare in base a delle variabili che facciamo variare all'interno di un intervallo;
+	\item un approccio più vicino a quello dell'Analisi, ovvero quello di pensarle come curve di livello di una funzioni a più variabili
+\end{itemize}
+Un esempio di questo è sicuramente la circonferenza: col primo approccio una circonferenza di raggio uguale a $2$ e col centro coincidente con l'origine è possibile parametrizzarla tramite le funzioni $2\cos{t}$ e $2\sin{t}$ facendo variare per $t \in [0; 2\pi]$
+$$
+\begin{pmatrix}
+	x \\
+	y
+\end{pmatrix} = \begin{pmatrix}
+	2\cos{t} \\
+	2\sin{t}
+\end{pmatrix}
+$$
+oppure visualizzandola come il luogo dei punti in cui la funzione $g(x, y) = x^2 + y^2 - 4$ si annulla e caratterizzare la nostra circonferenza $\Gamma$ come
+$$
+\Gamma : g^{-1}(0)
+$$
+quindi definire la circonferenza come la pre-immagine del valore $0$ assunto dalla funzione $g$. \\
+Il teorema della funzione inversa rende possibile anche la caratterizzazione delle funzioni implicite ad un livello \emph{locale}: infatti ci dice che, in un intorno molto piccolo del punto $f(x_0)$, è possibile visualizzare la funzione implicita come un oggetto che vive in una dimensione più piccola. Andiamo ad enunciare questo teorema
 \begin{theorem}[teorema della funzione implicita rispetto a $x$]
-Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $x_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e sia $f \in C^k (\Omega)$, $\partial_y f(x_0) \neq 0$
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e sia $f \in C^k (\Omega)$, $\partial_y f(x_0) \neq 0$
 $$\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1}-\delta, x_{0_1}+\delta) \times (x_{0_2} - \sigma, x_{0_2}+\sigma) = \{(t, \varphi(t)) : |t-x_{0_1}| < \delta \}$$
 ovvero esiste una funzione $\varphi: (x_{0_1} - \delta, x_{0_1} + \delta) \to (x_{0_2}-\sigma, x_{0_2} + \sigma)$ tale che $\varphi(x_{0_1}) = x_{0_2}$ e dunque
 $$
@@ -1882,20 +1908,20 @@ f(t, \varphi(t)) = f(x_0)
 $$
 Inoltre
 $$
-\varphi'(t)=-\frac{\partial_x f(t, \varphi(t))}{\partial_y f(t, \varphi(t))} \, \forall t \in (x_{0_1} - \delta, x_{0_2} + \delta)
+\varphi'(t)=-\frac{\partial_x f(t, \varphi(t))}{\partial_y f(t, \varphi(t))} \, \, \forall t \in (x_{0_1} - \delta, x_{0_2} + \delta)
 $$
 \end{theorem}
 \hspace{1cm} \\
-Sebbene questo enunciato posso apparire complicato, quello che sta dicendo è semplicemente che posso invertire la funzione implicita $f$ nell'interno di un punto $x_0 \in \Omega$. La grande differenza rispetto alle applicazioni lineari è il fatto che
+Osserviamo due cose molto importanti:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
-	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (naturalmente le applicazioni lineari sono le funzioni più regolari che esistano, quindi è naturale che adesso sia necessario porre delle condizioni);
+	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (questo risulta intuitivo, da un lato, siccome stiamo cercando di approssimare, in un intorno \emph{piccolo} una funzione che vive, per esempio, in $\mathbb{R}^2$ con un $x$-grafico quindi deve essere regolare, d'altra parte dobbiamo applicare il teorema della funzione inversa per esplicitare una variabile in funzione dell'altra localmente);
 	\item è necessario conoscere almeno un valore della funzione $f$: nel caso del teorema è il punto $x_0 \in \Omega$, il quale svolge la funzione di una sorta di "ancora" per definire il comportamento locale della funzione
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Presa la funzione $f(x,y)$ possiamo considerare la funzione
+Presa la funzione $f(x,y)$ possiamo considerare la funzione $\tilde{f}:\Omega \to \mathbb{R}^2$ tale che
 $$
-\tilde{F}(x, y)=(x, f(x, y))
+\tilde{f}(x, y)=(x, f(x, y))
 $$
 ed osservare che la condizione di $\partial_y f(x_0) \neq 0$ ci consente di invertire localmente la funzione $F$ siccome
 $$
@@ -1904,13 +1930,13 @@ D\tilde{f}(x_0, y_0) = \begin{pmatrix}
 \partial_x f(x_0, y_0) & \partial_y f(x_0, y_0)
 \end{pmatrix}
 $$
-e, dunque, il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero, il che ci consente di applicare il teorema della funzione inversa a $\tilde{F}$. Conseguentemente, esisterà un intorno $U$ di $(x_0, f(x_0, y_0))$ tale che $\exists \tilde{g}: U \to \Omega$ tale che, ricordando che se $f: X \to Y$ e $g=f^{-1}: Y \to X$ allora $f(g(y))=y \, \, \forall y \in Y$,  allora $F(\tilde{g}(x, y)) = (x, y) \, \, \forall (x, y) \in U$. Ma, posto $\tilde{g}(x,y)=(g_1(x, y), g_2(x, y))$, possiamo dedurre che
+e, dunque, il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero, il che ci consente di applicare il teorema della funzione inversa a $\tilde{f}$. Conseguentemente, esisterà un intorno $U$ di $(x_0, f(x_0, y_0))$ tale che $\exists \tilde{g}: U \to \Omega$ tale che, ricordando che se $f: X \to Y$ e $g=f^{-1}: Y \to X$ allora $f(g(y))=y \, \, \forall y \in Y$,  allora $f(\tilde{g}(x, y)) = (x, y) \, \, \forall (x, y) \in U$. Ma, posto $\tilde{g}(x,y)=(g_1(x, y), g_2(x, y))$, possiamo dedurre che
 $$
-F(\tilde{g}(x, y)) = F((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
+\tilde{f}(\tilde{g}(x, y)) = \tilde{f}((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
 $$
 permettendoci di concludere che
 $$
-\forall (x, y) \in U, \, (x, y) = F(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) = \implies \begin{cases}
+\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) = \implies \begin{cases}
 g_1(x, y) = x \\
 f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
 \end{cases}
@@ -1925,21 +1951,50 @@ $$
 $$
 \end{proof}
 \begin{remark}
-Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede esclusivamente che il gradiente della funzione $f$ sia diverso da zero, rifacendo la dimostrazione ma definendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$.
+Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede che $\nabla f \neq 0$. Ciò è possibile rifacendo la dimostrazione ma ridefinendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$. Enunciamo qua sotto tutte le "versioni" alternative del teorema nel caso di $n=2$ e $n=3$
 \end{remark}
+\begin{theorem}[teorema della funzione implicita rispetto a $y$]
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e $f \in C^{1}(\Omega)$ con $\partial_{x} f(x_0) \neq 0$
+$$
+\implies \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1} - \sigma, x_{0_1} + \sigma) \times (x_{0_2} - \delta, x_{0_2} + \delta) = \{ (\varphi(t), t) : |t-x_{0_2}| < \delta \}
+$$
+ovvero $\exists \varphi : (x_{0_2} - \delta, x_{0_2} + \delta) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ tale che $\varphi(x_{0_2}) = x_{0_1}$ e dunque
+$$
+f(\varphi(t), t) = f(x_0)
+$$
+Inoltre
+$$
+\varphi'(t) = -\frac{\partial_y f(\varphi(t), t)}{\partial_x f(\varphi(t), t)} \, \, \forall t \in (x_{0_2} - \delta, x_{0_2} + \delta)
+$$
+\end{theorem}
+\begin{proof}
+Si riprende la dimostrazione fatta prima usando $\tilde{f}(x, y) = (f(x, y), y)$. 
+\end{proof}
 Con qualche piccolo accorgimento, la dimostrazione fatta qua sopra è valida anche per $\Omega \subseteq \mathbb{R}^{n}$ 
 \begin{definition}[curva regolare]
 Diremo che $C \subseteq \mathbb{R}^2$ è una curva regolare se $\exists \Omega \subseteq \mathbb{R}^2$ aperto tale che $C = f^{-1}(f(x_0)) \subseteq \Omega$ dove $f \in C^k (\Omega)$ e $\nabla f(x) \neq (0, 0) \, \forall x \in C$. \\
 Evidenziando la regolarità di $C$, diremo che $C$ è una curva di classe $C^k$
 \end{definition}
-\begin{remark}
-Tramite il teorema della funzione implicita, l'insieme $C \subseteq \mathbb{R}^2$ si può rappresentare come un grafico opportuno \emph{localmente}
-\end{remark}
+\begin{theorem}[funzione implicita rispetto a $y$ e $z$]
+Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 ( \Omega )$ tale che $\partial_x f(x_0) \neq 0$. Allora
+$$
+\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}, \delta) \}
+$$
+ed esiste $\varphi: B((x_{0_2}, x_{0_3}) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ con $\varphi(x_{0_2}, x_{0_3}) = x_{0_1}$ tale che
+$$
+f(\varphi(x_2, x_3), x_2, x_3) = f(x_{0_1}, x_{0_2}, x_{0_3})
+$$
+\end{theorem}
 
 
-
-
-
+\section{Punti critici su curve e su superfici regolari}
+Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
+\begin{definition}[punti critici su curve/superfici]
+Sia $S \subseteq \mathbb{R}^n$ con $n=2, 3$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
+$$
+\forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
+$$
+\end{definition}
 \begin{appendices}
 \chapter{Notazione multi-indice}
 La notazione multi-indice si può facilmente introdurre vedendola come un modo compatto di scrivere le cose. La realtà delle cose è un po' diversa, soprattutto se si guardano le cose da un punto di vista della combinatoria multinomiale
