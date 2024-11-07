@@ -81,6 +81,9 @@
 	{\large \hfill Pisa, \today \par}
 	\end{titlepage}
 	\tableofcontents
+	\chapter*{Ringraziamenti}
+	Ringrazio tutti coloro che sono intervenuti nella correzione di questo documento. Una menzione d'onore va ai miei coinquilini Matteo, Anna e Alessandro che mi sopportano durante le mie farneticazioni fra spazi vettoriali.
+	
 	\chapter*{Notazioni}
 	Riporto all'inizio del libro le notazioni adottate all'interno di questo documento:
 	\begin{itemize}[label=\hspace{-0.5em}]
@@ -106,6 +109,7 @@
 		\item $\iota_-$ segnatura negativa di un prodotto scalare/hermitiano
 		\item $\iota_0$ segnatura nulla di un prodotto scalare/hermitiano
 		\item $(\iota_+, \iota_-, \iota_0)$ segnatura di un prodotto scalare/hermitiano
+		\item $I(x_0, \delta) = (x_0 - \delta, x_0 + \delta) = B(x_0, \delta) \subset \mathbb{R}$ con $x_0 \in \mathbb{R}, \delta > 0$ intervallo centrato in $x_0$ di ampiezza $2\delta$
 	\end{itemize}
 	\chapter{Spazi euclidei}
 	In questo capitolo, ci soffermeremo su alcuni risultati che possono essere ottenuti considerando uno spazio euclideo e sullo studio della sua topologia, siccome molti concetti dell'Analisi 1 devono essere concettualmente rivisti per poter essere generalizzati a spazi di dimensione diversa da 1.
@@ -1707,7 +1711,7 @@ Senza perdità di generalità supponiamo che $A$ sia definita positiva: il deter
 \end{proof}
 Propongo anche un'altra dimostrazione di questa fatto, presente sulle note degli appunti del professore
 \begin{proof}[Dimostrazione alternativa]
-Per il teorema spettrale sappiamo che esiste una base di autovettori ortonormali rispetto al prodotto scalare canonico. In questa base la matrice della forma quadratica è $\Lambda$ e la matrice del cambio di base dalla canonica a questa di autovettori è $C \in O(n)$ Per $x \neq 0$ abbiamo che
+Per il teorema spettrale sappiamo che esiste una base di autovettori ortonormali rispetto al prodotto scalare canonico. In questa base la matrice della forma quadratica è diagonale e la indichiamo con $\Lambda$ e la matrice del cambio di base dalla canonica a questa di autovettori è $C \in O(n)$ Per $x \neq 0$ abbiamo che
 $$
 q(x) = \innerprod{Ax}{x} = \innerprod{C^T \Lambda C x}{x} = \innerprod{\Lambda Cx}{Cx} = \innerprod{\Lambda y}{y}
 $$
@@ -1984,9 +1988,39 @@ ed esiste $\varphi: B((x_{0_2}, x_{0_3}) \to (x_{0_1} - \sigma, x_{0_1} + \sigma
 $$
 f(\varphi(x_2, x_3), x_2, x_3) = f(x_{0_1}, x_{0_2}, x_{0_3})
 $$
+Inoltre
+$$
+\partial_{x_j} \varphi(x_2, x_3) = -\frac{\partial_{x_j}f(\varphi(x_2, x_3), x_2, x_3)}{\partial_{x_1} f(\varphi(x_2, x_3), x_2, x_3)} \, \, \forall j \in \{2, 3 \} \, \, \forall (x_2, x_3) \in B(x_0, \sigma)
+$$
 \end{theorem}
-
-
+\begin{proof}
+Si modifica la dimostrazione fatta prima scomponendo la funzione $f(x_{1}, x_2, x_3) = f(x, y)$ con $x \in \mathbb{R}, y \in \mathbb{R}^2$, considerando la funzione $\tilde{f} = (f(x, y), x, y)$ imponendo che $D_y f \neq 0$.
+\end{proof}
+\begin{theorem}[teorema della funzione implicita rispetto a $x$ e $y$]
+Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $x_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 (\Omega)$ tale che $\partial_{x_3} f(x_0) \neq 0 \implies$
+$$
+\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (B((x_{0_1}, x_{0_2}), \delta) \times (x_{0_3} - \sigma, x_{0_3} + \sigma)) = \{(x_1, x_2, \varphi(x_1, x_2)) : (x_1, x_2) \in B((x_{0_1}, x_{0_2}), \delta) \}
+$$
+ed esiste $\varphi: B((x_{0_1},x_{0_2}), \delta) \to (x_{0_3} - \sigma, x_{0_3} + \sigma)$ con $\varphi \in C^1(B((x_{0_1}, x_{0_2}), \delta)$ e $\varphi(x_{0_1}, x_{0_2}) = x_{0_3}$ tale che
+$$
+f(x_1, x_2, \varphi(x_1, x_2)) = f(x_{0_1}, x_{0_2}, x_{0_3})
+$$
+Inoltre
+$$
+\partial_{x_j} \varphi(x_1, x_2) = - \frac{\partial_{x_j} f(x_1, x_2, \varphi(x_1, x_2))}{\partial_{x_1} f(x_1, x_2, \varphi(x_1, x_2))} \, \, \forall j \in \{1, 2 \} \, \, \forall (x_1, x_2) \in B((x_{0_1}, x_{0_2}, x_{0_3})
+$$
+\end{theorem}
+\begin{definition}[superficie regolare]
+Siano $S \subseteq \mathbb{R}^3$ è una superficie regolare se $\exists \Omega \subseteq \mathbb{R}^3$ aperto tale che $S = f^{-1}(f(x_0)) \subseteq \Omega$ dove $x_0 \in \Omega$ e $f \in C^k(\Omega)$ e $\nabla f \neq 0 \, \, \forall u \in S$. Volendo evidenziare la classe di regolarità di $S$ diremo che $S$ è una superficie regolare di classe $C^k$
+\end{definition}
+A questo punto diamo la nozione di spazio tangente, che va a generalizzare il concetto di "tangenza" a più dimensioni
+\begin{definition}[spazio tangente]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto e sia $x_0 \in \Omega$ e sia $x_0 \in S \subseteq \mathbb{R}^n$ dove $S$ è una curva regolare o una superficie regolare. Sia $f \in C^k(\Omega)$ tale che $S = f^{-1}(f(x_0))$ e $\forall x \in S, \nabla f \neq 0$. Definiamo
+$$
+T_{x_0} \, S = \{v \in \mathbb{R}^n: df(x_0)(v) = 0 \} = \ker{df(x_0)}
+$$
+lo spazio tangente ad $S$ in $x_0 \in S$. Diremo che $f$ è una funzione definente per $S$.
+\end{definition}
 \section{Punti critici su curve e su superfici regolari}
 Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
 \begin{definition}[punti critici su curve/superfici]
@@ -1995,6 +2029,27 @@ $$
 \forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
 $$
 \end{definition}
+
+\begin{definition}[spazio delle velocità]
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva o superficie regolare e sia $x_0 \in \Sigma$. Definiamo
+$$
+V_{x_0} = \{ v \in \mathbb{R}^n: \gamma \in C^{1}((-\varphi, \varphi), \Sigma), \dot{\gamma}(0) = v, \gamma(0) = x_0 \}
+$$
+\end{definition}
+\begin{theorem}[della caratterizzazione del tangente]
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare o una superficie regolare di classe $C^k$. Allora $\forall p \in \Sigma$ abbiamo che
+$$
+T_{x_0} \Sigma = V_{x_0} \Sigma
+$$
+\end{theorem}
+\begin{proof}
+Se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(x_0)$
+\end{proof}
+
+
+
+
+
 \begin{appendices}
 \chapter{Notazione multi-indice}
 La notazione multi-indice si può facilmente introdurre vedendola come un modo compatto di scrivere le cose. La realtà delle cose è un po' diversa, soprattutto se si guardano le cose da un punto di vista della combinatoria multinomiale
