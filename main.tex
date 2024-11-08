@@ -185,9 +185,8 @@ $$
 Questo segue banalmente dall'interpretazione geometrica del prodotto scalare canonico. \\
 Per estendere la validità di questo risultato a tutti i $\underline{v} \neq \underline{e}_1$ si osserva che $\exists R \in \text{SO}(\mathbb{E}_2): R\underline{e}_1 = \underline{v}$ e dunque, considerando $R^{-1}(\underline{w})$ (l'esistenza di un'inversa è garantita dal fatto che $R \in \text{SO}(2)$) e sappiamo che:
 $$
-\innerprod{\underline{e}_1}{R^{-1}(\underline{w})} = \innerprod{R \underline{e}_1}{(R \circ R^{-1})\underline{w}} = \cos{\hat{\theta}}
+\innerprod{\underline{v}}{\text{Id}(\underline{w})} = \innerprod{R \underline{e}_1}{(R \circ R^{-1})\underline{w}} \stackrel{R\text{ è isometria}}{=} \innerprod{\underline{e}_1}{R^{-1}(\underline{w})} =  \cos{\hat{\theta}}
 $$
-e, siccome 
 A questo punto, dati due vettori qualunque $\underline{v}$ e $\underline{w}$ non di norma unitaria, possiamo utilizzare il ragionamento procedente osservando che:
 $$
 \innerprod{\frac{\underline{v}}{|\underline{v}|}} {\frac{\underline{w}}{|\underline{w}|}} = \cos{\hat{\theta}}
@@ -1603,15 +1602,35 @@ da cui segue che
 \end{align*}
 ovvero la tesi.
 \end{proof}
-Siamo adesso pronti a mostrare l'unicità del teorema di Taylor, tuttavia abbiamo bisogno di un lemma preliminare:
+Siamo adesso pronti a mostrare l'unicità del teorema di Taylor, tuttavia abbiamo bisogno di qualche lemma preliminare:
+\begin{lemma}
+Se $Q$ è un polinomio di grado $k \geq 1$ omogeneo, allora $\exists x_0 \in \mathbb{R}^n$ tale che $Q(x_0) \neq 0$ 
+\end{lemma}
+\begin{proof}
+Procediamo con la contro-nominale\footnote{ricordiamo che la dimostrazione per la contro-nominale consiste nel dimostrare che $\neg B \implies \neg A$, infatti $A \implies B = \neg A \wedge B = \neg{(A)} \wedge \neg(\neg B) = \neg B \implies \neg A$} per $k \geq 1$: se $\forall x \in \mathbb{R}^n, Q(x) = 0 \implies Q(x) \equiv 0 \implies Q$ non è un polinomio omogeneo di ordine $k$ siccome il grado del polinomio coincide col il grado di omogeneità del polinomio. \\
+Per $k=0$ allora il polinomio è, effettivamente, omogeneo.
+%$Q(x) = \sum c_{\alpha} x^{\alpha}$ dove si è usato la notazione multi-indici dove $x^{\alpha} = x_1^\alpha_1 \ldots x_n^{\alpha_n}$ dove $\alpha \in \mathbb{N}^n$ e $|\alpha| = \alpha_1 + \ldots + \alpha_n$. Supponiamo che 
+%$$
+%\sum_{\alpha_1 + \ldots + \alpha_n = k} c_{\alpha_1 \ldots %\alpha_n} x^{\alpha_1}_1 \ldots x^{\alpha_n}_n%
+%$$
+\end{proof}
+\begin{cor}
+Sia $Q: \mathbb{R}^n \to \mathbb{R}$ è un polinomio omogeneo di ordine $k$ e sia $x_0 \in \mathbb{R}^n : Q(x_0) = 0$. Allora
+$$
+Q \left( \frac{x_0}{|x_0|} \right) = 0
+$$
+\end{cor}
+\begin{proof}
+Per ipotesi di omogeneità $Q(\frac{x_0}{|x_0|}) = \frac{1}{|x_0|^k}Q(x_0) = 0$.
+\end{proof}
 \begin{lemma}
 Sia $P:\mathbb{R}^n \to \mathbb{R}$ un polinomio in $n$-variabili di ordine $k \geq 1$. Se $P(x) = o(|x|^k) \text{ per } x \to 0 \implies P = 0$
 \end{lemma}
-\begin{proof} Procediamo per assurdo: supponiamo che $\exists P(x) = o(k) \neq 0$ e consideriamo
+\begin{proof} Procediamo per assurdo: supponiamo che $\exists P(x) = o(k) \neq 0$ e definiamo $j_0$ come il grado non nullo più piccolo del polinomio. Consideriamo:
 $$
 P(x) = \sum_{|\alpha| \leq k} c_{\alpha}x^{\alpha} \neq 0, c_{\alpha} \in \mathbb{R} \implies P(x) = \sum_{|\alpha| = j_0} c_{\alpha} x^{\alpha} + o(|x|^{j_0}) = q(x) + o(|x|^{j_0})
 $$
-per qualche $j_0 \in \{1, \ldots k \}$, dove $q$ è un polinomio omogeneo di grado $j_0$ non nullo, ovvero 
+per qualche $j_0 \in \{1, \ldots k \}$ e $q$ è un polinomio omogeneo di grado $j_0$ non nullo, ovvero 
 $$
 q(\lambda x) = \lambda^{j_0} q(x) \, \, \forall \lambda \in \mathbb{R} \, \forall x \in \mathbb{R}
 $$
@@ -1619,7 +1638,7 @@ Consideriamo il seguente rapporto
 $$
 \frac{P(x)}{|x|^k} = \frac{1}{|x|^{k-j_0}} \left(\sum_{|\alpha|=j_0} c_{\alpha} \left( \frac{x}{|x|} \right)^{\alpha} + o(1) \right) = q \left( \frac{x}{|x|} \right)+o(1)
 $$
-Sappiamo allora che $\exists \xi \in \mathbb{S}^{n-1}: q(\xi) \neq 0$, dunque considerando la quantità $\frac{t\xi}{|t|}$ per $t \to 0$ abbiamo che
+Sappiamo allora, per il lemma precedente, che $\exists \xi \in \mathbb{S}^{n-1}: q(\xi) \neq 0$, dunque considerando la quantità $\frac{t\xi}{|t|}$ per $t \to 0$ abbiamo che
 $$
 \frac{P(t\xi)}{|t|^k} = \frac{1}{|t|^{k-j_0}} \left(q \left( \frac{t}{|t|}\xi \right) + o(1) \right) = \frac{1}{|t|^{k-j_0}} \left( \left( \frac{t}{|t|} \right)^{j_0} q(\xi) + o(1) \right) \not\to 0
 $$
@@ -2013,6 +2032,17 @@ $$
 \begin{definition}[superficie regolare]
 Siano $S \subseteq \mathbb{R}^3$ è una superficie regolare se $\exists \Omega \subseteq \mathbb{R}^3$ aperto tale che $S = f^{-1}(f(x_0)) \subseteq \Omega$ dove $x_0 \in \Omega$ e $f \in C^k(\Omega)$ e $\nabla f \neq 0 \, \, \forall u \in S$. Volendo evidenziare la classe di regolarità di $S$ diremo che $S$ è una superficie regolare di classe $C^k$
 \end{definition}
+\begin{remark}
+La definizione che abbiamo dato di curva/superficie regolare ci consente di affermare che le funzioni implicite, almeno localmente, sono tutte delle curve regolari: infatti, possiamo osservare che se 
+$$
+S= \{ (\varphi(x_2, x_3), x_2, x_3): (x_2, x_3) \in U \}
+$$
+allora possiamo considerare la funzione
+$$
+f(x, y, z) = \varphi(y, z) - x
+$$
+tale che $f: \mathbb{R} \times U \to \mathbb{R}$ da cui osserviamo che $\nabla g|_{S} \neq 0$ siccome $\partial_x g = 1$ e $S = f^{-1}(0) = f^{-1}(\{ (x, y, z) : x = \varphi(y, z) \})$
+\end{remark}
 A questo punto diamo la nozione di spazio tangente, che va a generalizzare il concetto di "tangenza" a più dimensioni
 \begin{definition}[spazio tangente]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e sia $x_0 \in \Omega$ e sia $x_0 \in S \subseteq \mathbb{R}^n$ dove $S$ è una curva regolare o una superficie regolare. Sia $f \in C^k(\Omega)$ tale che $S = f^{-1}(f(x_0))$ e $\forall x \in S, \nabla f \neq 0$. Definiamo
@@ -2021,19 +2051,26 @@ T_{x_0} \, S = \{v \in \mathbb{R}^n: df(x_0)(v) = 0 \} = \ker{df(x_0)}
 $$
 lo spazio tangente ad $S$ in $x_0 \in S$. Diremo che $f$ è una funzione definente per $S$.
 \end{definition}
-\section{Punti critici su curve e su superfici regolari}
-Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
-\begin{definition}[punti critici su curve/superfici]
-Sia $S \subseteq \mathbb{R}^n$ con $n=2, 3$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
+\begin{prop}[dimensione dello spazio tangente]
+Sia $f \in C^{k}(\Omega)$ con $\Omega \subseteq \mathbb{R}^n$ la funzione definente di una curva regolare o una superficie regolare $S$. Allora 
 $$
-\forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
+\dim{\ker{df(x_0)}} = n-1
 $$
-\end{definition}
+\end{prop}
+\begin{proof}
+Sappiamo che $df(x_0): \mathbb{R}^n \to \mathbb{R}$, dunque per il teorema del rango, avremo che
+$$
+\dim{\ker{df(x_0)}} = \dim{\mathbb{R}^n} - \dim{\text{Im}(df(x_0))} = n - 1
+$$
+siccome la dimensione del differenziale valutato in $x_0$ è sicuramente $1$ per ipotesi essendo un'applicazione lineare fra $\mathbb{R}^n$ e $\mathbb{R}$.
+\end{proof}
+Osserviamo che se $\gamma \in C^1 (I_{0, \varepsilon}, \Sigma)$ allora $f(\gamma(t)) = f(x_0)$ siccome definiamo le curve come $\Sigma = f^{-1}(f(x_0))$, assumendo inoltre che $\gamma(0) = x_0 \implies 0 = \frac{d}{dt} (f \circ \gamma)(t)|_{t=0} = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \dot{\gamma}(0) \in T_{x_0} \Sigma$ come ci si aspetta dall'intuizione geometrica (e anche fisica, infatti, dal corso di Fisica 1, sappiamo che la velocità di un punto materiale è sempre tangente alla traiettoria). 
+
 
 \begin{definition}[spazio delle velocità]
 Sia $\Sigma \subseteq \mathbb{R}^n$ una curva o superficie regolare e sia $x_0 \in \Sigma$. Definiamo
 $$
-V_{x_0} = \{ v \in \mathbb{R}^n: \gamma \in C^{1}((-\varphi, \varphi), \Sigma), \dot{\gamma}(0) = v, \gamma(0) = x_0 \}
+V_{x_0} = \{ v \in \mathbb{R}^n: \gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma), \dot{\gamma}(0) = v, \gamma(0) = x_0 \}
 $$
 \end{definition}
 \begin{theorem}[della caratterizzazione del tangente]
@@ -2043,8 +2080,84 @@ T_{x_0} \Sigma = V_{x_0} \Sigma
 $$
 \end{theorem}
 \begin{proof}
-Se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(x_0)$
+Mostriamo che $V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$: come avevamo già visto in precedenza, se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(0) \implies \frac{d}{dt} g(\gamma(t)) = \frac{d}{dt} \gamma(0) = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \, (\forall \dot{\gamma}(0), \dot{\gamma}(0) \in V_{x_0} \Sigma \implies \dot{\gamma}(0) \in T_{x_0} \Sigma) \iff V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$. \\
+Mostriamo adesso che $T_{x_0} \Sigma \subseteq V_{x_0} \Sigma$: facciamo la dimostrazione per $n=2$ e per $n=3$. Nel caso $n=2$ sappiamo, in virtù della funzione implicita, che $\exists \varphi: I \to J$ tale che 
+\begin{align*}
+&\gamma(t) = (t, \varphi(t)) & &\text{ o } & &\gamma(t)=(\varphi'(t), t)
+\end{align*}
+
+tale che $\forall t, \gamma(t) \in \Sigma$, $\gamma(0) = x_0$ e $\dot{\gamma}(0) \neq 0$. Definiamo, a questo punto, la funzione $\tilde{\gamma}(s) = \gamma(x_{0_1} + s)$ da cui si deduce, banalmente, che $\tilde{\gamma}(0) = x_0$ e, fissato $\alpha \in \mathbb{R}$, possiamo definire anche
+$$
+\tilde{\gamma}_\alpha \in C^{1}(I_{0, \varepsilon}, \Sigma)
+$$
+tale che
+$$
+\tilde{\gamma}'(0) = \alpha \tilde{\gamma}'(0) \neq 0 
+$$
+per ipotesi. Ma ciò implica che
+$$
+\text{Span}(\dot{\gamma}(0)) \subset V_{x_0} \Sigma \subset T_{x_0} \Sigma
+$$
+ma allora, siccome $\dim{\text{Span}(\dot{\gamma}(0))} = 1$ e $\dim{T_{x_0} \Sigma} = 1$, che
+$$
+\text{Span}(\dot{\gamma}(0)) = T_{x_0} \Sigma = V_{x_0} \Sigma
+$$
+Nel caso $n=3$ si procede similmente, sfruttando il fatto che il teorema della funzione implicita garantisce sempre la possibilità di esprimere localmente la superficie regolare con $g$ funzione definendo come un $(x, y)-$grafico (oppure come un grafico rispetto a $(y, z)$ p $(x, z)$, la dimostrazione è equivalente quindi supporremo senza perdita di generalità di scrivere localmente la nostra funzione come un $(x, y)-$grafico) tramite la funzione $\varphi$:
+\begin{align*}
+&\Phi(x, y) = (x, y, \varphi(x, y)).
+\end{align*}
+Osserviamo a questo punto che, in maniera simile a quanto fatto prima, possiamo definire
+$$
+\tilde{\Phi}_{\alpha, \beta}(t) = \Phi(x_{0_1} + \alpha t, x_{0_2} + \beta t)
+$$
+tale che $\forall t, \tilde{\Phi}(t) \in \Sigma$ e osserviamo che
+$$
+\tilde{\Phi}'(0) = \alpha \partial_x \Phi(x_{0_1}, x_{0_2}) + \beta \partial_y \Phi(x_{0_1}, x_{0_2}) \in V_{x_0} \Sigma
+$$
+Ma abbiamo che 
+$$
+\text{Span}(\partial_x \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2})) \subset V_{x_0} \Sigma \subset T_{x_0} \Sigma
+$$
+da cui deduciamo, siccome $\dim{T_{x_0} \Sigma} = 2$ e $\dim{\text{Span}(\partial_{x} \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2}))} = 2$
+$$
+	\text{Span}(\partial_x \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2}) = V_{x_0} \Sigma = T_{x_0} \Sigma
+$$
+ovvero la tesi.
 \end{proof}
+\begin{remark}
+Con il solito procedimento è possibile dimostrare il caso $n$-dimensionale.
+\end{remark}
+\begin{remark}
+Dal teorema precedente è possibile vedere che la definizione di spazio tangente è ben posta sebbene non dipende dalla funzione definente che abbiamo scelto. Considerando il caso banale della circonferenza centrata nell'origine di raggio $2$ io potrei scegliere come funzione definente sia la funzione
+$$
+f(x, y) = x^2 + y^2 - 4
+$$
+e definire la circonferenza $\Gamma: f^{-1}(0)$ oppure considerare la funzione
+$$
+g(x, y) = x^2 + y^2
+$$
+e definire la circonferenza come $\Gamma: g^{-1}(4)$: il teorema precedente mi garantisce che in entrambi i casi lo spazio tangente è indipendente dalla funzione scelta
+\end{remark}
+
+
+\section{Punti critici su curve e superfici regolari}
+Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
+\begin{definition}[punti critici su curve/superfici]
+Sia $S \subseteq \mathbb{R}^n$ con $n=2, 3$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
+$$
+\forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
+$$
+\end{definition}
+\begin{theorem}[teorema dei punti critici]
+Sia $f$
+\end{theorem}
+
+
+
+
+
+
+
 
 
 
