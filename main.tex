@@ -2078,6 +2078,7 @@ Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare o una superficie regolare
 $$
 T_{x_0} \Sigma = V_{x_0} \Sigma
 $$
+\label{thm:caratt_tang}
 \end{theorem}
 \begin{proof}
 Mostriamo che $V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$: come avevamo già visto in precedenza, se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(0) \implies \frac{d}{dt} g(\gamma(t)) = \frac{d}{dt} \gamma(0) = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \, (\forall \dot{\gamma}(0), \dot{\gamma}(0) \in V_{x_0} \Sigma \implies \dot{\gamma}(0) \in T_{x_0} \Sigma) \iff V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$. \\
@@ -2149,9 +2150,34 @@ $$
 $$
 \end{definition}
 \begin{theorem}[teorema dei punti critici]
-Sia $f$
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare per $n=2$ o per $n=3$. Sia $f \in C^1(\Omega), x_0 \in \Omega \subseteq \mathbb{R}^n$ aperto. Allora 
+\begin{align*}
+x_0 \in \Sigma \text{ è un punto critico di } f \text{ su } \Sigma  \iff \nabla f(x_0) \perp T_{x_0} \Sigma
+\end{align*}
 \end{theorem}
-
+\begin{proof}
+Per il teorema \ref{thm:caratt_tang}, abbiamo che se $x_0$ è punto critico allora, per definizione di punto critico, $\forall (\gamma \in C^1((-\varepsilon, \varepsilon), \Sigma), \gamma(0)=x_0), \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0 \iff \nabla f(x_0) \perp T_{x_0} \Sigma$.
+\end{proof}
+\begin{theorem}[di Fermat su $\Sigma$]
+Sia $\Sigma$ una curva o una superficie regolare con $x_0 \in \Sigma$ e sia $f \in C^{1}(\Omega)$ e sia $x_0 \in \Omega$ tale che $f|_{\Omega \cap S}$ ha un minimo o un massimo su $\Omega \cap S$. Allora $x_0$ è un punto critico di $f$ su $\Sigma$
+\end{theorem}
+\begin{proof}
+Sia $\gamma: (-\varepsilon, \varepsilon) \to \Sigma$ derivabile tale che $\gamma(0) = x_0$. Poiché $f|_{\Omega \cap \Sigma}$ ha un minimo (o un massimo) in $x_0 \implies \forall \gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma), (f \circ \gamma)(t)$ ha un massimo o un minimo in $t = 0$. Quindi $\frac{d}{dt}(f \circ \gamma)(t)|_{t=0} = 0$ da cui la tesi
+\end{proof}
+\begin{remark}
+Tutto questo che abbiamo fatto in cosa si traduce? In pratica, se abbiamo una funzione $f$ che andiamo a vincolare su una curva/superficie regolare $\Sigma$ allora ogni punto critico \emph{libero} $x_0 \in \Omega$ tale che $x_0 \in S$ è un punto critico di $f$ su $\Sigma$, mentre il viceversa non è così. Per esempio potremo prendere la funzione $f(x, y) = x^2 + y$ e la retta $\Sigma = \{(x, y) \in \mathbb{R}^2 : y=0 \} = \mathbb{R} \times \{ 0 \}$ da cui scopriremo che il minimo della funzione $f$ su $\Sigma$ è il punto $(0, 0)$ in cui, tuttavia $\nabla f((0, 0)) = (0, 0)$. 
+\end{remark}
+\begin{theorem}[dei moltiplicatori di Lagrange]
+Sia $f \in C^{1} (\Omega), x_0 \in \Omega \cap S, \Omega \subseteq \mathbb{R}^n$ aperto, $n= \{ 2, 3 \}$, $S \subseteq \mathbb{R}^n, g \in C^1 (\Omega)$ tale che $\Omega \cap S = g^{-1}(g(x_0)) = \Sigma \subseteq \mathbb{R}^n, \nabla g(x) \neq 0 \forall x \in \Sigma$ ($\Sigma$ è una curva/superficie regolare). \\
+Allora $x_0 \in \Sigma$ è un punto critico di $f$ su $\Sigma$ se e solo se $\exists \lambda \in \mathbb{R}$ tale che $\nabla f(x_0) = \lambda g(x_0)$
+\end{theorem}
+\begin{proof} \hspace{1cm} \\
+$\boxed{\Rightarrow}$: sia $x_0 \in \Sigma$ un punto critico di $f$ su $\Sigma$, allora per il teorema precedente avremo che $\nabla f(x_0) \perp T_{x_0} \Sigma \implies \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp}$, tuttavia, siccome $\Sigma = g^{-1}(g(x_0))$, abbiamo che $(\nabla g(x_0))^{\perp} = T_{x_0} \Sigma$ da cui concludiamo che $\nabla f(x_0), \nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$ e, siccome $\dim{(T_{x_0} \Sigma)^{\perp}} = 1$ visto che $g: \mathbb{R}^n \to \mathbb{R}$, concludiamo che 
+$$
+\nabla f(x_0) = \lambda g(x_0)
+$$
+$\boxed{\Leftarrow}$: supponiamo che $\exists \alpha$
+\end{proof}
 
 
 
