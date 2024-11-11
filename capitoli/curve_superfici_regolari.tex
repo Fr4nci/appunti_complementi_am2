@@ -1,0 +1,328 @@
+\chapter{Curve e superfici regolari}
+In questo capitolo ci si sofferma nello studio delle curve e della superfici regolari, con particolare riguardo alla caratterizzazione delle curve tramite pre-immagini di funzioni implicite e lo studio dei massimi e i minimi di una funzione vincolata. Questo è particolarmente utile nello studio di alcuni tipi di problemi che possono capitare nella vita di tutti in giorni, in cui si è interessati a dei massimi o dei minimi vincolati ad una curva oppure ad una superficie.
+
+\section{Teorema della funzione inversa}
+Uno dei problemi molto ricorrenti nello studio della matematica e nelle scienze è il risolvere un'equazione del tipo
+$$
+f(x) = 0
+$$
+Nel corso di Geometria si è visto che nel caso di applicazioni lineari affini e invertibili $L: \mathbb{R}^n \to \mathbb{R}^n$, ci si chiedeva per $x \in \mathbb{R}^n$ avevamo che
+$$
+Lx = \underline{0} \implies Ax + B = \underline{0} \implies Ax = -B
+$$
+e riducevamo il problema ad un sistema lineare non omogeneo che aveva soluzione unica se $\det{A} \neq 0$ e $B \in \text{Span}\{ A^1, A^2, \ldots, A^n \}$. \\
+Nel caso di funzioni differenziabili è possibile dire qualcosa? \\
+Dal caso affine in generale possiamo innanzitutto intuire che per $f$ differenziabile bisogna assumere che $\det{Df(x_0)} \neq 0$, però cos'altro possiamo dire? \\
+Innanzitutto, fissato $\Omega \subseteq \mathbb{R}^n$ e definiamo lo spazio di tutte le funzioni vettoriali di classe $C^k$ e a valori in $A \subseteq \mathbb{R}^m$:
+\begin{definition}[spazio delle funzioni vettoriali di classe $C^k$]
+Sia $\Omega \subseteq \mathbb{R}^n, A \subseteq \mathbb{R}^m$ e $k \in \mathbb{N}$. Allora definiamo lo spazio delle funzioni vettoriali di classe $C^k$ come
+$$
+C^k(\Omega,A) = \{f: \Omega \to A, f = (f_1, \ldots, f_m) \wedge \forall j \in \{1, \ldots m \}, f_j \in C^k(\Omega) \}
+$$
+\end{definition}
+Adesso siamo pronti ad enunciare il seguente teorema, di cui non forniremo la dimostrazione, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
+\begin{theorem}[teorema della funzione inversa]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
+Allora $\exists r > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, r)}} \in C^{k}(B(x_0, r), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, r)}})^{-1}:U \to B(x_0, r)$, abbiamo che
+$g \in C^k(U, B(x_0, r))$ con
+$$
+Dg(y) = (Df(g(y))^{-1} \, \forall y \in U
+$$
+\begin{proof}[Idea della dimostrazione]
+Nella dimostrazione è presente un richiamo al teorema di Newton in più variabili: come avevo accennato, noi vogliamo studiare le soluzioni all'equazione 
+$$
+f(x) = 0
+$$
+allora noi possiamo definire, siccome $f$ è differenziabile, una funzione del tipo
+$$
+f(x) - f(\xi) = \eta
+$$
+\end{proof}
+\section{Teorema delle funzioni implicite o del Dini}
+Un argomento che si vogliono trattare sono le curve e le superfici. In generale, possiamo vedere queste con due approcci:
+\begin{itemize}
+	\item un approccio "parametrico", in cui parametrizziamo la superficie che vogliamo rappresentare in base a delle variabili che facciamo variare all'interno di un intervallo;
+	\item un approccio più vicino a quello dell'Analisi, ovvero quello di pensarle come curve di livello di una funzioni a più variabili
+\end{itemize}
+Un esempio di questo è sicuramente la circonferenza: col primo approccio una circonferenza di raggio uguale a $2$ e col centro coincidente con l'origine è possibile parametrizzarla tramite le funzioni $2\cos{t}$ e $2\sin{t}$ facendo variare per $t \in [0; 2\pi]$
+$$
+\begin{pmatrix}
+	x \\
+	y
+\end{pmatrix} = \begin{pmatrix}
+	2\cos{t} \\
+	2\sin{t}
+\end{pmatrix}
+$$
+oppure visualizzandola come il luogo dei punti in cui la funzione $g(x, y) = x^2 + y^2 - 4$ si annulla e caratterizzare la nostra circonferenza $\Gamma$ come
+$$
+\Gamma : g^{-1}(0)
+$$
+quindi definire la circonferenza come la pre-immagine del valore $0$ assunto dalla funzione $g$. \\
+Il teorema della funzione inversa rende possibile anche la caratterizzazione delle funzioni implicite ad un livello \emph{locale}: infatti ci dice che, in un intorno molto piccolo del punto $f(x_0)$, è possibile visualizzare la funzione implicita come un oggetto che vive in una dimensione più piccola. Andiamo ad enunciare questo teorema
+\begin{theorem}[teorema della funzione implicita rispetto a $x$]
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e sia $f \in C^k (\Omega)$, $\partial_y f(x_0) \neq 0$
+$$\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1}-\delta, x_{0_1}+\delta) \times (x_{0_2} - \sigma, x_{0_2}+\sigma) = \{(t, \varphi(t)) : |t-x_{0_1}| < \delta \}$$
+ovvero esiste una funzione $\varphi: (x_{0_1} - \delta, x_{0_1} + \delta) \to (x_{0_2}-\sigma, x_{0_2} + \sigma)$ tale che $\varphi(x_{0_1}) = x_{0_2}$ e dunque
+$$
+f(t, \varphi(t)) = f(x_0)
+$$
+Inoltre
+$$
+\varphi'(t)=-\frac{\partial_x f(t, \varphi(t))}{\partial_y f(t, \varphi(t))} \, \, \forall t \in (x_{0_1} - \delta, x_{0_2} + \delta)
+$$
+\end{theorem}
+\hspace{1cm} \\
+Osserviamo due cose molto importanti:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (questo risulta intuitivo, da un lato, siccome stiamo cercando di approssimare, in un intorno \emph{piccolo} una funzione che vive, per esempio, in $\mathbb{R}^2$ con un $x$-grafico quindi deve essere regolare, d'altra parte dobbiamo applicare il teorema della funzione inversa per esplicitare una variabile in funzione dell'altra localmente);
+	\item è necessario conoscere almeno un valore della funzione $f$: nel caso del teorema è il punto $x_0 \in \Omega$, il quale svolge la funzione di una sorta di "ancora" per definire il comportamento locale della funzione
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Presa la funzione $f(x,y)$ possiamo considerare la funzione $\tilde{f}:\Omega \to \mathbb{R}^2$ tale che
+$$
+\tilde{f}(x, y)=(x, f(x, y))
+$$
+ed osservare che la condizione di $\partial_y f(x_0) \neq 0$ ci consente di invertire localmente la funzione $F$ siccome
+$$
+D\tilde{f}(x_0, y_0) = \begin{pmatrix}
+1 & 0 \\
+\partial_x f(x_0, y_0) & \partial_y f(x_0, y_0)
+\end{pmatrix}
+$$
+e, dunque, il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero, il che ci consente di applicare il teorema della funzione inversa a $\tilde{f}$. Conseguentemente, esisterà un intorno $U$ di $(x_0, f(x_0, y_0))$ tale che $\exists \tilde{g}: U \to \Omega$ tale che, ricordando che se $f: X \to Y$ e $g=f^{-1}: Y \to X$ allora $f(g(y))=y \, \, \forall y \in Y$,  allora $f(\tilde{g}(x, y)) = (x, y) \, \, \forall (x, y) \in U$. Ma, posto $\tilde{g}(x,y)=(g_1(x, y), g_2(x, y))$, possiamo dedurre che
+$$
+\tilde{f}(\tilde{g}(x, y)) = \tilde{f}((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
+$$
+permettendoci di concludere che
+$$
+\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) = \implies \begin{cases}
+g_1(x, y) = x \\
+f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
+\end{cases}
+$$
+permettendoci, in conclusione, di giungere alla tesi definendo $\varphi(x) = g_2(x, f(x_0, y_0))$
+$$
+f(x, \varphi(x)) = f(x, g_2(x, f(x_0, y_0)) = f(x_0, y_0)
+$$
+Per dimostrare la formula della derivata basta derivare quest'ultima relazione rispetto ad $x$:
+$$
+\partial_x f(x, \varphi(x)) = \partial_x f(x_0, y_0) \implies \partial_x f(x, \varphi(x)) + \partial_y f(x, \varphi(x)) \partial_x \varphi(x) = 0 \implies \partial_x \varphi(x) = - \frac{\partial_x f(x, g(x))}{\partial_y f(x, g(x))}
+$$
+\end{proof}
+\begin{remark}
+Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede che $\nabla f \neq 0$. Ciò è possibile rifacendo la dimostrazione ma ridefinendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$. Enunciamo qua sotto tutte le "versioni" alternative del teorema nel caso di $n=2$ e $n=3$
+\end{remark}
+\begin{theorem}[teorema della funzione implicita rispetto a $y$]
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e $f \in C^{1}(\Omega)$ con $\partial_{x} f(x_0) \neq 0$
+$$
+\implies \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1} - \sigma, x_{0_1} + \sigma) \times (x_{0_2} - \delta, x_{0_2} + \delta) = \{ (\varphi(t), t) : |t-x_{0_2}| < \delta \}
+$$
+ovvero $\exists \varphi : (x_{0_2} - \delta, x_{0_2} + \delta) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ tale che $\varphi(x_{0_2}) = x_{0_1}$ e dunque
+$$
+f(\varphi(t), t) = f(x_0)
+$$
+Inoltre
+$$
+\varphi'(t) = -\frac{\partial_y f(\varphi(t), t)}{\partial_x f(\varphi(t), t)} \, \, \forall t \in (x_{0_2} - \delta, x_{0_2} + \delta)
+$$
+\end{theorem}
+\begin{proof}
+Si riprende la dimostrazione fatta prima usando $\tilde{f}(x, y) = (f(x, y), y)$. 
+\end{proof}
+Con qualche piccolo accorgimento, la dimostrazione fatta qua sopra è valida anche per $\Omega \subseteq \mathbb{R}^{n}$ 
+\begin{definition}[curva regolare]
+Diremo che $C \subseteq \mathbb{R}^2$ è una curva regolare se $\exists \Omega \subseteq \mathbb{R}^2$ aperto tale che $C = f^{-1}(f(x_0)) \subseteq \Omega$ dove $f \in C^k (\Omega)$ e $\nabla f(x) \neq (0, 0) \, \forall x \in C$. \\
+Evidenziando la regolarità di $C$, diremo che $C$ è una curva di classe $C^k$
+\end{definition}
+\begin{theorem}[funzione implicita rispetto a $y$ e $z$]
+Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 ( \Omega )$ tale che $\partial_x f(x_0) \neq 0$. Allora
+$$
+\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}, \delta) \}
+$$
+ed esiste $\varphi: B((x_{0_2}, x_{0_3}) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ con $\varphi(x_{0_2}, x_{0_3}) = x_{0_1}$ tale che
+$$
+f(\varphi(x_2, x_3), x_2, x_3) = f(x_{0_1}, x_{0_2}, x_{0_3})
+$$
+Inoltre
+$$
+\partial_{x_j} \varphi(x_2, x_3) = -\frac{\partial_{x_j}f(\varphi(x_2, x_3), x_2, x_3)}{\partial_{x_1} f(\varphi(x_2, x_3), x_2, x_3)} \, \, \forall j \in \{2, 3 \} \, \, \forall (x_2, x_3) \in B(x_0, \sigma)
+$$
+\end{theorem}
+\begin{proof}
+Si modifica la dimostrazione fatta prima scomponendo la funzione $f(x_{1}, x_2, x_3) = f(x, y)$ con $x \in \mathbb{R}, y \in \mathbb{R}^2$, considerando la funzione $\tilde{f} = (f(x, y), x, y)$ imponendo che $D_y f \neq 0$.
+\end{proof}
+\begin{theorem}[teorema della funzione implicita rispetto a $x$ e $y$]
+Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $x_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 (\Omega)$ tale che $\partial_{x_3} f(x_0) \neq 0 \implies$
+$$
+\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (B((x_{0_1}, x_{0_2}), \delta) \times (x_{0_3} - \sigma, x_{0_3} + \sigma)) = \{(x_1, x_2, \varphi(x_1, x_2)) : (x_1, x_2) \in B((x_{0_1}, x_{0_2}), \delta) \}
+$$
+ed esiste $\varphi: B((x_{0_1},x_{0_2}), \delta) \to (x_{0_3} - \sigma, x_{0_3} + \sigma)$ con $\varphi \in C^1(B((x_{0_1}, x_{0_2}), \delta)$ e $\varphi(x_{0_1}, x_{0_2}) = x_{0_3}$ tale che
+$$
+f(x_1, x_2, \varphi(x_1, x_2)) = f(x_{0_1}, x_{0_2}, x_{0_3})
+$$
+Inoltre
+$$
+\partial_{x_j} \varphi(x_1, x_2) = - \frac{\partial_{x_j} f(x_1, x_2, \varphi(x_1, x_2))}{\partial_{x_1} f(x_1, x_2, \varphi(x_1, x_2))} \, \, \forall j \in \{1, 2 \} \, \, \forall (x_1, x_2) \in B((x_{0_1}, x_{0_2}, x_{0_3})
+$$
+\end{theorem}
+\begin{definition}[superficie regolare]
+Siano $S \subseteq \mathbb{R}^3$ è una superficie regolare se $\exists \Omega \subseteq \mathbb{R}^3$ aperto tale che $S = f^{-1}(f(x_0)) \subseteq \Omega$ dove $x_0 \in \Omega$ e $f \in C^k(\Omega)$ e $\nabla f \neq 0 \, \, \forall u \in S$. Volendo evidenziare la classe di regolarità di $S$ diremo che $S$ è una superficie regolare di classe $C^k$
+\end{definition}
+\begin{remark}
+La definizione che abbiamo dato di curva/superficie regolare ci consente di affermare che le funzioni implicite, almeno localmente, sono tutte delle curve regolari: infatti, possiamo osservare che se 
+$$
+S= \{ (\varphi(x_2, x_3), x_2, x_3): (x_2, x_3) \in U \}
+$$
+allora possiamo considerare la funzione
+$$
+f(x, y, z) = \varphi(y, z) - x
+$$
+tale che $f: \mathbb{R} \times U \to \mathbb{R}$ da cui osserviamo che $\nabla g|_{S} \neq 0$ siccome $\partial_x g = 1$ e $S = f^{-1}(0) = f^{-1}(\{ (x, y, z) : x = \varphi(y, z) \})$
+\end{remark}
+A questo punto diamo la nozione di spazio tangente, che va a generalizzare il concetto di "tangenza" a più dimensioni
+\begin{definition}[spazio tangente]
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto e sia $x_0 \in \Omega$ e sia $x_0 \in S \subseteq \mathbb{R}^n$ dove $S$ è una curva regolare o una superficie regolare. Sia $f \in C^k(\Omega)$ tale che $S = f^{-1}(f(x_0))$ e $\forall x \in S, \nabla f \neq 0$. Definiamo
+$$
+T_{x_0} \, S = \{v \in \mathbb{R}^n: df(x_0)(v) = 0 \} = \ker{df(x_0)}
+$$
+lo spazio tangente ad $S$ in $x_0 \in S$. Diremo che $f$ è una funzione definente per $S$.
+\end{definition}
+\begin{prop}[dimensione dello spazio tangente]
+Sia $f \in C^{k}(\Omega)$ con $\Omega \subseteq \mathbb{R}^n$ la funzione definente di una curva regolare o una superficie regolare $S$. Allora 
+$$
+\dim{\ker{df(x_0)}} = n-1
+$$
+\end{prop}
+\begin{proof}
+Sappiamo che $df(x_0): \mathbb{R}^n \to \mathbb{R}$, dunque per il teorema del rango, avremo che
+$$
+\dim{\ker{df(x_0)}} = \dim{\mathbb{R}^n} - \dim{\text{Im}(df(x_0))} = n - 1
+$$
+siccome la dimensione del differenziale valutato in $x_0$ è sicuramente $1$ per ipotesi essendo un'applicazione lineare fra $\mathbb{R}^n$ e $\mathbb{R}$.
+\end{proof}
+Osserviamo che se $\gamma \in C^1 (I_{0, \varepsilon}, \Sigma)$ allora $f(\gamma(t)) = f(x_0)$ siccome definiamo le curve come $\Sigma = f^{-1}(f(x_0))$, assumendo inoltre che $\gamma(0) = x_0 \implies 0 = \frac{d}{dt} (f \circ \gamma)(t)|_{t=0} = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \dot{\gamma}(0) \in T_{x_0} \Sigma$ come ci si aspetta dall'intuizione geometrica (e anche fisica, infatti, dal corso di Fisica 1, sappiamo che la velocità di un punto materiale è sempre tangente alla traiettoria). 
+
+
+\begin{definition}[spazio delle velocità]
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva o superficie regolare e sia $x_0 \in \Sigma$. Definiamo
+$$
+V_{x_0} = \{ v \in \mathbb{R}^n: \gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma), \dot{\gamma}(0) = v, \gamma(0) = x_0 \}
+$$
+\end{definition}
+\begin{theorem}[della caratterizzazione del tangente]
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare o una superficie regolare di classe $C^k$. Allora $\forall p \in \Sigma$ abbiamo che
+$$
+T_{x_0} \Sigma = V_{x_0} \Sigma
+$$
+\label{thm:caratt_tang}
+\end{theorem}
+\begin{proof}
+Mostriamo che $V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$: come avevamo già visto in precedenza, se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(0) \implies \frac{d}{dt} g(\gamma(t)) = \frac{d}{dt} \gamma(0) = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \, (\forall \dot{\gamma}(0), \dot{\gamma}(0) \in V_{x_0} \Sigma \implies \dot{\gamma}(0) \in T_{x_0} \Sigma) \iff V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$. \\
+Mostriamo adesso che $T_{x_0} \Sigma \subseteq V_{x_0} \Sigma$: facciamo la dimostrazione per $n=2$ e per $n=3$. Nel caso $n=2$ sappiamo, in virtù della funzione implicita, che $\exists \varphi: I \to J$ tale che 
+\begin{align*}
+&\gamma(t) = (t, \varphi(t)) & &\text{ o } & &\gamma(t)=(\varphi'(t), t)
+\end{align*}
+
+tale che $\forall t, \gamma(t) \in \Sigma$, $\gamma(0) = x_0$ e $\dot{\gamma}(0) \neq 0$. Definiamo, a questo punto, la funzione $\tilde{\gamma}(s) = \gamma(x_{0_1} + s)$ da cui si deduce, banalmente, che $\tilde{\gamma}(0) = x_0$ e, fissato $\alpha \in \mathbb{R}$, possiamo definire anche
+$$
+\tilde{\gamma}_\alpha \in C^{1}(I_{0, \varepsilon}, \Sigma)
+$$
+tale che
+$$
+\tilde{\gamma}'(0) = \alpha \tilde{\gamma}'(0) \neq 0 
+$$
+per ipotesi. Ma ciò implica che
+$$
+\text{Span}(\dot{\gamma}(0)) \subset V_{x_0} \Sigma \subset T_{x_0} \Sigma
+$$
+ma allora, siccome $\dim{\text{Span}(\dot{\gamma}(0))} = 1$ e $\dim{T_{x_0} \Sigma} = 1$, che
+$$
+\text{Span}(\dot{\gamma}(0)) = T_{x_0} \Sigma = V_{x_0} \Sigma
+$$
+Nel caso $n=3$ si procede similmente, sfruttando il fatto che il teorema della funzione implicita garantisce sempre la possibilità di esprimere localmente la superficie regolare con $g$ funzione definendo come un $(x, y)-$grafico (oppure come un grafico rispetto a $(y, z)$ p $(x, z)$, la dimostrazione è equivalente quindi supporremo senza perdita di generalità di scrivere localmente la nostra funzione come un $(x, y)-$grafico) tramite la funzione $\varphi$:
+\begin{align*}
+&\Phi(x, y) = (x, y, \varphi(x, y)).
+\end{align*}
+Osserviamo a questo punto che, in maniera simile a quanto fatto prima, possiamo definire
+$$
+\tilde{\Phi}_{\alpha, \beta}(t) = \Phi(x_{0_1} + \alpha t, x_{0_2} + \beta t)
+$$
+tale che $\forall t, \tilde{\Phi}(t) \in \Sigma$ e osserviamo che
+$$
+\tilde{\Phi}'(0) = \alpha \partial_x \Phi(x_{0_1}, x_{0_2}) + \beta \partial_y \Phi(x_{0_1}, x_{0_2}) \in V_{x_0} \Sigma
+$$
+Ma abbiamo che 
+$$
+\text{Span}(\partial_x \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2})) \subset V_{x_0} \Sigma \subset T_{x_0} \Sigma
+$$
+da cui deduciamo, siccome $\dim{T_{x_0} \Sigma} = 2$ e $\dim{\text{Span}(\partial_{x} \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2}))} = 2$
+$$
+	\text{Span}(\partial_x \Phi(x_{0_1}, x_{0_2}), \partial_y \Phi(x_{0_1}, x_{0_2}) = V_{x_0} \Sigma = T_{x_0} \Sigma
+$$
+ovvero la tesi.
+\end{proof}
+\begin{remark}
+Con il solito procedimento è possibile dimostrare il caso $n$-dimensionale.
+\end{remark}
+\begin{remark}
+Dal teorema precedente è possibile vedere che la definizione di spazio tangente è ben posta sebbene non dipende dalla funzione definente che abbiamo scelto. Considerando il caso banale della circonferenza centrata nell'origine di raggio $2$ io potrei scegliere come funzione definente sia la funzione
+$$
+f(x, y) = x^2 + y^2 - 4
+$$
+e definire la circonferenza $\Gamma: f^{-1}(0)$ oppure considerare la funzione
+$$
+g(x, y) = x^2 + y^2
+$$
+e definire la circonferenza come $\Gamma: g^{-1}(4)$: il teorema precedente mi garantisce che in entrambi i casi lo spazio tangente è indipendente dalla funzione scelta
+\end{remark}
+
+
+\section{Punti critici su curve e superfici regolari}
+Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
+\begin{definition}[punti critici su curve/superfici]
+Sia $S \subseteq \mathbb{R}^n$ con $n=2, 3$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
+$$
+\forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
+$$
+\end{definition}
+\begin{theorem}[teorema dei punti critici]
+Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare per $n=2$ o per $n=3$. Sia $f \in C^1(\Omega), x_0 \in \Omega \subseteq \mathbb{R}^n$ aperto. Allora 
+\begin{align*}
+x_0 \in \Sigma \text{ è un punto critico di } f \text{ su } \Sigma  \iff \nabla f(x_0) \perp T_{x_0} \Sigma
+\end{align*}
+\end{theorem}
+\begin{proof}
+Per il teorema \ref{thm:caratt_tang}, abbiamo che se $x_0$ è punto critico allora, per definizione di punto critico, $\forall (\gamma \in C^1((-\varepsilon, \varepsilon), \Sigma), \gamma(0)=x_0), \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0 \iff \nabla f(x_0) \perp T_{x_0} \Sigma$.
+\end{proof}
+\begin{theorem}[di Fermat su $\Sigma$]
+Sia $\Sigma$ una curva o una superficie regolare con $x_0 \in \Sigma$ e sia $f \in C^{1}(\Omega)$ e sia $x_0 \in \Omega$ tale che $f|_{\Omega \cap S}$ ha un minimo o un massimo su $\Omega \cap S$. Allora $x_0$ è un punto critico di $f$ su $\Sigma$
+\end{theorem}
+\begin{proof}
+Sia $\gamma: (-\varepsilon, \varepsilon) \to \Sigma$ derivabile tale che $\gamma(0) = x_0$. Poiché $f|_{\Omega \cap \Sigma}$ ha un minimo (o un massimo) in $x_0 \implies \forall \gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma), (f \circ \gamma)(t)$ ha un massimo o un minimo in $t = 0$. Quindi $\frac{d}{dt}(f \circ \gamma)(t)|_{t=0} = 0$ da cui la tesi
+\end{proof}
+\begin{remark}
+Tutto questo che abbiamo fatto in cosa si traduce? In pratica, se abbiamo una funzione $f$ che andiamo a vincolare su una curva/superficie regolare $\Sigma$ allora ogni punto critico \emph{libero} $x_0 \in \Omega$ tale che $x_0 \in S$ è un punto critico di $f$ su $\Sigma$, mentre il viceversa non è così. Per esempio potremo prendere la funzione $f(x, y) = x^2 + y$ e la retta $\Sigma = \{(x, y) \in \mathbb{R}^2 : y=0 \} = \mathbb{R} \times \{ 0 \}$ da cui scopriremo che il minimo della funzione $f$ su $\Sigma$ è il punto $(0, 0)$ in cui, tuttavia $\nabla f((0, 0)) = (0, 0)$. 
+\end{remark}
+\begin{theorem}[dei moltiplicatori di Lagrange]
+Sia $f \in C^{1} (\Omega), x_0 \in \Omega \cap S, \Omega \subseteq \mathbb{R}^n$ aperto, $n= \{ 2, 3 \}$, $S \subseteq \mathbb{R}^n, g \in C^1 (\Omega)$ tale che $\Omega \cap S = g^{-1}(g(x_0)) = \Sigma \subseteq \mathbb{R}^n, \nabla g(x) \neq 0 \forall x \in \Sigma$ ($\Sigma$ è una curva/superficie regolare). \\
+Allora $x_0 \in \Sigma$ è un punto critico di $f$ su $\Sigma$ se e solo se $\exists \lambda \in \mathbb{R}$ tale che $\nabla f(x_0) = \lambda g(x_0)$
+\end{theorem}
+\begin{proof} \hspace{1cm} \\
+$\boxed{\Rightarrow}$: sia $x_0 \in \Sigma$ un punto critico di $f$ su $\Sigma$, allora per il teorema precedente avremo che $\nabla f(x_0) \perp T_{x_0} \Sigma \implies \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp}$, tuttavia, siccome $\Sigma = g^{-1}(g(x_0))$, abbiamo che $(\nabla g(x_0))^{\perp} = T_{x_0} \Sigma$ da cui concludiamo che $\nabla f(x_0), \nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$ e, siccome $\dim{(T_{x_0} \Sigma)^{\perp}} = 1$ visto che $g: \mathbb{R}^n \to \mathbb{R}$, concludiamo che 
+$$
+\nabla f(x_0) = \lambda g(x_0)
+$$
+$\boxed{\Leftarrow}$: supponiamo che $\exists \alpha$
+\end{proof}
+
+
+
+
+
+
+
+
+
+

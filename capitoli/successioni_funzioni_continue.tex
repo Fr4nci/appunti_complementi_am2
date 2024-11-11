@@ -1,0 +1,278 @@
+\chapter{Successioni e funzioni continue}
+In questo capitolo andremo a definire il concetto di successione e vedere il forte collegamento presente fra esse e il concetto di continuità in più variabili. \\
+Ricordiamo al lettore che una successione a valori in un insieme $A$ è una funzione $x_k: \mathbb{N} \to A$. Vediamo adesso come si definisce il concetto di \emph{successione convergente} in più variabili
+\begin{definition}[convergenza di una successione]
+diremo che $\{x_k \} \subset \mathbb{R}^n$ è una successione convergente a $z \in \mathbb{R}^n$ se $\lim\limits_{k \to +\infty} |x_k - z| = 0$.
+\end{definition}
+\begin{remark}
+Naturalmente se $\underline{x_k} = (x_{k_1}, x_{k_2}, \ldots x_{k_n}) \in \mathbb{R}^n$ converge a $\underline{z} = (z_1, z_2, \ldots z_n) \iff \lim\limits_{k \to \infty} x_{k_i} = z_i \, \forall i \in 1, \ldots n$
+\end{remark}
+\begin{example}
+Consideriamo la successione $\underline{x_k} = (e^{-k} + 1,(-1)^k)$. Per il precedente teorema questa successione è convergente.
+\end{example}
+\begin{prop}[Unicità del limite]
+Il limite di una successione è unico. 
+Se $\underline{x_k} \in \mathbb{R}^n \, \, \forall k$ converge a $\underline{z} \in \mathbb{R}^n$ allora $z$ è unico.
+\end{prop}
+\begin{proof}
+Supponiamo per assurdo che $\underline{x_k}$ converga a $\underline{z}$ e $\underline{y}$ con $\underline{z} \neq \underline{y}$. Allora
+$$
+|\underline{z} - \underline{y}| \leq |\underline{x_k} - \underline{z}| + |\underline{x_k} - \underline{y}| \stackrel{k \to +\infty}{\to} 0 \implies z = y
+$$
+\end{proof}
+
+\begin{prop}
+Se $\underline{x_k} \to \underline{x}$ allora $|\underline{x_k}| \to |\underline{x}|$
+\end{prop}
+\begin{proof}
+si osserva che, dalla proposizione \ref{prop:dis_triang}, si ha che
+$$
+||\underline{x_k}| - |\underline{x}|| \leq |\underline{x_k} - \underline{x}| \stackrel{k \to +\infty}{\to} 0
+$$
+\end{proof}
+\noindent Mostriamo adesso una banale proposizione, le cui conseguenze non sono così "scontate".
+\begin{prop}[spazio vettoriale delle successioni convergenti]
+Se $\underline{x_k} \to \underline{x}$ e $\underline{y_k} \to \underline{y}$ allora $\forall \lambda, \mu \in \mathbb{R}, \, \lambda \underline{x_k} + \mu \underline{y_k} \to \lambda \underline{x} + \mu \underline{y}$ 
+\end{prop}
+\begin{proof}
+osserviamo che
+$$
+|\lambda \underline{x_k} + \mu \underline{y_k} - \lambda \underline{x} - \mu \underline{y}| = |\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})|
+$$
+Per la proposizione \ref{prop:dis_triang} abbiamo che
+$$
+|\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})| \leq |\lambda| |\underline{x_k} - \underline{x}| + |\mu| |\underline{y_k} - \underline{y}| \stackrel{k \to +\infty}{\to} 0
+$$
+dunque la tesi
+\end{proof}
+\begin{remark}
+l'importanza di questa dimostrazione sta nel fatto che questo teorema dimostra che l'insieme delle successioni convergenti in $\mathbb{R}^n$ forma uno spazio vettoriale che è chiuso rispetto all'addizione $+_{\mathbb{R}}$ e prendendo come prodotto per scalare $*_\mathbb{R}$
+\end{remark}
+\noindent Adesso andiamo a mostrare una proprietà che segue direttamente dalla topologia di $\mathbb{R}^n$ (in spazi topologici qualunque non è sempre valido)
+\begin{prop}[caratterizzazione degli insiemi chiusi]
+	Un insieme $A \subset \mathbb{R}^n$ è chiuso se e solo se $\forall \underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$ allora $z \in A$. Formalmente
+	$$
+	(A \subset \mathbb{R}^n \text{è chiuso}) \iff (\forall \underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k \implies z \in A) 
+	$$
+	\label{prop:caratt_chiusi}
+\end{prop}
+\begin{proof} \hspace{1em} \newline
+$\boxed{\Rightarrow}$: Se $A$ è chiuso, considerando una generica $\underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$, allora $\forall r > 0$ dato che $|\underline{x_k} - \underline{z}| \to 0 \, \exists k_r \in \mathbb{N}$ tale che $|\underline{x_k} - \underline{z}| < r \, \forall k \geq k_r \implies \underline{x_k} \in B(z, r) \implies B(z, r) \cap A \neq \emptyset \implies z \in \bar{A}$. Siccome A è chiuso allora $\bar{A} = A$ dunque $z \in A$. \\
+$\boxed{\Leftarrow}$: Sia $\underline{w} \in \bar{A} \implies B(\underline{w}, \frac{1}{k}) \cap A \neq \emptyset \, \forall k \geq 1$ quindi esiste una successione $\underline{x_k}$ (potremmo prendere per esempio $\underline{w-\frac{1}{k}}$). Ma allora $|\underline{x_k} - \underline{w}| < \frac{1}{k} \implies \underline{x_k} = \underline{w} \implies \underline{w} \in A$ per la seconda proprietà, ma allora $\bar{A} \subset A \implies \bar{A} = A$ e dunque $A$ è chiuso per definizione. 
+\end{proof}
+\noindent Questa proprietà è molto importante, siccome garantisce l'equivalenza fra \textbf{chiusura sequenziale} e \textbf{chiusura} (che negli spazi topologici non è generalmente garantito) in $\mathbb{R}^n$. \\
+In $\mathbb{R}^n$, dato un insieme $A \subset \mathbb{R}^n$, se vogliamo verificare che sia chiuso sarà dunque necessario verificare che ogni successione $\underline{x_k}$ tali che $\forall k, \underline{x_k} \in A$ avremo che $\underline{x_k} \to \underline{x} \in A$, ovvero che ogni successione convergente in $A$ converga ad un punto che appartiene ad $A$.
+\section{Funzioni continue}
+\begin{definition}[funzioni continue]
+Una funzione $f: A \to \mathbb{R}$ con $A \subset \mathbb{R}^m$ si dice continua in $\underline{z} \in A$ se $$\forall \underline{x_k} \in A, \underline{x_k} \to \underline{z}, \, \lim\limits_{k \to +\infty} f(\underline{x_k}) = f(\underline{z})$$
+\end{definition}
+\begin{remark}
+Diremo che $f: A \to \mathbb{R}$ con $A \subset \mathbb{R}^n$ è continua in $A$ se è continua $\forall \underline{x} \in A$.
+\end{remark}
+\noindent Andiamo a ricordare un concetto molto importante:
+\begin{definition}[apertura relativa]
+Fissato $A \subset \mathbb{R}^n$ diremo che $S \subset A$ è aperto in $A$ se $\exists \Omega \subset \mathbb{R}^n$ aperto tale che $$S = A \cap \Omega$$
+\end{definition}
+Dopo questa definizione siamo pronti per enunciare una serie di teoremi sulle funzioni continue che le caratterizzano in $\mathbb{R}^n$.
+\begin{theorem}[teorema C1]
+Sia $f: A \to \mathbb{R}^m$ con $A \subset \mathbb{R}^n$. Allora $f$ è continua $\iff \forall U \subset \mathbb{R}^m$ aperto $f^{-1}(U)$ è aperto in $A$
+\end{theorem}
+\begin{proof} \hspace{1em} \newline
+$\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U \subset \mathbb{R}^m$ aperto tale che $f^{-1}(U)$ non è aperto in $A$. Allora $\exists z \in f^{-1}(U)$ tale che $\forall k \geq 1, B(\underline{z}, \frac{1}{k}) \not\subset f^{-1}(U)$. Ma questo implica che $\exists \underline{x_k} \in A \cap B(\underline{z}, \frac{1}{k})$ tale che $\underline{x_k} \not\in f^{-1}(U)$. Ma allora 
+$$
+|\underline{x_k} - \underline{w}| < \frac{1}{k} \to 0 \implies f(\underline{x_k}) \to f(\underline{z})
+$$
+ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Il fatto che $f(z) \not\in U$ (siccome $U^c$ è chiuso abbiamo che, per la proposizione \ref{prop:caratt_chiusi}, ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$) e ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
+$\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
+\end{proof}
+\begin{theorem}[teorema della permanenza del segno]
+Sia $f: A \to \mathbb{R}$ continua in $z \in A$. Se $f(z) > 0$ allora $\exists \delta > 0$ tale che $\forall x \in A \cap B(z, \delta), f(x) > 0$
+\end{theorem}
+\begin{proof}
+Se neghiamo la tesi allora otteniamo che $\forall \delta > 0, \exists x \in A \cap B(z, \delta): f(x) < 0$. Ma allora deduciamo che $\exists \underline{x_k} \in A \cap B(z, \frac{1}{k}): f(x_k) <0$, ma $\underline{x_k} \to z$ e $f(x_k) \to f(z) \leq 0$ che rappresenta una contraddizione.
+\end{proof}
+\begin{theorem}[teorema C2]
+Siano $A \subset \mathbb{R}^n$, $f, g: A \to \mathbb{R}^m$ e $h: B \to \mathbb{R}^k$ con $f(A) \subset B \subset \mathbb{R}^m$. Se $f$ e $g$ sono continue in $z \in A$ e $h$ è continua in $f(z) \in B$ allora valgono le seguenti proprietà:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $\forall \lambda, \mu \in \mathbb{R}$ abbiamo che $\lambda f + \mu g$ è continua in $z \in A$;
+	\item Se $m = 1$, allora $fg$ è continua in $z$;
+	\item Se $m=1$ e $g(z) \neq 0$ allora $\exists \delta > 0$ per cui $f/g$ è ben definita su $A \cap B(z, \delta)$ ed è continua in $z$;
+	 \item la composizione $h \circ f$ è continua in $z$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Per mostrare la $\circled{1}$ osserviamo che, prendendo $x_k \to z$, abbiamo che
+$$
+\lambda f(x_k) + \mu g(x_k) \to \lambda f(z) + \mu g(z)
+$$
+Per mostrare la $\circled{2}$ osserviamo che
+$$
+x_k \to z \implies f(x_k)g(x_k) \to f(z)g(z)
+$$
+Per mostrare la $\circled{3}$ si osserva che possiamo supporre che $g(z) > 0$ senza perdita di generalità da cui segue che
+$$
+\exists \delta > 0: \forall x \in A \cap B(z, \delta), g(x) > 0 \implies \frac{f}{g}: B(z, \delta) \to \mathbb{R}
+$$
+che ci permette di concludere che $\frac{f}{g}$ sia ben definita e $\lim\limits_{k \to +\infty} \frac{f(x_k)}{g(x_k)} = \frac{f(z)}{g(z)}$ con $x_k \to z$. \\
+La $\circled{4}$ segue banalmente dal fatto che presa $x_k \in A, x_k \to z$ allora
+$$
+\lim_{k \to +\infty} h(f(x_k)) = h(\lim_{k \to +\infty} f(x_k)) = h(f(z))
+$$
+per la continuità di $h$ in $f(z) \in f(A)$ e di $f$ in $z \in A$.
+\end{proof}
+\begin{prop}
+Sia $f: A \to \mathbb{R}^m$, dove $f(x) = (f_1(x), f_2(x), \ldots f_m(x))$ e $f_j(x): A \to \mathbb{R} \, \forall j \in \{1, \ldots m\}$ con $A \subset \mathbb{R}^n$. Allora abbiamo che
+	$$f \text{ è continua in } p \in A \iff f_j \text{ è continua in p} \in A \, \forall j \in \{1, \ldots m\}$$
+\end{prop}
+\begin{proof}
+Basta osservare che $f(x_k) \to f(z) \iff f_j(x_k) \to f_j(z) \, \forall j \in \{1, \ldots m \}$
+\end{proof}
+\begin{remark}
+$f$ è continua in $A \iff f_j$ è continua in $A \, \forall j \in \{1, \ldots m \}$.
+\end{remark}
+\noindent A questo punto ricordiamo la definizione di massimo e minimo locale o globale
+\begin{definition}[massimo globale]
+Sia $A \subseteq \mathbb{R}^n$ e sia $f: A \to \mathbb{R}$. Diremo che $z \in A$ è un punto di massimo assoluto, o globale, su $A$ se$$\forall x \in A, f(z) \geq f(x)$$.
+\end{definition}
+\noindent La definizione di minimo globale è analoga (basta sostituire il $\geq$ con $\leq$). \\
+Diamo adesso la definizione di massimo e minimo locale:
+\begin{definition}[massimo locale]
+Sia $A \subseteq \mathbb{R}^n$ e sia $f: A \to \mathbb{R}$. Diremo che $z \in A$ è un punto di massimo locale su $A$ se
+$$
+\exists \delta > 0: \forall x \in A \cap B(z, \delta), f(z) \geq f(x)
+$$
+\end{definition}
+\noindent analogamente si ottiene la definizione di minimo locale. \\ Data una funzione $f:A \to \mathbb{R}$ con $A \subset \mathbb{R}^n$, introdurremo la seguente notazione 
+\begin{align*}
+&\max_A{f} & &\min_A{f} 
+\end{align*}
+per indicare, rispettivamente, il massimo e il minimo assoluto. \\
+Enunciamo il seguente teorema, valido in $\mathbb{R}^n$, che garantisce l'esistenza del massimo e del minimo di una funzione continua quando mappa un insieme compatto ad un altro. \\
+\begin{theorem}[teorema di Weierstrass]
+Sia $A \subset \mathbb{R}^n$ un insieme compatto e sia $f: A \to \mathbb{R}$ una funzione continua su $A$. Allora $\exists \max\limits_A{f}, \min\limits_A{f}$. 
+\end{theorem}
+\begin{proof}
+Per caratterizzazione del $\sup_A{f}$ sappiamo che esiste una successione $\lim y_k$ dove $y_k \in f(A) \, \forall k \geq 1$ che vi ci tende. Siccome $y_k \in f(A)$ allora $\exists x_k \in A: f(x_k) = y_k \, \forall k \geq 1$. Ma allora noi sappiamo che, per al compattezza di $A$, che esiste una sottosuccessione $x_{\alpha (k)}$ tale che $x_{\alpha(k)} \to z \in A$, da cui si deduce che
+$$
+f(z) = \lim_{k \to +\infty} f(x_{\alpha(k)}) = \lim_{k \to +\infty} y_{\alpha(k)} = \sup_A{f}
+$$
+dove la prima uguaglianza segue dalla continuità di $f$ e la terza uguaglianza segue dal fatto che $y_{\alpha(k)}$ è una sottosuccessione estratta di $y_k$, ma siccome $y_k$ converge al $\sup\limits_A{f}$ allora anche $y_{\alpha(k)}$ vi convergerà.
+\end{proof}
+\noindent Tramite il seguente teorema viene mostrato che la continuità preserva anche la connessione per archi di un insieme:
+\begin{theorem}[teorema C4]
+	Sia $f: C \to \mathbb{R}^m$ continua e sia $C$ connesso per archi. Allora $f(C) \subset R^m$ è connesso per archi
+\end{theorem}
+\begin{proof}
+Siano $y, z \in f(C) \implies \exists x, u \in C$ tali che $f(x) = y$ e $f(u) = z$, pertanto $\exists \gamma : [0,1] \to C$ grazie alla connettività per archi di $C$ per cui $\gamma(0) = x$ e $\gamma(1) = u$. Ma allora la curva $f \circ \gamma: [0,1] \to f(C)$ è continua (siccome composizione di funzioni continue) e $(f \circ \gamma)(0) = y$ e $(f \circ \gamma)(1) = z$, dunque $f(C)$ è connesso per archi.
+\end{proof}
+\begin{cor}
+$f: C \to \mathbb{R}$ continua, $C$ è connesso per archi $\implies f(C) \subset \mathbb{R}$ è un intervallo. 
+\end{cor}
+\begin{proof}
+Dal precedente teorema segue, naturalmente, che $f(C)$ è connesso per archi. Mostriamo che è un intervallo: dati $t, s \in f(C), \exists \Gamma: [0,1] \to f(C) \subset \mathbb{R}$ continua tale che $\Gamma(0) = t$ e $\Gamma(1) = s$. Dunque $[t,s] \subseteq \Gamma([0, 1]) \subseteq f(C) \implies f(C)$ è un intervallo
+\end{proof}
+\noindent Da questo corollario è anche possibile anche dimostrare la seguente proposizione
+\begin{prop}
+Sia $A$ connesso per archi e sia $f: A \to \mathbb{R}$ continua. Allora
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item Se $\exists \max\limits_{A} f, \min\limits_{A} f$ allora $f(A) = [\min\limits_{A} f, \max\limits_{A} f]$
+	\item Se $\not\exists \max\limits_{A} f, \exists \min\limits_{A} f$ allora $f(A)=[\min\limits_{A} f, \sup\limits_{A} f)$
+\end{enumerate}
+\end{prop}
+\begin{exercise}
+Mostrare la proposizione precedente
+\end{exercise}
+\begin{proof}
+Per il corollario sappiamo che $f(A)$ è un intervallo. \\
+Se il minimo e il massimo della funzione sono ben definiti, allora l'immagine è banalmente contenuta fra il minimo e il massimo la cui esistenza è garantita dal teorema di Weierstrass. \\
+Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di generalità, che $\not\exists \max\limits_{A} f$. Naturalmente, per caratterizzazione del $\sup$ abbiamo che $\forall \varepsilon > 0, \sup\limits_{A}{f} - \varepsilon \in f(A)$, dunque $\exists x \in A: f(x) = \sup\limits_{A}{f}$, dunque $[\min\limits_{A} f, f(x)] \subseteq [\min\limits_A{f}, \sup\limits_{A}{f})$, dunque $f(C)$ è ancora un intervallo.
+\end{proof}
+\section{Accenni ai limiti in più variabili}
+\begin{definition}[definizione di limite]
+Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ e sia $x_0 \in \partial A$. Allora diciamo che $f$ tende a $v \in \mathbb{R}^k$ per $x$ che tende a $x_0$ e scriviamo che
+$$
+\lim_{x \to x_0} f(x) = v \iff \forall \varepsilon > 0 \exists \delta > 0 : \forall x \in B(x_0, \delta) \cap A \setminus \{ x_0 \}, |f(x) - v| < \varepsilon
+$$
+\end{definition}
+\noindent Diamo adesso la definizione di limite di $f(x)$ che tende all'infinito:
+\begin{definition}
+Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ illimitato. Diremo che $f$ tende all'infinito per $x$ che tende all'infinito e scriveremo che
+$$
+\lim_{|x| \to \infty} f(x) = \infty \iff \forall M > 0, \exists N > 0: \forall x \in A, |x| > N, |f(x)| > M
+$$
+\end{definition}
+\begin{remark}
+In generale tutte queste definizioni che stiamo dando funzionano in qualunque spazio metrico $(X,d)$ sostituendo al posto dell'usuale distanza euclidea definita in $\mathbb{R}^n$ la distanza $d$.
+\end{remark}
+\noindent Potremo scrivere anche le definizioni per gli altri due casi che ci restano, ma è banale e lo lasciamo come semplice esercizio teorico al lettore. \\
+\begin{theorem}[caratterizzazione del limite per successioni]
+Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in \partial A, v \in \mathbb{R}^m$. Abbiamo che
+$$
+\lim_{x \to q} f(x) = v \iff (\forall \{ p_k \} \subseteq A \setminus \{ q \}, p_k \to q) \implies \lim_{k \to +\infty} f(p_k) = v
+$$
+\end{theorem}
+\begin{proof} \hspace{1em} \newline
+$\boxed{\Rightarrow}$: si osserva che, presa una qualunque successione $p_k$ che soddisfa le ipotesi della proposizione sulla destra, avremo che il limite $\lim_{k \to +\infty} f(p_k)$ è un limite dove avviene la composizione della successione $p_k$ con la funzione $f$ e sono verificate tutte le ipotesi riguardo al cambio di variabile nel limite, dunque $\lim_{k \to +\infty} f(p_k) = \lim_{x \to q} f(x) = v$. \\
+$\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la definizione di limite, avremo che $\exists \varepsilon: \forall \delta > 0, \exists x \in B(q, \delta) \cap A \setminus \{ q \}: |f(x) - v| \geq \varepsilon$. Ma allora, restringendosi a degli intorni di $q$ via via sempre più piccoli, come $V_k = (q-\frac{1}{k}, q + \frac{1}{k})$ esisterebbe $x_k \in A \cap V_k : |f(x_k) - v| > \varepsilon$. Ma questo è un assurdo, siccome $x_k \to q$ e ma $f(x_k) \not\to v$ contraddicendo la nostra ipotesi iniziale.
+\end{proof}
+\noindent Da questo teorema importantissimo segue questo semplice corollario (la cui dimostrazione è omessa siccome è banale)
+\begin{theorem}[teorema del confronto]
+Siano $h, g, f: A \to \mathbb{R}, x_0 \in \partial A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
+\begin{align*}
+h(x) \leq f(x) \leq g(x) \, \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}
+\end{align*} \\
+Se 
+$$\lim\limits_{x \to x_0} h(x) = \lim\limits_{x \to x_0} g(x) = l \implies \lim_{x \to x_0} f(x) = l$$
+\end{theorem}
+\begin{proof}
+La dimostrazione è analoga a quella di Analisi 1 con qualche accorgimento sugli insiemi di definizione
+\end{proof}
+\noindent Prima di procedere sulla parte del calcolo differenziale, diamo una breve introduzione ai simboli di Landau (i cosiddetti o-piccoli e O-grandi) che semplificano notevolmente il calcolo in più variabili:
+\begin{definition}[o-piccolo]
+Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
+$$
+f = o(g) \text{ per } x \to x_0
+$$
+se $$\forall \varepsilon > 0 \, \exists \delta > 0 : |f(x)| \leq \varepsilon |g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
+\end{definition}
+\begin{definition}[O-grande]
+Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
+$$
+f = O(g) \text{ per } x \to x_0
+$$
+se $$\exists M > 0, \delta > 0 : |f(x)| \leq M|g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} $$
+\end{definition}
+\begin{exercise}
+Se $f$ è un o-piccolo di $g$ allora $f$ è O-grande di $g$
+\end{exercise}
+\begin{proof}
+Segue direttamente dalla definizione, siccome se $f = o(g)$ allora $\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |g(x)| \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$, dunque fissando $M = \varepsilon > 0$ allora sappiamo che esiste un $\delta(\varepsilon)$ per cui
+$$
+|f(x)| \leq M |g(x)| \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}
+$$ 
+dunque risulta che $f$ è un O-grande di $g$, ovvero la tesi.
+\end{proof}
+\begin{prop}
+Siano $A \subseteq \mathbb{R}^n, x_0 \in  A$ e $f: A \to \mathbb{R}^m$ e $\alpha > 0$. Allora abbiamo
+$$
+f(x) = o(|x-x_0|^\alpha) \text{ per } \, x \to x_0 \iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
+$$
+\end{prop}
+\begin{proof}
+la dimostrazione è banale, siccome 
+\begin{align*}
+&\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |x-x_0|^\alpha \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \iff \forall \varepsilon > 0 \exists \delta > 0: \frac{|f(x)|}{|x-x_0|^\alpha} \leq \varepsilon \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \\ &\iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
+\end{align*}
+\end{proof}
+\begin{prop}
+Siano $A \subseteq \mathbb{R}^n, x_0 \in A, f: A \to \mathbb{R}$ e $\alpha > 0$. Allora abbiamo che $$f(x) = O(|x-x_0|^\alpha) \text{ per } x \to x_0 \iff \exists M, \delta > 0: \frac{f(x)}{|x-x_0|^\alpha} \leq M \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
+\end{prop}
+\begin{proof}
+Analoga alla dimostrazione fatta sopra
+\end{proof}
+\noindent L'ultima proposizione si può anche riscrivere dicendo che se $f=O(|x-x_0|^\alpha)$ allora abbiamo necessariamente, per $x \to x_0$, che $\sup\limits_{A \cap B(x_0, \delta) \setminus \{ x_0 \}} \Bigg| \frac{f(x)}{|x-x_0|^{\alpha}} \Bigg| < +\infty$. \\
+Osserviamo che
+$$
+\lim_{x \to x_0} f(x) = l \iff f(x) = l + o(1) \text{ per } x \to x_0
+$$
+e quindi potremmo (con tanta buona volontà) andare a riscrivere tutta la teoria appena fatta sui limiti in più variabili tramite i simboli di Landau. Ciò non verrà fatto, ma li useremo per introdurre, come avevo accennato, il calcolo differenziale.
