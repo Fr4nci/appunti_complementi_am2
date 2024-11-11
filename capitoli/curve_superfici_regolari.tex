@@ -282,7 +282,7 @@ e definire la circonferenza come $\Gamma: g^{-1}(4)$: il teorema precedente mi g
 \section{Punti critici su curve e superfici regolari}
 Adesso che abbiamo caratterizzato le curve e le superfici, siamo interessati a studiare i massimi e i minimi della funzione che la funzione assume se "vincolata" su curve o superfici. \\
 \begin{definition}[punti critici su curve/superfici]
-Sia $S \subseteq \mathbb{R}^n$ con $n=2, 3$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
+Sia $S \subseteq \mathbb{R}^n$ con $n \in \{ 2, 3 \}$ e sia $x_0 \in S$. Supponiamo che $\exists \Omega \subseteq \mathbb{R}^n$ aperto tale che $x_0 \in \Omega$ e $\Sigma = \Omega \cap S$ è una curva regolare in $\mathbb{R}^2$ o una superficie regolare in $\mathbb{R}^3$ (di classe $C^1$). Allora diremo che $x_0 \in S$ è un punto critico di $f \in C^1(\Omega)$ su $\Sigma$ se
 $$
 \forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
 $$
@@ -292,6 +292,7 @@ Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare per $n=2$ o per $n=3$. Si
 \begin{align*}
 x_0 \in \Sigma \text{ è un punto critico di } f \text{ su } \Sigma  \iff \nabla f(x_0) \perp T_{x_0} \Sigma
 \end{align*}
+\label{thm:punti_crit_su_curve}
 \end{theorem}
 \begin{proof}
 Per il teorema \ref{thm:caratt_tang}, abbiamo che se $x_0$ è punto critico allora, per definizione di punto critico, $\forall (\gamma \in C^1((-\varepsilon, \varepsilon), \Sigma), \gamma(0)=x_0), \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0 \iff \nabla f(x_0) \perp T_{x_0} \Sigma$.
@@ -310,14 +311,29 @@ Sia $f \in C^{1} (\Omega), x_0 \in \Omega \cap S, \Omega \subseteq \mathbb{R}^n$
 Allora $x_0 \in \Sigma$ è un punto critico di $f$ su $\Sigma$ se e solo se $\exists \lambda \in \mathbb{R}$ tale che $\nabla f(x_0) = \lambda g(x_0)$
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
-$\boxed{\Rightarrow}$: sia $x_0 \in \Sigma$ un punto critico di $f$ su $\Sigma$, allora per il teorema precedente avremo che $\nabla f(x_0) \perp T_{x_0} \Sigma \implies \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp}$, tuttavia, siccome $\Sigma = g^{-1}(g(x_0))$, abbiamo che $(\nabla g(x_0))^{\perp} = T_{x_0} \Sigma$ da cui concludiamo che $\nabla f(x_0), \nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$ e, siccome $\dim{(T_{x_0} \Sigma)^{\perp}} = 1$ visto che $g: \mathbb{R}^n \to \mathbb{R}$, concludiamo che 
+$\boxed{\Rightarrow}$: sia $x_0 \in \Sigma$ un punto critico di $f$ su $\Sigma$, allora per il teorema \ref{thm:punti_crit_su_curve}  avremo che $\nabla f(x_0) \perp T_{x_0} \Sigma \implies \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp}$, tuttavia, siccome $\Sigma = g^{-1}(g(x_0))$, abbiamo che $(\nabla g(x_0))^{\perp} = T_{x_0} \Sigma$ da cui concludiamo che $\nabla f(x_0), \nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$ e, siccome $\dim{(T_{x_0} \Sigma)^{\perp}} = 1$ visto che $g: \mathbb{R}^n \to \mathbb{R}$($\implies df(x_0): \mathbb{R}^n \to \mathbb{R}$), concludiamo che 
 $$
 \nabla f(x_0) = \lambda g(x_0)
 $$
-$\boxed{\Leftarrow}$: supponiamo che $\exists \alpha$
+$\boxed{\Leftarrow}$: supponiamo che $\exists \alpha \in \mathbb{R}$ tale che
+$$
+\nabla f(x_0) = \alpha \nabla g(x_0)
+$$
+allora, procedendo in maniera simile a quanto detto prima, sappiamo che $\nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$, ma allora, per proprietà degli spazi vettoriali, abbiamo che $\alpha \nabla g(x_0) = \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp} \implies \nabla f(x_0) \perp T_{x_0} \Sigma \implies x_0$ è un punto critico di $f$ su $\Sigma$ sempre per il teorema \ref{thm:punti_crit_su_curve}.
 \end{proof}
-
-
+\begin{remark}
+Supponiamo di avere una funzione $f: D \to \mathbb{R}$ con $D \subseteq \mathbb{R}^n$ con $D$ compatto. Allora sappiamo, per il teorema di Weierstrass (teorema \ref{thm:weierstrass}), che $\exists \max\limits_{D} f, \min\limits_{D} f$, tuttavia se non vi sono dei punti critici \emph{liberi} della funzione in $\text{Int}(D)$ avremo che $\max\limits_{D} f, \min\limits_{D} f$ si trovano sulla frontiera di $D$. Nel caso in cui questi siano superfici/curve regolari allora bisogna procedere con i moltiplicatori di Lagrange per trovare i punti su di essa e il sistema che otteniamo con i moltiplicatori \textbf{deve} avere una soluzione altrimenti si otterrebbe un assurdo con il teorema di Weierstrass.
+\end{remark}
+\begin{remark}
+Una trattazione a $N$ vincoli dei problemi dell'ottimizzazione fa uso della funzione $\Lambda: \mathbb{R}^n \to \mathbb{R}$ lagrangiana definita come 
+$$
+\Lambda(x, \lambda_1, \ldots, \lambda_N) = f(x)-\lambda_1 g_1(x) - \lambda_2 g_2(x) - \ldots - \lambda_N g_N(x)
+$$
+dove $x \in \mathbb{R}^n$ e le funzioni $g_i(x):\mathbb{R}^n \to \mathbb{R}$ sono le equazioni esplicitate dei nostri vincoli. La teoria per dimostrare che questa formulazione (come l'intuito geometrico ci fa intuire) è pressoché equivalente, tuttavia non verrà dimostrato.
+\begin{remark}
+Il moltiplicatore di Lagrange è naturalmente unico e dipende, com'è lecito aspettarsi, da $\nabla f(x_0)$ e $\nabla g(x_0)$: questa unicità è immediata conseguenza del fatto che $\nabla g(p) \neq 0$, dunque è una base dello spazio $(T_{x_0} \Sigma)^{\perp}$ e sappiamo, per unicità delle coordinate rispetto a vettori linearmente indipendenti, che le coordinate rispetto ad una base sono uniche.
+\end{remark}
+\end{remark}
 
 
 
