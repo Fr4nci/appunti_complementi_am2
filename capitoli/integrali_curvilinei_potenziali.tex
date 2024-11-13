@@ -4,7 +4,7 @@ In questo capitolo andremo a generalizzare il concetto di integrale di Riemann c
 
 \section{Curve e integrali curvilinei}
 
-Vogliamo estendere il concetto di integrale di Riemann $1$-dimensionale a più dimensioni. Senza introdurre il concetto di misura possiamo solamente andare a definire il concetto di \emph{integrale curvilineo}, ovvero l'integrale muovendosi lungo una \emph{direzione} data dalla curva $\gamma$, dobbiamo però richiedere un certo tipo di regolarità da questa curva per non avere problemi nell'integrazione.
+Vogliamo estendere il concetto di integrale di Riemann: il primo passo è definire il concetto di \emph{integrale curvilineo}, ovvero l'integrale dove ci muoviamo lungo una \emph{direzione} data dalla curva $\gamma$. Per fare ciò, dobbiamo però richiedere un certo tipo di regolarità da questa curva per non avere problemi nell'integrazione.
 \begin{definition}[curva $C^1$ a tratti]
 	Sia $\gamma: [a, b] \to \mathbb{R}^n$. Diremo che $\gamma$ è $C^1$ a tratti se $\exists k \in \mathbb{N} : \exists t_0, \ldots, t_k \in [a, b], a = t_0 < \ldots < t_k = b$ tali che $\gamma \in C^1([t_{j}, t_{j+1}]) \, \forall j \in \{0, \ldots, k-1 \}$ e $\gamma \in C^0([a, b])$.
 \end{definition}
@@ -75,3 +75,84 @@ $$
 $$
 ovvero la tesi.
 \end{proof}
+\begin{cor}[lunghezza di un arco]
+	Sia $f(x): I \to \mathbb{R}$ con $f \in C^1(I)$ allora la lunghezza dell'arco descritto da $f(x)$ è dato da
+	$$
+		\int_I \sqrt{1 + f'(x)}dx
+	$$
+\end{cor}
+\begin{proof}
+Dal teorema precedente, possiamo considerare la curva $\gamma: I \to \mathbb{R}^2$ tale che $\gamma = (t, f(t)) \, \forall t \in I$ e calcolare la lunghezza della curva con il teorema precedente:
+$$
+	\mathit{l}(\gamma) = \int_{I} |\dot{\gamma}(t)|dt = \int_I \sqrt{1 + (f'(t))^2} dt
+$$
+ovvero la tesi.
+\end{proof}
+\section{Integrali curvilinei su forme differenziali e campi vettoriali}
+
+Abbiamo generalizzato l'integrale di Riemann all'integrale curvilineo come l'integrale di una funzione a valori reali lungo una direzione impartita dalla curva $\gamma$, vogliamo adesso generalizzarlo a funzioni a valori vettoriali. I candidati ideali per fare questo sono le forme differenziali e i campi vettoriali di cui richiediamo una certa regolarità
+\begin{definition}[$1$-forma differenziale di classe $C^k$]
+Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto, allora $$\omega(x) = \sum_{j=1}^n a_j(x)dx_j$$ è una $1$-forma differenziale di classe
+$C^k(\Omega)$, ovvero
+$$
+\omega \in C^k(\Omega, (\mathbb{R}^n)^*) \iff a_j \in C^k(\Omega) \, \forall j \in \{1, \ldots n \}
+$$
+\end{definition}
+Diamo adesso la nozione di \emph{esattezza} di una forma differenziale
+\begin{definition}[esattezza di una $1$-forma differenziale]
+	Diremo che $\omega$ è esatta se esiste una primitiva $V \in C^1(\Omega)$ tale che
+	$$
+		dV = \omega
+	$$
+	ovvero se $\omega = \sum_{j} a_j dx_j$ allora $a_j = \frac{\partial V}{\partial x_j}$ su $\Omega \, \forall j \in \{1, \ldots, n\}$
+\end{definition}
+Equivalentemente diamo la nozione di \emph{chiusura} di una forma differenziale
+\begin{definition}
+	Sia $\omega = \sum_{j=1}^n a_j dx_j \in C^k(\Omega, (\mathbb{R^n})^*)$, ovvero una $1$-forma differenziale di classe $C^k(\Omega)$, allora diremo che
+	è chiusa se abbiamo che
+	$$
+		\frac{\partial a_j}{\partial x_i} - \frac{\partial a_i}{\partial x_j} = 0 \, \forall i, j: 1 \leq i < j \leq n
+	$$
+\end{definition}
+Equivalentemente, possiamo dare delle definizioni che sono "duali" nel caso, però, di campi vettoriali:
+\begin{definition}[campo vettoriale di classe $C^k$]
+	Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto, allora $$F(x)=\sum_{j=1}^n f_j(x)e_j$$ è un campo vettoriale di classe $C^k$, ovvero 
+	$$F \in C^k(\Omega, \mathbb{R}^n) \iff f_j \in C^k(\Omega) \, \forall j \in \{1, \ldots, n\} $$
+\end{definition}
+Nel caso di campi vettoriali la nozione di \emph{esattezza} e di \emph{chiusura} è sostituita dal concetto di \emph{campo conservativo} (che è un concetto che ogni fisico ha incontrato nel corso di Fisica 1
+nel caso del moto in campo centrale per esempio) e dal concetto di \emph{campo irrotazionale}
+\begin{definition}[campo conservativo]
+	Diremo che $F$ è un campo conservativo se esiste un potenziale $V \in C^1(\Omega)$ tale che
+	$$
+	F = \nabla V
+	$$
+	ovvero se $F=(f_1, \ldots, f_n)$ e abbiamo che $f_j = \frac{\partial V}{\partial x_j}$ su $\Omega \, \forall j \in \{1, \ldots, n \}$
+\end{definition}
+\begin{definition}[campo irrotazionale]
+	Sia  $\Omega \subseteq \mathbb{R}^n$ aperto e sia $F = \sum_{i=1}^n f_i e_i \in C^k(\Omega, \mathbb{R}^n)$ un campo vettoriale, diremo che $F$ è un campo irrotazionale se
+	$$
+	\frac{\partial f_i}{\partial x_j} - \frac{\partial f_j}{\partial x_i} = 0 \, \forall i, j: 1 \leq i < j \leq n
+	$$
+\end{definition}
+
+Possiamo andare a definire il concetto di integrale curvilineo di seconda specie di $\omega$ (oppure di $F$) lungo una curva $\gamma$ come segue
+\begin{definition}[integrale curvilineo di seconda specie di $\omega$ lungo una curva $\gamma$]
+	Sia $\Omega \subseteq \mathbb{R}^n$, $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$ una $1$-forma differenziale e sia $\gamma \in C^1_{\text{tratti}}([a,b], \Omega)$ una curva. Definiamo l'integrale curvilineo di seconda specie di 
+	$\omega$ lungo una curva $\gamma$ come
+	$$
+		\int_\gamma \omega = \sum_{i=1}^k \int_{t_{j-1}}^{t_j} \omega(\gamma(t))(\dot{\gamma}(t))dt
+	$$
+\end{definition}
+\begin{definition}[integrale curvilineo di seconda specie di $F$ lungo una curva $\gamma$]
+	Sia $\Omega \subseteq \mathbb{R}^n$, $F \in C^0(\Omega, \mathbb{R}^n)$ un campo vettoriale e sia $\gamma \in C^1_{\text{tratti}}([a, b], \Omega)$ una curva. Definiamo l'integrale curvilineo di seconda specie di 
+	$F$ lungo una curva $\gamma$ come 
+	$$
+		\int_\gamma F = \sum_{i=1}^k \int_{t_{j-1}}^{t_j} \innerprod{F(\gamma(t))}{\dot{\gamma}(t)}dt
+	$$
+\end{definition}
+\begin{remark}
+Dalla definizione di una forma differenziale sappiamo che
+$$
+\omega(\gamma(t))(\dot{\gamma}(t)) = \sum_{i=1}^n a_i(\gamma(t))dx_i(\gamma(t)) = \sum_{i=1}^n a_i(\gamma(t))\gamma_i(t) 
+$$
+\end{remark}
