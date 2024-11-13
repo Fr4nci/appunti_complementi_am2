@@ -1,0 +1,77 @@
+\chapter{Integrali curvilinei e potenziali}
+
+In questo capitolo andremo a generalizzare il concetto di integrale di Riemann con il concetto di integrale curvilineo, il quale consente di valutare una funzione muovendosi lungo una qualunque direzione, e il concetto di potenziale, il quale ricopre una grandissima importanza in Fisica.
+
+\section{Curve e integrali curvilinei}
+
+Vogliamo estendere il concetto di integrale di Riemann $1$-dimensionale a più dimensioni. Senza introdurre il concetto di misura possiamo solamente andare a definire il concetto di \emph{integrale curvilineo}, ovvero l'integrale muovendosi lungo una \emph{direzione} data dalla curva $\gamma$, dobbiamo però richiedere un certo tipo di regolarità da questa curva per non avere problemi nell'integrazione.
+\begin{definition}[curva $C^1$ a tratti]
+	Sia $\gamma: [a, b] \to \mathbb{R}^n$. Diremo che $\gamma$ è $C^1$ a tratti se $\exists k \in \mathbb{N} : \exists t_0, \ldots, t_k \in [a, b], a = t_0 < \ldots < t_k = b$ tali che $\gamma \in C^1([t_{j}, t_{j+1}]) \, \forall j \in \{0, \ldots, k-1 \}$ e $\gamma \in C^0([a, b])$.
+\end{definition}
+Possiamo anche definire la famiglia di curve $C^1$ a tratti su $[a,b]$
+\begin{definition}[famiglie delle curve $C^1$ a tratti]
+	Indichiamo con $C^1_{\text{tratti}}([a, b], \mathbb{R}^n)$ la famiglia di tutte le curve a tratti su $[a, b]$
+\end{definition}
+Se vogliamo specificare la suddivisione $a=t_0 < t_1 < \ldots < t_k = b$ per la quale la curva $\gamma \in C^1([t_j, t_{j+1}], \mathbb{R}^n) \, \forall j \in \{1, \ldots, k \}$ 
+diremo che la curva $\gamma$ è $C^1$ a tratti rispetto alla suddivisione (o partizione) $a = t_0 < \ldots < t_k = b$. \\
+\begin{definition}[lunghezza di una curva $\gamma$] 
+	Sia $\gamma : [a,b] \to \mathbb{R}^n$, definiamo la lunghezza di $\gamma$ come
+	$$
+		\mathit{l}(\gamma) = \sup \left\{ \sum_{j=1}^k |\gamma(t_j)-\gamma(t_{j-1})| : a = t_0 < t_1 < \ldots < t_k = b, \, k \in \mathbb{N}^+ \right\}
+	$$
+\end{definition}
+Consideriamo adesso una curva $\gamma \in C^1_{\text{tratti}}([a, b], \mathbb{R}^n)$ rispetto alla suddivisione $a=t_0 < t_1 < \ldots < t_k = b$ allora definiamo
+$$
+\int_a^b |\dot{\gamma}(t)|dt = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} |\dot{\gamma}(t)|dt 
+$$
+e possiamo verificare che l'integrale non dipende dalla suddivisione rispetto la quale $\gamma$ è $C^1$ a tratti, infatti se esistesse un'altra suddivisione $a=\tau_0 < \tau_1 < \ldots < \tau_p = b$ allora
+$$
+\sum_{i=1}^k \int_{t_{i-1}}^{t_{i}} |\dot{\gamma}(t)|dt = \sum_{i=1}^p \int_{\tau_{i-1}}^{\tau_{i}} |\dot{\gamma}(t)|dt
+$$
+\begin{theorem}
+Se $\gamma \in C^1_{\text{tratti}}([a, b], \mathbb{R}^n)$ allora
+$$
+\mathit{l}(\gamma) = \int_a^b |\dot{\gamma(t)}|
+$$
+\end{theorem}
+\begin{definition}
+	Sia $\gamma \in C^1_{\text{tratti}}([a,b], \mathbb{R}^n)$ e $f: \gamma([a,b]) \to \mathbb{R}$ continua, definiamo l'integrale di lunghezza o l'integrale curvilineo di prima specie di $f$ lungo $\gamma$ come
+	$$
+		\int_{\gamma} f = \int_a^b f(\gamma(t))|\dot{\gamma}(t)|dt
+	$$
+\end{definition}
+\begin{theorem}
+	Sia $\gamma \in C^1_{\text{tratti}}([a, b], \mathbb{R}^n)$ e $f \in C^1(\gamma([a, b]))$. Allora 
+	$$
+		\varphi: [c, d] \to [a, b]
+	$$
+	di classe $C^1$ e bigettiva. Allora $\gamma \circ \varphi \in C^1_{\text{tratti}}([c,d], \mathbb{R}^n)$ e
+	$$
+		\int_{\gamma} f = \int_{\gamma \circ \varphi} f
+	$$
+\end{theorem}
+\begin{proof}
+Siccome $\varphi: [c,d] \to [a,b]$ è bigettiva, allora dev'essere monotona. Facciamo la dimostrazione, senza perdita di generalità, nel caso in cui $\varphi$ è strettamente crescente
+e possiamo definire $\tau_i = \varphi^{-1}(t_j)$ (che sarà strettamente crescente a sua volta grazie alla continuità della funzione $\varphi$), dunque
+$$
+\gamma \circ \varphi \in C^1([\tau_i, \tau_{i+1}], \mathbb{R}^n)
+$$
+(nel caso di $\varphi$ decrescente allora avevamo che $\gamma \circ \varphi \in C^1([\tau_{i+1}, \tau_{i}], \mathbb{R}^n)$) e la composizione di due funzioni continue è ancora una funzione continua, dunque
+$\gamma \circ \varphi \in C^{0}([c, d], \mathbb{R}^n)$ e questo ci porta a concludere che
+$$
+\gamma \circ \varphi \in C^1_{\text{tratti}}([c, d], \mathbb{R}^n)
+$$
+Mostriamo adesso la tesi per i singoli intervalli nel caso in cui $\varphi$ è strettamente crescente
+$$
+\int_{t_i}^{t_{i+1}} f(\gamma(t))|\dot{\gamma}(t)|dt \stackrel{t = \varphi(\tau)}{=} \int_{\varphi^{-1}(t_{i})}^{\varphi^{-1}(t_{i+1})} f((\gamma \circ \varphi)(\tau))|\dot{\gamma}(\varphi(\tau))|\dot{\varphi}(\tau) d\tau
+$$
+\noindent e osserviamo che, siccome $\varphi$ è strettamente crescente, allora $\dot{\varphi}(\tau) = |\dot{\varphi}(\tau)|$, dunque (con un leggero abuso di notazione nelle variabili di integrazioni e sugli estremi di integrazione)
+$$
+\int_{\tau_i}^{\tau_{i+1}} f((\gamma \circ \varphi)(\tau))|\dot{\gamma}(\varphi(\tau))| \, |\dot{\varphi}(\tau)| d\tau = \int_{\tau_i}^{\tau_{i+1}} f( (\gamma \circ \varphi)(\tau) ) |\gamma \circ \varphi|'(\tau) d\tau.
+$$
+Sommando in $j$ otteniamo che
+$$
+\int_\gamma f = \sum_{i=1}^k \int_{t_i}^{t_{i+1}} f(\gamma(t))|\dot{\gamma}(t)|dt = \sum_{i=1}^l \int_{\tau_i}^{\tau_{i+1}} f((\gamma \circ \varphi)(\tau)) |\gamma \circ \varphi|'(\tau) d\tau = \int_{\gamma \circ \varphi} f 
+$$
+ovvero la tesi.
+\end{proof}
