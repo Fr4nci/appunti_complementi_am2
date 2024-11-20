@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1732134221 "c:/Users/franc/appunti_complementi_am2/main.tex" "main.pdf" "main" 1732134244
-  "c:/Users/franc/appunti_complementi_am2/main.tex" 1732134195 5424 47832e7620faf5b498a85cf64e1ac8c1 ""
+["pdflatex"] 1732134368 "c:/Users/franc/appunti_complementi_am2/main.tex" "main.pdf" "main" 1732134392
+  "c:/Users/franc/appunti_complementi_am2/main.tex" 1732134342 5368 efac599a671843d00f89ed0d8428ca71 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1644869427 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1644870178 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1644869866 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -356,9 +356,9 @@
   "h_preamble/letterfonts.tex" 1727959485 8702 300377c5f733ebe6aa4b7f8e56db5921 ""
   "h_preamble/macros.tex" 1727959485 3479 a2605dd7507c5aa3237be2bd8aa5bbcf ""
   "h_preamble/new_preamble.tex" 1731100170 2432 c3c0f776652988e7bbcb7c4c5fef64ec ""
-  "main.aux" 1732134244 20063 c620f80bfb3d2ee6e67c4e0e58997c47 "pdflatex"
-  "main.tex" 1732134195 5424 47832e7620faf5b498a85cf64e1ac8c1 ""
-  "main.toc" 1732134244 2542 1f7ff3aabd17fa9c53d6d975214e3698 "pdflatex"
+  "main.aux" 1732134392 17740 48a5cfa1de3ee198c9d0fe2c9fa59862 "pdflatex"
+  "main.tex" 1732134342 5368 efac599a671843d00f89ed0d8428ca71 ""
+  "main.toc" 1732134392 2240 dcb7ca4ccc71e7b95e2b97e70eb264a2 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
