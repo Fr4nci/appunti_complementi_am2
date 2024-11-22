@@ -299,7 +299,7 @@ $$
 \label{prop:somma_curve}
 \end{prop}
 \begin{proof}
-Il fatto che $\alpha$ sia $C^1_\text{tratti}$ deriva dal fatto che, per $0 \leq t \leq b$ $\alpha(t) = \gamma(t)$ e per $b \leq t \leq b + d - c$ $\alpha(t) = \Gamma(b + t - c)$, dunque avremo che $\alpha \in C^1_\text{tratti}([a, b + d - c], \Omega)$. Consideriamo un partizionamento della curva $\gamma$ dato da $a = a_0 < a_1 < \ldots < a_k$ e il partizionamento $\Gamma$ dato da $c = b_0 < b_1 < \ldots < b_n$
+Il fatto che $\alpha$ sia $C^0_\text{tratti}$ deriva dal fatto che, per $0 \leq t \leq b$ $\alpha(t) = \gamma(t)$ e per $b \leq t \leq b + d - c$ $\alpha(t) = \Gamma(c + t - b)$ e per $t=b, \alpha(b)=\gamma(b)=\Gamma(c)$ (dove l'ultima eguaglianza segue per ipotesi), da cui avremo anche che $\alpha \in C^1_\text{tratti}([a, b + d - c], \Omega)$. Consideriamo un partizionamento della curva $\gamma$ dato da $a = a_0 < a_1 < \ldots < a_k$ e il partizionamento $\Gamma$ dato da $c = b_0 < b_1 < \ldots < b_n$
 $$
 t_j = \begin{cases}
 	a_j & \text{se } j \leq k \\
@@ -311,7 +311,7 @@ dunque
 &\int_\alpha \omega = \sum_{j=0} \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt = \sum_{j=0}^k \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt + \sum_{j=k} \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt = \\
 &= \sum_{j=0}^k \int_{a_j}^{a_{j+1}} \omega(\gamma(t))(\dot{\gamma}(t))dt + \sum_{j=k} \int_{b_{j-k} - c + b}^{b_{j+1-k} - c + b} \omega(\Gamma(t))(\dot{\Gamma}(t))dt
 \end{align*}
-possiamo effettuare un cambio di variabile nella seconda sommatoria, pertanto
+possiamo effettuare un cambio di variabile nella seconda sommatoria con $j' = j -k $ (tuttavia indicheremo nella sommatoria sempre $j$ siccome gli indici sono muti in una sommatoria), pertanto
 \begin{align*}
 &= \sum_{j=0}^k \int_{a_j}^{a_{j+1}} \omega(\gamma(t))(\dot{\gamma}(t))dt + \sum_{j=0} \int_{b_{j} + b - c}^{b_{j+1} + b - c} \omega(\Gamma(t))(\dot{\Gamma(t)})dt =
 \end{align*}

@@ -9,3 +9,6 @@ new_preambe.aux
 new_preamble.log
 new_preamble.synctex.gz
 Makefile
+main.blg
+main.fdb_latexmk
+main.fls
