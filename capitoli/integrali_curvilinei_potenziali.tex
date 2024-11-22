@@ -1,5 +1,3 @@
-\documentclass[main.tex]{subfiles}
-\begin{document}
 \chapter{Integrali curvilinei e potenziali}
 
 In questo capitolo andremo a generalizzare il concetto di integrale di Riemann con il concetto di integrale curvilineo, il quale consente di valutare una funzione muovendosi lungo una qualunque direzione, e il concetto di potenziale, il quale ricopre una grandissima importanza in Fisica.
@@ -364,8 +362,22 @@ Mostriamo adesso che il valore di $V(x)$ non dipende dalla curva scelta, conside
 siccome $\gamma_x(b) = \tilde{\Gamma}(c) = x$). \\
 Conseguentemente, avremo che $\alpha_x \in C^1_\text{tratti}([a, b+d-c], \Omega)$ ed è chiusa, dunque
 $$
-\int_{\alpha_x} \omega = \int_{\gamma_x + \tilde{Gamma}_x} \omega = \int_{\gamma_x} \omega + \int_{\tilde{\Gamma}_x} \omega = \int_{\gamma_x} \omega - \int_{\Gamma_x} \omega \stackrel{\text{per ip.}}{=} 0 \implies \int_{\gamma_x} \omega= \int_{\Gamma_x} \omega
+\int_{\alpha_x} \omega = \int_{\gamma_x + \tilde{\Gamma}_x} \omega = \int_{\gamma_x} \omega + \int_{\tilde{\Gamma}_x} \omega = \int_{\gamma_x} \omega - \int_{\Gamma_x} \omega \stackrel{\text{per ip.}}{=} 0 \implies \int_{\gamma_x} \omega= \int_{\Gamma_x} \omega
 $$
 dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ per il teorema di invarianza siccome $\tilde{\Gamma}_x = \Gamma_x \circ \varphi$ dove $\varphi(t) = c + d - t$. Abbiamo pertanto dimostrato che dunque la funzione $V(x)$ non dipende dalla curva $C^1$ a tratti scelta
 \end{proof}
-\end{document}
+\begin{theorem}[teorema CF2]
+	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$, allora
+	\begin{align*}
+	&\omega \, \text{ è esatta} & &\iff & &\forall \gamma \in C^1_\text{tratti}([a,b], \Omega) \text{ e } \forall \Gamma \in C^1_\text{tratti}([c,d], \Omega) \text{ tali che } \gamma(a) = \Gamma(c) \text{ e } \gamma(b) = \Gamma(d) \implies \int_\gamma \omega = \int_\Gamma \omega 
+	\end{align*}
+\end{theorem}
+\begin{proof}
+	$\boxed{\Rightarrow}$: è banale siccome se $\omega$ è chiusa allora possiamo prendere una curva $\gamma \in C^1_\text{tratti}([a, b], \Omega)$ e $\Gamma \in C^1_\text{tratti}([c, d], \Omega)$ e definiamo una curva $\alpha(t)$ come fatto nella proposizione
+	\ref{prop:somma_curve}, dunque avremo che
+	$$
+	\oint_\alpha \omega = \int_\gamma \omega + \int_{\tilde{\Gamma}} \omega \stackrel{\text{corollario \ref{cor:cammini_chiusi}}}{=} 0 \implies \int_\gamma \omega = \int_\Gamma \omega
+	$$
+	ovvero quello che volevamo mostrare. \\
+	$\boxed{\Leftarrow}$: consideriamo una curva chiusa $c(t): [t_1, t_2] \to \Omega$ con $c \in C^1_\text{tratti}$ con $-\infty < t_1 < t_2 < +\infty$. Possiamo prendere $\tau = \frac{t_1 + t_2}{2}$ e $c_1 = c_{|_[t_1, \tau]}$ e $c_2 = c_{|_[\tau, t_2]}$
+\end{proof}
