@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1732310094 "main.aux" "main.bbl" "main" 1732310412
+["bibtex main"] 1732311191 "main.aux" "main.bbl" "main" 1732311217
   "bibliography.bib" 1732310017 935 9adbb11be2ec3c5c49fac54b21241a75 ""
   "c:/texlive/2021/texmf-dist/bibtex/bst/base/unsrt.bst" 1644869142 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1732310411 18272 99f7619c244eeef68f0230b3ac485475 "pdflatex"
+  "main.aux" 1732311216 18571 31429256ae8890c4cdccd67622770dad "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1732310386 "c:/Users/franc/appunti_complementi_am2/main.tex" "main.pdf" "main" 1732310412
-  "c:/Users/franc/appunti_complementi_am2/main.tex" 1732304372 5392 554c82e192f1b2ea2cf9d03cd2417bb8 ""
+["pdflatex"] 1732311192 "c:/Users/franc/appunti_complementi_am2/main.tex" "main.pdf" "main" 1732311217
+  "c:/Users/franc/appunti_complementi_am2/main.tex" 1732311170 5473 a6ddbffe24e1038fefb4faabe4996887 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1644869427 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1644870178 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1644869866 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -362,10 +362,10 @@
   "h_preamble/letterfonts.tex" 1727959485 8702 300377c5f733ebe6aa4b7f8e56db5921 ""
   "h_preamble/macros.tex" 1727959485 3479 a2605dd7507c5aa3237be2bd8aa5bbcf ""
   "h_preamble/new_preamble.tex" 1731100170 2432 c3c0f776652988e7bbcb7c4c5fef64ec ""
-  "main.aux" 1732310411 18272 99f7619c244eeef68f0230b3ac485475 "pdflatex"
-  "main.bbl" 1732310094 718 654630975ab918547e94861743c61e1a "bibtex main"
-  "main.tex" 1732304372 5392 554c82e192f1b2ea2cf9d03cd2417bb8 ""
-  "main.toc" 1732310411 2310 aef667179b8204693f311b3be6850a9a "pdflatex"
+  "main.aux" 1732311216 18571 31429256ae8890c4cdccd67622770dad "pdflatex"
+  "main.bbl" 1732311192 718 654630975ab918547e94861743c61e1a "bibtex main"
+  "main.tex" 1732311170 5473 a6ddbffe24e1038fefb4faabe4996887 ""
+  "main.toc" 1732311216 2365 7e2bce11a52992f7681b592f59fe2c78 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
