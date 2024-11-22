@@ -12,3 +12,4 @@ Makefile
 main.blg
 main.fdb_latexmk
 main.fls
+.vscode
