@@ -198,6 +198,7 @@ con l'integrale valutato su una composizione di curve, così come avevamo fatto 
 	$$
 		\int_\gamma \omega = \sigma \int_{\gamma \circ \varphi} \omega
 	$$
+	\label{thm:teo_di_invarianza}
 \end{theorem}
 \begin{proof}
 La dimostrazione è abbastanza simile a quella fatta nel caso di funzioni a valori reali, infatti osserviamo che
@@ -219,7 +220,7 @@ ovvero la tesi. Nel caso in cui $\varphi$ fosse strettamente crescente e, dunque
 	$$
 	\noindent Equivalentemente, nel caso vettoriale, sia sempre $\Omega \subseteq \mathbb{R}^n$ un insieme aperto e sia $F \in C^0(\Omega, \mathbb{R}^n)$ con potenziale $V \in C^1(\Omega)$. \\ Allora $\forall \gamma \in C^1_{\text{tratti}}([a, b], \Omega)$ abbiamo che
 	$$
-		\int_{\gamma} = \int_{\gamma} \nabla V = V(\gamma(b)) - V(\gamma(a))
+		\int_{\gamma} F = \int_{\gamma} \nabla V = V(\gamma(b)) - V(\gamma(a))
 	$$
 \end{prop}
 \begin{proof}
@@ -282,7 +283,16 @@ $$
 \int_\gamma f = \int_a^b f(\gamma(t))|\dot{\gamma}(t)|dt = \int_\gamma f(\rho(t) \cos{\varphi(t)}, \rho(t) \sin{\varphi(t)}) \sqrt{\dot{\rho}^2 + \rho \dot{\varphi}^2} dt
 $$
 \end{proof}
-Andiamo a mostrare l'additività dell'integrazione curvilinea di seconda specie rispetto alla "somma" di curve
+Andiamo a mostrare l'additività dell'integrazione curvilinea di seconda specie rispetto alla "somma" di curve.
+Per la prossima serie di proposizioni faremo implicitamente uso del seguente lemma che, geometricamente, garantisce il fatto di poter individuare, presi due punti $a$ e $b$ di un sottoinsieme aperto e connesso per archi $\Omega \subseteq \mathbb{R}^n$, una poligonale $C^1_\text{tratti}$ che li unisce.
+\begin{lemma}
+	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Per ogni coppia $x, y \in \Omega$ esiste $\gamma:[a, b] \to \Omega$ tale che $\gamma(a) = x$, $\gamma(b)=1$ e $\gamma \in C^1_\text{tratti}$.
+\end{lemma}
+\begin{proof}
+	Dalla connessione per archi di $\Omega$ sappiamo che esiste $\gamma: [a, b] \to \Omega$ continua tale che $\gamma(a) = x$ e $\gamma(b) = y$. \\
+	Potremo a questo punto pensare di "ricoprire" con un numero finito di palle aperte la linea $\gamma([a, b])$ osservando che $\forall x \in \Omega, \exists r > 0: B_r(x) \subseteq \Omega$. Preso $a = x_0$ allora prendiamo $r_0 > 0: B_{r_0} \subseteq \Omega$ (garantito dall'ipotesi che $\Omega$ sia aperto) e consideriamo l'insieme
+	$B_r(x_0) \cap \gamma([a, b]) \neq \emptyset$ (se fosse vuoto allora avremmo un assurdo riguardo all'ipotesi che $\Omega$ sia connesso per archi). Preso $x_1 \in B_r(x_0) \cap \gamma([a, b])$ con $x_1 \neq x_0$, possiamo, a questo punto, iterare il procedimento descritto e ottenere il partizionamento di una curva $C^1_\text{tratti}$ fra $a$ e $b$.
+\end{proof}
 \begin{prop}
 Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto, $\gamma \in C^1_{\text{tratti}}([a, b], \Omega), \Gamma \in C^1_{\text{tratti}}([c, d], \Omega)$ tali che $\gamma(b) = \Gamma(c)$. Allora, definendo 
 $$
@@ -311,7 +321,7 @@ dunque
 &\int_\alpha \omega = \sum_{j=0} \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt = \sum_{j=0}^k \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt + \sum_{j=k} \int_{t_j}^{t_{j+1}} \omega(\alpha(t))(\dot{\alpha}(t))dt = \\
 &= \sum_{j=0}^k \int_{a_j}^{a_{j+1}} \omega(\gamma(t))(\dot{\gamma}(t))dt + \sum_{j=k} \int_{b_{j-k} - c + b}^{b_{j+1-k} - c + b} \omega(\Gamma(t))(\dot{\Gamma}(t))dt
 \end{align*}
-possiamo effettuare un cambio di variabile nella seconda sommatoria con $j' = j -k $ (tuttavia indicheremo nella sommatoria sempre $j$ siccome gli indici sono muti in una sommatoria), pertanto
+possiamo effettuare un cambio di variabile nella seconda sommatoria con $j' = j -k $ (nella sommatoria si usa comunque $j$ essendo gli indici della sommatoria delle variabili mute), pertanto
 \begin{align*}
 &= \sum_{j=0}^k \int_{a_j}^{a_{j+1}} \omega(\gamma(t))(\dot{\gamma}(t))dt + \sum_{j=0} \int_{b_{j} + b - c}^{b_{j+1} + b - c} \omega(\Gamma(t))(\dot{\Gamma(t)})dt =
 \end{align*}
@@ -321,6 +331,9 @@ Possiamo a questo punto fare un cambio di variabile all'interno dell'integrale, 
 \end{align*}
 e questo conclude la dimostrazione.
 \end{proof}
+\begin{remark}
+	Motivati da questa proprietà appena mostrata, si fa spesso uso della seguente notazione $\alpha = \gamma + \Gamma$, tuttavia bisogna naturalmente tenere di conto che non si tratta di una somma effettiva di curve.
+\end{remark}
 \begin{theorem}[teorema CF1]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$. Allora $\omega$ è esatta $\iff \, \forall \gamma \in C^1_\text{tratti} ([a, b], \Omega)$ chiusa abbiamo che
 $$
@@ -330,9 +343,10 @@ Equivalentemente, se $F \in C^0(\Omega, \mathbb{R}^n)$, allora $F$ è conservati
 $$
 \oint_\gamma F = 0
 $$
+\label{thm:teo_cf1}
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
-$\boxed{\Rightarrow}$: se $\omega$ è esatta allora, per il corollario \ref{cor:cammini_chiusi}, abbiamo che
+$\boxed{\Rightarrow}$: se $\omega$ è esatta allora, per il corollario~\ref{cor:cammini_chiusi}, abbiamo che
 $$
 \oint_\gamma \omega = 0
 $$
@@ -358,13 +372,13 @@ dunque, se fissiamo $\varepsilon > 0$, allora sappiamo che per $|h| < \delta$ ab
 &\implies \int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt = o(|h|) 
 \end{align*}
 dunque $V(x)$ è differenziabile con $dV = \omega$ (per unicità del differenziale) e, dunque, $V \in C^1(\Omega)$. \\
-Mostriamo adesso che il valore di $V(x)$ non dipende dalla curva scelta, consideriamo, oltre a $\gamma_x$, la curva $\Gamma_x \in C^1_\text{tratti}([c, d], \Omega)$ tale che $\Gamma_x(c) = x_0$ e $\Gamma_x(d) = x$. Possiamo considerare la curva $\tilde{\Gamma}(t) = \Gamma(c + d - t)$ e definendo la curva $\alpha(t)$ come nella proposizione \ref{prop:somma_curve}, avremo che $\alpha_x = \gamma_x + \tilde{\Gamma}$ è una curva chiusa (che possiamo fare
+Mostriamo adesso che il valore di $V(x)$ non dipende dalla curva scelta, consideriamo, oltre a $\gamma_x$, la curva $\Gamma_x \in C^1_\text{tratti}([c, d], \Omega)$ tale che $\Gamma_x(c) = x_0$ e $\Gamma_x(d) = x$. Possiamo considerare la curva $\tilde{\Gamma}(t) = \Gamma(c + d - t)$ e definendo la curva $\alpha(t)$ come nella proposizione~\ref{prop:somma_curve}, avremo che $\alpha_x = \gamma_x + \tilde{\Gamma}$ è una curva chiusa (che possiamo fare
 siccome $\gamma_x(b) = \tilde{\Gamma}(c) = x$). \\
 Conseguentemente, avremo che $\alpha_x \in C^1_\text{tratti}([a, b+d-c], \Omega)$ ed è chiusa, dunque
 $$
 \int_{\alpha_x} \omega = \int_{\gamma_x + \tilde{\Gamma}_x} \omega = \int_{\gamma_x} \omega + \int_{\tilde{\Gamma}_x} \omega = \int_{\gamma_x} \omega - \int_{\Gamma_x} \omega \stackrel{\text{per ip.}}{=} 0 \implies \int_{\gamma_x} \omega= \int_{\Gamma_x} \omega
 $$
-dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ per il teorema di invarianza siccome $\tilde{\Gamma}_x = \Gamma_x \circ \varphi$ dove $\varphi(t) = c + d - t$. Abbiamo pertanto dimostrato che dunque la funzione $V(x)$ non dipende dalla curva $C^1$ a tratti scelta
+dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ per il teorema di invarianza (teorema~\ref{thm:teo_di_invarianza}) siccome $\tilde{\Gamma}_x = \Gamma_x \circ \varphi$ dove $\varphi(t) = c + d - t$. Abbiamo pertanto dimostrato che dunque la funzione $V(x)$ non dipende dalla curva $C^1$ a tratti scelta
 \end{proof}
 \begin{theorem}[teorema CF2]
 	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$, allora
@@ -372,12 +386,99 @@ dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ 
 	&\omega \, \text{ è esatta} & &\iff & &\forall \gamma \in C^1_\text{tratti}([a,b], \Omega) \text{ e } \forall \Gamma \in C^1_\text{tratti}([c,d], \Omega) \text{ tali che } \gamma(a) = \Gamma(c) \text{ e } \gamma(b) = \Gamma(d) \implies \int_\gamma \omega = \int_\Gamma \omega 
 	\end{align*}
 \end{theorem}
-\begin{proof}
+\begin{proof} \hspace{1cm} \\
 	$\boxed{\Rightarrow}$: è banale siccome se $\omega$ è chiusa allora possiamo prendere una curva $\gamma \in C^1_\text{tratti}([a, b], \Omega)$ e $\Gamma \in C^1_\text{tratti}([c, d], \Omega)$ e definiamo una curva $\alpha(t)$ come fatto nella proposizione
-	\ref{prop:somma_curve}, dunque avremo che
+	~\ref{prop:somma_curve}, dunque avremo che
 	$$
-	\oint_\alpha \omega = \int_\gamma \omega + \int_{\tilde{\Gamma}} \omega \stackrel{\text{corollario \ref{cor:cammini_chiusi}}}{=} 0 \implies \int_\gamma \omega = \int_\Gamma \omega
+	\oint_\alpha \omega = \int_\gamma \omega + \int_{\tilde{\Gamma}} \omega \stackrel{\text{corollario~\ref{cor:cammini_chiusi}}}{=} 0 \implies \int_\gamma \omega = \int_\Gamma \omega
 	$$
 	ovvero quello che volevamo mostrare. \\
-	$\boxed{\Leftarrow}$: consideriamo una curva chiusa $c(t): [t_1, t_2] \to \Omega$ con $c \in C^1_\text{tratti}$ con $-\infty < t_1 < t_2 < +\infty$. Possiamo prendere $\tau = \frac{t_1 + t_2}{2}$ e $c_1 = c_{|_[t_1, \tau]}$ e $c_2 = c_{|_[\tau, t_2]}$
+	$\boxed{\Leftarrow}$: consideriamo una curva chiusa $c(t): [t_1, t_2] \to \Omega$ con $c \in C^1_\text{tratti}$ con $-\infty < t_1 < t_2 < +\infty$. Possiamo prendere $\tau = \frac{t_1 + t_2}{2}$ e $c_1 = c_{|_{[t_1, \tau]}}$ e $c_2 = c_{|_{[\tau, t_2]}}$. \\
+	In analogia a quanto fatto nei precedenti teoremi possiamo definire una funzione $\tilde{c}_2: [\tau, t_2] \to \Omega$ dove $\tilde{c}_2 = c_2(t_2 + \tau - t)$, pertanto avremo che $\tilde{c}_2(t_2) = c_2(t_2 + \tau - t_2) = c_2(t_2) = c(t_2) = c(t_1) = c_1(t_1)$ essendo $c$ una curva chiusa.
+	Inoltre $\tilde{c}_2(t_2) = c(\tau) = c_1(\tau) \implies \int_{c_1} \omega = \int_{\tilde{c}_2} \omega$, tuttavia osserviamo che, in virtù del teorema di invarianza (teorema~\ref{thm:teo_di_invarianza}), avremo che $\int_{\tilde{c}_2} \omega = - \int_{c_2} \omega$, siccome $\tilde{c}_2$ è decrescente, conseguentemente avremo che
+	$$
+	\int_c \omega = \int_{c_1} \omega + \int_{c_2} \omega \stackrel{\text{per ipotesi}}{=} 0 = \int_{c_1} \omega - \int_{\tilde{c}_2} = 0 \implies \int_{c_1} \omega = \int_{\tilde{c}_2}.
+	$$
+	e la segui segue dal teorema~\ref{thm:teo_cf1}, siccome esso garantisce adesso che $\omega$ sia esatta.
 \end{proof}
+\begin{prop}[campi vettoriali e $1$-forme differenziali]
+	Sia $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$ tale che $\omega$ sia esatta. Allora $\omega$ è chiusa. \\
+	Equivalentemente, se $F \in C^1(\Omega, \mathbb{R}^n)$ tale che $F$ sia un campo conservativo. Allora $F$ è irrotazionale.
+\end{prop}
+\begin{proof}
+Sia $P \in C^1(\Omega)$ una primitiva di $\omega$ con $\omega = \sum\limits_{j=1}^n a_j dx_j, a_j = \frac{\partial P}{\partial x_j}$ su $\Omega \, \, \forall j \in \{1, \ldots, n \}$. Poiché
+$\omega$ è $C^1$ avremo che $a_j \in C^1(\Omega) \, \, \forall j \in \{1, \ldots, n \} \implies P \in C^2(\Omega, \mathbb{R}^n)$. Per il teorema di Schwarz allora avremo che
+$$
+\frac{\partial^2 P}{\partial x_i \partial x_j} = \frac{\partial^2 P}{\partial x_j \partial x_i} \, \, \forall i, j \in \{1, \ldots, n \} \text{ con } i \neq j
+$$
+ma allora
+$$
+\frac{\partial a_i}{\partial x_j} = \frac{\partial^2 P}{\partial x_j \partial x_i} \stackrel{\text{thm di Schwarz}}{=} \frac{\partial^2 P}{\partial x_i \partial x_j} = \frac{\partial a_j}{\partial x_i} \implies \frac{\partial a_i}{\partial x_j} - \frac{\partial a_j}{\partial x_i} = 0 \, \, \forall 1 \leq i < j \leq n \implies \omega \text{ è chiusa }
+$$
+ovvero la tesi. Analogamente si può fare la dimostrazione nel caso di campi vettoriali.
+\end{proof}
+Faremo uso adesso del seguente lemma
+\begin{lemma}[CF2]
+	Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto, connesso per archi e sia $f \in C^1(\Omega)$ tale che $\nabla f(x) = 0 \, \, \forall x \in \Omega$. Allora
+	$f(x)=c \, \, \forall x \in \mathbb{R}^n$
+\end{lemma}
+\begin{proof}
+	Fissato $x_0 \in \Omega$ allora indichiamo con $c \in \mathbb{R}$ il valore assunto dalla funzione $f$ in $x_0$. Sia $x \in \Omega$ arbitrario e sappiamo sempre che $\exists \gamma \in C^1_\text{tratti}([a, b], \Omega)$ tale che $\gamma(a) = x_0$ e $\gamma(b)=x$.
+	Conseguentemente avremo che 
+	$$
+	f(x)-f(x_0) = \sum_{j=1}^k f(\gamma(t_j)) - f(\gamma(t_{j-1}))
+	$$
+	dove l'eguaglianza è ottenuta costruendo una semplice serie telescopica. Osserviamo adesso che $f(\gamma(t_j)) - f(\gamma(t_{j-1})) = \int_{t_{j-1}}^{t_j} \innerprod{\nabla f(\gamma(t))}{\dot{\gamma(t)}}dt = 0$ in virtù dell'annullamento del gradiente.
+\end{proof}
+\begin{prop}
+	Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto e connesso per archi e sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$. Allora se $\omega$ è esatta con primite $P_1, P_2 \in C^1(\Omega)$
+	$$
+	\exists c \in \mathbb{R}^n : \, \, \forall x \in \Omega, P_2 - P_1 = c.
+	$$
+	Equivalentemente, se $F \in C^0(\Omega, \mathbb{R}^b)$ è un campo conservativo con potenziali $V_1, V_2 \in C^1(\Omega)$
+	$$
+	\exists c' \in \mathbb{R}^n : \, \, \forall x \in \Omega, V_2 - V_1 = c'.
+	$$
+\end{prop}
+\begin{proof}
+Osserviamo che se $\omega = dP_1 = dP_2 \implies d(P_1 - P_2) = 0 \iff \nabla (P_1 - P_2) = 0 \implies P_1 - P_2 = c \in \mathbb{R} \, \, \forall x \in \Omega$ per il lemma precedente. Analogamente si può mostrare lo stesso per i campi vettoriali.
+\end{proof}
+\begin{remark}
+In virtù della precedente proposizione, se $\Omega \subseteq \mathbb{R}^n$ è un insieme aperto e connesso per archi, allora abbiamo che le primitive di una $1$-forma differenziali o i potenziali di un campo vettoriale sono univocamente determinati
+a meno di una costante additiva.
+\end{remark}
+\begin{remark}
+Abbiamo visto che se $\Omega$ è un insieme aperto, allora
+$$
+\omega \text{ esatta } \implies \omega \text{ chiusa }
+$$
+Ma vale anche il viceversa? \\
+La risposta è no, siccome basta considerare i seguenti insiemi $\Omega = \mathbb{R}^2 \setminus {(0, 0)}$ e $H = \mathbb{R}^2 \setminus \{(x, 0) : x \in \mathbb{R} \}$ e osservare che
+la $1$-forma differenziale $\eta_0 \in C^\infty(\Omega, \mathbb{R}^2)$ definita come $\eta_0 = - \frac{y}{x^2 + y^2}dx + \frac{x}{x^2+y^2}dy$ è chiusa in $\Omega$ e su $H$, infatti
+\begin{equation*}
+\begin{align*}
+    \frac{\partial}{\partial y} \left(- \frac{y}{x^2 + y^2} \right) &= - \frac{y^2 - x^2}{(x^2 + y^2)^2}, \\
+    \frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) &= \frac{y^2 - x^2}{(x^2 + y^2)^2},
+\end{align*}
+\implies \frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) = \frac{\partial}{\partial y} \left( - \frac{y}{x^2 + y^2} \right)
+\end{equation*}
+Vediamo se è esatta: osserviamo che, per le proposizioni viste in precedenza, per mostrare che $\omega$ non è esatta basta individuare un cammino chiuso per cui l'integrale curvilineo valutato sulla curva non è zero. In questo caso è abbastanza semplice da individuare\footnote{il denominatore
+è della forma $x^2 + y^2$ facendoci pensare di usare una curva con $x=\cos{t}$ e $y=\sin{t}$ con $t \in [0, 2 \pi)$}, infatti basta considerare $\gamma(t)=(\cos{t}, \sin{t})$ con $t \in [0, 2 \pi)$ e notare che
+$$
+\oint_\gamma \eta_0 = \int_0^{2 \pi} ((-\sin{t})(-\sin{t}) + \cos{t}\cos{t})dt = \int_0^{2 \pi} 1 dt = 2 \pi \neq 0 \implies \eta_0 \text{ non è esatta }
+$$ \noindent
+Studiamo invece $\eta_0$ su altri insiemi come $\mathbb{R}^+ \times \mathbb{R}$. Prendiamo la funzione $\theta(x, y) = \arctan{\frac{y}{x}}$ detta \emph{funzione argomento}. Osserviamo che
+\begin{align*}
+&d\theta(x, y) = \partial_x \arctan{ \left( \frac{y}{x} \right) }dx + \partial_y \arctan{ \left( \frac{y}{x} \right) }dy = -\frac{\frac{y}{x^2}}{1 + \frac{y^2}{x^2}}dx + \frac{\frac{1}{x}}{1 + \frac{y^2}{x^2}}dy = \eta_0 \implies \\
+&\implies \theta(x, y) \text{ è una primitiva di } \eta_0 \text{ sull'aperto } \mathbb{R}^+ \times \mathbb{R} 
+\end{align*}
+Per quanto riguarda la \emph{funzione argomento} possiamo pensare di estenderla anche a $H$ nella seguente maniera
+\begin{equation*}
+\theta(x, y) = \begin{cases}
+	\arccos{\frac{x}{\sqrt{x^2 + y^2}}} & \text{se } y > 0 \\
+	-\pi & \text{se } \begin{cases} y = 0 \\ x < 0 \end{cases} \\
+	2 \pi - \arccos{\frac{x}{\sqrt{x^2+y^2}}} & \text{se } y < 0 
+\end{cases}
+\end{equation*}
+e possiamo verificare che $\theta \in C^\infty(H)$. Inoltre, calcolando le derivate di $\theta$ su $H$, vediamo che il differenziale di $\theta$ coincide con la $1$-forma differenziale $\eta_0$.
+\end{remark}

@@ -25,7 +25,7 @@ $$
 Se $\underline{x_k} \to \underline{x}$ allora $|\underline{x_k}| \to |\underline{x}|$
 \end{prop}
 \begin{proof}
-si osserva che, dalla proposizione \ref{prop:dis_triang}, si ha che
+si osserva che, dalla proposizione~\ref{prop:dis_triang}, si ha che
 $$
 ||\underline{x_k}| - |\underline{x}|| \leq |\underline{x_k} - \underline{x}| \stackrel{k \to +\infty}{\to} 0
 $$
@@ -39,7 +39,7 @@ osserviamo che
 $$
 |\lambda \underline{x_k} + \mu \underline{y_k} - \lambda \underline{x} - \mu \underline{y}| = |\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})|
 $$
-Per la proposizione \ref{prop:dis_triang} abbiamo che
+Per la proposizione~\ref{prop:dis_triang} abbiamo che
 $$
 |\lambda (\underline{x_k} - \underline{x}) + \mu (\underline{y_k} - \underline{y})| \leq |\lambda| |\underline{x_k} - \underline{x}| + |\mu| |\underline{y_k} - \underline{y}| \stackrel{k \to +\infty}{\to} 0
 $$
@@ -82,7 +82,7 @@ $\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U 
 $$
 |\underline{x_k} - \underline{w}| < \frac{1}{k} \to 0 \implies f(\underline{x_k}) \to f(\underline{z})
 $$
-ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Il fatto che $f(z) \not\in U$ (siccome $U^c$ è chiuso abbiamo che, per la proposizione \ref{prop:caratt_chiusi}, ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$) e ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
+ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Il fatto che $f(z) \not\in U$ (siccome $U^c$ è chiuso abbiamo che, per la proposizione~\ref{prop:caratt_chiusi}, ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$) e ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
 $\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
 \end{proof}
 \begin{theorem}[teorema della permanenza del segno]

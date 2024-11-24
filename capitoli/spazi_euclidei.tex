@@ -266,7 +266,7 @@ $$
 $$
 \end{cor}
 \begin{proof}
-dalla proposizione \ref{prop:prod_mist} sappiamo che
+dalla proposizione~\ref{prop:prod_mist} sappiamo che
 $$
 \innerprod{\underline{v} \times \underline{w}}{\underline{v}} = \text{det}\begin{pmatrix}
 	x_1 & y_1 & x_1 \\
@@ -292,7 +292,7 @@ $$
 \label{cor:norm_cross_prod}
 \end{cor}
 \begin{proof}
-Osserviamo, per la proposizione \ref{prop:prod_mist}, che
+Osserviamo, per la proposizione~\ref{prop:prod_mist}, che
 \begin{align*}
 &\innerprod{\underline{v} \times \underline{w}}{\underline{v} \times \underline{w}} = \text{det}\begin{pmatrix}
 \underline{v} & \underline{w} & \underline{v} \times \underline{w}
@@ -383,7 +383,7 @@ $$
 e questo conclude la dimostrazione.
 \end{proof}
 \begin{remark}
-Unendo quest'ultima proposizione con il corollario \ref{cor:norm_cross_prod} possiamo facilmente vedere che
+Unendo quest'ultima proposizione con il corollario~\ref{cor:norm_cross_prod} possiamo facilmente vedere che
 $$
 |\underline{v} \times \underline{w}| = |\underline{v}| \, |\underline{w}| \sin{\hat{\theta}} = \sqrt{M_{23}(C)^2 + M_{12}(C)^2 + M_{31}(C)^2}
 $$
@@ -425,11 +425,11 @@ Una base positivamente orientata si può sempre rappresentare con la regola dell
 Una base ortonormale $\{ \underline{v} , \underline{w} , \underline{v} \times \underline{w} \}$ è positivamente orientata se e solo se $\underline{z} = \underline{v} \times \underline{w}$
 \end{prop}
 \begin{proof} \hfill \\
-$\boxed{\Leftarrow} \,$: già mostrato per la proposizione \ref{prop:base_pos_orient} \\
-$\boxed{\Rightarrow} \,$: supponiamo di avere la seguente base ortonormale positivamente orientata $\{\underline{i}, \underline{j}, \underline{k} \}$, allora abbiamo che questa segue la regola della mano destra, dunque $\underline{i} \times \underline{j} = \alpha \underline{k}$ con $k \in \mathbb{R}$. Ma allora, per la proposizione \ref{prop:norm_unit_cross_prod}, abbiamo che $|\alpha \underline{k}|=1$ (siccome $\underline{v} \perp \underline{w}$) dunque $\underline{i} \times \underline{j} = \underline{k}$. 	
+$\boxed{\Leftarrow} \,$: già mostrato per la proposizione~\ref{prop:base_pos_orient} \\
+$\boxed{\Rightarrow} \,$: supponiamo di avere la seguente base ortonormale positivamente orientata $\{\underline{i}, \underline{j}, \underline{k} \}$, allora abbiamo che questa segue la regola della mano destra, dunque $\underline{i} \times \underline{j} = \alpha \underline{k}$ con $k \in \mathbb{R}$. Ma allora, per la proposizione~\ref{prop:norm_unit_cross_prod}, abbiamo che $|\alpha \underline{k}|=1$ (siccome $\underline{v} \perp \underline{w}$) dunque $\underline{i} \times \underline{j} = \underline{k}$. 	
 \end{proof}
 \section{Topologia di $\mathbb{R}^n$}
-Come visto dal corso di Analisi Matematica del primo anno, possiamo pensare $\mathbb{R}^n$ come uno spazio metrico se consideriamo la distanza indotta dal prodotto scalare. \\
+Come visto dal corso di Analisi Matematica del primo anno, possiamo pensare $\mathbb{R}^n$ come uno spazio metrico se consideriamo la distanza indotta dal prodotto scalare. Per una trattazione più specifica nella materia (pur conservando un approccio rivolto verso l'applicazione all'Analisi matematica) consiglio di sfogliare l'eccellente capitolo presente in \cite{rudin} o nel \cite{ambrosio} oppure un buon libro di Topologia, di cui consiglio \cite{manetti} oppure \cite{munkres}. \\
 Possiamo dunque andare a definire le \textbf{palle}:
 \begin{definition}[palle aperte e chiuse]
 Sia $x \in \mathbb{R}^n$ e fissiamo $r > 0$. Allora definiamo la palla aperta di raggio $r$ nella seguente maniera

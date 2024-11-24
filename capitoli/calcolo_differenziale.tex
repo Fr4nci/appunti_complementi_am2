@@ -177,7 +177,7 @@ $$
 Dato $v=(\xi_1, \ldots \xi_n)$ allora
 $$
 df(x_0)(v) = \sum_{i=1}^n \xi_i df(x_0)(e_i) = \sum_{i=1}^n \pi_i(v) \partial_{x_i} f(x_0)$$
-dove l'ultima uguaglianza si è ottenuta osservando che $xi_j = \pi_j(v) = dx_j(v)$. A questo punto allora, ricordando che $df(x_0)(e_1) = \partial_{x_i} f(x_0)$ (per il teorema \ref{thm:teorema_df1}), otteniamo la tesi, siccome
+dove l'ultima uguaglianza si è ottenuta osservando che $xi_j = \pi_j(v) = dx_j(v)$. A questo punto allora, ricordando che $df(x_0)(e_1) = \partial_{x_i} f(x_0)$ (per il teorema~\ref{thm:teorema_df1}), otteniamo la tesi, siccome
 $$\sum_{i=1}^n \partial_{x_i} f(x_0) dx_i(v) \implies df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0) dx_i
 $$
 \end{proof}
@@ -719,7 +719,7 @@ e le altre dalle proprietà del differenziale e del gradiente. Concludiamo che
 $$
 g(x_0 + h) = \int_{0}^1 \innerprod{\nabla g(x_0 + th)}{h}dt
 $$
-da cui segue, tramite la \ref{prop:dis_cs} (disuguaglianza di Cauchy-Schwarz), che 
+da cui segue, tramite la~\ref{prop:dis_cs} (disuguaglianza di Cauchy-Schwarz), che 
 $$
 |g(x_0 + h)| = \Bigg| \int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt  \Bigg| \leq \Bigg| \int_{0}^{1} | \innerprod{\nabla g(x_0+th)}{h}|dt \Bigg| \leq \Bigg| \Bigg| \int_0^1 \nabla g(x_0 + th) dt \Bigg| \Bigg| \, \, || h ||
 $$
@@ -799,7 +799,7 @@ Q(x - x_0) = P_k(f, x_0)
 $$
 \end{theorem}
 \begin{proof}
-Per il teorema \ref{thm:form_taylor} abbiamo che
+Per il teorema~~\ref{thm:form_taylor} abbiamo che
 $$
 f(x) = P_k(f, x_0) + o(|x-x_0|^k)
 $$
@@ -946,7 +946,7 @@ Enunciamo il seguente criterio
 Sia $f:\Omega \to \mathbb{R}, f \in C^2 (\Omega)$ con $\Omega \subseteq \mathbb{R}^n$ aperto e sia $x_0 \in \Omega$ un punto critico di f ($\nabla f(x_0) = 0$). Se $Hf(x_0)$ è definita positiva, allora $x_0 \in \Omega$ è un punto di minimo locale per $f$; altrimenti se $Hf(x_0)$ è definita negativa, allora $x_0$ è un punto di massimo locale per $f$.
 \end{theorem}
 \begin{proof} Senza perdita di generalità, facciamo la dimostrazione supponendo che $Hf(x_0)$ sia definita positiva (il caso della matrice hessiana definita negativa è simile). 
-Per il teorema della formula di Taylor \ref{thm:form_taylor} abbiamo che
+Per il teorema della formula di Taylor~~\ref{thm:form_taylor} abbiamo che
 $$
 f(x) = f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)(x-x_0)}{x-x_0} + o(|x-x_0|^2) \text{ per } x \to x_0
 $$
@@ -1000,6 +1000,6 @@ Hf(x_0) = \begin{pmatrix}
 0 & -2
 \end{pmatrix}
 $$
-vuol dire che la funzione, lungo una direzione, assume un massimo locale in quel punto e nell'altra un minimo. La funzione $f(x,y)=x^2-y^2$ (Figura \ref{fig:punto_sella}) nel punto $(0,0)$ lungo la direzione $x$ ha un punto minimo (basti osservare la restrizione della funzione a $y=0$, per cui otteniamo $f(x, 0)=x^2$) e un punto di massimo (basti osservare la restrizione della funzione a $x=0$, per cui otteniamo $f(0, y) = -y^2$). Il motivo della terminologia \emph{punto di sella} deriva proprio del fatto che in due dimensione assume proprio la forma di una sella.
+vuol dire che la funzione, lungo una direzione, assume un massimo locale in quel punto e nell'altra un minimo. La funzione $f(x,y)=x^2-y^2$ (Figura~\ref{fig:punto_sella}) nel punto $(0,0)$ lungo la direzione $x$ ha un punto minimo (basti osservare la restrizione della funzione a $y=0$, per cui otteniamo $f(x, 0)=x^2$) e un punto di massimo (basti osservare la restrizione della funzione a $x=0$, per cui otteniamo $f(0, y) = -y^2$). Il motivo della terminologia \emph{punto di sella} deriva proprio del fatto che in due dimensione assume proprio la forma di una sella.
 \end{remark}
 Il problema è capire come si comporta nei punti per cui è presente un autovalore nullo: purtroppo, quando l'hessiana è semi-definita abbiamo bisogno di procedere tramite dei ragionamenti più sofisticati che dipendono da caso a caso.
