@@ -1,3 +1,41 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{lang}
+Serge Lang.
+\newblock {\em Linear Algebra}.
+\newblock Undegraduate Texts in Mathematics. Springer New York, NY, third
+  edition, 2010.
+
+\bibitem{sernesi}
+Edoardo Sernesi.
+\newblock {\em Geometria 1}.
+\newblock Programma di Matematica, Fisica, Elettronica. Bollati Bolinghieri,
+  second edition, 2000.
+
+\bibitem{rudin}
+W.~Rudin.
+\newblock {\em Principles of Mathematical Analysis}.
+\newblock McGraw Hill, third edition, 1976.
+
+\bibitem{ambrosio}
+Fulvio~Ricci Luigi~Ambrosio, Carlo~Mantegazza.
+\newblock {\em Complementi di Matematica}.
+\newblock Edizioni della Normale Pisa, seconda edition, 2023.
+
+\bibitem{manetti}
+Marco Manetti.
+\newblock {\em Topologia}.
+\newblock UNITEXT. Springer Milano, seconda edition, 2014.
+
+\bibitem{munkres}
+James Munkres.
+\newblock {\em Topology}.
+\newblock Pearson Education, second edition, 2013.
+
+\bibitem{measure_theory}
+Andrea~Mennucci Luigi~D'Ambrosio, Giuseppe~Prato.
+\newblock {\em Introduction to Measure Theory and Integration}.
+\newblock Publications of the Scuola Normale Superiore. Edizioni della Normale
+  Pisa, 2011.
 
 \end{thebibliography}

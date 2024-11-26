@@ -49,25 +49,25 @@ $$
 \innerprod {\underline{v}}{\underline{w}} = \innerprod{\sum_{j=1}^n x_j \underline{v}_j}{\sum_{i=1}^n y_i \underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_j y_i \innerprod{\underline{v}_j}{\underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_i y_i \delta_{ij} = \sum_{i=1}^n x_i y_i
 $$
 \begin{definition}[norma]
-	Sia $V$ uno spazio vettoriale reale (o complesso). Si definisce norma un'applicazione $|| \cdot ||: V \to \mathbb{R}$ ($|| \cdot ||: V \to \mathbb{C}$) che verifica le seguenti condizioni:
+	Sia $V$ uno spazio vettoriale reale (o complesso). Si definisce norma un'applicazione $| \cdot |: V \to \mathbb{R}$ ($| \cdot |: V \to \mathbb{C}$) che verifica le seguenti condizioni:
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
-		\item $||\underline{v}|| \geq 0 \, \, \forall \underline{v} \in V$
-		\item $|| \underline{v} || = 0 \iff \underline{v} = \underline{0}$
-		\item $|| \lambda \underline{v} || = | \lambda | || \underline{v} || \, \, \forall \lambda \in \mathbb{R}, \forall \underline{v} \in V$
-		\item $|| \underline{v} + \underline{w} || \leq || \underline{v} || + || \underline{w} || \, \, \forall \underline{v}, \underline{w} \in V$
+		\item $|\underline{v}| \geq 0 \, \, \forall \underline{v} \in V$
+		\item $| \underline{v} | = 0 \iff \underline{v} = \underline{0}$
+		\item $| \lambda \underline{v} | = | \lambda | | \underline{v} | \, \, \forall \lambda \in \mathbb{R}, \forall \underline{v} \in V$
+		\item $| \underline{v} + \underline{w} | \leq | \underline{v} | + | \underline{w} | \, \, \forall \underline{v}, \underline{w} \in V$
 	\end{enumerate}
 	(analogamente per uno spazio definito su $\mathbb{C}$ sostituendo $\mathbb{C}$ a $\mathbb{R}$)
 \end{definition}
-\noindent \textbf{Notazione}: la norma di un vettore verrà indicata all'interno di questo documento, per comodità, sia con $||\cdot||$ e sia con $|\cdot|$
+\noindent \textbf{Notazione}: la norma di un vettore verrà indicata all'interno di questo documento, per comodità, sia con $|\cdot|$ e sia con $|\cdot|$
 \begin{remark}
-Osserviamo che se $(V, \varphi)$ è uno spazio euclideo allora $|| \cdot || = \sqrt{\varphi(\cdot, \cdot)}$ è una norma: il prodotto scalare \emph{induce} una norma su $V$. Mostreremo più avanti il punto $\circled{4}$ (ovvero la proprietà \emph{meno} banale fra quelle) usando la norma indotta dal prodotto scalare
+Osserviamo che se $(V, \varphi)$ è uno spazio euclideo allora $| \cdot | = \sqrt{\varphi(\cdot, \cdot)}$ è una norma: il prodotto scalare \emph{induce} una norma su $V$. Mostreremo più avanti il punto $\circled{4}$ (ovvero la proprietà \emph{meno} banale fra quelle) usando la norma indotta dal prodotto scalare
 \end{remark}
 \noindent Sapendo che $\mathbb{E}_n \simeq \mathbb{R}^n$(quando quest'ultimo è munito di un prodotto scalare definito positivo naturalmente) possiamo effettuare tutte le dimostrazioni in $\mathbb{R}^n$ e queste saranno naturalmente valide in tutti gli spazi euclidei di dimensione finita $n$. 
-\begin{theorem} Sia $(V, \varphi)$ uno spazio euclideo. Allora $$\forall \underline{v}, \underline{w} \in V, \innerprod{\underline{v}}{\underline{w}} = ||\underline{v}|| \, || \underline{w} || \cos{\hat{\theta}}$$
+\begin{theorem} Sia $(V, \varphi)$ uno spazio euclideo. Allora $$\forall \underline{v}, \underline{w} \in V, \innerprod{\underline{v}}{\underline{w}} = |\underline{v}| \, | \underline{w} | \cos{\hat{\theta}}$$
 dove $\hat{\theta}$ è l'angolo convesso fra i due vettori $\underline{v}$ e $\underline{w}$
 \end{theorem}
 \begin{proof}
-consideriamo due vettori $\underline{v} \in \mathbb{E}_2$ con $|| \underline{v} || = || \underline{w} || = 1$. Prendiamo per semplicità $\underline{v} = \underline{e}_1$ e si osserva che
+consideriamo due vettori $\underline{v} \in \mathbb{E}_2$ con $| \underline{v} | = | \underline{w} | = 1$. Prendiamo per semplicità $\underline{v} = \underline{e}_1$ e si osserva che
 $$
 \innerprod{\underline{e}_1}{\underline{w}} = \cos{\hat{\theta}}
 $$
@@ -87,7 +87,7 @@ $$
 dunque la tesi (in $\mathbb{E}_2$). Per generalizzare questo concetto a qualunque spazio, noi sappiamo che possiamo considerare il piano $\pi = \text{Span}(\underline{v}, \underline{w})$ e considerare il loro angolo $\hat{\theta}$ convesso giacente in questo piano.
 \end{proof}
 \begin{prop}[Disuguaglianza di Cauchy-Schwarz]
-$$\forall \underline{v}, \underline{w} \in \mathbb{E}_n, \, | \innerprod{\underline{v}}{\underline{w}} | \leq ||\underline{v}|| \, ||\underline{w}||$$
+$$\forall \underline{v}, \underline{w} \in \mathbb{E}_n, \, | \innerprod{\underline{v}}{\underline{w}} | \leq |\underline{v}| \, |\underline{w}|$$
 \label{prop:dis_cs}
 \end{prop}
 \begin{proof}
@@ -105,14 +105,14 @@ $$
 $$
 non deve avere soluzione, il che implica che
 $$
-\Delta = 4\innerprod{\underline{v}}{\underline{w}}^2 - 4 \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} < 0 \implies \innerprod{\underline{v}}{\underline{w}}^2 < \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} \implies |\innerprod{\underline{v}}{\underline{w}}| < ||\underline{v}|| \, ||\underline{w}||
+\Delta = 4\innerprod{\underline{v}}{\underline{w}}^2 - 4 \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} < 0 \implies \innerprod{\underline{v}}{\underline{w}}^2 < \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} \implies |\innerprod{\underline{v}}{\underline{w}}| < |\underline{v}| \, |\underline{w}|
 $$
 \end{proof}
 \begin{prop}[Disuguaglianza triangolare] \hfill \\
 $ \forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item $|\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|$
-	\item $||\underline{v}| - |\underline{w}|| \leq |\underline{v} - \underline{w}|$
+	\item $|\underline{v}| - |\underline{w}| \leq |\underline{v} - \underline{w}|$
 \end{enumerate}
 \label{prop:dis_triang}
 \end{prop}
@@ -136,7 +136,7 @@ $$
 $$
 dunque possiamo concludere che
 $$
-||\underline{v}| - |\underline{w}|| \leq |\underline{v} - \underline{w}|
+|\underline{v}| - |\underline{w}| \leq |\underline{v} - \underline{w}|
 $$
 ottenendo la tesi
 \end{proof}
@@ -444,7 +444,7 @@ con centro $x$ e raggio $r$.
 \end{definition}
 \noindent Ma cosa vuol dire palla aperta? In generale possiamo definire la nozione di insieme aperto nella seguente maniera:
 \begin{definition}[insieme aperto]
-$A \subset \mathbb{R}^n$ è un insieme aperto se $\forall y \in A \exists r > 0: B(\underline{y}, r_y) \subset A$
+$A \subset \mathbb{R}^n$ è un insieme aperto se $\forall y \in A \exists r > 0: B(y, r_y) \subset A$
 \end{definition}
 \begin{exercise}
 Mostrare che $B(x, r)$ è un aperto $\forall x \, \forall r$
@@ -463,3 +463,51 @@ Siano $\{A_j: j \in J \}$ una famiglia di aperti (non necessariamente numerabile
 \begin{proof}[Svolgimento]
 si osserva che, siccome $A_j$ è un insieme aperto $\forall j$, allora $\forall a \in A_j \exists r > 0: B(a, r) \subset A_j$, ma allora $B(a, r) \subset \bigcup\limits_{j \in J} A_j$, dunque $\forall a \in \bigcup\limits_{j \in J} A_j \exists r > 0: B(a, r) \subset \bigcup\limits_{j \in J} A_j$
 \end{proof}
+\begin{exercise}
+Siano $A_1, \ldots A_k \subseteq \mathbb{R}^n$ aperti, allora $\bigcap\limits_i^k A_i$ è un aperto
+\end{exercise}
+\begin{proof}
+Sia $x \in \bigcap\limits_{i}^k A_i \implies \, \, \forall i \in \{1, \ldots, n \}, x \in A_i$ e, siccome per ipotesi sono aperti, avremo che $\forall i \, \, \exists r_i(x) : B(x, r_i(x)) \subseteq A_i$, dunque preso $r=\min\limits_i{ \{ r_i(x) : i \in \{1, \ldots, k \} \} }$ avremo che $\forall i \in \{1, \ldots, k \}, B(x, r) \subseteq A_i \implies B(x, r) \subseteq \bigcup\limits_i^k A_i$,
+dunque $\forall x \in \bigcap\limits_{i}^k A_i \, \, \exists r > 0 : B(x, r) \subseteq \bigcap\limits_i^k A_i$, dunque è aperto per definizione.
+\end{proof}
+\begin{exercise}
+Sia $A=\{(x, y) \in \mathbb{R}^2 : 1 < x^2 + y^2 < 4 \} = B(0, 2) \setminus \mathbb{B}(0,1)$, provare che $A$ è aperto
+\end{exercise}
+\begin{proof}
+	Fissiamo $x \in A$ e prendiamo come $r=\min{ \{ 4-|x|, |x|-1 \} }$ avremo che
+	$$
+	|y| \leq |y-x+x| \leq |y-x| + |x| < |x| + r \stackrel{r \leq 4 - |x|^2}{\leq} |x| + 4 - |x| = 4
+	$$
+	A questo punto osserviamo che:
+	$$
+	|y| \geq -|x-y| + |x| \geq |x| - r > 1
+	$$
+	dunque in conclusione abbiamo che $\forall y \in B(x, r), 1 < |y| < 4$. Avremo quindi che $A$ è aperto.
+\end{proof}
+\begin{exercise}
+Provare che $A = \{(x, y, z) : -1 < x < 2 \} = (-1, 2) \times \mathbb{R}^2$ ed è un insieme aperto in $\mathbb{R}^3$
+\end{exercise}
+\begin{proof} \hspace{1cm} \\
+	Mostriamo che $A \subseteq (-1, 2) \times \mathbb{R}^2$: osserviamo che, per definizione di $A$, $-1<x<2$ e, non essendoci altri vincoli, $y$, $z \in \mathbb{R}^2$; pertanto $A \subseteq (-1, 2) \times \mathbb{R}^2$. \\
+	Mostriamo che $(-1, 2) \times \mathbb{R}^2 \subseteq A$: osserviamo che, per definizione di prodotto cartesiano, preso $(x, y, z) \in \mathbb{R}^3$ allora $x \in (-1, 2) \implies -1 < x < 2$ dunque $(-1, 2) \times \mathbb{R}^2 \subseteq A$. \\
+	Dimostriamo che è aperto: preso $x'=(x, y, z) \in A$ allora possiamo considerare $r = \min{ \{x+1, 2-x \} }$ avremo che preso $y \in B(x', r)$ allora, posto $y=(y_x, y_y, y_z)$ e $x'=(x, x'_y, x'_z)$, avremo che
+	$$
+	|x - y_x| \leq |x'-y|^2 < r \implies |y_x - x| < r \implies y_x \in (x - r, x + r) 
+	$$
+	ma $x + r \leq x + 2 - x = 2 \implies x + r \leq 2$ e $x - r \geq x - x + 1 = 1$, dunque $y_x \in (-1, 2)$.
+\end{proof}
+\begin{exercise}
+	Provare che $\mathbb{R}^n$ è aperto
+\end{exercise}
+\begin{proof}
+	Sia $x \in \mathbb{R}^n$, allora preso $r > 0$ e la palla $B(x, r)$ avremo che, per definizione, $\forall y \in B(x, r), y \in \mathbb{R}^n \implies B(x, r) \subseteq \mathbb{R}^n$.
+\end{proof}
+
+Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
+\begin{definition}
+	Sia $x \in \mathbb{R}^n$ e sia $A \subseteq \mathbb{R}^n$, diremo che $x$ è un punto di frontiera per $A$ se $\forall r > 0, B(x, r) \cap A \neq \emptyset$ e $B(x, r) \cap A^c \neq \emptyset$. \\
+	Definiamo
+	$$
+	\text{Fr}(A)=\{x \in \mathbb{R}^n : x \text{di frontiera} \}
+	$$
+\end{definition}

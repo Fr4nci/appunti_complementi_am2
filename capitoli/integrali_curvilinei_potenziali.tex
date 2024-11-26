@@ -368,7 +368,7 @@ $$
 $$
 dunque, se fissiamo $\varepsilon > 0$, allora sappiamo che per $|h| < \delta$ abbiamo che
 \begin{align*}
-&\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x)||h| \leq \varepsilon |h| \implies \frac{|\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt|}{|h|} \leq \varepsilon \\
+&\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x)|h| \leq \varepsilon |h| \implies \frac{|\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt|}{|h|} \leq \varepsilon \\
 &\implies \int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt = o(|h|) 
 \end{align*}
 dunque $V(x)$ è differenziabile con $dV = \omega$ (per unicità del differenziale) e, dunque, $V \in C^1(\Omega)$. \\
@@ -456,12 +456,13 @@ Ma vale anche il viceversa? \\
 La risposta è no, siccome basta considerare i seguenti insiemi $\Omega = \mathbb{R}^2 \setminus {(0, 0)}$ e $H = \mathbb{R}^2 \setminus \{(x, 0) : x \in \mathbb{R} \}$ e osservare che
 la $1$-forma differenziale $\eta_0 \in C^\infty(\Omega, \mathbb{R}^2)$ definita come $\eta_0 = - \frac{y}{x^2 + y^2}dx + \frac{x}{x^2+y^2}dy$ è chiusa in $\Omega$ e su $H$, infatti
 \begin{equation*}
-\begin{align*}
-    \frac{\partial}{\partial y} \left(- \frac{y}{x^2 + y^2} \right) &= - \frac{y^2 - x^2}{(x^2 + y^2)^2}, \\
-    \frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) &= \frac{y^2 - x^2}{(x^2 + y^2)^2},
-\end{align*}
-\implies \frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) = \frac{\partial}{\partial y} \left( - \frac{y}{x^2 + y^2} \right)
-\end{equation*}
+	\begin{aligned}
+		\frac{\partial}{\partial y} \left(- \frac{y}{x^2 + y^2} \right) &= - \frac{y^2 - x^2}{(x^2 + y^2)^2}, \\
+		\frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) &= \frac{y^2 - x^2}{(x^2 + y^2)^2},
+	\end{aligned}
+	\implies 
+	\frac{\partial}{\partial x} \left( \frac{x}{x^2 + y^2} \right) = \frac{\partial}{\partial y} \left( - \frac{y}{x^2 + y^2} \right).
+	\end{equation*}	
 Vediamo se è esatta: osserviamo che, per le proposizioni viste in precedenza, per mostrare che $\omega$ non è esatta basta individuare un cammino chiuso per cui l'integrale curvilineo valutato sulla curva non è zero. In questo caso è abbastanza semplice da individuare\footnote{il denominatore
 è della forma $x^2 + y^2$ facendoci pensare di usare una curva con $x=\cos{t}$ e $y=\sin{t}$ con $t \in [0, 2 \pi)$}, infatti basta considerare $\gamma(t)=(\cos{t}, \sin{t})$ con $t \in [0, 2 \pi)$ e notare che
 $$
