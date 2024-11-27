@@ -511,3 +511,86 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 	\text{Fr}(A)=\{x \in \mathbb{R}^n : x \text{di frontiera} \}
 	$$
 \end{definition}
+\begin{exercise}
+	Provare che $\text{Fr} \, B(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$ e $\text{Fr} \, \mathbb{B}(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$
+\end{exercise}
+\begin{proof}
+	Mostriamo che $\text{Fr} \, B(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$: %sia $y \in \text{Fr} \, B(x, r)$ allora avremo che $\forall r > 0: B(y, r) \cap B(x, r) \neq \emptyset$ e $B(y, r) \cap (B(x, r))^c \neq \emptyset$. \\
+	%Possiamo dunque una successione $r_k = \frac{1}{k}$ e dovremo avere che $B(y, r_k) \cap B(x, r) \neq \emptyset$ e $B(y, r_k) \cap (B(x, r))^c \neq \emptyset$ per quanto detto prima, 
+	possiamo osservare che $\forall z \in \{y \in \mathbb{R}^n : |x-y| = r \}, B(z, \varepsilon) \cap B(x, r) \neq \emptyset$, infatti possiamo considerare innanzitutto il segmento che congiunge il punto $y$ e $x$
+	$$
+	y = z + t(x-z), t \in [0, 1] \implies |x-y| = |(1-t)(x-z)| \implies |x-y| = |1-t|r
+	$$
+	la condizione che $|x-y|<r$ si ottiene ponendo che $|x-y| < r$, ovvero $|1-t| r < r \implies |1-t| < 1$. Considerando a questo punto il segmento che congiunge $z$ con $y$, avremo che
+	$$
+	|z-y| < \varepsilon \implies |z-y| = |z-(z+t(x-z))| = |t(x-z)| = t|x-z| = tr < \varepsilon \implies t < \frac{\varepsilon}{r} 
+	$$
+	pertanto, rimettendo insieme le condizioni trovate, dobbiamo risolvere il seguente sistema di disequazioni:
+	\begin{equation*}
+		\begin{cases}
+			&|1-t| < 1 \implies 0 < t < 2 \\
+			&t < \frac{\varepsilon}{r}
+		\end{cases}
+	\end{equation*}
+	che è sempre vero $\forall t \in (0, \frac{\varepsilon}{r})$. Possiamo fare lo stesso per mostrare che $B(z, \varepsilon) \cap (B(x, r))^c$, dunque $\{y \in \mathbb{R}^n: |x-y| = r \} \subseteq \text{Fr} \, B(x, r)$. Mostriamo adesso che vale il viceversa mostrando che 
+	se $z \not\in \{y \in \mathbb{R}^n : |x-y| = r \} \implies x \not\in \text{Fr} \, B(x, r)$ (il che equivale a mostrare che $\text{Fr} \, B(x,r) \subseteq \{y \in \mathbb{R}^n : |x-y| = r \}$), siccome sono possibili due casi:
+	\begin{itemize}
+		\item $|x-z| < r \implies z \in B(x, r)$;
+		\item $|x-z| > r \implies z \in (B(x, r))^c$
+	\end{itemize}
+	e non è possibile che $z \in \text{Fr} \, B(x, r)$ siccome se per assurdo $\forall r' > 0, B(z, r') \cap B(x, r) \neq \emptyset \wedge B(z, r') \cap (B(x, r))^c$ sappiamo che, dall'apertura di $B(x, r)$, $\exists r'' > 0: B(z, r'') \subseteq A$ ma allora
+	$$
+	(B(x, r))^c \cap B(z, r'') \subseteq B(x, r)
+	$$
+	il che è un assurdo siccome $(B(x,r))^c \cap B(x, r) = \emptyset$. \\
+	Per la sfera chiusa è analoga.
+\end{proof}
+\begin{definition}[punti di aderenza]
+	Sia $A \neq \emptyset$ e $A \subseteq \mathbb{R}^n$, diremo che $x \in \mathbb{R}^n$ è un punto di aderenza o di chiusura di $A$ se $\forall r > 0, B(x, r) \cap A \neq \emptyset$. \\
+	Inoltre indicheremo con $\bar{A}$ l'insieme dei punti di aderenza di $A$.
+\end{definition}
+\begin{remark}
+	Naturalmente $A \subseteq \bar{A}$, siccome $\forall r > 0: B(x, r) \cap A \supseteq \{ x \} \neq \emptyset$
+\end{remark}
+\begin{definition}[insieme chiuso]
+	Un insieme $F$ è chiuso se contiene tutti i suoi punti di aderenza, ovvero $F = \bar{F}$.
+\end{definition}
+\begin{exercise}
+	Provare che $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$
+\end{exercise}
+\begin{proof}
+	Sia $x \in \text{Fr} \, A \implies \forall r > 0, B(x, r) \cap A \neq \emptyset \wedge B(x, r) \cap A^c \neq \emptyset$, ma allora $\forall r > 0, B(x, r) \cap A \neq \emptyset \implies x$ è un punto di aderenza di $A$, dunque $x \in \bar{A}$, e $\forall r > 0, B(x, r) \cap A^c \neq \emptyset \implies x$ è un punto
+	di aderenza di $A^c$, pertanto $x \in \bar{A} \cap \bar{A^c}$. Sia $x \in \bar{A} \cap \bar{A^c}$, allora, per definizione, avremo che $\forall r > 0: B(x, r) \cap A \neq \emptyset$ e $\forall r > 0: B(x, r) \cap A^c \neq \emptyset$, dunque $x \in \text{Fr} \, A$.
+\end{proof}
+\begin{exercise}
+	$A \subseteq \mathbb{R}^n$ è chiuso $\iff \text{Fr} \, A \subseteq A$
+\end{exercise}
+\begin{proof} \hspace{1cm} \\
+	$\boxed{\Rightarrow}$: osserviamo che se $A$ è chiuso, allora $A = \bar{A}$, pertanto siccome $\text{Fr} \, A \subseteq \bar{A} \implies \text{Fr} \, A \subseteq A$. Si ha necessariamente che $\text{Fr} \, A \subseteq \bar{A}$ siccome $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$. \\
+	$\boxed{\Leftarrow}$: se $\text{Fr} \, A \subseteq A$ allora preso $x \in \bar{A}$ avremo due possibilità:
+	\begin{itemize}
+		\item $x \in A$;
+		\item $x \in \text{Fr} \, A \subseteq A \implies x \in A \implies x \in A$
+	\end{itemize}
+	dunque $\bar{A} \subseteq A \implies A = \bar{A}$.
+\end{proof}
+\begin{exercise}
+	Provare che $\bar{A} = A \cup \text{Fr} \, A$
+\end{exercise}
+\begin{proof} \hspace{1cm} \\
+	Il fatto che $\bar{A} \subseteq A \cup \text{Fr} \, A$ si ottiene ragionando come nello scorso esercizio. Il viceversa si ottiene dal seguente ragionamento: supponiamo che $\exists x \in A \cup \text{Fr} \, A$ tale che $x \not\in \bar{A}$, allora escludiamo che $x \not\in A$ siccome $A \subseteq \bar{A}$. Dunque $x \in \text{Fr} \, A$ ma $\forall x \in \text{Fr} \, A$ abbiamo che
+	$\forall r > 0, B(x, r) \cap A \neq \emptyset \wedge B(x, r) \cap A^c \neq \emptyset$, dunque $x$ è un punto di aderenza di $A$ il che è un assurdo siccome implicherebbe che $x \in \bar{A}$.
+\end{proof}
+\begin{definition}[punti interni]
+	Sia $A \subseteq \mathbb{R}^n$, diremo che $x$ è un punto interno di $A$ se $\exists r > 0: B(x, r) \subseteq A$
+\end{definition}
+\begin{remark}
+$A$ aperto $\iff A = \text{Int} \, A$
+\end{remark}
+\begin{prop}
+$F$ è chiuso $\iff F^c$ è aperto
+\end{prop}
+\begin{proof} \hspace{1cm} \\
+	$\boxed{\Rightarrow}$: se $F$ è chiuso e $z \in F^c \implies z \in \text{Int} \, (F^c)$. Se per assurdo $z \not\in \text{Int} \, (F^c)$ allora $\forall r > 0: B(z, r) \not\subseteq F^c \implies B(z, r) \cap F \neq \emptyset \implies z \in \bar{F} = F \implies z \in F$, che contraddice l'ipotesi iniziale. \\
+	$\boxed{\Leftarrow}$: se $F^c$ è aperto, allora preso $z \in \bar{F}$ se, per assurdo, avessimo che $z \not\in F \implies z \in F^c$ allora $\exists \varepsilon > 0: B(z, \varepsilon) \subseteq F^c$ (per l'ipotesi di apertura), pertanto $B(z, \varepsilon) \cap F = \emptyset \implies z \not\in \bar{F}$, il che contraddice l'ipotesi iniziale. 
+\end{proof}
