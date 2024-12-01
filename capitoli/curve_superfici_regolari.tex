@@ -39,7 +39,7 @@ f(x) - f(\xi) = \eta
 $$
 \end{proof}
 \section{Teorema delle funzioni implicite o del Dini}
-Un argomento che si vogliono trattare sono le curve e le superfici. In generale, possiamo vedere queste con due approcci:
+Adesso il nostro argomento di interesse saranno le curve e le superfici: vogliamo sviluppare degli strumenti con cui trattare questo tipo di oggetti. In generale, possiamo procedere verso il nostro obbiettivo con due \emph{approcci} possibili:
 \begin{itemize}
 	\item un approccio "parametrico", in cui parametrizziamo la superficie che vogliamo rappresentare in base a delle variabili che facciamo variare all'interno di un intervallo;
 	\item un approccio più vicino a quello dell'Analisi, ovvero quello di pensarle come curve di livello di una funzioni a più variabili
@@ -56,7 +56,7 @@ $$
 $$
 oppure visualizzandola come il luogo dei punti in cui la funzione $g(x, y) = x^2 + y^2 - 4$ si annulla e caratterizzare la nostra circonferenza $\Gamma$ come
 $$
-\Gamma : g^{-1}(0)
+\Gamma : g^{-1}(0) \mapsto 0
 $$
 quindi definire la circonferenza come la pre-immagine del valore $0$ assunto dalla funzione $g$. \\
 Il teorema della funzione inversa rende possibile anche la caratterizzazione delle funzioni implicite ad un livello \emph{locale}: infatti ci dice che, in un intorno molto piccolo del punto $f(x_0)$, è possibile visualizzare la funzione implicita come un oggetto che vive in una dimensione più piccola. Andiamo ad enunciare questo teorema
@@ -139,7 +139,7 @@ Evidenziando la regolarità di $C$, diremo che $C$ è una curva di classe $C^k$
 \begin{theorem}[funzione implicita rispetto a $y$ e $z$]
 Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 ( \Omega )$ tale che $\partial_x f(x_0) \neq 0$. Allora
 $$
-\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}, \delta) \}
+\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}), \delta) \}
 $$
 ed esiste $\varphi: B((x_{0_2}, x_{0_3}) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ con $\varphi(x_{0_2}, x_{0_3}) = x_{0_1}$ tale che
 $$
@@ -164,7 +164,7 @@ f(x_1, x_2, \varphi(x_1, x_2)) = f(x_{0_1}, x_{0_2}, x_{0_3})
 $$
 Inoltre
 $$
-\partial_{x_j} \varphi(x_1, x_2) = - \frac{\partial_{x_j} f(x_1, x_2, \varphi(x_1, x_2))}{\partial_{x_1} f(x_1, x_2, \varphi(x_1, x_2))} \, \, \forall j \in \{1, 2 \} \, \, \forall (x_1, x_2) \in B((x_{0_1}, x_{0_2}, x_{0_3})
+\partial_{x_j} \varphi(x_1, x_2) = - \frac{\partial_{x_j} f(x_1, x_2, \varphi(x_1, x_2))}{\partial_{x_1} f(x_1, x_2, \varphi(x_1, x_2))} \, \, \forall j \in \{1, 2 \} \, \, \forall (x_1, x_2) \in B((x_{0_1}, x_{0_2}, x_{0_3}), \sigma)
 $$
 \end{theorem}
 \begin{definition}[superficie regolare]
