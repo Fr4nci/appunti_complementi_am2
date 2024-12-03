@@ -185,8 +185,19 @@ $$
 \end{remark}
 
 \begin{remark}
-Questa "dualità" presente fra campo vettoriale e forme differenziali riflette il fatto che su $\mathbb{R}^n$ siano la stessa cosa, infatti guardando l'insieme $\mathbb{R}^n$ come varietà differenziale con la metrica riemanniana possiamo
-far corrispondere univocamente forma differenziale a campo vettoriale.
+Questa \emph{dualità} presente fra i campi vettoriali e le $1-$forme differenziali deriva dal fatto che, di fatto, questi sono la stessa cosa: infatti,
+noi potremmo pensare di considerare $F \in C^0(\Omega, \mathbb{R}^n), F=(f_1, \ldots, f_n)$ e costruire una $1-$forma del tipo $\omega_F=f_1 dx_1 + f_2 dx_2 + \ldots + f_ndx_n$ come $1-$forma differenziale associata ad $F$ e osservare
+che $\forall \gamma \in C^1_\text{tratti}([a, b], \Omega)$ abbiamo che
+$$
+\int_\gamma F = \int_\gamma \omega_F
+$$
+Viceversa, presa $\omega = \sum_{i=1}^n a_i dx_i$ se definiamo $F_\omega = (a_1, a_2, \ldots, a_n) \implies$
+$$
+\int_\gamma \omega = \int_\gamma F_\omega
+$$
+Tali eguaglianze seguono immediatamente dalle definizioni e giustificano questa doppia formulazione che abbiamo dato. \\
+Osservando la questione da un punto di vista più elevato, in presenza di metrica riemanniana, l'applicazione dell'operazione di contrazione fornisce un modo per far corrispondeere ad ogni campo vettoriale
+una $1-$forma differenziale \emph{contraendo} il campo vettoriale con la metrica. Quindi da questo breve accenno senza formule, possiamo intuire che campi vettoriali e $1-$forme differenziali siano, in sostanza, due lati della stessa moneta.
 \end{remark}
 
 Con le forme differenziali (e dunque anche con i campi vettoriali) possiamo giungere ad un risultato equivalente a quello raggiunto
@@ -401,9 +412,10 @@ dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ 
 	$$
 	e la segui segue dal teorema~\ref{thm:teo_cf1}, siccome esso garantisce adesso che $\omega$ sia esatta.
 \end{proof}
-\begin{prop}[campi vettoriali e $1$-forme differenziali]
+\begin{prop}[le $1$-forme differenziali esatte sono chiuse]
 	Sia $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$ tale che $\omega$ sia esatta. Allora $\omega$ è chiusa. \\
 	Equivalentemente, se $F \in C^1(\Omega, \mathbb{R}^n)$ tale che $F$ sia un campo conservativo. Allora $F$ è irrotazionale.
+	\label{prop:esattezza_imp_chiusura}
 \end{prop}
 \begin{proof}
 Sia $P \in C^1(\Omega)$ una primitiva di $\omega$ con $\omega = \sum\limits_{j=1}^n a_j dx_j, a_j = \frac{\partial P}{\partial x_j}$ su $\Omega \, \, \forall j \in \{1, \ldots, n \}$. Poiché
@@ -483,3 +495,100 @@ Per quanto riguarda la \emph{funzione argomento} possiamo pensare di estenderla 
 \end{equation*}
 e possiamo verificare che $\theta \in C^\infty(H)$. Inoltre, calcolando le derivate di $\theta$ su $H$, vediamo che il differenziale di $\theta$ coincide con la $1$-forma differenziale $\eta_0$.
 \end{remark}
+\section{Omotopia e curve omotope}
+Vogliamo adesso studiare quali sono le condizioni per cui una $1-$forma differenziale chiusa (o Equivalentemente un campo vettoriale irrotazionale è un campo conservativo). Per fare questo dobbiamo definire
+il concetto di omotopia, senza il quale non sarebbe possibile dare la nozione di insieme semplicemente connesso che ci darà una condizione necessaria e sufficiente affinché una $1-$forma differenziale chiusa sia anche esatta
+\begin{definition}[omotopia]
+	Sia $E \subseteq \mathbb{R}^n$ e sia $\gamma \in C^0([a, b], E)$ e sia $\gamma(a) = \gamma(b)$, ovvero $\gamma$ è chiusa. Diremo che $\gamma$
+	è omotopa a $x_0 \in E$ in $E$ se $\exists H:[0,1] \times [a, b] \to E$ tale che
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $H$ è continua;
+		\item $H(0, \cdot) = \gamma$;
+		\item $H(1, \cdot) = x_0$
+		\item $H(t, a) = H(t, b) \, \, \forall t \in [0, 1]$
+	\end{enumerate}
+	e chiameremo $H$ con le proprietà \circled{1}, \circled{2}, \circled{3} e \circled{4} un'omotopia tra $\gamma$ e $x_0$ relativamente ad $E$.
+\end{definition}
+Il concetto di omotopia generalizza il concetto di \emph{deformare} con continuità una curva. Nel nostro caso consideriamo una curva $\gamma$ chiusa che andiamo a \emph{strizzare} in maniera continua (ovvero senza strappi) fino a farla richiudere su un punto $x_0$
+\begin{figure}[htbp]
+	\centering
+	\includegraphics{immagini/omotopia.png}
+	\caption{Rappresentazione di un'omotopia: la curva $\gamma$ viene strizzata fino a diventare il punto $x_0$.}
+\end{figure}
+\begin{definition}[insieme semplicemente connesso]
+	Diremo che $E \subseteq \mathbb{R}^n$ è un insieme semplicemente connesso se
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item è connesso per archi;
+		\item $\forall \gamma \in C^0([a, b], E)$ chiusa ha un punto $x_0 \in E$ a cui è omotopa in $E$.
+	\end{enumerate}
+\end{definition}
+\begin{remark}
+	Un esempio di insieme semplicemente connesso è $\Omega = \mathbb{R}^2 \setminus \{(x, y) \in \mathbb{R}^2 : y = 0, x > 0 \}$: questo perché è possibile deformare con continuità la curva chiusa $\gamma$ affinché scavalchi la parte dell'insieme esclusa. Un insieme non semplicemente connesso è $\mathbb{R}^2 \setminus \{ (0, 0) \}$ 
+	siccome prendendo una curva sufficientemente vicina all'origine, per esempio, e un raggio sufficientemente grande la curva sarebbe costretta a passare per l'origine che è però esclusa.
+	Per $n > 2$ avremo che $\mathbb{R}^n \setminus \{ (0, 0) \}$ è semplicemente connesso siccome è possibile deformare la curva, sfruttando le dimensioni "in più" rispetto ad $\mathbb{R}^2$, per scavalcare l'origine.
+\end{remark}
+\begin{remark}
+	Sia $\Omega = \mathbb{R} \setminus S$ e $S = q + \mathbb{R}v$. $S=\{q+tv : t \in \mathbb{R} \}, q, v \in \mathbb{R}^3$, ovvero lo spazio tridimensionale senza una realtà. Allora $\Omega$ non è semplicemente connesso, siccome prendendo una circonferenza sufficientemente vicina alla retta e con un raggio maggiore della distanza dal punto alla retta, la curva sarebbe costretta a "toccare" la retta per poter essere omotopa ad un punto, pertanto
+	non è un insieme semplicemente connesso.
+\end{remark}
+\begin{prop}[gli insiemi convessi sono semplicemente connessi]
+	Sia $E \subseteq \mathbb{R}^n$, allora $E$ è semplicemente connesso
+\end{prop}
+\begin{proof}
+	Se $E$ è convesso e $\gamma: [a, b] \to E$ è chiusa e continua scelgo $x_0 \in E$ e osservo che, preso
+	\begin{align*}
+	&H(s,t) = sx_0 + \gamma(t) (1 - s) & &0 \leq s \leq 1,
+	\end{align*}
+	per la convessità di $E$ avremo che $H(s, t) \in E$. Avremo per $s = 0$ che $H(0, t)=\gamma(t)$ e per $s=1$ che $H(1, t)=x_0$. Siccome $H$ è continua, avremo che $H$ è un'omotopia in $E$ tra $\gamma$ e $x_0$.
+\end{proof}
+\begin{theorem}
+	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e semplicemente connesso e sia $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$. Allora
+	\begin{align*}
+		&\omega \text{ è chiusa } & &\iff & &\omega \text{ è esatta }. 
+	\end{align*}
+	Equivalentemente, se $F \in C^1(\Omega, \mathbb{R}^n)$ allora
+	\begin{align*}
+		&F \text{ è irrotazionale } & &\iff & &F \text{ è conservativo }.
+	\end{align*}
+\end{theorem}
+\begin{proof} la dimostrazione verrà fatta, senza perdere di generalità, nel caso delle $1-$forme differenziali. \\
+	$\boxed{\Leftarrow}:$ già dimostrato nella proposizione~\ref{prop:esattezza_imp_chiusura} \\
+	$\boxed{\Rightarrow}:$ %questa dimostrazione si rifà a delle proprietà del \emph{prodotto wedge}, che trovate nelle appendici.
+	%Sappiamo che $\omega = a_1(x)dx_1 + \ldots + a_n(x)dx_n$ e, siccome la forma $\omega$ è chiusa, abbiamo che $d\omega = 0$, dunque
+	%$$
+	%d\omega = d(a_1(x)dx_1 + \ldots a_n(x)dx_n) = \sum_{i=1}^n da_i \wedge dx_i = \sum_{i=1}^n \left( \sum_{j=1}^n \frac{\partial a_i}{\partial x_j} dx_j \right) \wedge dx_i \stackrel{\text{linearità del prodotto wedge}}{=} \sum_{i=1}^n \sum_{j=1}^n \frac{\partial a_i}{\partial x_j} dx_j \wedge dx_i
+	%$$
+	fissiamo $x_0 \in \Omega$ e, preso $x \in \Omega$, consideriamo la funzione
+	$$
+		F(x) = \int_\gamma \omega
+	$$
+	dove $\gamma(t) : [0, 1] \mapsto \Omega$ è una curva con $\gamma(t)=(1-t) x_0 + tx$. Per definizione di integrale curvilineo di seconda specie avremo che
+	$$
+		\int_0^1 \omega(\gamma(t)) \dot{\gamma}(t) dt = \int_0^1 \omega((1-t)x_0 + tx)(x-x_0)dt
+	$$
+	ma possiamo derivare sotto il segno di integrale (la derivata di $\omega \circ \gamma$ esiste ed è continua siccome composizione di funzioni derivabili lungo una direzione $x_j$):
+	$$
+	\partial_{x_j} F(x) = \int_0^1 \partial_{x_j} \left(\sum_{i=1}^n a_i((1-t)x_0 + tx)(x_i-x_{0_i}) \right) = \int_0^1 \left(a_j((1-t)x_0 + tx) + \sum_{i=1}^n t\frac{\partial a_i}{\partial x_j}((1-t)x_0 + tx)(x_i - x_{0_i}) \right)dt
+	$$
+	adesso osserviamo che la chiusura della $1-$forma differenziale implica che $\forall 1 \leq i < j \leq n$
+	$$
+	\frac{\partial a_i}{\partial x_j} = \frac{\partial a_j}{\partial x_i}
+	$$
+	dunque, effettuando questa sostituzione nell'integrale di sopra, otterremo che
+	\begin{align*}
+	&\partial_{x_j} F(x) = \int_0^1 \partial_{x_j} \left(a_j((1-t)x_0 + tx) + \sum_{i=1}^n t\frac{\partial a_j}{\partial x_i} \left( ((1-t)x_0 + tx) (x_i - x_{0_i}) \right) \right) dt = \\
+	&=\int_0^1 \left( a_j((1-t)x_0 + tx) + t\frac{\partial}{\partial t}\Bigg|_{t=0} \left[ a_j((1-t)x_0 + tx) \right] \right)dt = \int_0^1 \frac{\partial}{\partial t}\Bigg|_{t=0} \left( ta_j((1-t)x_0 + tx) \right)dt = a_j(x) 
+	\end{align*}
+	dunque $dF=\omega$, il che conclude la dimostrazione.
+\end{proof}
+\section{Campi vettoriali radiali}
+\begin{definition}[campo vettoriale radiale]
+	Consideriamo $h: (0, +\infty) \mapsto \mathbb{R}$ continua e $F: \mathbb{R}^n \setminus \{\underline{0} \} \to \mathbb{R}^n$ con $F(x) = h(|x|)x$.
+	Diremo allora che $F$ è un campo vettoriale radiale.
+\end{definition}
+\begin{remark}
+Siccome $\nabla |x| = \frac{x}{|x|} \, \forall x \neq \underline{0}$ allora $F(x) = |x|h(|x|)\frac{x}{|x|} \implies F(x) = |x|h(|x|)\nabla |x|$
+\end{remark}
+\begin{prop}[i campi radiali sono conservativi]
+	Sia $F$ un campo vettoriale radiale, allora $F$ è conservativo
+\end{prop}
