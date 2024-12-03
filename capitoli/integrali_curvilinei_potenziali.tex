@@ -301,7 +301,7 @@ Per la prossima serie di proposizioni faremo implicitamente uso del seguente lem
 \end{lemma}
 \begin{proof}
 	Dalla connessione per archi di $\Omega$ sappiamo che esiste $\gamma: [a, b] \to \Omega$ continua tale che $\gamma(a) = x$ e $\gamma(b) = y$. \\
-	Potremo a questo punto pensare di "ricoprire" con un numero finito di palle aperte la linea $\gamma([a, b])$ osservando che $\forall x \in \Omega, \exists r > 0: B_r(x) \subseteq \Omega$. Preso $a = x_0$ allora prendiamo $r_0 > 0: B_{r_0} \subseteq \Omega$ (garantito dall'ipotesi che $\Omega$ sia aperto) e consideriamo l'insieme
+	Potremo a questo punto pensare di "ricoprire" con un numero finito di palle aperte\footnote{il fatto di poter ricoprire con un numero finito di palle deriva dal fatto che la funzione $\gamma$ è continua, dunque l'intervallo $[x,y] = \gamma([a, b])$ è un insieme compatto, pertanto è, per definizione di compattezza in senso topologico, possibile per ogni ricoprimento di insiemi aperti trovare un sottoricoprimento finito di aperti.} la linea $\gamma([a, b])$ osservando che $\forall x \in \Omega, \exists r > 0: B_r(x) \subseteq \Omega$. Preso $a = x_0$ allora prendiamo $r_0 > 0: B_{r_0} \subseteq \Omega$ (garantito dall'ipotesi che $\Omega$ sia aperto) e consideriamo l'insieme
 	$B_r(x_0) \cap \gamma([a, b]) \neq \emptyset$ (se fosse vuoto allora avremmo un assurdo riguardo all'ipotesi che $\Omega$ sia connesso per archi). Preso $x_1 \in B_r(x_0) \cap \gamma([a, b])$ con $x_1 \neq x_0$, possiamo, a questo punto, iterare il procedimento descritto e ottenere il partizionamento di una curva $C^1_\text{tratti}$ fra $a$ e $b$.
 \end{proof}
 \begin{prop}
@@ -367,7 +367,7 @@ V(x) = \int_{\gamma_x} \omega
 $$
 dove $\gamma_x \in C^1_\text{tratti}([a, b], \Omega)$ e consideriamo una palla $B_r(x) \subseteq \Omega$ (la sua esistenza è assicurata dal fatto che $\Omega$ è un insieme aperto), pertanto possiamo considerare, per $0 < |h| < r$, un cammino che va da $x$ a $x+h$. Vogliamo mostrare che $dV =\omega$, il che è equivalente a mostrare che $$V(x+h) - V(x) - \innerprod{\omega(x)}{h} = o(|h|)$$ per $h \to 0$:
 $$
-F(x+h) - F(x) = \int_{\gamma_x + [x, x+h]} \omega - \int_{\gamma_x} \omega \stackrel{\text{per il lemma precedente}}{=} \int_{[x, x+h]} \omega
+F(x+h) - F(x) = \int_{\gamma_x + [x, x+h]} \omega - \int_{\gamma_x} \omega \stackrel{\text{proposizione~\ref{prop:somma_curve}}}{=} \int_{[x, x+h]} \omega
 $$
 parametrizzando il cammino $[x, x+h]$ con $x + th$ dove $t \in [0,1]$ allora
 $$
@@ -544,11 +544,11 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 \begin{theorem}
 	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e semplicemente connesso e sia $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$. Allora
 	\begin{align*}
-		&\omega \text{ è chiusa } & &\iff & &\omega \text{ è esatta }. 
+		\omega \text{ è chiusa } \iff \omega \text{ è esatta }. 
 	\end{align*}
 	Equivalentemente, se $F \in C^1(\Omega, \mathbb{R}^n)$ allora
 	\begin{align*}
-		&F \text{ è irrotazionale } & &\iff & &F \text{ è conservativo }.
+		F \text{ è irrotazionale } \iff F \text{ è conservativo }.
 	\end{align*}
 \end{theorem}
 \begin{proof} la dimostrazione verrà fatta, senza perdere di generalità, nel caso delle $1-$forme differenziali. \\
@@ -572,12 +572,16 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 	$$
 	adesso osserviamo che la chiusura della $1-$forma differenziale implica che $\forall 1 \leq i < j \leq n$
 	$$
-	\frac{\partial a_i}{\partial x_j} = \frac{\partial a_j}{\partial x_i}
+	\frac{\partial a_i}{\partial x_j} = \frac{\partial a_j}{\partial x_i}.
+	$$
+	Inoltre osserviamo che, tramite il teorema del differenziale della composizione, abbiamo che 
+	$$
+		\frac{\partial}{\partial t} a_j((1-t)x_0 + tx) = Da_j((1-t)x_0 + tx) \, D((1-t)x_0 + tx)(t) = \sum_{i=1}^n \frac{\partial a_j}{\partial x_i}(x_i - x_{0_i})
 	$$
 	dunque, effettuando questa sostituzione nell'integrale di sopra, otterremo che
 	\begin{align*}
 	&\partial_{x_j} F(x) = \int_0^1 \partial_{x_j} \left(a_j((1-t)x_0 + tx) + \sum_{i=1}^n t\frac{\partial a_j}{\partial x_i} \left( ((1-t)x_0 + tx) (x_i - x_{0_i}) \right) \right) dt = \\
-	&=\int_0^1 \left( a_j((1-t)x_0 + tx) + t\frac{\partial}{\partial t}\Bigg|_{t=0} \left[ a_j((1-t)x_0 + tx) \right] \right)dt = \int_0^1 \frac{\partial}{\partial t}\Bigg|_{t=0} \left( ta_j((1-t)x_0 + tx) \right)dt = a_j(x) 
+	&=\int_0^1 \left( a_j((1-t)x_0 + tx) + t\frac{\partial}{\partial t} \left[ a_j((1-t)x_0 + tx) \right] \right)dt = \int_0^1 \frac{\partial}{\partial t} \left( ta_j((1-t)x_0 + tx) \right)dt = a_j(x) 
 	\end{align*}
 	dunque $dF=\omega$, il che conclude la dimostrazione.
 \end{proof}
@@ -587,8 +591,35 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 	Diremo allora che $F$ è un campo vettoriale radiale.
 \end{definition}
 \begin{remark}
-Siccome $\nabla |x| = \frac{x}{|x|} \, \forall x \neq \underline{0}$ allora $F(x) = |x|h(|x|)\frac{x}{|x|} \implies F(x) = |x|h(|x|)\nabla |x|$
+Siccome $\nabla |x| = \frac{x}{|x|} \, \forall x \neq \underline{0}$ allora $F(x) = |x|h(|x|)\frac{x}{|x|} \implies F(x) = |x| \, h(|x|)\nabla |x|$
 \end{remark}
 \begin{prop}[i campi radiali sono conservativi]
 	Sia $F$ un campo vettoriale radiale, allora $F$ è conservativo
 \end{prop}
+\begin{proof}
+	Possiamo pensare di definire
+	$$
+	U(s) = \int_1^s t h(t)dt \text{ con } s > 0 
+	$$
+	e posto $V(x) = U(|x|) \implies$
+	$$
+	\implies \nabla V(x) = \sum_{j=1}^n \frac{\partial}{\partial x_j} U(|x|)e_j
+	$$
+	ma osserviamo che $\frac{\partial U(|x|)}{\partial x_j} = \frac{\partial U(|x|)}{\partial |x|} \frac{\partial |x|}{\partial x_j} = U'(|x|) \frac{x_j}{|x|}$ dove osserviamo che $\frac{\partial |x|}{\partial x_j} = \frac{1}{\cancel{2}} \frac{\cancel{2}x_j}{\sqrt{\sum\limits_{i=1}^n x_i^2}}$
+	$$
+		\sum_{j=1}^n U'(|x|) \frac{x_j}{|x|}e_j = \frac{U'(|x|)}{|x|} \sum_{j=1}^n x_j e_j = \frac{U'(|x|)}{|x|} |x| = U'(|x|) = |x| \, h(|x|)
+	$$
+	dove si è usato il teorema fondamentale del calcolo per calcolare la derivata di $U(|x|)$ rispetto a $|x|$ siccome $\frac{\partial}{\partial |x|} = \frac{\partial}{\partial |x|} \int_1^{|x|} t h(t) dt = th(t)|_{t=|x|} = |x|h(|x|)$
+\end{proof}
+\begin{remark}
+	Osserviamo che per $n=2$ il nostro campo vettoriale è definito su $\mathbb{R}^2 \setminus \{ (0, 0) \}$, che ricordiamo essere un insieme non semplicemente connesso. Detto questo, non è detto che non vi siano delle forme differenziali esatte: un esempio
+	è il campo gravitazionale che è un campo conservativo.
+\end{remark}
+Similmente, possiamo definire le $1-$forme differenziali radiali nella seguente maniera
+\begin{definition}[$1-$forma differenziale radiale]
+	Sia $h(x) \in C^0((0, +\infty), \mathbb{R})$ e sia $\omega \in C^{\infty}(\mathbb{R}^n \setminus \{ \underline{0} \}, (\mathbb{R}^n)^*)$ è una $1-$ forma differenziale radiali se
+	$$
+		\omega(x) = h(|x|)\sum_{j=1}^n x_j dx_j
+	$$
+\end{definition}
+Come prima, avremo che è esatta con primitiva $P(x)=U(|x|)$, dove $U(s) = \int_1^s th(t)dt$ e $dP(x)=\omega(x)$.

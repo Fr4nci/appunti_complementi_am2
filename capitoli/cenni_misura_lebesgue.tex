@@ -4,9 +4,32 @@ In questo capitolo affronteremo il concetto di misura e daremo alcuni accenni al
 del suo concetto di misura. Alcuni approfondimenti inseriti sono stati presi da \cite{rudin}, tuttavia per una trattazione più accurata e completa rimando a \cite{measure_theory}.
 
 \section{La misura}
-Nel trattare insiemi a dimensione maggiore di $1$ siamo, ovviamente, interessati ad individuare un funzionale $m: \mathcal{P}(X) \to [0; +\infty]$ che riesca a generalizzare la nozione geometrica di \emph{area} che noi abbiamo a due dimensioni, ovvero che possieda le seguenti proprietà:
+Vogliamo adesso determinare una funzione di insiemi $m_n: \mathcal{P}(\mathbb{R}^n) \to [0; +\infty]$ che rappresenta il nostro concetto intuitivo di \emph{volume} dell'insieme, detto \emph{misura dell'insieme}. \\
+L'intuizione ci porta a pensare che questa funzione goda delle seguenti proprietà:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
-	\item $m(\emptyset) = 0$
-	\item Se $A, B \subseteq X$ tali che $A \subseteq B \implies m(A) \leq m(B)$
-	\item Se $A, B \subseteq X$ tali che $A \cap B = \emptyset \implies m(A \cup B) = m(A) + m(B)$
+	\item $m_n(\emptyset) = 0$
+	\item Se $A, B \subseteq X$ tali che $A \subseteq B \implies m_n(A) \leq m_n(B)$
+	\item Se $A, B \subseteq X$ tali che $A \cap B = \emptyset \implies m_n(A \cup B) = m_n(A) + m_n(B)$
 \end{enumerate}
+
+Tutte le proprietà non sono tuttavia estendibili a tutti gli insiemi: dovremo pertanto individuare un qualche tipo di \emph{criterio} con
+cui stabilire quali insiemi sono \emph{misurabili} o meno. \\
+
+\begin{definition}[misura di un intervallo e di un $n-$intervallo]
+	Per ogni intervallo $I \subseteq \mathbb{R}$ limitato definiamo
+	$$
+	\mathit{l}(I) = \sup{I} - \inf{I}.
+	$$
+	Sia adesso $I_1 \times \ldots \times I_n \subseteq \mathbb{R}^n$ definiamo
+	$$
+		v_n(I_1 \times \ldots \times I_n) = \prod_{i=1}^n \mathit{l}(I_i) 
+	$$
+\end{definition}
+In maniera abbastanza simile alla misura di Peano-Jordan, possiamo definire la misura per un insieme $E \subseteq \mathbb{R}^n$ qualunque approssimandolo tramite infiniti $n-$ intervalli e prendendone
+l'estremo inferiore. 
+\begin{definition}
+	Sia $E \subseteq \mathbb{R}^n$, definiamo la misura di Lebesgue di $E$ come
+	\begin{equation}
+		m_n(E) = \inf \left\{ \sum_{i=1}^{+\infty} v_n(J_i) : E \subseteq \bigcup_{i=1}^{+\infty} J_i \text{ e } J_i \subseteq \mathbb{R}^n \text{ è un } n\text{-intervallo} \right\}
+	\end{equation}	
+\end{definition}
