@@ -3,7 +3,7 @@
 In questo capitolo affronteremo il concetto di misura e daremo alcuni accenni all'impostazione teorica data da Lebesgue nello sviluppo
 del suo concetto di misura. Alcuni approfondimenti inseriti sono stati presi da \cite{rudin}, tuttavia per una trattazione più accurata e completa rimando a \cite{measure_theory}.
 
-\section{La misura}
+\section{La misura esterna}
 Vogliamo adesso determinare una funzione di insiemi $m_n: \mathcal{P}(\mathbb{R}^n) \to [0; +\infty]$ che rappresenta il nostro concetto intuitivo di \emph{volume} dell'insieme, detto \emph{misura dell'insieme}. \\
 L'intuizione ci porta a pensare che questa funzione goda delle seguenti proprietà:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -11,10 +11,6 @@ L'intuizione ci porta a pensare che questa funzione goda delle seguenti propriet
 	\item Se $A, B \subseteq X$ tali che $A \subseteq B \implies m_n(A) \leq m_n(B)$
 	\item Se $A, B \subseteq X$ tali che $A \cap B = \emptyset \implies m_n(A \cup B) = m_n(A) + m_n(B)$
 \end{enumerate}
-
-Tutte le proprietà non sono tuttavia estendibili a tutti gli insiemi: dovremo pertanto individuare un qualche tipo di \emph{criterio} con
-cui stabilire quali insiemi sono \emph{misurabili} o meno. \\
-
 \begin{definition}[misura di un intervallo e di un $n-$intervallo]
 	Per ogni intervallo $I \subseteq \mathbb{R}$ limitato definiamo
 	$$
@@ -22,14 +18,205 @@ cui stabilire quali insiemi sono \emph{misurabili} o meno. \\
 	$$
 	Sia adesso $I_1 \times \ldots \times I_n \subseteq \mathbb{R}^n$ definiamo
 	$$
-		v_n(I_1 \times \ldots \times I_n) = \prod_{i=1}^n \mathit{l}(I_i) 
+		v_n \left( \varprod_{i=1}^n I_i \right) = \prod_{i=1}^n \mathit{l}(I_i) 
 	$$
 \end{definition}
-In maniera abbastanza simile alla misura di Peano-Jordan, possiamo definire la misura per un insieme $E \subseteq \mathbb{R}^n$ qualunque approssimandolo tramite infiniti $n-$ intervalli e prendendone
-l'estremo inferiore. 
-\begin{definition}
+\begin{definition}[misura di Lebesgue di un insieme $E$]
 	Sia $E \subseteq \mathbb{R}^n$, definiamo la misura di Lebesgue di $E$ come
 	\begin{equation}
 		m_n(E) = \inf \left\{ \sum_{i=1}^{+\infty} v_n(J_i) : E \subseteq \bigcup_{i=1}^{+\infty} J_i \text{ e } J_i \subseteq \mathbb{R}^n \text{ è un } n\text{-intervallo} \right\}
-	\end{equation}	
+		\label{eq:def_lebesgue}
+	\end{equation}
 \end{definition}
+\begin{remark}
+	Con un procedimento abbastanza simile a come abbiamo fatto per la misura di Peano-Jordan, approssimiamo un insieme $E$ tramite degli $n-$intervalli dall'esterno. La sostanziale differenza, per come stiamo introducendo la misura di Lebesgue, è che stiamo approssimando solamente "da fuori".
+	In questa maniera possiamo misurare una classe di insiemi più ampia rispetto a quella della misura di Peano-Jordan, in cui si richiedeva che la misura approssimata "da dentro" coincideva con la misura approssimata "da fuori".
+\end{remark}
+Come vedremo fra un po', esistono degli insiemi che non sono misurabili per Lebesgue; dunque per ogni sottoinsieme di $X$ non è possibile definire una misura $m_n$ (non su tutti gli insiemi essa è additiva come richiesto, dunque non è una misura). \\ Ci basta, tuttavia, definire una misura \emph{esterna}, ovvero
+una funzione che stima il volume di un qualunque insieme $E$ attraverso una collezione di insiemi che ricopre dall'esterno il nostro insieme. In questa maniera è possibile definire una funzione d'insieme definita per ogni insieme, tuttavia non rispetta la proprietà di additività numerabile che noi vogliamo per effettuare operazioni come i limiti: tramite 
+il teorema di Caratheodory si può tuttavia mostrare che, presa una misura esterna $\mu^*$, esiste uno spazio di misura in cui la misura coincide con quella esterna. \\
+Successivamente, dovremo cercare un criterio con cui stabilire se un insieme $E$ è misurabile o meno.
+\begin{definition}
+	Diremo che $\mu^*: \mathcal{P}(X) \mapsto [0; +\infty]$ è una misura esterna se
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\mu^*(\emptyset) = 0$;
+		\item $\mu^*(E) \leq \sum\limits_{i=1}^{+\infty} \mu^*(E_i)$ se $E \subseteq \bigcup\limits_{i=1}^{+\infty} E_i$
+	\end{enumerate}
+\end{definition}
+\begin{prop}[monotonia della misura esterna]
+	Se $\mu^*$ è una misura esterna allora
+	$$
+	A \subseteq B \implies \mu^*(A) \leq \mu^*(B)
+	$$
+	\label{prop:monotonia}
+\end{prop}
+\begin{proof}
+	Consideriamo $E = A$ e il seguente insieme
+	\begin{align*}
+	E_j = \begin{cases} B & j=1 \\ \emptyset & j \geq 2	\end{cases}
+	\end{align*}
+	osserviamo allora che $E \subseteq \bigcup\limits_{i=1}^{+\infty} E_i$ allora
+	$$
+	\mu^*(E) = \mu^*(A) \stackrel{\text{per la \circled{2}}}{\leq} \sum_{j=1}^{+\infty} \mu^*(E_j) = \mu^*(E_1) = \mu^*(B)
+	$$
+	ovvero
+	$$
+	\mu^*(A) \leq \mu^*(B)
+	$$
+\end{proof}
+\begin{prop}[subadditività finita]
+	Le misure esterne sono finitamente subadditive, ovvero preso $E_1, \ldots, E_k$ avremo che 
+	$$
+	\mu^* \left( \bigcup_{i=1}^{k} E_i \right) \leq \sum_{i=1}^k \mu^*(E_i)
+	$$
+	\label{prop:sub_finita}
+\end{prop}
+\begin{proof}
+	Siano $E_1, \ldots, E_k \subseteq \mathbb{R}^n$. Imponendo che $\forall j > k, E_j = \emptyset$, allora
+	$$
+	\forall E \subseteq \bigcup_{i=1}^{+\infty} E_i, \mu^*(E) \leq \sum_{i=1}^{+\infty} \mu^*(E_i) = \sum\limits_{i=1}^{k} \mu^*(E_i) + \sum\limits_{i=k+1}^{+\infty} \mu^*(\emptyset) = \sum\limits_{i=1}^k \mu^*(E_i) \implies \mu^*(E) \leq \sum_{i=1}^k \mu^*(E_i)
+	$$
+	ma allora, siccome abbiamo banalmente che $\bigcup\limits_{i=1}^{k} E_i \subseteq \bigcup\limits_{i=1}^k E_i$, allora
+	$$
+	\mu^* \left( \bigcup_{i=1}^k E_i \right) \leq \sum_{i=1}^k \mu^*(E_i)
+	$$
+\end{proof}
+Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effettivamente una misura esterna, dunque è un buon punto di partenza per poter definire una misura che possieda le proprietà che abbiamo enunciato all'inizio di questo capitolo, siccome il teorema di 
+Caratheodory ci assicura di poter trovare uno spazio di misura in cui la misura esterna $\mu^*$ è effettivamente una misura (ovvero è additiva su ogni insieme dello sapzio e non subadditiva).
+\begin{prop}[misura di Lebesgue è una misura esterna]
+	$m_n: \mathcal{P}(X) \to [0; +\infty]$ è una misura esterna
+	\label{prop:lebesgue_mis_esterna}
+\end{prop}
+\begin{proof}
+	La dimostrazione consiste nel mostrare che $m_n: \mathcal{P}(X) \mapsto [0; +\infty]$ gode delle proprietà della misura esterna. \\
+	La \circled{1} segue banalmente, siccome l'$n-$intervallo nullo è un ricoprimento dell'insieme nullo, dunque $m_n(\emptyset) = 0$.
+	Per la \circled{2}, supponiamo naturalmente che $\sum\limits_{i=1}^{+\infty} m_n(E_i) < +\infty$ (altrimenti è banale) e prendiamo un insieme $E \subseteq \bigcup\limits_{i=1}^{+\infty} E_i$, osservando che $\forall i \in \mathbb{N}, E_i \subseteq \bigcup\limits_{k=1}^{+\infty} I_{k}^{(i)}$, pertanto
+	$$
+		E \subseteq \bigcup_{i=1}^{+\infty} \bigcup_{k=1}^{+\infty} I_k^{(i)}
+	$$
+	e questo vale per ogni ricoprimento di $\bigcup\limits_{i=1}^{+\infty} E_i$, dunque anche per quello che "fornisce" la misura di $\bigcup\limits_{i=1}^{+\infty} E_i$
+	$$
+		m_n(E) \leq \inf \left\{\sum_{i=1} l(E_i) \right\} = m_n \left( \bigcup_{i=1}^{+\infty} E_i \right)
+	$$
+	resta da mostrare che $m_n( \bigcup\limits_{i=1}^{+\infty} E_i ) \leq \sum\limits_{i=1}^{+\infty} m_n(E_i)$ . Questo può essere fatto fissando $\varepsilon > 0$ e osservando che $\forall i \in \mathbb{N}, \exists \bigcup\limits_{k=1}^{+\infty} I_{i}^{(k)} \supseteq E_i : \sum\limits_{k=1}^{+\infty} l(I_i^{(k)}) < m_n(E_i) + \frac{\varepsilon}{2^{i+1}}$, dunque
+	$$
+	m_n \left( \bigcup_{i=1}^{+\infty} E_i \right) \leq \sum_{i=1}^{+\infty} \sum_{k=1}^{+\infty} l(I_{i}^{(k)}) < \sum_{i=1}^{+\infty} (m_n(E_i) + \frac{\varepsilon}{2^{i+1}}) = \varepsilon + \sum_{i=1}^{+\infty} m_n(E_i)
+	$$
+	e, siccome $\varepsilon$ era arbitrario, otteniamo la tesi facendo il limite.
+\end{proof}
+\begin{definition}[insieme misurabile secondo Lebesgue]
+	Diremo che $A \subseteq X$ è misurabile secondo Lebesgue se
+	$$
+	\forall S \subseteq X \implies m_n(S) = m_n(A \cap S) + m_n(S \setminus A)
+	$$
+	\label{def:mis_lebesgue}
+\end{definition}
+Per ogni insieme $X$ definiamo con $\mathcal{M}(X)$ la classe di tutti gli insiemi misurabili secondo Lebesgue.
+\begin{definition}[$\sigma-$algebra]
+	Diremo che $\mathcal{F} \subseteq \mathcal{P}(X)$ è una $\sigma-$algebra se valgono
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\emptyset, X \in \mathcal{F}$;
+		\item $A \in \mathcal{F} \implies (X \setminus A) \in \mathcal{F}$
+		\item $\{ A_j : j \geq 1 \} \subseteq \mathcal{F} \implies \bigcup\limits_{i=1}^{+\infty} A_i \in \mathcal{F}$
+	\end{enumerate}
+\end{definition}
+\begin{definition}[misura]
+	Diremo che $\mu: \mathcal{F} \mapsto [0; +\infty]$ è una misura se
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\mathcal{F}$ è una $\sigma-$algebra;
+		\item $\mu(\emptyset) = 0$;
+		\item Se $( \{A_i : i \geq 1 \} \subseteq \mathcal{F}) \wedge (\forall i \neq j, A_i \cap A_j = \emptyset$) allora
+		$$
+			\mu \left( \bigcup_{i=1}^{+\infty} A_i \right) = \sum_{i=1}^{+\infty} \mu(A_i)
+		$$
+	\end{enumerate}
+\end{definition}
+\begin{theorem}[teorema di Caratheodory]
+	La classe dei misurabili $\mathcal{M}(X)$ è una $\sigma-$algebra e $m_n:\mathcal{M}(X) \to [0; +\infty]$ è una misura
+\end{theorem}
+Diremo allora che $m_n: \mathcal{M}(X) \to [0; +\infty]$ è la misura di Lebesgue su $X$. Per lo più noi lavoreremo supponendo che $X=\mathbb{R}^n$.
+\begin{prop}
+	La misura $m_n: \mathcal{M}(X) \to [0; +\infty]$ è finitamente additiva
+\end{prop}
+\begin{proof}
+La dimostrazione è equivalente a quella della proposizione~\ref{prop:sub_finita} sostituendo opportunamente alle minorazione le eguaglianze.
+\end{proof}
+\begin{remark}
+Ammettendo l'assioma della scelta è possibile mostrare che esistono degli insiemi che non sono misurabili (come ampiamente detto in precedenza). L'esempio più famoso è
+l'insieme di Vitali, che si può costruire dentro un qualunque insieme di misura positiva $E \in \mathcal{M}(\mathbb{R}^n)$. Dalla definizione di misurabilità allora $\exists S_0 \subseteq \mathbb{R}^n$
+tale che 
+$$
+m_n(S_0) \leq m_n(S_0 \cap E) + m_n(S_0 \setminus E)
+$$
+dunqque si perderebbe la $\sigma-$additività su insiemi disgiunti.
+\end{remark}
+\section{Insiemi trascurabili}
+\begin{definition}[insiemi trascurabili]
+	Diremo che $Z \subseteq \mathbb{R}^n$ ha misura nulla oppure che è trascurabile se $m_n(Z) = 0$
+\end{definition}
+\begin{exercise}
+	Mostrare che un punto $x \in \mathbb{R}^n$ ha misura nulla
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Sia $x \in \mathbb{R}^n$ e consideriamo un $n-$intervallo $\varprod\limits_{i=1}^n I_i$ dove $I_i = (x_i - \frac{\varepsilon}{2}, x_i + \frac{\varepsilon}{2})$ ($x_i$ rappresenta la $i-$esima componente del punto $x$), dunque rappresenta un cubo di \emph{volume} pari a $\varepsilon^n$ per $i \in \{1, \ldots, n \}$ con $\varepsilon > 0$. Allora possiamo osservare che
+	$$
+	\{ x \} \subseteq \bigcup_{i=1}^{+\infty} J_i
+	$$
+	dove
+	\begin{align*}
+		J_i = \begin{cases}
+			\varprod\limits_{i=1}^n (x_i - \frac{\varepsilon}{2}, x_i + \frac{\varepsilon}{2}) \\
+			\emptyset
+		\end{cases}
+	\end{align*}
+	ma allora
+	$$
+	m_n(\{ x \}) \subseteq \bigcup_{i=1}^{+\infty} v_n(J_i) = \varepsilon^n
+	$$
+	ma allora, siccome $\varepsilon > 0$ è un valore arbitrario, possiamo farne il limite per $\varepsilon \to 0$, dunque $m_n(\{ x \}) = 0$.
+\end{proof}
+\begin{prop}
+	Se $Z \subseteq \mathbb{R}^n$ è numerabile, allora
+	$$
+		m_n(Z) = 0
+	$$
+\end{prop}
+\begin{remark}
+	Non tutti gli insiemi a misura nulla sono numerabili: un esempio è l'insieme di Cantor.
+\end{remark}
+\begin{proof}
+	Se $Z$ è numerabile allora
+	$$
+		Z = \bigcup_{i=1}^{+\infty} \{ x_i \}
+	$$
+	dove $x_i: \mathbb{N} \to Z$ dunque
+	$$
+	m_n(Z) \leq m_n(\{ x_i \}) = 0 \implies m_n(Z) = 0
+	$$
+\end{proof}
+\begin{cor}[$\mathbb{Q}^n$ sono un insieme trascurabile]
+$\mathbb{Q}^n \approx \mathbb{N}$ dunque $m_n(\mathbb{Q}^n) = 0$
+\end{cor}
+\begin{cor}
+	Gli insiemi a misura nulla sono misurabili per Lebesgue.
+\end{cor}
+\begin{proof}
+In virtù della definizione~\ref{def:mis_lebesgue} dobbiamo verificare che, preso $Z$ insieme trascurabile, allora dobbiamo mostrare che
+$$
+\forall S \subseteq \mathbb{R}^n, m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)
+$$
+Ora osserviamo che siccome $S = (S \setminus Z) \cup (S \cap Z)$, dunque per la subadditività finita (di cui gode $m_n$ siccome nella proposizione~\ref{prop:lebesgue_mis_esterna} abbiamo mostrare che è una misura esterna)
+avremo che
+$$
+m_n(S) \leq m_n(S \setminus Z) \cup (S \cap Z)
+$$
+Per la disuguaglianza opposta osserviamo che
+\begin{align*}
+m_n(S) \geq m_n(S \setminus Z) \text{ e } m_n(Z) \geq m_n(S \cap Z)
+\end{align*}
+per monotonia della misura esterna (proposizione~\ref{prop:monotonia}), ma siccome $0=m_n(Z) \geq m_n(S \cap Z) \implies m_n(S \cap Z) = 0$ allora
+$$
+m_n(S) \geq m_n(S \setminus Z) = m_n(S \setminus Z) + m_n(S \cap Z) \implies m_n(S) \geq m_n(S \setminus Z) + m_n(S \cap Z)
+$$
+dunque $m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)$, ovvero la tesi.
+\end{proof}
