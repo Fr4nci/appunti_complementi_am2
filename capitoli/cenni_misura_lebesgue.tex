@@ -194,19 +194,22 @@ dunqque si perderebbe la $\sigma-$additività su insiemi disgiunti.
 	m_n(Z) \leq m_n(\{ x_i \}) = 0 \implies m_n(Z) = 0
 	$$
 \end{proof}
-\begin{cor}[$\mathbb{Q}^n$ sono un insieme trascurabile]
-$\mathbb{Q}^n \approx \mathbb{N}$ dunque $m_n(\mathbb{Q}^n) = 0$
+\begin{cor}
+	$\mathbb{Q}^n$ è un insieme trascurabile
 \end{cor}
+\begin{proof}
+$\mathbb{Q}^n \cong \mathbb{N}$ dunque $m_n(\mathbb{Q}^n) = 0$
+\end{proof}
 \begin{cor}
 	Gli insiemi a misura nulla sono misurabili per Lebesgue.
 \end{cor}
 \begin{proof}
-In virtù della definizione~\ref{def:mis_lebesgue} dobbiamo verificare che, preso $Z$ insieme trascurabile, allora dobbiamo mostrare che
+In virtù della definizione~\ref{def:mis_lebesgue} dobbiamo verificare che, preso $Z$ insieme trascurabile, allora
 $$
 \forall S \subseteq \mathbb{R}^n, m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)
 $$
-Ora osserviamo che siccome $S = (S \setminus Z) \cup (S \cap Z)$, dunque per la subadditività finita (di cui gode $m_n$ siccome nella proposizione~\ref{prop:lebesgue_mis_esterna} abbiamo mostrare che è una misura esterna)
-avremo che
+Ora osserviamo che, siccome $S = (S \setminus Z) \cup (S \cap Z)$, avremo per la subadditività finita (di cui gode $m_n$ siccome nella proposizione~\ref{prop:lebesgue_mis_esterna} abbiamo mostrare che è una misura esterna)
+che
 $$
 m_n(S) \leq m_n(S \setminus Z) \cup (S \cap Z)
 $$
@@ -220,3 +223,54 @@ m_n(S) \geq m_n(S \setminus Z) = m_n(S \setminus Z) + m_n(S \cap Z) \implies m_n
 $$
 dunque $m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)$, ovvero la tesi.
 \end{proof}
+\begin{theorem}
+	Tutti gli aperti di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
+\end{theorem}
+\begin{cor}
+	Tutti gli aperti di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
+\end{cor}
+\begin{proof}[Dimostrazione (del corollario)]
+	Siccome $m_n: \mathcal{M}(\mathbb{R}^n) \to [0; +\infty]$ allora $\mathcal{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, dunque se $A \in \mathcal{M}(\mathbb{R}^n) \implies A^c \in \mathcal{M}(\mathbb{R}^n)$.
+\end{proof}
+\begin{cor}
+	Tutte le unioni e le intersezioni numerabili di insiemi chiusi o aperti sono ancora misurabili secondo Lebesgue
+\end{cor}
+\begin{proof}
+	Se $\{ B_i : i \geq 1 \} \subseteq \mathcal{M}(\mathbb{R}^n) \implies \bigcup\limits_{i=1}^{+\infty} B_i \in \mathcal{M}(\mathbb{R}^n)$ perché $\mathcal{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, mentre per le intersezioni numerabili abbiamo che se $B_i \in \mathcal{M}(\mathbb{R}^n) \implies B_i^c \in \mathcal{M}(\mathbb{R}^n)$ (sempre per le proprietà delle $\sigma-$algebre)
+	e, per le leggi di De Morgan, avremo che $\left(\bigcup\limits_{i=1}^{+\infty} B_i^c \right)^c = \bigcap\limits_{i=1}^{+\infty} B_i \in \mathcal{M}(\mathbb{R}^n)$
+\end{proof}
+\section{Funzioni misurabili secondo Lebesgue}
+Andiamo adesso ad affrontare il concetto di funzione misurabile, il quale ci condurrà, naturalmente, verso il concetto di integrale di Lebesgue
+\begin{definition}[funzioni misurabili secondo Lebesgue]
+Sia $E \in \mathcal{M}(\mathbb{R}^n)$ misurabile e $f: E \to \bar{\mathbb{R}}$. Diremo che $f$ è misurabile secondo Lebesgue se $\forall t \in \mathbb{R}$ l'insieme $f^{-1}([-\infty, t)) \in \mathcal{M}(\mathbb{R}^n)$, ovvero esso è misurabile.
+\end{definition}
+\begin{remark}(\textbf{Topologia di $[-\infty, \infty]$})
+	Ogni aperto di $[-\infty, +\infty]$ è un'unione arbitraria di intervalli che possono essere sia aperti oppure del tipo $[-\infty, t)$ o $(t, +\infty]$.
+\end{remark}
+\begin{prop}[caratterizzazione delle funzioni misurabili]
+	$E \in \mathcal{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ è misurabile se e solo se $\forall O \subseteq \bar{\mathbb{R}}$ aperto di $[-\infty, +\infty]$ abbiamo che $f^{-1}(O) \in M(\mathbb{R}^n)$
+\end{prop}
+\begin{prop}[le funzioni continue sono misurabili]
+	Se $E \in \mathcal{R}^n, f: E \to \mathbb{R}$ è continua, allora è misurabile
+\end{prop}
+\begin{proof}
+	Se $O \subseteq [-\infty, +\infty]$ è un aperto contenuto in $\mathbb{R}$ in realtà è un aperto di $\mathbb{R} \implies f^{-1}(O)$ è aperto in $E$ in virtù del teorema~\ref{thm:teo_cf1}, dunque avremo che $\exists \Omega \subseteq \mathbb{R}^n$ tale che
+	$$
+	f^{-1}(0) = E \cap \Omega \in \mathcal{M}(\mathbb{R}^n) \implies f \text{ è misurabile }
+	$$
+	ovvero la tesi.
+\end{proof}
+\begin{prop}
+	Se $f_n: E \to \bar{\mathbb{R}}$ è una successioni di funzioni misurabili e $f:E \to \bar{\mathbb{R}}$. Se $f_n \stackrel{n \to +\infty}{\to} f \, \, \forall x \in E$ allora $f$ è misurabile
+\end{prop}
+Prendiamo in causa una funzione che causava molti problemi all'integrale di Riemann, ovvero la funzione di Dirichlet. Al momento, consideriamo una sua \emph{variante} $\chi_k: [0, 1] \to \mathbb{R}$ definita come
+\begin{align*}
+	\chi_k(x) = \begin{cases}
+		1 & \text{ se } x \in \{q_0, \ldots, q_k \} \\
+		0 & \text{ se } x \not\in \{q_0, \ldots, q_k \}
+	\end{cases}
+\end{align*}
+allora $\chi_k \stackrel{n \to +\infty}{\to} \chi$, ovvero la funzione di Dirichlet. Grazie alla precedente proposizione siamo in grado di concludere che $\chi$ è misurabile per Lebesgue, ma non per Riemann (sebbene $\forall k, \chi_k$ è Riemann-integrabile).
+\begin{exercise}
+Mostrare la misurabilità di $\chi$ tramite la definizione di funzione misurabile secondo Lebesgue.
+\end{exercise}

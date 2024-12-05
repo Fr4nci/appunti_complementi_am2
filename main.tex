@@ -52,38 +52,42 @@
 	\vspace{2cm}
 	{\Large\itshape Francesco Sermi\par}
 	\vfill
-    \begin{tikzpicture}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.040]{immagini/mandelbrot_gray.png}
+	\end{figure}
+    	%\begin{tikzpicture}
 	% Definisco lo stile dei vettori
-    \tikzset{vector/.style={-stealth, thick, color=black}}
+    	%\tikzset{vector/.style={-stealth, thick, color=black}}
 
     % Parametri per il punto di contatto
-    \def\xo{1}
-    \def\yo{2}
-    \def\zo{5} % Calcola z0 = f(x0, y0)
+    	%\def\xo{1}
+    	%\def\yo{2}
+    	%\def\zo{5} % Calcola z0 = f(x0, y0)
 
     % Derivate parziali della funzione f(x, y) = x^2 + y^2 nel punto (x0, y0)
-    \def\fx{2*\xo} % = 2
-    \def\fy{2*\yo} % = 4
+    	%\def\fx{2*\xo} % = 2
+    	%\def\fy{2*\yo} % = 4
 
     % Disegno la superficie
-    \begin{axis}[
-        width=12cm,
-        view={60}{30}, % Angolazione impostata
-        axis lines=middle,
-        zlabel={$f(x,y)$},
-        clip=false,
-        domain=-5:5,
-        y domain=-5:5,
-        samples=30,
-        colormap/viridis,
-        z buffer=sort
-    ]
+    	%\begin{axis}[
+    	%    width=12cm,
+    	%    view={60}{30}, % Angolazione impostata
+    	%    axis lines=middle,
+    	%    zlabel={$f(x,y)$},
+    	%    clip=false,
+    	%    domain=-5:5,
+    	%    y domain=-5:5,
+    	%    samples=30,
+    	%    colormap/viridis,
+    	%    z buffer=sort
+    	%]
 
     % Grafico della superficie con colore visibile
-    \addplot3[surf, opacity=0.8, shader=interp]
-        {x^2 - y^2}; % Superficie f(x, y) = x^2 + y^2
-    \end{axis}
-\end{tikzpicture}
+    	%\addplot3[surf, opacity=0.8, shader=interp]
+    	%    {x^2 - y^2}; % Superficie f(x, y) = x^2 + y^2
+    	%\end{axis}
+	%\end{tikzpicture}
 	\vfill	
 	{\large \hfill Pisa, \today \par}
 	\end{titlepage}
@@ -122,6 +126,7 @@
 		\item $(\iota_+, \iota_-, \iota_0)$ segnatura di un prodotto scalare/hermitiano
 		\item $I(x_0, \delta) = (x_0 - \delta, x_0 + \delta) = B(x_0, \delta) \subset \mathbb{R}$ con $x_0 \in \mathbb{R}, \delta > 0$ intervallo centrato in $x_0$ di ampiezza $2\delta$
 		\item $m_n$ misura di Lebesgue
+		\item $\mathcal{M}(X)$ classe degli insiemi misurabili per Lebesgue
 		\item $\mathcal{P}(X)$ insieme delle parti di $X$
 		\item $\varprod\limits_i$ prodotto cartesiano multiplo
 		\item $\sum\limits_i$ sommatoria

@@ -76,6 +76,7 @@ Fissato $A \subset \mathbb{R}^n$ diremo che $S \subset A$ è aperto in $A$ se $\
 Dopo questa definizione siamo pronti per enunciare una serie di teoremi sulle funzioni continue che le caratterizzano in $\mathbb{R}^n$.
 \begin{theorem}[teorema C1]
 Sia $f: A \to \mathbb{R}^m$ con $A \subset \mathbb{R}^n$. Allora $f$ è continua $\iff \forall U \subset \mathbb{R}^m$ aperto $f^{-1}(U)$ è aperto in $A$
+\label{thm:theo_c1}
 \end{theorem}
 \begin{proof} \hspace{1em} \newline
 $\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U \subset \mathbb{R}^m$ aperto tale che $f^{-1}(U)$ non è aperto in $A$. Allora $\exists z \in f^{-1}(U)$ tale che $\forall k \geq 1, B(\underline{z}, \frac{1}{k}) \not\subset f^{-1}(U)$. Ma questo implica che $\exists \underline{x_k} \in A \cap B(\underline{z}, \frac{1}{k})$ tale che $\underline{x_k} \not\in f^{-1}(U)$. Ma allora 
