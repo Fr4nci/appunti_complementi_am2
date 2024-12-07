@@ -44,6 +44,7 @@
 	colormap/violet % se si vuole cambiare il colormap utilizzato per generare i grafici, tuttavia la copertina ha un colormap a
 					% parte che va modificato qua sotto. Se si stampa non a colori consiglio blackwhite come colormap
 	}
+\renewcommand{\appendixpage}{}
 \begin{document}
 	\begin{titlepage}
 	\centering
@@ -117,6 +118,7 @@
 		\item $\partial A$ derivato di A
 		\item $B(x_0, r)$ palla aperta di raggio $r$ centrata in $x_0$
 		\item $\mathbb{B}(x_0, r)$ palla chiusa di raggio $r$ centrata in $x_0$
+		\item $|| A ||$ norma di Hilbert-Schmidt
 		\item $o(f)$ o-piccolo di $f$
 		\item $O(f)$ O-grande di $f$
 		\item $\sum_{n}$ gruppo (rispetto all'operazione di composizione di funzioni) delle permutazioni $\sigma: \{1, \ldots n \} \to \{1, \ldots n \}$ bigettive.
@@ -126,7 +128,7 @@
 		\item $(\iota_+, \iota_-, \iota_0)$ segnatura di un prodotto scalare/hermitiano
 		\item $I(x_0, \delta) = (x_0 - \delta, x_0 + \delta) = B(x_0, \delta) \subset \mathbb{R}$ con $x_0 \in \mathbb{R}, \delta > 0$ intervallo centrato in $x_0$ di ampiezza $2\delta$
 		\item $m_n$ misura di Lebesgue
-		\item $\mathcal{M}(X)$ classe degli insiemi misurabili per Lebesgue
+		\item $\mathfrak{M}(X)$ classe degli insiemi misurabili per Lebesgue
 		\item $\mathcal{P}(X)$ insieme delle parti di $X$
 		\item $\varprod\limits_i$ prodotto cartesiano multiplo
 		\item $\sum\limits_i$ sommatoria
@@ -138,6 +140,18 @@
 	\input{capitoli/curve_superfici_regolari}
 	\input{capitoli/integrali_curvilinei_potenziali}
 	\input{capitoli/cenni_misura_lebesgue}
+	\clearpage
+	\pagestyle{plain}
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\hspace*{-1cm}
+		\includegraphics[scale=0.25]{immagini/gamma_illustrata.png}
+	\end{figure}
+	\vspace*{\fill}
+	\clearpage
+\pagestyle{fancy}
 	\begin{appendices}
 		\input{capitoli/notazione_multi_indice}
 	\end{appendices}

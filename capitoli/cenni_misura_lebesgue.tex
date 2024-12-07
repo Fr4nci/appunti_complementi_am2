@@ -111,7 +111,7 @@ Caratheodory ci assicura di poter trovare uno spazio di misura in cui la misura 
 	$$
 	\label{def:mis_lebesgue}
 \end{definition}
-Per ogni insieme $X$ definiamo con $\mathcal{M}(X)$ la classe di tutti gli insiemi misurabili secondo Lebesgue.
+Per ogni insieme $X$ definiamo con $\mathfrak{M}(X)$ la classe di tutti gli insiemi misurabili secondo Lebesgue.
 \begin{definition}[$\sigma-$algebra]
 	Diremo che $\mathcal{F} \subseteq \mathcal{P}(X)$ è una $\sigma-$algebra se valgono
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -132,18 +132,18 @@ Per ogni insieme $X$ definiamo con $\mathcal{M}(X)$ la classe di tutti gli insie
 	\end{enumerate}
 \end{definition}
 \begin{theorem}[teorema di Caratheodory]
-	La classe dei misurabili $\mathcal{M}(X)$ è una $\sigma-$algebra e $m_n:\mathcal{M}(X) \to [0; +\infty]$ è una misura
+	La classe dei misurabili $\mathfrak{M}(X)$ è una $\sigma-$algebra e $m_n:\mathfrak{M}(X) \to [0; +\infty]$ è una misura
 \end{theorem}
-Diremo allora che $m_n: \mathcal{M}(X) \to [0; +\infty]$ è la misura di Lebesgue su $X$. Per lo più noi lavoreremo supponendo che $X=\mathbb{R}^n$.
+Diremo allora che $m_n: \mathfrak{M}(X) \to [0; +\infty]$ è la misura di Lebesgue su $X$. Per lo più noi lavoreremo supponendo che $X=\mathbb{R}^n$.
 \begin{prop}
-	La misura $m_n: \mathcal{M}(X) \to [0; +\infty]$ è finitamente additiva
+	La misura $m_n: \mathfrak{M}(X) \to [0; +\infty]$ è finitamente additiva
 \end{prop}
 \begin{proof}
 La dimostrazione è equivalente a quella della proposizione~\ref{prop:sub_finita} sostituendo opportunamente alle minorazione le eguaglianze.
 \end{proof}
 \begin{remark}
 Ammettendo l'assioma della scelta è possibile mostrare che esistono degli insiemi che non sono misurabili (come ampiamente detto in precedenza). L'esempio più famoso è
-l'insieme di Vitali, che si può costruire dentro un qualunque insieme di misura positiva $E \in \mathcal{M}(\mathbb{R}^n)$. Dalla definizione di misurabilità allora $\exists S_0 \subseteq \mathbb{R}^n$
+l'insieme di Vitali, che si può costruire dentro un qualunque insieme di misura positiva $E \in \mathfrak{M}(\mathbb{R}^n)$. Dalla definizione di misurabilità allora $\exists S_0 \subseteq \mathbb{R}^n$
 tale che 
 $$
 m_n(S_0) \leq m_n(S_0 \cap E) + m_n(S_0 \setminus E)
@@ -191,7 +191,7 @@ dunqque si perderebbe la $\sigma-$additività su insiemi disgiunti.
 	$$
 	dove $x_i: \mathbb{N} \to Z$ dunque
 	$$
-	m_n(Z) \leq m_n(\{ x_i \}) = 0 \implies m_n(Z) = 0
+	m_n(Z) \leq \sum_{i=1}^{+\infty} m_n(\{ x_i \}) = 0 \implies m_n(Z) = 0
 	$$
 \end{proof}
 \begin{cor}
@@ -202,6 +202,7 @@ $\mathbb{Q}^n \cong \mathbb{N}$ dunque $m_n(\mathbb{Q}^n) = 0$
 \end{proof}
 \begin{cor}
 	Gli insiemi a misura nulla sono misurabili per Lebesgue.
+	\label{cor:mis_nulla_misur}
 \end{cor}
 \begin{proof}
 In virtù della definizione~\ref{def:mis_lebesgue} dobbiamo verificare che, preso $Z$ insieme trascurabile, allora
@@ -230,25 +231,25 @@ dunque $m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)$, ovvero la tesi.
 	Tutti gli aperti di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
 \end{cor}
 \begin{proof}[Dimostrazione (del corollario)]
-	Siccome $m_n: \mathcal{M}(\mathbb{R}^n) \to [0; +\infty]$ allora $\mathcal{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, dunque se $A \in \mathcal{M}(\mathbb{R}^n) \implies A^c \in \mathcal{M}(\mathbb{R}^n)$.
+	Siccome $m_n: \mathfrak{M}(\mathbb{R}^n) \to [0; +\infty]$ allora $\mathfrak{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, dunque se $A \in \mathfrak{M}(\mathbb{R}^n) \implies A^c \in \mathfrak{M}(\mathbb{R}^n)$.
 \end{proof}
 \begin{cor}
 	Tutte le unioni e le intersezioni numerabili di insiemi chiusi o aperti sono ancora misurabili secondo Lebesgue
 \end{cor}
 \begin{proof}
-	Se $\{ B_i : i \geq 1 \} \subseteq \mathcal{M}(\mathbb{R}^n) \implies \bigcup\limits_{i=1}^{+\infty} B_i \in \mathcal{M}(\mathbb{R}^n)$ perché $\mathcal{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, mentre per le intersezioni numerabili abbiamo che se $B_i \in \mathcal{M}(\mathbb{R}^n) \implies B_i^c \in \mathcal{M}(\mathbb{R}^n)$ (sempre per le proprietà delle $\sigma-$algebre)
-	e, per le leggi di De Morgan, avremo che $\left(\bigcup\limits_{i=1}^{+\infty} B_i^c \right)^c = \bigcap\limits_{i=1}^{+\infty} B_i \in \mathcal{M}(\mathbb{R}^n)$
+	Se $\{ B_i : i \geq 1 \} \subseteq \mathfrak{M}(\mathbb{R}^n) \implies \bigcup\limits_{i=1}^{+\infty} B_i \in \mathfrak{M}(\mathbb{R}^n)$ perché $\mathfrak{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, mentre per le intersezioni numerabili abbiamo che se $B_i \in \mathfrak{M}(\mathbb{R}^n) \implies B_i^c \in \mathfrak{M}(\mathbb{R}^n)$ (sempre per le proprietà delle $\sigma-$algebre)
+	e, per le leggi di De Morgan, avremo che $\left(\bigcup\limits_{i=1}^{+\infty} B_i^c \right)^c = \bigcap\limits_{i=1}^{+\infty} B_i \in \mathfrak{M}(\mathbb{R}^n)$
 \end{proof}
 \section{Funzioni misurabili secondo Lebesgue}
 Andiamo adesso ad affrontare il concetto di funzione misurabile, il quale ci condurrà, naturalmente, verso il concetto di integrale di Lebesgue
 \begin{definition}[funzioni misurabili secondo Lebesgue]
-Sia $E \in \mathcal{M}(\mathbb{R}^n)$ misurabile e $f: E \to \bar{\mathbb{R}}$. Diremo che $f$ è misurabile secondo Lebesgue se $\forall t \in \mathbb{R}$ l'insieme $f^{-1}([-\infty, t)) \in \mathcal{M}(\mathbb{R}^n)$, ovvero esso è misurabile.
+Sia $E \in \mathfrak{M}(\mathbb{R}^n)$ misurabile e $f: E \to \bar{\mathbb{R}}$. Diremo che $f$ è misurabile secondo Lebesgue se $\forall t \in \mathbb{R}$ l'insieme $f^{-1}([-\infty, t)) \in \mathfrak{M}(\mathbb{R}^n)$, ovvero esso è misurabile.
 \end{definition}
 \begin{remark}(\textbf{Topologia di $[-\infty, \infty]$})
 	Ogni aperto di $[-\infty, +\infty]$ è un'unione arbitraria di intervalli che possono essere sia aperti oppure del tipo $[-\infty, t)$ o $(t, +\infty]$.
 \end{remark}
 \begin{prop}[caratterizzazione delle funzioni misurabili]
-	$E \in \mathcal{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ è misurabile se e solo se $\forall O \subseteq \bar{\mathbb{R}}$ aperto di $[-\infty, +\infty]$ abbiamo che $f^{-1}(O) \in M(\mathbb{R}^n)$
+	$E \in \mathfrak{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ è misurabile se e solo se $\forall O \subseteq \bar{\mathbb{R}}$ aperto di $[-\infty, +\infty]$ abbiamo che $f^{-1}(O) \in M(\mathbb{R}^n)$
 \end{prop}
 \begin{prop}[le funzioni continue sono misurabili]
 	Se $E \in \mathcal{R}^n, f: E \to \mathbb{R}$ è continua, allora è misurabile
@@ -256,7 +257,7 @@ Sia $E \in \mathcal{M}(\mathbb{R}^n)$ misurabile e $f: E \to \bar{\mathbb{R}}$. 
 \begin{proof}
 	Se $O \subseteq [-\infty, +\infty]$ è un aperto contenuto in $\mathbb{R}$ in realtà è un aperto di $\mathbb{R} \implies f^{-1}(O)$ è aperto in $E$ in virtù del teorema~\ref{thm:teo_cf1}, dunque avremo che $\exists \Omega \subseteq \mathbb{R}^n$ tale che
 	$$
-	f^{-1}(0) = E \cap \Omega \in \mathcal{M}(\mathbb{R}^n) \implies f \text{ è misurabile }
+	f^{-1}(0) = E \cap \Omega \in \mathfrak{M}(\mathbb{R}^n) \implies f \text{ è misurabile }
 	$$
 	ovvero la tesi.
 \end{proof}
@@ -274,3 +275,32 @@ allora $\chi_k \stackrel{n \to +\infty}{\to} \chi$, ovvero la funzione di Dirich
 \begin{exercise}
 Mostrare la misurabilità di $\chi$ tramite la definizione di funzione misurabile secondo Lebesgue.
 \end{exercise}
+\begin{proof}[Svolgimento]
+	Osserviamo che $\chi: [0, 1] \mapsto \{0, 1\}$. Mostriamo il seguente lemma
+	\begin{lemma}
+		Sia $f: A \mapsto B$ e presi $B_1, B_2 \subseteq B$ allora
+		$$
+			f^{-1}(B_1 \cup B_2) = f^{-1}(B_1) \cup f^{-1}(B_2)
+		$$
+	\end{lemma}
+	\begin{proof}
+		Mostriamo che $f^{-1}(B_1 \cup B_2) \subseteq f^{-1}(B_1) \cup f^{-1}(B_2)$: per definizione sappiamo che $f^{-1}(B_1 \cup B_2) = \{x \in A: f(x) \in B_1 \cup B_2 \} \implies f(x) \in B_1 \vee f(x) \in B_2 \implies x \in f^{-1}(B_1) \vee x \in f^{-1}(B_2)$.
+		Mostriamo che $f^{-1}(B_1 \cup B_2) \supseteq f^{-1}(B_1) \cup f^{-1}(B_2)$: supponiamo, per assurdo, che $\exists x \in f^{-1}(B_1) \cup f^{-1}(B_2) : x \not\in f^{-1}(B_1 \cup B_2) \implies f(x) \in B_1 \vee f(x) \in B_2$ e $f(x) \not\in B_1 \cup B_2$, il che è un assurdo.
+	\end{proof}
+	Dunque, in virtù di questo lemma appena mostrato, avremo che
+	$$
+		\chi^{-1}(\{0, 1\}) = \chi^{-1}(\{0 \}) \cup \chi^{-1}(\{1 \})
+	$$
+\end{proof}
+e abbiamo che $\chi^{-1}({0}) = \mathbb{Q} \cap [0, 1]$ che è un'unione numerabile di punti, ovvero i numeri razionali all'interno di questo intervallo che, in virtù del corollario~\ref{cor:mis_nulla_misur}, è misurabile. \\
+L'intervallo restante, invece, sarebbe pari a $[0, 1] \setminus (\mathbb{Q} \cap [0,1])$ che, tuttavia, è misurabile siccome $[0,1]$ è misurabile, $\mathbb{Q} \cap [0,1]$ è misurabile e le differenze sono misurabili secondo Lebesgue per le proprietà delle $\sigma-$algebre.
+\begin{prop}
+	Se $f, g: E \to \bar{\mathbb{R}}$ sono misurabili, allora
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item se $f+g$ è ben definita ovunque su $E$ allora $f+g$ è misurabile;
+		\item se $\lambda \in \mathbb{R}$ e $\lambda f$ è ben definita ovunque, allora $\lambda f$ è misurabile;
+		\item $E \mapsto \max\{f(x), g(x) \}$ e $E \mapsto \min\{f(x),g(x) \}$ sono misurabili;
+		\item se $f_j: E \to \mathbb{R}$ è misurabile $\forall j \in \mathbb{N} \implies x \in E \to \sup\limits_{j \in \mathbb{N}} f_j(x)$ è misurabile.
+	\end{enumerate}
+\end{prop}
+

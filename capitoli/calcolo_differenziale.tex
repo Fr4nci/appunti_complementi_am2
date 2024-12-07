@@ -174,10 +174,10 @@ df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0)dx_i = \partial_{x_1} f(x_0)dx_1 + \
 $$
 \end{prop}
 \begin{proof}
-Dato $v=(\xi_1, \ldots \xi_n)$ allora
+Dato $v=(\xi_1, \ldots \xi_n) = \sum_{i=1}^n \xi_i e_i$ allora
 $$
-df(x_0)(v) = \sum_{i=1}^n \xi_i df(x_0)(e_i) = \sum_{i=1}^n \pi_i(v) \partial_{x_i} f(x_0)$$
-dove l'ultima uguaglianza si è ottenuta osservando che $xi_j = \pi_j(v) = dx_j(v)$. A questo punto allora, ricordando che $df(x_0)(e_1) = \partial_{x_i} f(x_0)$ (per il teorema~\ref{thm:teorema_df1}), otteniamo la tesi, siccome
+df(x_0)(v) \stackrel{\text{per linearità}}{=} \sum_{i=1}^n \xi_i df(x_0)(e_i) = \sum_{i=1}^n \pi_i(v) df(x_0)(e_i)$$
+dove l'ultima uguaglianza si è ottenuta osservando che $\xi_i = \pi_i(v) = dx_j(v)$. A questo punto, ricordando che $df(x_0)(e_i) = \partial_{x_i} f(x_0)$ in virtù del teorema~\ref{thm:teorema_df1}, otteniamo la tesi, siccome
 $$\sum_{i=1}^n \partial_{x_i} f(x_0) dx_i(v) \implies df(x_0) = \sum_{i=1}^n \partial_{x_i} f(x_0) dx_i
 $$
 \end{proof}
@@ -434,21 +434,21 @@ Mostriamo adesso il legame fra differenziabilità e continuità. Per fare questo
 \begin{lemma}
 Ogni funzione lineare $L: \mathbb{R}^n \to \mathbb{R}^m$ continua e se $A = (a_{ij}) \in \mathbb{R}^{m \times n}$ è la sua matrice allora $|Lx| \leq | A | |x|  \, \forall x \in \mathbb{R}^n$, dove
 $$
-| A | = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
+|| A || = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
 $$
 \end{lemma}
 \begin{proof}
 Dalla regola del prodotto matriciale abbiamo che
 $$
-|Lx| = \Bigg| \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)e_i \Bigg|^2 = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij}^2 \right)  \left( \sum_{j=1}^n x_j^2 \right) = | A |^2 |x|^2
+|Lx|^2 = \Bigg| \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)e_i \Bigg|^2 = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij}^2 \right)  \left( \sum_{j=1}^n x_j^2 \right) = || A ||^2 |x|^2
 $$
 e possiamo osservare che $L$ è continua, infatti se $x_0 \in \mathbb{R}^n$
 $$
-|Lx - Lx_0| \leq |L(x-x_0)| \leq | A | |x-x_0|
+|Lx - Lx_0| = |L(x-x_0)| \leq || A || |x-x_0|
 $$
 pertanto se $p_k \to x_0$ allora
 $$
-|Lp_k - Lx_0| \leq | A | |p_k-x_0| \stackrel{k \to +\infty}{\to} 0
+|Lp_k - Lx_0| \leq || A || |p_k-x_0| \stackrel{k \to +\infty}{\to} 0
 $$
 \end{proof}
 A questo punto possiamo dunque mostrare la seguente proposizione

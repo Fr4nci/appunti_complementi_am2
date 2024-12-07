@@ -34,6 +34,56 @@ $$
 \mathit{l}(\gamma) = \int_a^b |\dot{\gamma(t)}|
 $$
 \end{theorem}
+\begin{proof}
+Possiamo innanzitutto osservare che, fissando una parametrizzazione $a=t_0 < t_1 < \ldots < t_k = b$ per cui la curva $\gamma \in C^1_\text{tratti}([a, b])$, allora:
+$$
+	\int_{j=1}^k |\gamma(t_j) - \gamma(t_{j-1})| = \sum_{i=1}^k |\int_{t_{j-1}}^{t_j} \dot{\gamma}(t)dt| \leq \sum_{i=1}^k \int_{t_{j-1}}^{t_j} |\dot{\gamma}(t)dt| = \int_a^b |\dot{\gamma}(t)dt|
+$$
+dunque, siccome la parametrizzazione scelta è arbitraria, allora
+$$
+l(\gamma) = \sup \left\{ \sum_{j=1}^k |\gamma(t_j) - \gamma(t_{j-1})| : a = t_0 < t_1 < \ldots < t_k = b, \, k \in \mathbb{N}^+ \right\} \leq \int_a^b |\dot{\gamma}(t)|dt
+$$
+Possiamo, per concludere la dimostrazione, osservare che $\dot{\gamma}$, per il teorema di Heine-Cantor(), è uniformemente continua (siccome $\gamma \in C_\text{tratti}^1$, dunque la sua derivata continua), ovvero
+$$
+\forall \varepsilon > 0, \exists \delta > 0: \forall x, y, |x-y| < \delta \implies |\dot{\gamma}(x) - \dot{\gamma}(y)| < \varepsilon
+$$
+e possiamo allora prendere una suddivisione tale che $\max{t_{j+1} - t_{j}} < \delta$ in maniera tale che
+$$
+|\gamma(x)-\gamma(y)| \leq \varepsilon \, \, \forall x, y \in [t_j, t_{j+1}]
+$$
+dunque
+$$
+\gamma(t_{j+1}) - \gamma(t_j) = \int_{t_j}^{t_{j+1}} \dot{\gamma}(t)dt = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s) + \dot{\gamma}(s)dt) = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt + \dot{\gamma}(s)(t_{j+1} - t_j).
+$$
+Esplicitiamo a questo punto il termine con $\dot{\gamma}(s)$ e passiamo ai valori assoluti:
+\begin{align*}
+&|\dot{\gamma}(s)|(t_{j+1} - t_j) \leq |\gamma(t_{j+1}) - \gamma(t_j) - \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{gamma}(s))dt| \stackrel{\text{dis. triang}}{\leq} \\
+&\stackrel{\text{dis. triang}}{\leq} |\gamma(t_{j+1}) - \gamma(t_j)| + |\int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt| \stackrel{|\dot{\gamma}(t)-\dot{\gamma}(s)| \leq \varepsilon}{\leq} |\dot{\gamma}(t_{j+1}) - \dot{\gamma}(t_j)| + \varepsilon(t_{j+1} - t_{j})
+\end{align*}
+dividendo per $t_{j+1} - t_j$ concludiamo che
+$$
+|\dot{\gamma}(s)| \leq \frac{|\gamma(t_{j+1})-\gamma(t_j)|}{t_{j+1} - t_j} + \varepsilon
+$$
+e, integrando per $s \in [t_j, t_{j+1}]$, avremo che
+$$
+\int_{t_{j}}^{t_j} |\dot{\gamma}(s)|ds \leq \int_{t_j}^{t_{j+1}} \frac{|\gamma(t_{j+1} - \gamma(t_j)|)}{t_{j+1}-t_j} ds + \int_{t_j}^{t_{j+1}} \varepsilon ds = |\gamma(t_{j+1})-\gamma(t_j)| + \varepsilon(t_{j+1} - t_j)
+$$
+sommando adesso sulle $j$ avremo che
+$$
+\int_a^b |\dot{\gamma}(s)|ds \leq \sum_{j=1} |\gamma(t_{j+1})-\gamma(t_j)| + \varepsilon(b-a) \leq l(y) + \varepsilon(b-a) 
+$$
+ma, siccome $\varepsilon$ è arbitrario, per $\varepsilon \to 0$ ricaviamo che
+$$
+\int_a^b |\dot{\gamma}(s)|ds \leq l(\gamma)
+$$
+ma allora segue necessariamente che $l(\gamma) = \int\limits_a^b |\dot{\gamma}(t)|dt$.
+\end{proof}
+\begin{remark}
+Il risultato ottenuto è vero anche per curve lipschtziane, tuttavia va modificata leggermente la dimostrazione.
+\end{remark}
+\begin{remark}
+$l(\gamma)$ misura quello che noi consideriamo come \emph{lunghezza} della curva solo se $\gamma$ è iniettiva, altrimenti misura la lunghezza dell'immagine della curva "con molteplicità".
+\end{remark}
 \begin{definition}
 	Sia $\gamma \in C^1_{\text{tratti}}([a,b], \mathbb{R}^n)$ e $f: \gamma([a,b]) \to \mathbb{R}$ continua, definiamo l'integrale di lunghezza o l'integrale curvilineo di prima specie di $f$ lungo $\gamma$ come
 	$$

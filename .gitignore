@@ -12,6 +12,7 @@ Makefile
 main.blg
 main.fdb_latexmk
 main.fls
+main.dvi
 .vscode
 omotopia.gif.kra
 omotopia.png.kra
