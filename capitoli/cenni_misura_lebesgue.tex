@@ -224,11 +224,37 @@ m_n(S) \geq m_n(S \setminus Z) = m_n(S \setminus Z) + m_n(S \cap Z) \implies m_n
 $$
 dunque $m_n(S) = m_n(S \setminus Z) + m_n(S \cap Z)$, ovvero la tesi.
 \end{proof}
-\begin{theorem}
+\begin{theorem}[gli aperti sono misurabili]
 	Tutti gli aperti di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
 \end{theorem}
+Per dimostrare questo teorema abbiamo bisogno del seguente lemma:
+\begin{lemma}
+Ogni aperto di $\mathbb{R}^n$ è unione numerabile di $n-$intervalli a due a due disgiunti
+\end{lemma}
+\begin{proof}
+	Sia $A \subseteq \mathbb{R}^n$ aperto non vuoto. Allora possiamo considerare la famiglia degli $n-$intervalli $I \subseteq A$ ad estremi razionali, ovvero:
+	$$\mathcal{V} = \{I = \prod_{i=1}^n (a_i, b_i] : I \subseteq A, a_i, b_i \in \mathbb{Q} \, \, \forall i \in \{1, \ldots, n\} \}$$
+	Siccome ogni $n-$intervallo all'interno di $\mathcal{V}$ può essere messo in corrispondenza biunivoca con la $2n-$upla $(a_1, \ldots, a_n, b_1, \ldots, b_n) \in \mathbb{Q}^{2n}$ che è un insieme numerabile, allora anche $\mathcal{V}$ è un insieme numerabile. E' banale l'inclusione $\bigcup\limits_{I \in A} I \subseteq A$ (per definizione di $\mathcal{V}$), vogliamo
+	adesso mostrare che vale anche l'inclusione opposta: sia $x \in A$ e, siccome $A$ è aperto, avremo che 
+	$$\forall y \in A, \exists \varepsilon > 0 : \{y = (y_1, \ldots, y_n) \in \mathbb{R}^n : |y_i - x_i| < \varepsilon \, \, \forall i \in \{1, \ldots, n \} \} \subseteq A$$
+	Siccome $\mathbb{Q}$ è denso in $\mathbb{R}$ avremo che $\forall i \in \{1, \ldots, n \}, \exists \alpha_i, \beta_i \in \mathbb{Q}$ tali che
+	$$
+	x_i - \varepsilon < \alpha_i < x_i < \beta_i < x_i + \varepsilon 
+	$$
+	Dunque avremo che l'$n-$intervallo $I'=\prod\limits_{i=1} (\alpha_i, \beta_i]$ contiene il punto $x$, dunque $x \in \mathcal{V} \implies x \in \bigcup\limits_{I \in \mathcal{V}} I \implies A \subseteq \bigcup_{I \in \mathcal{V}} I$. Concludiamo
+	che $A = \bigcup\limits_{i=1} I$. \\
+	Mostriamo adesso che possiamo prendere gli $n-$intervalli a due a due disgiunti. Consideriamo $A = \bigcup_{i=i}^{+\infty} I_i$ ma allora, posto $J_i = I_i \setminus \bigcup_{j=1}^{i-1} I_j$, possiamo vedere facilmente che
+	$$
+	\bigcup_{i=1}^{+\infty} I_i = \bigcup_{i=1}^{+\infty} J_i = A
+	$$
+\end{proof}
+Siamo pronti adesso a dimostrare il teorema:
+\begin{proof}[Dimostrazione (del teorema)]
+	Sia $A$ un insieme aperto. Per il lemma precedente sappiamo che $A = P = \bigcup_{k=1}^{+\infty} I_i$ dove $I_i$ è un $n-$intervallo, dunque $m_n(P \setminus A) = m_n(\emptyset) = 0$.
+	Pertanto $P \setminus A \in \mathfrak{M}(\mathbb{R}^n)$ e $P \in \mathfrak{M}(\mathbb{R}^n)$ siccome unione di $n-$intervalli. 
+\end{proof}
 \begin{cor}
-	Tutti gli aperti di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
+	Tutti gli insiemi chiusi di $\mathbb{R}^n$ sono misurabili secondo Lebesgue
 \end{cor}
 \begin{proof}[Dimostrazione (del corollario)]
 	Siccome $m_n: \mathfrak{M}(\mathbb{R}^n) \to [0; +\infty]$ allora $\mathfrak{M}(\mathbb{R}^n)$ è una $\sigma-$algebra, dunque se $A \in \mathfrak{M}(\mathbb{R}^n) \implies A^c \in \mathfrak{M}(\mathbb{R}^n)$.
@@ -302,5 +328,198 @@ L'intervallo restante, invece, sarebbe pari a $[0, 1] \setminus (\mathbb{Q} \cap
 		\item $E \mapsto \max\{f(x), g(x) \}$ e $E \mapsto \min\{f(x),g(x) \}$ sono misurabili;
 		\item se $f_j: E \to \mathbb{R}$ è misurabile $\forall j \in \mathbb{N} \implies x \in E \to \sup\limits_{j \in \mathbb{N}} f_j(x)$ è misurabile.
 	\end{enumerate}
+	\label{prop:f_g_mis}
 \end{prop}
+\begin{remark}
+	Per una buona costruzione della misura di Lebesgue, è comodo definire le operazioni algebriche in $[0; +\infty]$. Definiamo il prodotto come
+	\begin{equation*}
+		xy = \begin{cases}
+			xy & \text{se } \max\{x, y \} < +\infty \\
+			+\infty & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} > 0 \\
+			0 & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} = 0
+		\end{cases}
+	\end{equation*}
+	Il terzo caso, che sembra patologico, si può facilmente interpretare in maniera geometrica: avendo in mente la teoria dell'integrazione, il prodotto fra $0 \cdot +\infty$ corrisponde a quella di un rettangolo illimitato con base di lunghezza infinita e
+	altezza nulla, dunque ha area "pari" a 0.
+\end{remark}
+Introduciamo adesso la nozione di funzione semplice, concetto cardine per lo sviluppo dell'integrale di Lebesgue.
+\begin{definition}[funzione semplice]
+	$\varphi: E \to \mathbb{R}$ è una funzione semplice se $\varphi(E)=\{\lambda_1, \ldots, \lambda_k \} \subset \mathbb{R}$ dove $\lambda_i \neq \lambda_j \, \, \forall i \neq j \in \{1, \ldots, k \}$ dove
+	$\varphi^{-1}(\lambda_i) = A_i \in \mathfrak{M}(\mathbb{R}^n) \, \, \forall i \in \{1, \ldots, k \}$.
+\end{definition}
+\begin{definition}[funzione caratteristica]
+	$$
+		\mathbb{1}_{A_i} = \begin{cases} 1 & x \in A_i \\ 0 & x \not\in A_i \end{cases}
+	$$
+\end{definition}
+\begin{remark}
+Segue banalmente che
+$$
+\varphi(x) = \sum_{i=1}^k \lambda_i \mathbb{1}_{A_i} (x)
+$$
+se $\varphi$ è una funzione semplice, naturalmente per opportuni $\lambda_1, \ldots, \lambda_k$ e $A_1, \ldots, A_k \in \mathfrak{M}(\mathbb{R}^n)$.
+\end{remark}
+Geometricamente non è difficile intuire che il volume sotto una funzione semplice (che assume valori pari a costanti che dipendono dalla regione di spazio) corrisponde ad un "solido" $n-$dimensionale con altezza $\lambda_j$ con $j \in \{1, \ldots, k \}$ e base pari alla "superficie" (naturalmente il termine usato qua è per rendere intuitiva la trattazione, ma non necessariamente è una superficie) 
+del dominio. Nell'ipotesi di $\lambda_j \geq 0 \, \, \forall j \in \{1, \ldots, k \}$ (per non avere problemi con volumi negativi) allora possiamo già definire il concetto di integrale
 
+\begin{definition}
+	Sia $\varphi: E \to \mathbb{R}$ una funzione semplice con $\lambda_j \geq 0 \, \, \forall j \in \{1, \ldots, k \}$ definiamo il suo integrale come
+	\begin{equation}
+		I(\varphi) = \sum_{j=1}^n \lambda_j m_n(A_j)
+		\label{def:int_funz_sempl}
+	\end{equation}
+\end{definition}
+\begin{remark}
+Si osservi che nella definzione~\ref{def:int_funz_sempl} compare il prodotto $0 \cdot +\infty$ quando $m_n(A_i) = +\infty$ e $\lambda_i = 0$.
+\end{remark}
+\begin{definition}[integrale di Lebesgue]
+	Data $f: E \to [0; +\infty]$ misurabile allora
+	$$
+		\int_E f(x)dx = \sup\{I(\varphi) : 0 \leq \varphi \leq f \text{ e } \varphi \text{ è semplice } \}
+	$$
+\end{definition}
+Introdurremo le seguenti notazioni per l'integrale di Lebesgue
+$$
+\int_E f(x)dx = \int_E f(x_1, \ldots, x_n)dx_1, \ldots dx_n = \int_E f = \int_E f(x)dm_n(x) = \int_E fdm_n 
+$$
+\begin{remark}
+Segue subito dalla definizione che se $f, g: E \to [0; +\infty]$ sono misurabili e $f \leq g$ su $E$ allora
+$$
+\int_E f \leq \int_E g
+$$
+\end{remark}
+\begin{remark}
+Se $E \in \mathfrak{M}(\mathbb{R}^n) \implies \mathbb{1}_E$ è misurabile e vale
+$$
+m_n(E) = \int_{\mathbb{R}^n} \mathbb{1}_E dm_n
+$$
+\end{remark}
+\begin{remark}
+Se $\varphi: E \to [0; +\infty]$ è semplice allora $\int\limits_E \varphi dm_n = I(\varphi) = \sum_{i=1}^k \lambda_i m_n(E_i) $
+\end{remark}
+\begin{prop}
+Sia $f: E \to \bar{\mathbb{R}}$ misurabile, allora anche $|f|$ è misurabile
+\end{prop}
+\begin{proof}
+$|f| = f^+ + f^-$ dove $f^{+} = \max\{f, 0 \}$ e $f^{-}=\max\{0, -f \}$. Sappiamo, dalla proposizione~\ref{prop:f_g_mis}, che $\max\{f,0 \}$ e $\max\{-f, 0\}$ sono misurabili (dove abbiamo preso $g(x) = 0$) e la somma di due funzioni misurabili è misurabile.
+\end{proof}
+\begin{definition}[integrabilità secondo Lebesgue]
+	Diremo che $f$ è integrabile secondo Lebesgue se
+	$$
+	\int_E |f(x)|dx < +\infty
+	$$
+	e, in tal caso, segue che
+	$$
+	\int_E f(x)dx = \int_E f^{+}(x)dx - \int_E f^{-}(x)dx
+	$$
+\end{definition}
+\begin{definition}[proprietà quasi ovunque]
+	Diremo che una proprietà o un'affermazione $P(x)$, con $x \in A$, vale quasi ovunque su $A$ se l'insieme dei punti
+	$$
+		Z = \{x \in A: P(x) \text{ è falsa } \}
+	$$
+	ha misura nulla, ovvero $m_n(Z) = 0$
+\end{definition}
+\begin{prop}
+	Se $f: E \to [0; +\infty]$ misurabile allora
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\int_E fdm_n = 0 \implies f=0$ quasi ovunque su $E$;
+		\item $\int_E fdm_n < +\infty \implies f<+\infty$ quasi ovunque su $E$ 
+	\end{enumerate}
+\end{prop}
+\begin{remark}
+	La tesi del punto $\circled{1}$ ci dice che $f$ è quasi ovunque nulla su $E$ o equivalentemente che l'insieme $Z \subseteq E$ dei punti in cui $f$ assume dei valori positivi ha misura nulla, dunque $m_n(Z) = 0$. \\
+	La tesi del punto $\circled{2}$ è analoga
+\end{remark}
+\begin{theorem}
+	Siano $f, g: E \to \bar{\mathbb{R}}$ integrabili, ovvero $\int_E |f| dm_n < +\infty$ e $\int_E |g|dm_n < + \infty$, allora
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\lambda, \tau \in \mathbb{R} \implies \lambda f + \tau g \in \mathbb{R}$ è quasi ovunque ben definita e sommabile. Inoltre
+		$\int_E (\lambda f + \tau g) dm_n = \lambda \int_E f dm_n + \tau \int_E g dm_n$
+		\item $|\int_E f dm_n| \leq \int_E |f|dm_n$
+		\item $f \leq q$ quasi ovunque su $E \implies \int_E f \leq \int_E g$ 
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[integrale di Riemann $1-$dimensionale con l'integrale di Lebesgue]
+	Siano $-\infty \leq a < b \leq +\infty, I \subseteq \mathbb{R}$ intervallo tale che $a = \inf{I}$ e $b=\sup{I}$ e sia $f: I \to \mathbb{R}$ assolutamente integrabile secondo Riemann in senso generalizzato su $I$, ovvero
+	$$
+	\int_a^b |f(t)|dt < +\infty
+	$$
+	allora $f: I \to \mathbb{R}$ è integrabile (e quindi misurabile) secondo Lebesgue e
+	\begin{equation}
+		\int_a^b f(t)dt = \int_I fdm_n
+		\label{eq:eqv_leb_riem}
+	\end{equation}
+\end{theorem}
+\begin{remark}
+	Osserviamo che l'equazione~\ref{eq:eqv_leb_riem} è il primo procedimento operativo con cui calcolare l'integrale di Lebesgue
+\end{remark}
+\begin{remark}
+	Il teorema include anche il caso particolare in cui $I=[a,b]$.
+\end{remark}
+\begin{remark}(Esistenza di funzioni integrabili secondo Riemann in senso generalizzato ma non secondo Lebesgue) \\
+	La funzione $f(x) = \frac{\sin{x}}{x}$ è integrabile (ma non assolutamente!) secondo Riemann in senso generalizzato nell'intervallo $[1, +\infty]$ ma non per Lebesgue. \\
+	Mostriamo che non è integrabile secondo Lebesgue mostrando che
+	$$
+	\int_1^{+\infty} \Big| \frac{\sin{x}}{x} \Big|dx = +\infty
+	$$
+	Osserviamo che possiamo "spaccare" il nostro integrale, per linearità rispetto agli ordini di integrazione, fra multipli interi di $\pi$:
+	\begin{align*}
+	&\int_1^{+\infty} \Big| \frac{\sin{x}}{x} \Big| = \int_1^{\pi} \frac{\sin{x}}{x} + \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{x} \Big|dx \geq \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{k\pi} \Big| = \sum_{k=1}^{+\infty} \frac{1}{k\pi}\int_{k\pi}^{(k+1)\pi} |\sin{x}|dx = \\
+	&=\sum_{k=1}^{+\infty} \frac{2}{k\pi} = \frac{2}{\pi}\sum_{k=1} \frac{1}{k} = +\infty
+	\end{align*}
+\end{remark}
+\begin{theorem}[teorema della convergenza dominata di Lebesgue] \hspace{1cm} \\
+	Se $\forall k, \, f_k: E \to \bar{\mathbb{R}}$ sono misurabili e $\exists g: E \to [0; +\infty]$ integrabile tale che $|f_k| \leq g$ e $f_k \stackrel{k \to +\infty}{\to} f$, allora
+	$$
+	\int_E |f|dm_n < +\infty \text{ (ovvero è integrabile secondo Lebesgue) }
+	$$
+	e
+	\begin{equation}
+		\lim_{k \to +\infty} \int_E |f_k - f| dm_n = 0
+	\end{equation}
+\end{theorem}
+\begin{remark}(Scambio del limite con l'integrale) \\
+	Prendiamo la tesi del teorema e osserviamo che
+	$$
+	\lim_{k \to +\infty} \int_E |f_k - f| dm_n = 0 \implies \lim_{k \to +\infty} \int_E f_k dm_n = \int_E f dm_n = \int_E \lim_{k \to +\infty} f_k dm_n
+	$$
+	ovvero il limite si scambia con l'integrale
+\end{remark}
+\section{Introduzione agli spazi $\mathcal{L}^p$}
+\begin{definition}[spazio vettoriale $\mathcal{L}^p$]
+	Sia $1 \leq p < +\infty$, definiamo
+	$$
+	\mathcal{L}^p(E) = \left\{ f: E \to \mathbb{R} \text{ mis. } : \int_E |f|^p dm_n < +\infty \right\}
+	$$
+	e osserviamo che è uno spazio normato rispetto alla norma
+	$$
+	|| f ||_{\mathcal{L}^p(E)} = \left( \int_E |f|^p dm_n \right)^{\frac{1}{p}}
+	$$
+\end{definition}
+In virtù di quanto detto prima, se $|| f ||_{\mathcal{L}^p(E)} = 0 \implies f = 0$ quasi ovunque su $E$. E' possibile dimostrare che, su questi spazi,
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $\mathcal{L}^p(E)$ è uno spazio vettoriale di dimensione infinita quindi se $f, g \in \mathcal{L}^p(E), \lambda, \tau \in \mathbb{R} \implies \lambda f + \tau g \in \mathcal{L}^p(E)$ (abbastanza banale)
+	\item $|| f + g ||_{\mathcal{L}^p(E)} \leq || f ||_{\mathcal{L}^p(E)} + || g ||_{\mathcal{L}^p(E)}$	(si fa con la disuguaglianza di Holder)
+\end{enumerate}
+Per rendere completamente $|| \cdot ||_{\mathcal{L}^p(E)}$ una norma possiamo definire una relazione d'equivalenza fra gli elementi dello spazio vettoriale
+$$
+f \sim g \iff f = g \text{ quasi ovunque su } E
+$$
+dunque consideriamo $L^p(E) = \sfrac{\mathcal{L}^p(E)}{\sim}$ l'insieme quoziente della relazione, dove $|| f ||_{L^p(E)} = || g ||_{\mathcal{L}^p(E)}$. \\
+Osserviamo che $g \sim f$ è ben definita siccome
+$$
+|| f ||_{L^p(E)} = \left(\int_E |f|^p \right)^{\frac{1}{p}} = \left(\int_E |g|^p \right)^{\frac{1}{p}} = || g ||_{\mathcal{L}^p(E)}
+$$
+dunque $|| f ||_{L^p(E)} = 0 \implies [f]_{\sim} = 0$. Quindi $|| \cdot ||_{L^p(E)}$ è una norma su $L^p(E)$ ed è completa: il teorema di
+convergenza dominata ci assicura che le successioni di Cauchy a valori in questo spazio convergono, dunque
+$$
+|| f_k - f_m ||_{L^p(E)} \to 0 \implies \exists f \in L^p(E) : || f - f_k ||_{L^p(E)} \to 0 \implies (L^p(E), || \cdot ||_{L^p(E)}) \text{ è uno spazio di Banach}.
+$$
+Nel caso di $n=2$ possiamo anche definire un prodotto scalare reale $\varphi: L^2(E) \times L^2(E) \to \mathbb{R}$ tale che $(u, v) \mapsto \int_E uv dm_n$, osservando che
+la norma indotta dal prodotto scalare coincide con $L^2(E)$ data prima. La completezza di $L^2(E)$ e la presenza di un prodotto scalare rende tale spazio uno spazio di Hilbert.
+
+\section{Sezionamenti di insiemi in $\mathbb{R}^n$}
+Argomento su cui ci sofferemeremo parecchio è lo sviluppo di alcuni strumenti con cui facilitare il calcolo della misura degli insiemi. Uno degli strumenti
+più potenti è sicuramente il teorema di Tonelli, il quale ci assicura di poter calcolare la misura di un insieme parametrizzando le altre variabili in funzione delle altre. \\
+Supponiamo che $\mathbb{R}^n = \mathbb{R}^k \times \mathbb{R}^h$ con $x \in \mathbb{R}^k, y \in \mathbb{R}^h$.
