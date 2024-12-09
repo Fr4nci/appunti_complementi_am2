@@ -810,3 +810,63 @@ DT(\rho, \varphi) = \det \begin{bmatrix} \cos{\varphi} && -\rho \sin{\theta} \\
 	\sin{\varphi} && \rho \cos{\theta}
 \end{bmatrix} 
 $$
+per garantire l'iniettiva della nostra trasformazione, definiamo $T: \mathbb{R}^+ \times (0, 2\pi) \mapsto \mathbb{R}^2 \setminus ([0; +\infty) \times \{0\})$ dunque
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		% Assi
+		\draw[->] (-3, 0) -- (0, 0);
+		\draw[->, dashed] (0, 0) -- (3, 0) node[right] {\(x\)};
+		\draw[->] (0, -3) -- (0, 3) node[above] {\(y\)};
+		% Il segmento che rappresenta \rho
+		\node[above] at (2, 2) {\((x, y)\)};
+		\draw[thick] (0, 0) -- (2, 2) node[midway, above left] {\(\rho\)};
+		
+		% Arco fra il segmento e l'asse x
+		\draw[thick] (1, 0) arc[start angle=0, end angle=45, radius=1cm];
+		\node at (1.2, 0.3) {\(\varphi\)};
+		%origine e il punto P
+		\filldraw (0, 0) circle (1pt);
+		\filldraw (2, 2) circle (1pt);
+
+
+	\end{tikzpicture}
+\end{figure}
+e, per quanto riguarda la sua inversa, possiamo vedere che presi $x$ e $y$ possiamo risalire alla $\rho$ tramite la semplice relazione $\rho = \sqrt{x^2 + y^2}$, mentre 
+l'angolo $\varphi$, posto $\Omega_0 = \mathbb{R}^2 \setminus ([0; +\infty) \times \{0\})$, può essere ottenuto considerando banalmente la funzione argomento, che si può mostrare essere, posto  $C^{\infty}(\Omega_0)$. \\
+\begin{remark}
+Ci si chiede, inoltre, se il fatto che $T$ non generi tutto lo spazio possa, in qualche maniera contribuire agli integrali; tuttavia si può mostrare che
+$$
+m_2(\mathbb{R}^2 \setminus \Omega_0) = 0
+$$
+questo si può facilmente vedere dal fatto che $\mathbb{R}^2 \setminus \Omega_0 = [0; \infty) \times \{0\}$ che corrisponde ad un insieme che, per come avevamo definito le operazioni algebriche in $[0; +\infty]$, corrisponde ad un insieme a misura nulla. \\
+Dunque, il suo contributo all'integrale è nullo.
+\end{remark}
+Per le coordinate polari, dunque, se $E \subseteq \mathbb{R}^2$ misurabile allora
+\begin{equation}
+	\int_E f(x)dx = \int_{T^{-1}(E)} f(\rho \cos{\varphi}, \rho \sin{\varphi}) \rho d\rho d\varphi
+\end{equation}
+\begin{exercise}
+	Calcolare $\int\limits_{-\infty}^{+\infty} e^{-t^2} dt$
+\end{exercise}
+\begin{proof}[Svolgimento]
+	La funzione $e^{-x^2}$ è naturalmente integrabile, siccome $\frac{e^{-x^2}}{\frac{1}{x^2}} \stackrel{x \to +\infty}{\to} 0$ per gli ordini di infinito, dunque $e^{-x^2} \ll \frac{1}{x^2} \implies \int_1^{+\infty} e^{-x^2} dx \ll \int_1^{+\infty} \frac{1}{x^2}$ mentre sull'intervallo $[0; 1]$ la funzione è limitata e continua. La parita della funzione garantisce lo stesso per l'intervallo $(-\infty; 0]$. Osserviamo
+	adesso che, tramite l'integrabilità, siamo sicuri di poter applicare $Fubini$ siccome l'intervallo $(-\infty; +\infty)$ è sicuramente misurabile in quanto aperto. Osserviamo che, applicando Fubini, su un insieme del tipo $\mathbb{R} \times \mathbb{R}$ allora
+	$$
+	\int_{-\infty}^{+\infty} e^{-(x^2 + y^2)}dxdy = \int_{-\infty}^{+\infty} e^{-y^2} dy \int_{-\infty}^{+\infty} e^{-x^2} dx = (\int_{-\infty}^{+\infty} e^{-x^2}dx)
+	$$
+	dunque possiamo studiare direttamente l'integrale in due variabili dove possiamo passare alle coordinate polari. Osserviamo che
+	\begin{align*}
+	&\int_{\mathbb{R}^2} e^{-x^2 - y^2} dxdy = \int_{0}^{+\infty} \int_{0}^{2\pi} e^{-\rho^2 \cos^2{\varphi} - \rho^2 \sin^2{\varphi}} \rho d\theta d\rho = \int_0^{+\infty} \rho d\rho \int_{0}^{2 \pi} e^{-\rho^2} \rho d\rho = -\pi \int_0^{+\infty} -2 \rho e^{-\rho^2} d\rho = - \pi e^{-\rho^2}\Bigg|^{+\infty}_{0} = \\
+	&=0 + \pi = \pi
+	\end{align*}
+	dunque $\int\limits_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi}$ 
+\end{proof}
+\begin{exercise}
+	Mostrare che $\int\limits_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy = +\infty$
+\end{exercise}
+\begin{proof}
+	$$
+	\int_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy \geq \int_{B(0,1) \cap (0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2} dxdy = \int_{0}^1 \int_0^{2\pi} \frac{|\cos^2{\varphi} - \sin^2{\varphi}|}{\rho} d\rho d\varphi = \int_0^{1} \frac{1}{\rho} d\rho \int_0^{2\pi} |\cos{\frac{\varphi}{2}}| d\varphi = +\infty
+	$$
+\end{proof}
