@@ -470,9 +470,20 @@ $|f| = f^+ + f^-$ dove $f^{+} = \max\{f, 0 \}$ e $f^{-}=\max\{0, -f \}$. Sappiam
 	\end{align*}
 	Possiamo anche far vedere che la funzione $\frac{\sin{x}}{x}$ ammette integrale convergente in $(1, +\infty)$, infatti:
 	$$
-	\int_1^{+\infty} \frac{\sin{x}}{x}dx = \int_1^\pi \frac{\sin{x}}{x}dx + \sum_{i=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \frac{\sin{x}}{x}dx \leq \int_1^\pi \frac{\sin{x}}{x}dx + \sum_{i=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \frac{\sin{x}}{k\pi} dx = \int_1^\pi \frac{\sin{x}}{x}dx + \frac{1}{\pi}\sum_{i=1}^{+\infty} \frac{(-1)^k}{k}
+	\int_1^{+\infty} \frac{\sin{x}}{x}dx = \int_1^\pi \frac{\sin{x}}{x}dx + \sum_{i=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \frac{\sin{x}}{x}dx = \int_1^{\pi} \frac{\sin{x}}{x}dx + \sum_{i=1}^{+\infty} (-1)^k \int_{k\pi}^{(k+1)\pi} \frac{|\sin{x}|}{x}dx
 	$$
-	dunque converge, siccome la serie $\sum_{i=1}^{+\infty} \frac{(-1)}{k}$ converge per il criterio di Leibniz.
+	dove abbiamo riscritto il nostro integrale come una sommatoria del tipo $\sum\limits_{i=1}^{+\infty} (-1)^k a_k$ dove $a_k = \int\limits_{k\pi}^{(k+1)\pi} \frac{|\sin{x}|}{x}dx$ siccome, per periodicità della funzione $\sin{x}$ avremo che
+	\begin{equation*}
+		\int_{k\pi}^{(k+1)\pi} \sin{x} = \begin{cases}
+			1 & \text{se } k \text{ pari } \\
+			-1 & \text{se } k \text{ dispari }
+		\end{cases}
+	\end{equation*}
+	dunque avremo una serie a segni alterni. Tuttavia
+	$$
+	a_{k+1} = \int_{(k+1)\pi}^{(k+2)\pi} \frac{|\sin{x}|}{x} dx < \int_{(k+1)\pi}^{(k+2)\pi} \frac{|\sin{x}|}{(k+1)\pi} < \int_{k\pi}^{(k+1)\pi} \frac{|\sin{x}|}{x} dx = a_{k+1} < a_k
+	$$
+	dunque converge per il criterio di Leibniz.
 \end{remark}
 \begin{theorem}[teorema della convergenza dominata di Lebesgue] \hspace{1cm} \\
 	Se $\forall k, \, f_k: E \to \bar{\mathbb{R}}$ sono misurabili e $\exists g: E \to [0; +\infty]$ integrabile tale che $|f_k| \leq g$ e $f_k \stackrel{k \to +\infty}{\to} f$, allora
@@ -684,4 +695,118 @@ $$
 	\end{align*}
 \end{proof}
 \section{Teorema del cambiamento di variabili}
-Adesso vogliamo sviluppare uno strumento che facilita la parametrizzazione degli integrali a più dimensioni
+Come nel caso degli integrali a singola variabile, vogliamo adesso effettuare dei cambi di variabile all'interno degli integrali. Infatti il passaggio a coordinate permette, spesso, di fruire più facilmente di alcune simmetrie
+di cui godono certi insiemi oppure certe funzioni (si pensi a voler calcolare il volume occupato da una sfera: in coordinate cartesiane può essere un incubo parametrizzare le variabili, tuttavia potremmo pensare di scrivere le coordinate dei punti $(x, y, z) \mapsto (\rho, \theta, \varphi)$). Per fare ciò abbiamo bisogno di una serie di risultati:
+\begin{theorem}
+	Sia $v_1, \ldots, v_n \in \mathbb{R}^n$ e sia $L : \mathbb{R}^n \to \mathbb{R}^n, L(x) = \sum_{i=1}^n x_i v_i$. Allora
+	\begin{equation}
+		m_n(L([0, 1]^n)) = \left| \det \begin{bmatrix} v_1 & \ldots & v_n \end{bmatrix} \right|
+	\end{equation}	
+\end{theorem}
+\begin{remark}
+	Naturalmente se $v_1, \ldots, v_n$ sono una base ortonormale di $\mathbb{R}^n$ allora 
+	$$
+	m_n(L([0,1]^n)) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| = 1
+	$$
+	ovvero le isometrie preservano la misura di Lebesgue. Questo, naturalmente, risulta intuitivamente ovvio dal punto di vista geometrico, siccome l'area di un rettangolo ruotato o traslato sicuramente risulta sempre la stessa.
+\end{remark}
+\begin{remark}
+	Supponendo che $l_1, \ldots, l_n > 0$, allora
+	$$
+	L([0, l_1] \times \ldots \times [0, l_n]) = \left\{ v = \sum_{i=1}^n t_i v_i : 0 \leq t_i \leq x_i \right\} = \left\{ \sum_{i=1}^n \tau_i l_i v_i :  0 \leq \tau_i \leq 1 \right\} = T([0,1]^n) \text{ dove } T(x)=\sum_{i=1} \tau_i l_i v_i
+	$$
+	dunque
+	\begin{flalign*}
+	&m_n(L([0, l_1] \times \ldots \times [0, l_n])) = m_n(T([0,1]^n)) = \left| \det \begin{bmatrix} l_1v_1, l_2v_2, \ldots, l_n v_n \end{bmatrix} \right| = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| \prod_{i=1}^n l_i = & \\ 
+	&\left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| m_n([0, l_1] \times \ldots \times [0, l_n])  
+	\end{flalign*}
+\end{remark}
+\begin{definition}[jacobiano]
+	Se $f: \Omega \to \mathbb{R}^n, \Omega$ aperto $\subseteq \mathbb{R}^n$ e $f \in C^1(\Omega, \mathbb{R}^n), x \in \Omega$ allora
+	$$
+	Jf(x) = |\det{Df(x)}|
+	$$
+	detto jacobiano di $f$ in $x$.
+\end{definition}
+\begin{remark}
+	Sia $L: \mathbb{R}^n \to \mathbb{R}^n, L(e_i) = v_i \, \, \forall i \in \{1, \ldots, n \} \implies A = [v_1, \ldots, v_n] \in \mathbb{R}^n$ è la matrice associata ad $L$ allora
+	$$
+	DL = A = [v_1, \ldots, v_n]
+	$$
+	e dunque per l'osservazione precedente avremo che
+	$$
+	m_n (L([0, l_1] \times \ldots \times [0, l_n])) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| l_1 \ldots l_n = DL m_n([0, l_1] \times \ldots \times [0, l_n]) \implies DL = \frac{m_n(L([0, l_1] \times \ldots \times [0, l_n]))}{m_n([0, l_1] \times \ldots \times [0, l_n])}
+	$$
+	dove in realtà $Q$ può essere sostituito da un qualunque insieme $E \in \mathfrak{M}(\mathbb{R}^n)$ con $m_n(E) > 0$.
+\end{remark}
+In maniera euristica possiamo dare una traccia di dimostrazione del teorema di cambio di variabile che vogliamo adesso utilizzare. Supponiamo di voler effettuare un cambio di variabili all'interno dell'integrale: la funzione $f(x) \in C^1$ intorno a $x_0$ può
+essere approssimata con un'applicazione lineare del tipo
+$$
+f(x) = f(x_0) + Df(x_0)(x-x_0) \implies f(x_0 + I) \approx f(x_0) + Df(x_0)(I)
+$$
+ove $I=[0, x_1] \times [0, x_n]$ per $x_1, \ldots, x_n > 0$. Pertanto per quanto visto prima
+$$
+m_n(f(x_0 + I)) = m_n(Df(x_0)(I)) = Jf(x_0) \prod_{i=1}^n x_i \implies df(x) = Jf(x) dx_1 \ldots dx_n
+$$
+Per alleggerire l'enunciato del teorema, diamo la definizione di diffeomorfismo che rende un poco più snello l'enunciato del teorema del cambiamento di variabile.
+\begin{definition}[diffeomorfismo]
+	Diremo che $\varphi: \Omega \to \mathcal{U}$ è un diffeomorfismo se 
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\varphi$ è invertibile; 
+		\item $\varphi \in C^1(\Omega, \mathcal{U})$;
+		\item $\varphi^{-1} \in C^1(\mathcal{U}, \Omega)$
+	\end{enumerate}
+\end{definition}
+Possiamo dare due versioni di questo teorema: uno per le funzioni misurabili, un altro per le funzioni integrabili (come per il teorema di Tonelli e di Fubini).
+\begin{theorem}[cambio di variabili per funzioni misurabili]
+	Sia $E \in \mathfrak{M}(\mathbb{R}^n), f: E \to [0; +\infty]$ misurabile, $\Omega, \mathcal{U} \subseteq \mathbb{R}^n$ aperti, $T: \Omega \to \mathcal{U}$ diffeomorfismo. Allora
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $T^{-1}(E) \in \mathfrak{M}(\mathbb{R}^n)$ e $f \circ T: T^{-1}(E) \to [0; +\infty]$ è misurabile;
+		\item $$\int_E f(y)dy = \int_{T^{-1}(E)} f(T(x))JT(x)dx$$
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[cambio di variabili per funzioni integrabili]
+	Sia $E \in \mathfrak{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ integrabile secondo Lebesgue, $\Omega, \mathcal{U} \subseteq \mathbb{R}^n$ aperti, $T: \Omega \to \mathcal{U}$ diffeomorfismo. Allora
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $T^{-1}(E) \in \mathfrak{M}(\mathbb{R}^n)$ e $f \circ T: T^{-1}(E) \to [0; +\infty]$ è misurabile;
+		\item $$\int_E f(y)dy = \int_{T^{-1}(E)} f(T(x))JT(x)dx$$
+	\end{enumerate}
+\end{theorem}
+Andiamo adesso a discutere dei vari sistemi di coordinate a cui passare per rendere più \emph{handy} il calcolo degli integrali.
+\subsection{Coordinate polari}
+Per identificare un punto, invece di identificarli tramite la sua ascissa e la sua ordinata, possiamo pensare di individuarli tramite la sua distanza dall'origine e dall'angolo che il segmento che lo congiunge con
+l'origine forma con l'asse delle ascisse. Dunque
+\begin{align*}
+&\begin{cases}
+	x = \rho \cos{\varphi} \\
+	y = \rho \sin{\varphi}
+\end{cases} & &\iff & &(x, y) = T(\rho, \varphi) \\
+& & & & &\rho > 0, 0 < \varphi < 2\pi
+\end{align*}
+dunque potremmo 
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		% Disegna gli assi cartesiani
+		\draw[->] (-0.5, 0) -- (3, 0) node[right] {\(x\)};
+		\draw[->] (0, -0.5) -- (0, 3) node[above] {\(y\)};
+		
+		% Disegna il segmento che rappresenta \rho
+		\node[above] at (2, 2) {\((x, y)\)};
+		\draw[thick] (0, 0) -- (2, 2) node[midway, above left] {\(\rho\)};
+		
+		% Disegna l'arco per l'angolo \varphi
+		\draw[thick] (1, 0) arc[start angle=0, end angle=45, radius=1cm];
+		\node at (1.2, 0.3) {\(\varphi\)};
+		
+		% Punto iniziale del segmento
+		\filldraw (0, 0) circle (1pt);
+		\filldraw (2, 2) circle (1pt);
+	\end{tikzpicture} 
+\end{figure}
+osserviamo che il jacobiano di questa trasformazione $T$ che è in funzione delle variabili $(\rho, \varphi)$ sarà pari a
+$$
+DT(\rho, \varphi) = \det \begin{bmatrix} \cos{\varphi} && -\rho \sin{\theta} \\
+	\sin{\varphi} && \rho \cos{\theta}
+\end{bmatrix} 
+$$
