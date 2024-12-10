@@ -191,7 +191,7 @@ Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di general
 \end{proof}
 \section{Accenni ai limiti in più variabili}
 \begin{definition}[definizione di limite]
-Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ e sia $x_0 \in \partial A$. Allora diciamo che $f$ tende a $v \in \mathbb{R}^k$ per $x$ che tende a $x_0$ e scriviamo che
+Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ e sia $x_0 \in \text{Fr} A$. Allora diciamo che $f$ tende a $v \in \mathbb{R}^k$ per $x$ che tende a $x_0$ e scriviamo che
 $$
 \lim_{x \to x_0} f(x) = v \iff \forall \varepsilon > 0 \exists \delta > 0 : \forall x \in B(x_0, \delta) \cap A \setminus \{ x_0 \}, |f(x) - v| < \varepsilon
 $$
@@ -208,7 +208,7 @@ In generale tutte queste definizioni che stiamo dando funzionano in qualunque sp
 \end{remark}
 \noindent Potremo scrivere anche le definizioni per gli altri due casi che ci restano, ma è banale e lo lasciamo come semplice esercizio teorico al lettore. \\
 \begin{theorem}[caratterizzazione del limite per successioni]
-Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in \partial A, v \in \mathbb{R}^m$. Abbiamo che
+Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in \text{Fr} A, v \in \mathbb{R}^m$. Abbiamo che
 $$
 \lim_{x \to q} f(x) = v \iff (\forall \{ p_k \} \subseteq A \setminus \{ q \}, p_k \to q) \implies \lim_{k \to +\infty} f(p_k) = v
 $$
@@ -219,7 +219,7 @@ $\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la def
 \end{proof}
 \noindent Da questo teorema importantissimo segue questo semplice corollario (la cui dimostrazione è omessa siccome è banale)
 \begin{theorem}[teorema del confronto]
-Siano $h, g, f: A \to \mathbb{R}, x_0 \in \partial A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
+Siano $h, g, f: A \to \mathbb{R}, x_0 \in \text{Fr} A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
 \begin{align*}
 h(x) \leq f(x) \leq g(x) \, \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}
 \end{align*} \\
@@ -231,14 +231,14 @@ La dimostrazione è analoga a quella di Analisi 1 con qualche accorgimento sugli
 \end{proof}
 \noindent Prima di procedere sulla parte del calcolo differenziale, diamo una breve introduzione ai simboli di Landau (i cosiddetti o-piccoli e O-grandi) che semplificano notevolmente il calcolo in più variabili:
 \begin{definition}[o-piccolo]
-Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
+Siano $x_0 \in \text{Fr} A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
 $$
 f = o(g) \text{ per } x \to x_0
 $$
 se $$\forall \varepsilon > 0 \, \exists \delta > 0 : |f(x)| \leq \varepsilon |g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
 \end{definition}
 \begin{definition}[O-grande]
-Siano $x_0 \in \partial A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
+Siano $x_0 \in \text{Fr} A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
 $$
 f = O(g) \text{ per } x \to x_0
 $$

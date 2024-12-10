@@ -870,3 +870,160 @@ Per le coordinate polari, dunque, se $E \subseteq \mathbb{R}^2$ misurabile allor
 	\int_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy \geq \int_{B(0,1) \cap (0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2} dxdy = \int_{0}^1 \int_0^{2\pi} \frac{|\cos^2{\varphi} - \sin^2{\varphi}|}{\rho} d\rho d\varphi = \int_0^{1} \frac{1}{\rho} d\rho \int_0^{2\pi} |\cos{\frac{\varphi}{2}}| d\varphi = +\infty
 	$$
 \end{proof}
+\subsection{Volumi dei solidi di rotazione}
+Definiamo un solido di rotazione attorno all'asse z come l'insieme misurabile $E \subseteq \mathbb{R}^3$ descritto dal profilo $\rho: [h_1, h_2] \to [0; +\infty)$ continuo tale che abbiamo
+$$
+E = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 \leq \rho(z), h_1 \leq z \leq h_2 \}
+$$
+Per misurare tale insieme possiamo usare il teorema di Tonelli banalmente
+\begin{align*}
+&m_3(E) = \int_E \mathbb{1}_E dm_3 = \int_{h_1}^{h_2} \left( \int_{E_z} dxdy \right) = \int_{h_1}^{h_2} \left( \int_{E_z} \rho d\rho d\varphi \right) = \int_{h_1}^{h_2} \left( \int_0^{\rho(z)} \rho d\rho \int_0^{2\pi} d\varphi \right)dz = \int_{h_1}^{h_2} \pi \rho^2(z) dz \\
+&= \pi \int_{h_1}^{h_2} \rho^2(z) dz  
+\end{align*}
+\begin{example}
+Consideriamo un cono retto di altezza $H > 0$ e raggio $R > 0$. Definiamo $\rho(z)$ lineare e tale che $\rho(H) = 0, \rho(0) = R \implies \rho(z) = R - \frac{R}{H}z, \rho: [0, H] \to [0; +\infty)$, pertanto
+$$
+m_3(C) = \pi \int_0^H \left( R - \frac{R}{H}z \right)^2 dz = \pi R^2 \int_0^H \left(1-\frac{z}{H} \right)dz = \pi R^2 \left[ \left(\frac{z}{H} - 1 \right)^3 - \frac{H}{3} \right]^{z=H}_{z=0} = \frac{\pi}{3} R^2 H
+$$
+\end{example}
+Abbiamo quindi mostrato il seguente teorema:
+\begin{theorem}
+	Sia $E = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 \leq \rho(z), h_1 \leq z \leq h_2 \}$ (a meno di scambiare una coordinata). Allora
+	$$
+	m_3(E) = \pi \int_{h_1}^{h_2} \rho^2(z)dz
+	$$
+\end{theorem}
+Adesso cerchiamo di estendere la definizione di coordinate polari a $3$ dimensioni. Vogliamo che, nel caso di $z$ costante, individuare alla vecchia maniera 2-dimensionale. Pertanto una possibile trasformazione può essere la seguente
+$$
+	T(\rho, \varphi, h) = (\rho \cos{\varphi}, \rho \sin{\varphi}, h) = (x, y, z) \implies \begin{cases} x = \rho \cos{\varphi} \\ y = \rho \sin{\varphi} \\ z = h \end{cases}
+$$
+\begin{figure}[H]
+	\centering
+	\tdplotsetmaincoords{60}{110}
+	\begin{tikzpicture}[scale=3, tdplot_main_coords]
+
+		% Disegna gli assi cartesiani
+		\draw[->] (-1, 0, 0) -- (1, 0, 0) node[right] {\(x\)};
+		\draw[->] (0, -1, 0) -- (0, 1, 0) node[above] {\(y\)};
+		\draw[->] (0, 0, -1) -- (0, 0, 1) node[above] {\(z\)};
+
+		% Segmento rho nel piano xy
+		\draw[dashed] (0, 0, 0) -- (1, 1, 0) node[midway, above right] {\(\rho\)};
+
+		% Altezza h sull'asse z
+		% \draw[dashed] (2, 1, 0) -- (2, 1, 2) node[above left] {\(h\)};
+		\draw[dashed] (1, 1, 0) -- (1, 1, 1) node[midway, above right] {\(h\)};
+		\draw[thick] (0, 0, 0) -- (1, 1, 1);
+		
+		% Arco per l'angolo phi
+		\tdplotdrawarc[thick]{(0,0,0)}{1}{0}{2.4674011}{anchor=north}{$\varphi$}
+
+		% Punto finale
+		\filldraw (1, 1, 1) circle (1pt);
+
+	\end{tikzpicture}
+\end{figure}
+pertanto $T: \mathbb{R}^+ \times (0, 2\pi) \times \mathbb{R} \mapsto (\mathbb{R}^2 \setminus [0; +\infty) \times \{ 0 \}) \times \mathbb{R}$. Dunque
+$$
+JT(\rho, \varphi, h) = \det \begin{bmatrix}
+\cos{\varphi} & -\rho \sin{\varphi} & 0 \\
+\sin{\varphi} & \rho \cos{\varphi} &  0
+0 & 0 & 1
+\end{bmatrix} = \rho
+$$
+il che naturalmente implica
+$$
+\int_E f(x, y, z)dxdydz = \int_{T^{-1}(E)} f(\rho \cos{\varphi}, \rho \sin{\varphi}, h) \rho d\rho d\varphi dh
+$$
+Possiamo adesso pensare di calcolare il volume di rotazione $E$ ottenuto ruotando un insieme $A \subseteq (0, +\infty) \times \mathbb{R}$ attorno all'asse $z$: supponiamo per esempio che
+$$
+E = \{(\rho, \varphi, h) : (\rho, \varphi) \in A, \varphi \in [0, 2\pi] \}
+$$
+e calcoliamo la misura di tale insieme
+\begin{align*}
+&m_3(E) = \int_E dxdydz = \int_{T^{-1}(E)} \rho d\rho d\varphi dh = \int_0^{2\pi} \left( \int_{\Omega_\varphi} \rho d\rho dh \right) d\varphi = 2\pi \int_A \rho d\rho dh
+\end{align*}
+Introducendo il concetto di baricentro, potremmo pensare di definire una grandezza che misura la distanza \emph{media} dall'asse $z$ che ci consente di calcolare il volume come una sorta di base $\times$ altezza:
+$$
+m_3(E) = 2 \pi R_b m_2(A) = 2 \pi \int_A \rho d\rho dh \implies R_b = \frac{\int_A \rho d\rho dh}{m_2(A)}
+$$
+Abbiamo mostrato il seguente teorema
+\begin{theorem}[secondo teorema di Guldino]
+	$$m_3(A) = 2 \pi R_b m_2(A) $$ dove $R_b$ è la distanza del baricentro rispetto all'asse intorno a cui ruota 
+\end{theorem}
+\begin{exercise}[Volume del toro]
+Individuare il volume di un toro, ottenuto dalla rotazione di una circonferenza con centro a distanza $R > 0$ dall' origine e con raggio $r > 0$ con $R > r$
+\end{exercise}
+\begin{proof}[Svolgimento]
+Cercare di parametrizzare l'integrale non è difficile ma non necessario: abbiamo il secondo teorema di Guldino dalla nostra parte. Il baricentro, in questo caso, sarà sempre $R$ e l'area dell'insieme ruotato sarà invece $\pi r^2$
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			view={45}{45}, % Angolo di visualizzazione
+			colormap name=violet,
+			z buffer=sort,
+		]
+			\addplot3[
+				surf,
+				samples=40,
+				domain=0:2*pi,
+				y domain=0:2*pi,
+			] (
+				{(2 + cos(deg(y))) * cos(deg(x))},
+				{(2 + cos(deg(y))) * sin(deg(x))},
+				{sin(deg(y))}
+			);
+		\end{axis}
+	\end{tikzpicture}
+\end{figure}
+dunque
+$$
+m_3(T) = 2\pi^2 Rr^2
+$$
+\end{proof}
+\subsection{Invarianza per traslazioni e omogeneità della misura di Lebesgue}
+Sia $E \in \mathfrak{M}(\mathbb{R}^n), \lambda \in \mathbb{R} \setminus \{0\}, x \in \mathbb{R}^n \implies$
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $m_n(x+E) = m_n(E)$
+	\item $m_n(\lambda E) = |\lambda|^n m_n(E)$
+\end{enumerate}
+dove abbiamo definito
+\begin{align*}
+&\lambda E = \{\lambda y \in \mathbb{R}^n : y \in E \} \\
+&x + E = \{x+y \in \mathbb{R}^n : y \in E \}
+\end{align*}
+Questo può essere facilmente visto come conseguenza di una banalissima trasformazione delle coordinate per mezzo della funzione
+$$
+T(y) = x + y \text{ con } JT = 1 \implies \int_T(E) 1dz = \int_{E+x} 1dz = \int_E 1dz \iff \circled{1}
+$$
+nel caso della traslazione e nel caso della dilatazione poiché
+$$
+H(y) = \lambda y \text{ con } JH = |\lambda|^n \implies \int_{\lambda E} 1dz = \int_{T(E)} 1dz = |\lambda|^n \int_E 1dz \iff \circled{2}
+$$
+Proponiamo un esercizio piuttosto complicato, che è un buon esercizio per gli integrali
+\begin{exercise}
+Provare che $\int_{B(0, 1)} \frac{1}{|x|^\alpha}$ converge $\iff 0 < \alpha < n$. Supporre per ipotesi che $\alpha > 0$
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Vogliamo determinare per quali valori di $\alpha > 0$ il seguente integrale converge:
+	$$
+	\int_{B(0, 1)} \frac{1}{|x|^\alpha} dx
+	$$
+	possiamo pensare di definire una funzione del tipo
+	$$
+	\mathbb{1}_{[0, \frac{1}{|x|^\alpha})}(t) = \begin{cases} 1 & \text{ se } 0 \leq t < \frac{1}{|x|^\alpha} \\
+	0 & \text{ se } t \geq \frac{1}{|x|^\alpha}
+	\end{cases}
+	$$
+	ora osserviamo che $0 \leq |x| \leq 1$ e dalla condizione $0 < t < \frac{1}{|x|^\alpha}$ segue che $0 \leq x < \min\{1, \frac{1}{t^{\frac{1}{\alpha}}} \}$, dunque avremo che per $t \in [0; 1], t^{\frac{1}{\alpha}} < 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \geq 1$ ma $|x| < 1$, pertanto la nostra $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = 1$. Per
+	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{\sqrt{1}{t^{\frac{1}{\alpha}}}}$ 
+	\begin{align*}
+	&\int_0^1 \left( \int_{B(0,1)} \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx \right)dt + \int_1^{+\infty} \int_{B(0,1)} \left( \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx	\right)dt = \\
+	&m_n(B(0, 1)) + \int_1^{+\infty} m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \right) \stackrel{\text{per omogeneità}}{=} m_n(B(0,1)) + m_n(B(0,1)) \int_1^{+\infty} \frac{1}{t^{\frac{n}{\alpha}}} = m_n(B(0,1))(1 + \frac{t^{-\frac{n}{\alpha} + 1}}{1 - \frac{n}{\alpha}}\Bigg|^{+\infty}_{1})
+	\end{align*}
+	dove quest'ultima espressione converge solamente per $0 < \alpha < n$.
+\end{proof}
+\begin{exercise}
+Provare che $\int\limits_{\mathbb{R}^n \setminus B(0,1)} \frac{1}{|x|^\alpha}dx < +\infty \iff \alpha > n$.
+\end{exercise}
