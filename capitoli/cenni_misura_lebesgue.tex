@@ -395,7 +395,7 @@ m_n(E) = \int_{\mathbb{R}^n} \mathbb{1}_E dm_n
 $$
 \end{remark}
 \begin{remark}
-Se $\varphi: E \to [0; +\infty]$ è semplice allora $\int\limits_E \varphi dm_n = I(\varphi) = \sum_{i=1}^k \lambda_i m_n(E_i) $
+Se $\varphi: E \to [0; +\infty]$ è semplice allora $\int\limits_E \varphi dm_n = I(\varphi) = \sum\limits_{i=1}^k \lambda_i m_n(E_i) $
 \end{remark}
 \begin{prop}
 Sia $f: E \to \bar{\mathbb{R}}$ misurabile, allora anche $|f|$ è misurabile
@@ -903,7 +903,7 @@ $$
 	\begin{tikzpicture}[scale=3, tdplot_main_coords]
 
 		% Disegna gli assi cartesiani
-		\draw[->] (-1, 0, 0) -- (1, 0, 0) node[right] {\(x\)};
+		\draw[->] (-1, 0, 0) -- (1, 0, 0) node[left] {\(x\)};
 		\draw[->] (0, -1, 0) -- (0, 1, 0) node[above] {\(y\)};
 		\draw[->] (0, 0, -1) -- (0, 0, 1) node[above] {\(z\)};
 
@@ -916,7 +916,7 @@ $$
 		\draw[thick] (0, 0, 0) -- (1, 1, 1);
 		
 		% Arco per l'angolo phi
-		\tdplotdrawarc[thick]{(0,0,0)}{1}{0}{2.4674011}{anchor=north}{$\varphi$}
+		\tdplotdrawarc[thick]{(0,0,0)}{1}{0}{45}{anchor=north}{$\varphi$}
 
 		% Punto finale
 		\filldraw (1, 1, 1) circle (1pt);
@@ -927,7 +927,7 @@ pertanto $T: \mathbb{R}^+ \times (0, 2\pi) \times \mathbb{R} \mapsto (\mathbb{R}
 $$
 JT(\rho, \varphi, h) = \det \begin{bmatrix}
 \cos{\varphi} & -\rho \sin{\varphi} & 0 \\
-\sin{\varphi} & \rho \cos{\varphi} &  0
+\sin{\varphi} & \rho \cos{\varphi} &  0 \\
 0 & 0 & 1
 \end{bmatrix} = \rho
 $$
@@ -1017,7 +1017,7 @@ Provare che $\int_{B(0, 1)} \frac{1}{|x|^\alpha}$ converge $\iff 0 < \alpha < n$
 	\end{cases}
 	$$
 	ora osserviamo che $0 \leq |x| \leq 1$ e dalla condizione $0 < t < \frac{1}{|x|^\alpha}$ segue che $0 \leq x < \min\{1, \frac{1}{t^{\frac{1}{\alpha}}} \}$, dunque avremo che per $t \in [0; 1], t^{\frac{1}{\alpha}} < 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \geq 1$ ma $|x| < 1$, pertanto la nostra $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = 1$. Per
-	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{\sqrt{1}{t^{\frac{1}{\alpha}}}}$ 
+	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{t^{\frac{1}{\alpha}}}$ 
 	\begin{align*}
 	&\int_0^1 \left( \int_{B(0,1)} \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx \right)dt + \int_1^{+\infty} \int_{B(0,1)} \left( \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx	\right)dt = \\
 	&m_n(B(0, 1)) + \int_1^{+\infty} m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \right) \stackrel{\text{per omogeneità}}{=} m_n(B(0,1)) + m_n(B(0,1)) \int_1^{+\infty} \frac{1}{t^{\frac{n}{\alpha}}} = m_n(B(0,1))(1 + \frac{t^{-\frac{n}{\alpha} + 1}}{1 - \frac{n}{\alpha}}\Bigg|^{+\infty}_{1})
@@ -1027,3 +1027,221 @@ Provare che $\int_{B(0, 1)} \frac{1}{|x|^\alpha}$ converge $\iff 0 < \alpha < n$
 \begin{exercise}
 Provare che $\int\limits_{\mathbb{R}^n \setminus B(0,1)} \frac{1}{|x|^\alpha}dx < +\infty \iff \alpha > n$.
 \end{exercise}
+\begin{proof}[Svolgimento]
+	L'idea è simile a come svolto precedente: definiamo la funzione caratteristica definita come segue
+	$$
+	\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = \begin{cases} 1 & \text{ se } 1 \leq t \leq \frac{1}{|x|^\alpha} \\
+		0 & \text{ altrimenti }
+	\end{cases}
+	$$
+	e possiamo dunque considerare l'integrale della funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} : [0; +\infty] \times (\mathbb{R}^n \setminus B(0,1))$, parametrizzando la $|x|$ in funzione della $t$ osservando che quando $1 \leq t \leq +\infty$ siamo nella regione in cui la funzione si annulla. Fra $[0, 1]$ la funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha}]}$ sarà $0$ per $t \geq \frac{1}{|x|^\alpha} \implies |x| \geq t^{-\frac{1}{\alpha}}$. Fissando la $t$ integreremo la $x$ fra $B(0, \frac{1}{t^{-\frac{1}{\alpha}}}) \setminus B(0,1)$, dunque
+	$$
+	\int_{[0, +\infty] \times (\mathbb{R}^n \setminus B(0,1))} \mathbb{1}_{[0; \frac{1}{|x|^\alpha}]} = \int_0^{1} \left(\int_{\mathbb{R}^n \setminus B(0,1)} \mathbb{1}_{[0; \frac{1}{\frac{1}{t^{\frac{1}{\alpha}}}})} dx \right) dt + \cancel{\int_1^{+\infty} \left( \int_{\mathbb{R}^n \setminus B(0, 1)} \mathbb{1}_{[0; \frac{1}{|x|^\alpha})} dx \right) dt}
+	$$
+	dove l'ultimo integrale si annulla per quanto detto prima. Osserviamo che il primo integrale invece è pari a
+	$$
+	\int_0^1 m_n \left(B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}} \right) \setminus B(0,1) \right)dt = \int_0^1 m_n \left( B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}}\right) \right) - m_n(B(0, 1))dt \stackrel{\text{per omogeneità}}{=} m_n(B(0,1))\int_0^1 t^{-\frac{n}{\alpha}} - 1 dt
+	$$
+	il quale converge se e solo se $-\frac{n}{\alpha} > - 1 \implies \frac{n}{\alpha} < 1 \implies \alpha > n$.
+\end{proof}
+\subsection{Coordinate sferiche}
+Possiamo definire un altro tipo di coordinate molto utili in tre dimensioni, ovvero le coordinate sferiche. In questo caso
+identifichiamo il singolo punto sempre tramite la sua distanza dall'origine $\rho$ e tramite gli angoli che esso crea con l'asse $x$ (che indicheremo sempre con $\varphi$) e l'angolo che crea con l'asse $z$ (che indicheremo con $\theta$). Graficamente
+\begin{figure}[H]
+	\centering
+	\tdplotsetmaincoords{60}{110} % Vista 3D: modifica gli angoli per cambiare prospettiva
+	\begin{tikzpicture}[tdplot_main_coords]
+
+  	% Coordinate sferiche del punto
+  	\pgfmathsetmacro{\rvec}{1.5}   % r (raggio)
+  	\pgfmathsetmacro{\thetavec}{45} % θ (colatitudine: angolo rispetto all'asse z)
+  	\pgfmathsetmacro{\phivec}{60}   % φ (longitudine: angolo rispetto all'asse x nel piano xy)
+  	% Assi cartesiani
+  	\draw[->] (0,0,0) -- (3,0,0) node[anchor=north east] {$x$};
+  	\draw[->] (0,0,0) -- (0,3,0) node[anchor=north west] {$y$};
+  	\draw[->] (0,0,0) -- (0,0,3) node[anchor=south] {$z$};
+ 	% Punto in coordinate sferiche
+  	\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+  	\draw[dashed, gray] (0,0,0) -- (P) node[pos=1.1, anchor=north west] {$P(r, \theta, \varphi)$};
+
+  	% Arco per φ nel piano xy
+  	\tdplotdrawarc[->]{(0,0,0)}{1.5}{0}{45}{anchor=south}{$\varphi$}
+
+  	% Proiezione del punto nel piano xy
+  	\draw[dashed, gray] (P) -- (\rvec*1.414/2, \rvec*1.414/2, 0);
+
+  	% Arco per θ rispetto all'asse z
+  	\tdplotsetthetaplanecoords{\phivec} % Imposta il piano contenente θ
+  	\tdplotdrawarc[->, tdplot_rotated_coords]{(0,0,0)}{1.5}{0}{\thetavec}{anchor=west}{$\theta$}
+
+  	% Punto finale
+  	\filldraw (P) circle (1.5pt);
+
+\end{tikzpicture}
+\end{figure}
+\begin{exercise}
+	Studiare l'integrabilità di $f(x, y) = (x^6 y^5 + x^3 y^2 + 2x + 2y + 2)e^{-x^2 - y^2}$ su $\mathbb{R}^2$ e, in tal caso, calcolarne l'integrale
+\end{exercise}
+\begin{proof}
+	Osserviamo che
+	$$
+		\int_{\mathbb{R}^2} |x^n y^m| e^{-x^2 - y^2} \ll \int_{\mathbb{R}^2} (x^2 + y^2)^{\frac{n+m}{2}} = \int_{\mathbb{R}^2} \rho^{n+m+1} e^{-\rho^2} d\rho d\theta < +\infty
+	$$
+	adesso osserviamo che
+	$$
+		\int_{\mathbb{R}^2} x^n y^m e^{-x^2 - y^2}dxdy = \int_{\mathbb{R}} x^n e^{-x^2} dx \int_{\mathbb{R}} y^m e^{-y^2}dy = 0
+	$$
+	siccome $n$ e $m$ sono sempre dispari (se fossero stati entrambi pari non sarebbe stato così), pertanto l'unico termine che sopravvive è 
+	$$
+	\int_{-\infty}^{+\infty} 2e^{-x^2 - y^2} = 2\pi
+	$$
+\end{proof}
+\section{Misura di Hausdroff $2-$dimensionale}
+
+Possiamo anche dare la nozione di area per le superfici immerse in $\mathbb{R}^3$: per esempio se fossimo interessati a studiare la superficie di una sfera o di un cilindro, la misura di Lebesgue $m_3$ darebbe che il valore di essa è $0$, siccome essa misura
+il volume $3-$dimensionale delle superfici, che in questo caso risulta essere pari a $0$ siccome lo "spessore" della superficie occupata da un cilindro ha ovviamente volume nullo. \\
+\begin{definition}[misura di Hausdroff $2-$dimensionale]
+	Sia $A \subseteq \mathbb{R}^3$, allora l'area di tale insieme è
+	$$
+		\mathcal{H}^2(A) = \sup_{\delta > 0} \inf \{ \sum_{j=0}^{+\infty} \frac{\pi}{4} (\diam E_j)^2 | A \subseteq \bigcup_{j=0}^{+\infty} E_j \}
+	$$
+	per tutti i possibili ricoprimenti $\{ E_i \}_i$ per cui $\sup_{i \geq 0} \diam E_i < \delta$, dove $\diam E = \sup\limits_{x, y \in E} |x-y|$
+\end{definition}
+Poniamo $\sigma=\mathcal{H}^2=$ misura $2-$dimensionale di $E$. \\
+Si può mostrare che la teoria dell'integrazione rispetto a $\sigma$ si costruisce esattamente come con la misura di Lebesgue. 
+\begin{theorem}[teorema A1] \hspace{1cm} \\
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item gli insiemi chiusi, la loro unione e intersezione (finita o numerabile) e i loro complementari (quindi anche gli insiemi aperti) sono $\sigma-$misurabili;
+		\item le funzioni continue sono $\sigma-$misurabili
+	\end{enumerate}
+\end{theorem}
+\begin{definition}[jacobiano di una funzione non iniettiva]
+Sia $L:\mathbb{R}^2 \to \mathbb{R}^3$ lineare con matrice $A \in \mathbb{R}^{3 \times 2}, A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32} \end{bmatrix}$ e posto $M_{ij}(A) = \det \begin{bmatrix} a_{i1} & a_{i2} \\ a_{j1} & a_{j2} \end{bmatrix}$ definiamo
+il jacobiano di $L$ come
+$$
+JL = \sqrt{M_{12}(A)^2 + M_{13}(A)^2 + M_{23}(A)^2}
+$$
+\end{definition}
+usando il prodotto vettoriale è possibile mostrare che $JL = |Le_1 \times Le_2|$. Questo si può, naturalmente, applicare ad ogni funzione $\phi \in C^1(\Omega, \mathbb{R}^3), \Omega$ aperto $\subseteq \mathbb{R}^2$ con $\phi$ dipende dalla variabile $u = (u_1, u_2) \in \Omega$. Fissando un punto $w \in \Omega$ possiamo definire
+$$
+J\phi(w) = J(d\phi(w)) = |\partial_{e_1} \phi(w) \times \partial_{e_2} \phi(w)|
+$$
+\begin{theorem}[teorema H2]
+	Sia $\Omega \subseteq \mathbb{R}^2$ aperto e $\Phi \in C^1(\Omega, \mathbb{R}^3)$ con $\Phi$ iniettiva, $E \in \mathfrak{M}(\mathbb{R}^2), E \subseteq \Omega$ (ovvero $E$ è misurabile secondo Lebesgue e contenuto in $\Omega$), allora abbiamo
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\Phi(E) \in \mathfrak{M}_2(\mathbb{R}^3)$ ovvero è $\sigma-$misurabile e 
+		$$
+		\sigma(\Phi(E)) = \int_E J\Phi(u)du
+		$$
+		\item se $f: \Phi(E) \to \bar{\mathbb{R}}$ $\sigma-$misurabile e $\int\limits_{\Phi(E)} |f|d\sigma < +\infty \implies$
+		$$
+			\int_{\Phi(E)} fd\sigma = \int_E f(\Phi(u))J\Phi(u)du
+		$$
+	\end{enumerate}
+	che prende il nome di integrale di area.
+\end{theorem}
+naturalmente si ottiene questo banale corollario se $f$ è continua (in quanto misurabile)
+\begin{cor}
+	Siano $\Omega \subseteq \mathbb{R}^2$ aperto e $\Phi \in C^1(\Omega, \mathbb{R}^3)$ con $\Phi$ iniettiva, $E \in \mathfrak{M}(\mathbb{R}^2), E \subseteq \Omega$ e $f: \Phi(E) \to \mathbb{R}$ è continua con
+	$\int\limits_{\Phi(E)} |f|d\sigma < +\infty$ allora
+	$$
+	\int_{\Phi(E)} f d\sigma = \int_E f(\Phi(u)) J\Phi(u)du
+	$$
+\end{cor}
+\begin{example}[calcolo della superficie della sfera]
+	Calcolare l'area della superficie di una sfera
+\end{example}
+\begin{proof}[Svolgimento]
+	Sia data una superficie sferica di raggio $R > 0$ e centro $x \in \mathbb{R}^3$, allora
+	$$
+	\Phi(\varphi, \theta) = x + R(\sin{\theta} \cos{\varphi}, \sin{\theta}\sin{\varphi}, \cos{\theta})
+	$$
+	al variare di $\varphi \in (0, 2\pi)$ e $\theta \in (0, \pi)$. Osserviamo che
+	$$
+	\sigma(x + R\mathbb{S}^2 \setminus \Phi((0, 2\pi) \times (0, \pi))) = 0
+	$$
+	dunque la parte di superficie non "generata" da $\Phi$ (per garantire l'iniettiva della trasformazione) non contribuisce all'integrale. \\
+	Procediamo, dunque, nel calcolare il jacobiano di $\Phi$:
+	\begin{align*}
+		&\partial_{\varphi} \Phi = R \begin{bmatrix} \sin{\theta} (-\sin{\varphi}), \sin{\theta} \cos{\varphi}, 0 \end{bmatrix}
+		&\partial_{\theta} \Phi = R \begin{bmatrix} \cos{\theta} \cos{\varphi}, \cos{\theta} \sin{\varphi}, \sin{\theta} \end{bmatrix}
+	\end{align*}
+	dunque
+	$$
+	J\Phi(\varphi, \theta) = R^2 \sqrt{(\sin^2{\theta} \cos{\varphi})^2 + (\sin^2{\theta} \sin{\varphi})^2 + (\cos{\theta} \sin{\theta})^2} = R^2 \sin{\theta}
+	$$
+	pertanto
+	$$
+	\sigma(x+R\mathbb{S}^2) = \int_{(0, 2\pi) \times (0, \pi)} J\Phi (\varphi, \theta) d\varphi d\theta = R^2 \int_0^{2\pi} \int_0^\pi \sin{\theta} d\theta d\varphi = 4 \pi R^2
+	$$
+\end{proof}
+\begin{example}[area del toro di raggi $0 < r < R$]
+	Calcolare l'area del toro di raggi $0 < r < R$
+\end{example}
+\begin{proof}[Svolgimento]
+	Possiamo parametrizzare la superficie di un toro nella seguente maniera:
+	$$
+	\Phi(\varphi, \theta) = \begin{pmatrix}	(R + r\cos{\theta})\cos{\varphi} & (R+r \cos{\theta})\sin{\varphi} & r \sin{\theta}		\end{pmatrix}
+	$$
+	dunque
+	\begin{flalign*}
+	&\partial_\varphi \Phi = \begin{pmatrix} -\sin{\varphi}(R + r \cos{\theta}) & \cos{\varphi}(R + r \cos{\theta}) & 0\end{pmatrix} & \\
+	&\partial_\theta \Phi = \begin{pmatrix} - r \sin{\theta} \cos{\varphi} & -r \sin{\theta} \sin{\varphi} & r\cos{\theta}	\end{pmatrix}
+\end{flalign*}
+	i quali ci consentono di concludere che
+	\begin{flalign*}
+	&J\Phi(\varphi, \theta) = r(R + r\cos{\theta}) \implies \sigma(T) = \int_{(0, 2\pi) \times (0, \pi)} J\Phi d\varphi d\theta = r \int_0^{2\pi} \int_0^{2\pi} (R + r\cos{\theta}) d\varphi d\theta = \\
+	&= 2\pi r \int_0^{2\pi} R + r\cos{\theta} d\theta = 2 \pi r 2 \pi R = 4 \pi^2 rR
+	\end{flalign*}
+\end{proof}
+\begin{exercise}
+	Calcolare l'integrale di superficie
+	$$
+	\int_T \frac{|xz|}{(x^2 + y^2)^{\frac{3}{2}}} d\sigma
+	$$
+	dove $T=\varphi((0, 2\pi)^2)$ toro di raggi $0 < r < R$
+	
+\end{exercise}
+\begin{proof}[Svolgimento]
+Dal precedente esercizio, sappiamo è possibile parametrizzare come
+	$$
+	\Phi(\varphi, \theta) = \begin{bmatrix}	(R + r\cos{\theta})\cos{\varphi} & (R + r\cos{\theta})\sin{\theta} & r \sin{\theta}	\end{bmatrix}
+	$$
+	pertanto
+	\begin{flalign*}
+	&\int_{(0, 2pi)^2} \frac{(R+r\cos{\theta}) |\cos{\varphi}||r\sin{\theta}|r(R+r\cos{\theta})}{R+r\cos{\theta}}d\varphi d\theta = r^2 \int_{(0,2\pi)^2} \frac{|\cos{\varphi}| |\sin{\theta}|}{R + r\cos{\theta}} d\varphi d\theta = & \\
+	&= r^2 \int_0^{2\pi} |\cos{\varphi}|d\varphi \int_0^{2 \pi} \frac{|\sin{\theta}|}{R + r\cos{\theta}} d\theta = 4r \int_0^\pi \frac{\sin{\theta}}{R + r\cos{\theta}}d\theta - 4r \int_\pi^{2\pi} \frac{\sin{\theta}}{R + r\cos{\theta}}d\theta & \\
+	= 8r\log{\frac{R+r}{R-r}}
+	\end{flalign*}
+\end{proof}
+Adesso abbiamo tutti gli strumenti per determinare l'area ottenuta facendo ruotare una curva di $2\pi$ attorno ad un asse: supponiamo di avere una curva $\gamma: [a, b] \to \mathbb{R}^2$ $C^1_\text{tratti}$ tale che $\gamma_1(t) > 0 \, \, \forall t \in [a, b]$ e di voler
+determinare l'area della superficie $\Sigma$ ottenuta ruotando $\gamma$ attorno all'asse $z$. \\
+Parametrizziamo la nostra superficie come
+$$
+\Phi(\varphi, t) = \begin{pmatrix}
+	\gamma_1(t) \cos{\varphi}, & \gamma_1(t) \sin{\varphi}, & \gamma_2(t)
+\end{pmatrix} \, \, \text{ con } t \in (a, b), \varphi \in (0, 2\pi) 
+$$
+pertanto
+$$
+D\Phi = \begin{pmatrix}
+-\gamma_1(t)\sin{\varphi} & \dot{\gamma_1}(t)\cos{\varphi} \\
+\gamma_1(t)\cos{\varphi} & \dot{\gamma_1}(t)\sin{\varphi} \\
+0 & \dot{\gamma}(t)
+\end{pmatrix}
+$$
+dunque
+$$
+J\varphi = \sqrt{\gamma_1^2 \dot{\gamma_1}^2 + \dot{\gamma_2}^2 \dot{\gamma_1}^2 \sin^2{\varphi} + \dot{\gamma_2}^2 \gamma_1^2 \cos{\varphi}^2} = \gamma_1\sqrt{\dot{\gamma_1}^2 + \dot{\gamma_2}^2} = \gamma_1 |\dot{\gamma}(t)|
+$$
+pertanto
+$$
+\sigma(\Sigma) = \int_{(a, b) \times (0, 2\pi)} = \int_{0}^{2\pi} \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt d\varphi = 2 \pi \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt = 2 \pi L \int_\gamma x dl
+$$
+dove $L=\int_a^b |\dot{\gamma}(t)|dt$ è la lunghezza della curva. Dunque abbiamo mostrato il seguente teorema:
+\begin{theorem}[primo teorema di Guldino]
+$$
+\sigma(\Sigma) = 2\pi d_\gamma l(\gamma)
+$$
+dove poniamo $d_\gamma = \frac{\int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt}{\int_a^b |\dot{\gamma}(t)|dt}$.
+\end{theorem}
