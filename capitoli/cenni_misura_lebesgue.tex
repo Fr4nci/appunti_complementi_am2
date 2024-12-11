@@ -1044,6 +1044,19 @@ Provare che $\int\limits_{\mathbb{R}^n \setminus B(0,1)} \frac{1}{|x|^\alpha}dx 
 	$$
 	il quale converge se e solo se $-\frac{n}{\alpha} > - 1 \implies \frac{n}{\alpha} < 1 \implies \alpha > n$.
 \end{proof}
+Potremmo mostrare, in maniera più formale, la seguente proposizione
+\begin{prop}
+	Se $f: E \to [0; +\infty]$ misurabile, allora
+$$
+\int_E f(x)dx = m_{n+1}(\{(x,t) \in \mathbb{R}^{n+1}: x \in E, 0 \leq t \leq f(x) \})
+$$
+\end{prop}
+\begin{proof}
+$$
+\int_E f(x)dx = \int_E \int_0^{f(x)} 1 dtdx = \int_0^{f(x)} \left( \int_E f(x) dx \right) dt = \int_0^{f(x)} m_n({(x \in E: f(x) \geq t)})dt
+$$
+\end{proof}
+Questo, applicato ai precedenti esercizi, rende molto facile il conto.
 \subsection{Coordinate sferiche}
 Possiamo definire un altro tipo di coordinate molto utili in tre dimensioni, ovvero le coordinate sferiche. In questo caso
 identifichiamo il singolo punto sempre tramite la sua distanza dall'origine $\rho$ e tramite gli angoli che esso crea con l'asse $x$ (che indicheremo sempre con $\varphi$) e l'angolo che crea con l'asse $z$ (che indicheremo con $\theta$). Graficamente
@@ -1103,9 +1116,9 @@ il volume $3-$dimensionale delle superfici, che in questo caso risulta essere pa
 \begin{definition}[misura di Hausdroff $2-$dimensionale]
 	Sia $A \subseteq \mathbb{R}^3$, allora l'area di tale insieme è
 	$$
-		\mathcal{H}^2(A) = \sup_{\delta > 0} \inf \{ \sum_{j=0}^{+\infty} \frac{\pi}{4} (\diam E_j)^2 | A \subseteq \bigcup_{j=0}^{+\infty} E_j \}
+		\mathcal{H}^2(A) = \sup_{\delta > 0} \inf \left\{ \sum_{j=0}^{+\infty} \frac{\pi}{4} (\diam E_j)^2 | A \subseteq \bigcup_{j=0}^{+\infty} E_j \right\}
 	$$
-	per tutti i possibili ricoprimenti $\{ E_i \}_i$ per cui $\sup_{i \geq 0} \diam E_i < \delta$, dove $\diam E = \sup\limits_{x, y \in E} |x-y|$
+	per tutti i possibili ricoprimenti $\{ E_i \}_i$ per cui $\sup\limits_{i \geq 0} \diam E_i < \delta$, dove $\diam E = \sup\limits_{x, y \in E} |x-y|$
 \end{definition}
 Poniamo $\sigma=\mathcal{H}^2=$ misura $2-$dimensionale di $E$. \\
 Si può mostrare che la teoria dell'integrazione rispetto a $\sigma$ si costruisce esattamente come con la misura di Lebesgue. 
@@ -1236,7 +1249,7 @@ J\varphi = \sqrt{\gamma_1^2 \dot{\gamma_1}^2 + \dot{\gamma_2}^2 \dot{\gamma_1}^2
 $$
 pertanto
 $$
-\sigma(\Sigma) = \int_{(a, b) \times (0, 2\pi)} = \int_{0}^{2\pi} \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt d\varphi = 2 \pi \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt = 2 \pi L \int_\gamma x dl
+\sigma(\Sigma) = \int_{(a, b) \times (0, 2\pi)} d\sigma = \int_{0}^{2\pi} \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt d\varphi = 2 \pi \int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt = 2 \pi L \int_\gamma x dl
 $$
 dove $L=\int_a^b |\dot{\gamma}(t)|dt$ è la lunghezza della curva. Dunque abbiamo mostrato il seguente teorema:
 \begin{theorem}[primo teorema di Guldino]
@@ -1245,3 +1258,209 @@ $$
 $$
 dove poniamo $d_\gamma = \frac{\int_a^b \gamma_1(t) |\dot{\gamma}(t)|dt}{\int_a^b |\dot{\gamma}(t)|dt}$.
 \end{theorem}
+\subsection{Area dei grafici}
+Consideriamo $u \in C^1(\Omega, \mathbb{R}), \Omega \subseteq \mathbb{R}^2$ aperto e la funzione grafico associata $\varphi(x, y)=(x, y, u(x,y)) \implies \varphi \in C^1(\Omega, \mathbb{R}^3)$ (in virtù del teorema del differenziale totale) ed è iniettiva.
+In virtù del teorema del Dini, possiamo definire una funzione $\Sigma=f(\Omega), \sigma(\text{gr} \, u) = \sigma(\Sigma) = \int_\Omega J\varphi dxdy$. In virtù di quanto detto in precedenza, possiamo dunque definire il jacobiano di $\varphi$ come
+$$
+\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+u_x & u_y
+\end{pmatrix} \implies (J\varphi)^2 = 1 + u_x^2 + u_y^2 \implies J\varphi = \sqrt{1 + |\nabla u|^2}
+$$
+dunque possiamo concludere che
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $\sigma(\Sigma) = \int_\Omega \sqrt{1 + |\nabla u|^2} dm_2$
+	\item se $f: \Sigma \to \mathbb{R}$ continua allora
+	$$
+		\int_\Sigma f d\sigma = \int_\Omega f(x, y, u(x, y)) \sqrt{1 + |\nabla u|^2} dxdy
+	$$
+\end{enumerate}
+\begin{remark}
+	Possiamo dunque vedere $\sqrt{1 + |\nabla u|^2}$ come l'infinitesimo elemento d'area.
+\end{remark}
+\begin{remark}
+	Possiamo formulare questo teorema in altri modi analoghi, considerando dei grafici rispetto alle variabili $(x, z)$ e $(y, z)$.
+\end{remark}
+\begin{example}
+	Consideriamo $S=\{(x, y, z) \in \mathbb{R}^3: z^2 + y^2 \leq 9, x - 2y + z = 1 \}$. Determinare
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\sigma(S)$
+		\item studiare l'integrabilità di $\frac{x+y+z}{(y^2 + z^9)^{\frac{7}{8}}}$ su $S$ ed, in tal caso, calcolare
+		$$
+			\int_S \frac{x+y+z}{(y^2 + z^2)^{\frac{7}{8}}} d\sigma
+		$$
+	\end{enumerate}
+\end{example}
+\begin{proof}[Svolgimento]
+	Possiamo rappresentare la nostra superficie come
+	$$
+	x = 1 + 2y - z
+	$$
+	dunque definiamo la seguente funzione $\varphi(y, z) = (1+2y-z, y, z)$ da cui possiamo determinare il jacobiano:
+	$$
+	J\varphi = \begin{pmatrix}
+		2 & -1 \\
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix} \implies J\varphi = \sqrt{1 + 4 + 1} = \sqrt{6}
+	$$
+	dunque
+	$$
+	\sigma(S) = \int_S d\sigma = \int_{\mathbb{B}(0, 3)} \sqrt{6} dm_2 = 9 \pi \cdot \sqrt{6} 
+	$$
+	Per quanto riguarda l'integrabilità possiamo osservare che
+	\begin{flalign*}
+	&\int_S \frac{|x+y+z|}{(y^2 + z^2)^{\frac{7}{8}}}d\sigma = \int_S \frac{|1 + 3y|}{(y^2 + z^2)^{\frac{7}{8}}}d\sigma \leq \int_S \frac{10}{(y^2+z^2)^{\frac{7}{8}}} d\sigma = 10 \sqrt{6} \int_{\mathbb{B}(0, 3)} \frac{1}{|(y, z)|^{\frac{7}{4}}} < +\infty
+	\end{flalign*}
+	in virtù dell'esercizio in cui avevamo mostrato che $\int_{\mathbb{B}(0, r)} \frac{1}{|x|^\alpha} < +\infty \iff 0 < \alpha < n$.
+	L'integrale è un banale conto
+\end{proof}
+\section{Teorema di Gauss-Green}
+Vogliamo adesso ricavare il teorema di Gauss-Green, il quale ci consente di ricavare una forma 
+\begin{theorem}[curva semplice]
+	$\varphi: [a, b] \to \mathbb{R}^2$ è semplice se $\gamma|_{[a, b)}$ e $\gamma|_{(a, b]}$ sono iniettive.
+\end{theorem}
+\begin{remark}
+	Una curva semplice può essere chiusa: se $\gamma(a) = \gamma(b)$ allora $\gamma|_{(a, b]}$ e $\gamma|_{[a, b)}$.
+\end{remark}
+\begin{remark}
+	Se $\gamma: [a, b] \to \mathbb{R}^2, \gamma|_{[a, b)}$ è iniettiva allora non può essere semplice: infatti potrebbe esistere un punto $c \in (a, b)$ tale che
+	$\gamma(b) = \gamma(c)$ allora $\gamma|_{[a, b)}$ e $\gamma|_{(a, b]}$.
+\end{remark}
+\begin{definition}[aperto regolare]
+	Sia $\Omega \subseteq \mathbb{R}^2$ un insieme aperto, connesso per archi e limitato. Se supponiamo che $\text{Fr}\Omega$ sia un'unione di curve chiuse, semplici e $C^1_\text{tratti}$ diremo che
+	è un aperto regolare e denoteremo la sua frontiera con il simbolo $\partial \Omega$, detto \emph{bordo di} $\Omega$.
+\end{definition}
+\begin{definition}[orientazione del bordo regolare]
+	Sia $\Omega$ un insieme regolare e siano $\gamma_1, \ldots, \gamma_N$ le curve semplici, chiuse e $C^1_\text{tratti}$ le cui immagini costituiscono $\partial \Omega$. Se tutte le curve $\gamma_i$ percorrono
+	$\partial \Omega$ lasciando $\Omega$ alla sua sinistra, diremo che orientano positivamente $\Omega$, altrimenti lo orientano negativamente. \\
+	Indicheremo con $\partial^{+} \Omega$ il bordo di $\Omega$ positivamente orientato, mentre con $\partial^{-} \Omega$ il bordo di $\Omega$ negativamente orientato.
+\end{definition}
+Tramite questa definizione, possiamo dare un senso all'integrale curvilineo calcolato sul bordo positivamente orientato
+
+\begin{definition}[integrale curvilineo sul bordo positivamente orientato]
+	Sia $\Omega \subseteq \mathbb{R}^2$ un aperto regolare e sia $\partial^{+} \Omega$ il bordo positivamente orientato dalle curve $\gamma_1, \ldots, \gamma_N$ $C^1_\text{tratti}$, semplici e chiusi; ove
+	$\gamma_i: [a_i, b_i] \to \partial \Omega \, \, \forall i \in \{1, \ldots, N \}$. Sia $\omega \in C^0(\mathcal{U}, (\mathbb{R}^2)^*)$ una $1-$forma differenziale ove $\partial \Omega \subseteq \mathcal{U} \subseteq \mathbb{R}^2$. \\
+	Definiamo allora
+	$$
+	\int_{\partial^{+} \Omega} = \sum_{i=1}^N \int_{\gamma_i} \omega = \sum_{i=1}^N \int_{a_i}^{b_i} \omega(\gamma(t))(\dot{\gamma}(t))dt
+	$$
+	Se $\Gamma_i: [\alpha_i, \beta_i] \to \partial \Omega$ sono delle curve $C^1_\text{tratti}$, semplice e chiuse che orientano negativamente il bordo $\partial \Omega$ definiamo
+	$$
+	\int_{\partial^{-} \Omega} = \sum_{i=1}^N \int_{\Gamma_i} \omega = \sum_{i=1}^N \int_{\alpha_i}^{\beta_i} \omega(\Gamma(t))(\dot{\Gamma}(t))dt
+	$$
+\end{definition}
+\begin{remark}
+	Gli integrali $\int\limits_{\partial^{+} \Omega} \omega, \int\limits_{\partial^{-} \Omega} \omega$ non dipendono dalla scelta delle curve chiuse, semplici e $C^1_\text{tratti}$ che parametrizzano il bordo, ma solo dal
+	loro verso di percorrenza. Questo è una proprietà dell'integrale curvilineo di seconda specie. \\
+	Si può inoltre osservare che
+	$$
+	\int_{\partial^{+} \Omega} \omega = - \int_{\partial^{-} \Omega} \omega
+	$$
+\end{remark}
+\begin{theorem}[teorema di Gauss-Green nel piano]
+	Sia $\Omega \subseteq \mathbb{R}^2$ un aperto regolare e $F \in C^1(\bar{\Omega}, \mathbb{R}^2)$. Allora
+	$$
+	\int_\Omega \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = \int_{\partial^{+} \Omega} F_1dx + F_2dy
+	$$
+\end{theorem}
+\begin{proof}[Dimostrazione euristica]
+	Vediamo l'integrazione lungo il bordo $\partial \Omega$ come orientata $"dx \wedge dy"$:
+	\begin{align*}
+	&\int_\Omega \left(\frac{\partial F_2}{\partial y} - \frac{\partial F_1}{\partial x} \right) dx \wedge dy = \int_\Omega \frac{\partial F_2}{\cancel{\partial x}} \cancel{dx} \wedge dy - \int_{\Omega} \frac{\partial F_1}{\partial y} dx \wedge dy = \\
+	&=\int_{\partial^{+} \Omega} F_2 dy + \int_{\partial^{-} \Omega} \frac{\partial F_1}{\cancel{\partial y}} \cancel{dy} \wedge dx = \int_{\partial^{+} \Omega} F_2 dy + \int_{\partial^{+} \Omega} F_1 dx
+	\end{align*}
+	dove la penultima eguaglianza si è ottenuta osservando che dobbiamo "invertire" $dx \wedge dy$ ma geometricamente percorrere un bordo positivamente o negativamente cambia solamente il segno, dunque $dx \wedge dy = - dy \wedge dx$ (rimando alle appendici per una trattazione più accurata del prodotto \emph{wedge}).
+\end{proof}
+\begin{example}
+	Sia $\Omega = (-1, 1) \times (1, 2)$ e sia $F=(x^2 - y, x^2 - y)$. Sia inoltre $\gamma$ una curva semplice, chiusa e $C^1_\text{tratti}$ che percorre $\partial \Omega$ in senso orario. Determinare
+	$$
+	\int_\gamma F
+	$$
+\end{example}
+\begin{proof}
+	Il valore dell'integrale lungo il bordo è, ovviamente, indipendente dalla parametrizzazione. Conseguentemente potremmo pensare di applicare il teorema di Gauss-Green sulla curva semplice, chiusa e $C^1_\text{tratti}$ più "semplice" possibile, ovvero una curva di forma rettangolare.
+	Pertanto
+	\begin{flalign*}
+	&\int_{\gamma} F = -\int_{\partial^{+} \Omega} F = - \int_{\partial^{+} \Omega} F_1 dx + F_2 dy = - \int_\Omega \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = \int_{-1}^{1} dx \int_1^2 (-1 - 2x)dy = \int_{-1}^{1} (-1 - 2x)dx = & \\ 
+	&= -2 - 2 \int_{-1}^1 xdx = -2 \implies \int_{\gamma} F = - 2
+	\end{flalign*}
+\end{proof}
+\begin{example}
+	Sia $\gamma(t) = \begin{pmatrix} \cos{t} & \frac{\sin{t}}{\sqrt{2}} \end{pmatrix}, \gamma: [0, 2\pi] \to \mathbb{R}^2$. Calcolare $\int_\gamma \eta_0$, dove $\eta_0 = - \frac{y}{x^2 + y^2}dx + \frac{x}{x^2 + y^2}dy$.
+\end{example}
+\begin{proof}
+	$$\int_{0}^{2\pi} \left(\frac{1}{\sqrt{2}} \frac{\sin^2{t}}{\cos^2{t} + \frac{1}{2} \sin^2{t}} + \frac{1}{\sqrt{2}} \frac{\cos^2{t}}{\cos^2{t} + \frac{1}{2} \sin^2{t}} \right)dt = \frac{1}{\sqrt{2}} \int_0^{2\pi} \frac{1}{\cos^2{t} + \frac{1}{2} \sin^2{t}}dt$$. Osserviamo che, nonostante questo integrale non sia risolvibile, abbiamo un grande problema: la funzione non è definita su
+	$$
+	E = \{(x, y) \in \mathbb{R}^2 : x^2 + 2y^2 < 1 \}
+	$$
+	che è un insieme aperto, regolare e orientato positivamente da $\gamma$, tuttavia $\eta_0$ non è definita in $(0, 0)$ e non è possibile estenderla con continuità. \\
+	Possiamo però restringere l'insieme a
+	$$
+	H = E \setminus \mathbb{B}(0, \frac{1}{2})
+	$$
+	che è un aperto regolare, dove $\eta_0 \in C^1(\mathcal{U}, (\mathbb{R}^2)^*), \bar{H} \subseteq U \subseteq \mathbb{R}^2$ e posso applicare Gauss-Green ad $\eta_0$ sull'aperto $H$: definiamo
+	\begin{align*}
+		&F_1=-\frac{y}{x^2 + y^2}	&	F_2 = \frac{x}{x^2 + y^2} &
+	\end{align*}
+	e osserviamo che, come avevamo visto già in precedenza, $\eta_0$ è chiusa $\implies \frac{\partial F_2}{\partial x} = \frac{\partial F_1}{\partial y}$, dunque
+	$$
+	\int_H \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) = 0 = \int_{\partial^{+} H} F_1 dx + F_2 dy \implies  \int_{\partial^{+} H} \eta_0 = 0 = \int_\gamma \eta_0 + \int_c \eta_0
+	$$
+	dove $\gamma$ è la curva che orienta positivamente il bordo, mentre la curva $c$ orienta positivamente il bordo interno (dovuto alla rimozione della palla centrata in $0$ e di raggio $2$). Ma allora
+	$$
+	\int_\gamma \eta_0 = - \int_c \eta_0
+	$$
+	possiamo parametrizzare $\tilde{c}(t) = \frac{1}{2} \begin{pmatrix} \cos{t}, & \sin{t} \end{pmatrix}$ che si muove in senso antiorario, da cui ricaviamo che
+	$$
+	\int_{\tilde{c}} \eta_0 = 2\pi \implies \int_\gamma \eta_0 = - \int_c \eta_0 = \int_{\tilde{c}} \eta_0
+	$$
+\end{proof}
+\subsection{Forme differenziali d'area}
+\begin{prop}
+	Sia $H \subseteq \mathbb{R}^2$ un aperto regolare. Allora
+	$$
+	m_2(H) = \int_H 1dxdy = \int_{\partial^{+} H} xdy = - \int_{\partial^{+} H} ydx = \int_{\partial^{+} H}	 \frac{xdy - ydx}{2}
+	$$
+\end{prop}
+\begin{proof}
+Preso $F_1=y$ e $F_2 = 0$ avremo che
+$$
+\int_H 1dxdy = -\int_{\partial^{+} H} ydx
+$$
+e preso $F_1 = 0$ e $F_2 = x$ avremo che
+$$
+\int_H 1dxdy = \int_{\partial^{+} H} xdy
+$$
+dunque
+$$
+m_2(H) = \int_H 1dxdy = \int_{\partial^{+} H} \frac{xdy - ydx}{2} 
+$$
+\end{proof}
+Un'operazione molto utile che possiamo fare è il cosiddetto \emph{pull-back} di una forma differenziale rispetto a delle coordinate: questo è particolarmente interessante per le forme differenziali di un'area, le quali rappresentano, in un certo senso, l'elemento infinitesimo di area.
+\begin{definition}[pull-back di una $1-$forma differenziale]
+	Sia $T$ una funzione differenziabile tale che $T: \mathcal{V} \to \mathcal{V}$ e $\omega$ una $1-$forma differenziale tale che $\omega \in C^0(\mathcal{U}, (\mathbb{R}^n)^*) \implies$
+	$$
+	T^*\omega \in C^0(\mathcal{V}, (\mathbb{R}^n)^*)
+	$$
+\end{definition}
+\begin{remark}
+	Il nome antisonante deriva proprio dal fatto che sto tirando indietro la $1-$forma differenziale da $\mathcal{U}$ a $\mathcal{V}$
+\end{remark}
+Un'interessante proprietà del pull-back è la seguente:
+$$
+\int_\gamma \omega = \int_{T^{-1} \circ \omega} T^*\omega
+$$
+\begin{example}[forma d'area in coordinate polari]
+	Sia $T(\rho, \varphi) = \begin{pmatrix}	\rho \cos{\varphi} & \rho \sin{\varphi} \end{pmatrix}$ con $\rho > 0, 0 < \varphi < 2\pi$. Vogliamo determinare $T^*\omega$ dove, naturalmente, $\omega = \frac{xdy-ydx}{2}$. Il calcolo si ottiene, banalmente, sostituendo al posto di $x$ e $y$ le nuove "espressioni", calcolandone
+	naturalmente il differenziale
+	\begin{align*}
+	&\frac{xdy - ydx}{2} = \frac{\rho \cos{\varphi} d(\rho \sin{\varphi}) - \rho \sin{\varphi} d(\rho \cos{\varphi})}{2} = & \\ 
+	&\frac{1}{2} \left( \rho \cos{\varphi} \sin{\varphi} d\rho + \rho^2 \cos^2{\varphi} d\varphi - \rho \sin{\varphi} \cos{\varphi} d\rho + \rho^2 \sin^2{\varphi} d\varphi \right) = \frac{1}{2} \rho^2 d\varphi
+	\end{align*}
+	dunque $T^*\omega = \frac{1}{2} \rho^2 d\varphi$ è la $1-$forma differenziale d'area in coordinate polari, definita in $(0, +\infty) \times (0, 2\pi)$. Siamo adesso autorizzati a dire che
+	$$
+	d\sigma = \frac{1}{2} \rho^2 d\varphi
+	$$
+\end{example}
