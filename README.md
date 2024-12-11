@@ -8,7 +8,11 @@ The document is divided into key chapters of the course of "Analisi Matematica 2
 * Sequence and continuos functions
 * Differentiable functions
 * Regular curves and surfaces
-
-IN PROGRESS
 * Integrals and differential forms
 * Brief introduction to Lebesgue measure theory
+
+IN PROGRESS
+* Gauss-Green theorem, Divergence and Stokes theorem
+* Wedge product (appendix)
+* Multi-index notation (appendix)
+* Further contents in Measure Theory (appendix)
