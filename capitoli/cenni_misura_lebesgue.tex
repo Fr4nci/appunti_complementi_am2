@@ -131,7 +131,7 @@ Per ogni insieme $X$ definiamo con $\mathfrak{M}(X)$ la classe di tutti gli insi
 		$$
 	\end{enumerate}
 \end{definition}
-\begin{theorem}[teorema di Caratheodory]
+\begin{theorem}
 	La classe dei misurabili $\mathfrak{M}(X)$ è una $\sigma-$algebra e $m_n:\mathfrak{M}(X) \to [0; +\infty]$ è una misura
 \end{theorem}
 Diremo allora che $m_n: \mathfrak{M}(X) \to [0; +\infty]$ è la misura di Lebesgue su $X$. Per lo più noi lavoreremo supponendo che $X=\mathbb{R}^n$.
@@ -150,7 +150,7 @@ m_n(S_0) \leq m_n(S_0 \cap E) + m_n(S_0 \setminus E)
 $$
 dunqque si perderebbe la $\sigma-$additività su insiemi disgiunti.
 \end{remark}
-\section{Insiemi trascurabili}
+\subsection{Insiemi trascurabili}
 \begin{definition}[insiemi trascurabili]
 	Diremo che $Z \subseteq \mathbb{R}^n$ ha misura nulla oppure che è trascurabile se $m_n(Z) = 0$
 \end{definition}
@@ -330,18 +330,17 @@ L'intervallo restante, invece, sarebbe pari a $[0, 1] \setminus (\mathbb{Q} \cap
 	\end{enumerate}
 	\label{prop:f_g_mis}
 \end{prop}
-\begin{remark}
-	Per una buona costruzione della misura di Lebesgue, è comodo definire le operazioni algebriche in $[0; +\infty]$. Definiamo il prodotto come
-	\begin{equation*}
-		xy = \begin{cases}
-			xy & \text{se } \max\{x, y \} < +\infty \\
-			+\infty & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} > 0 \\
-			0 & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} = 0
-		\end{cases}
-	\end{equation*}
-	Il terzo caso, che sembra patologico, si può facilmente interpretare in maniera geometrica: avendo in mente la teoria dell'integrazione, il prodotto fra $0 \cdot +\infty$ corrisponde a quella di un rettangolo illimitato con base di lunghezza infinita e
-	altezza nulla, dunque ha area "pari" a 0.
-\end{remark}
+\subsection{L'integrale di Lebesgue}
+Per una buona costruzione della misura di Lebesgue, è comodo definire le operazioni algebriche in $[0; +\infty]$. Definiamo il prodotto come
+\begin{equation*}
+	xy = \begin{cases}
+		xy & \text{se } \max\{x, y \} < +\infty \\
+		+\infty & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} > 0 \\
+		0 & \text{se } \max\{x, y \} = +\infty \text{ e } \min\{x, y \} = 0
+	\end{cases}
+\end{equation*}
+Il terzo caso, che sembra patologico, si può facilmente interpretare in maniera geometrica: avendo in mente la teoria dell'integrazione, il prodotto fra $0 \cdot +\infty$ corrisponde a quella di un rettangolo illimitato con base di lunghezza infinita e
+altezza nulla, dunque ha area "pari" a 0. \\
 Introduciamo adesso la nozione di funzione semplice, concetto cardine per lo sviluppo dell'integrale di Lebesgue.
 \begin{definition}[funzione semplice]
 	$\varphi: E \to \mathbb{R}$ è una funzione semplice se $\varphi(E)=\{\lambda_1, \ldots, \lambda_k \} \subset \mathbb{R}$ dove $\lambda_i \neq \lambda_j \, \, \forall i \neq j \in \{1, \ldots, k \}$ dove
@@ -502,7 +501,7 @@ $|f| = f^+ + f^-$ dove $f^{+} = \max\{f, 0 \}$ e $f^{-}=\max\{0, -f \}$. Sappiam
 	$$
 	ovvero il limite si scambia con l'integrale
 \end{remark}
-\section{Introduzione agli spazi $\mathcal{L}^p$}
+\subsection{Introduzione agli spazi $\mathcal{L}^p$}
 \begin{definition}[spazio vettoriale $\mathcal{L}^p$]
 	Sia $1 \leq p < +\infty$, definiamo
 	$$
@@ -1016,8 +1015,8 @@ Provare che $\int_{B(0, 1)} \frac{1}{|x|^\alpha}$ converge $\iff 0 < \alpha < n$
 	0 & \text{ se } t \geq \frac{1}{|x|^\alpha}
 	\end{cases}
 	$$
-	ora osserviamo che $0 \leq |x| \leq 1$ e dalla condizione $0 < t < \frac{1}{|x|^\alpha}$ segue che $0 \leq x < \min\{1, \frac{1}{t^{\frac{1}{\alpha}}} \}$, dunque avremo che per $t \in [0; 1], t^{\frac{1}{\alpha}} < 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \geq 1$ ma $|x| < 1$, pertanto la nostra $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = 1$. Per
-	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{t^{\frac{1}{\alpha}}}$ 
+	ora osserviamo che $0 \leq |x| \leq 1$ e dalla condizione $0 < t < \frac{1}{|x|^\alpha}$ segue che $0 \leq x < \min\{1, \frac{1}{t^{\frac{1}{\alpha}}} \}$, dunque avremo che per $t \in [0; 1], t^{\frac{1}{\alpha}} < 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \geq 1$ ma abbiamo il vincolo che $|x| < \min{(1, \frac{1}{t^{\frac{1}{\alpha}}})} = 1$. Per
+	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{t^{\frac{1}{\alpha}}}$ dunque la funzione caratteristica non si annullerà per $|x| < \frac{1}{t^{\frac{1}{\alpha}}}$
 	\begin{align*}
 	&\int_0^1 \left( \int_{B(0,1)} \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx \right)dt + \int_1^{+\infty} \int_{B(0,1)} \left( \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx	\right)dt = \\
 	&m_n(B(0, 1)) + \int_1^{+\infty} m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \right) \stackrel{\text{per omogeneità}}{=} m_n(B(0,1)) + m_n(B(0,1)) \int_1^{+\infty} \frac{1}{t^{\frac{n}{\alpha}}} = m_n(B(0,1))(1 + \frac{t^{-\frac{n}{\alpha} + 1}}{1 - \frac{n}{\alpha}}\Bigg|^{+\infty}_{1})
@@ -1030,17 +1029,17 @@ Provare che $\int\limits_{\mathbb{R}^n \setminus B(0,1)} \frac{1}{|x|^\alpha}dx 
 \begin{proof}[Svolgimento]
 	L'idea è simile a come svolto precedente: definiamo la funzione caratteristica definita come segue
 	$$
-	\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = \begin{cases} 1 & \text{ se } 1 \leq t \leq \frac{1}{|x|^\alpha} \\
+	\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} = \begin{cases} 1 & \text{ se } 0 \leq t \leq \frac{1}{|x|^\alpha} \\
 		0 & \text{ altrimenti }
 	\end{cases}
 	$$
-	e possiamo dunque considerare l'integrale della funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} : [0; +\infty] \times (\mathbb{R}^n \setminus B(0,1))$, parametrizzando la $|x|$ in funzione della $t$ osservando che quando $1 \leq t \leq +\infty$ siamo nella regione in cui la funzione si annulla. Fra $[0, 1]$ la funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha}]}$ sarà $0$ per $t \geq \frac{1}{|x|^\alpha} \implies |x| \geq t^{-\frac{1}{\alpha}}$. Fissando la $t$ integreremo la $x$ fra $B(0, \frac{1}{t^{-\frac{1}{\alpha}}}) \setminus B(0,1)$, dunque
+	e possiamo dunque considerare l'integrale della funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} : [0; +\infty] \times (\mathbb{R}^n \setminus B(0,1))$, parametrizzando la $|x|$ in funzione della $t$ osservando che quando $1 \leq t \leq +\infty$ siamo nella regione in cui la funzione caratteristica si annulla. Fra $[0, 1]$ la funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha}]}$ sarà $0$ per $t \geq \frac{1}{|x|^\alpha} \implies |x| \geq t^{-\frac{1}{\alpha}}$. Fissando la $t$ integreremo la $x$ fra $B(0, \frac{1}{t^{-\frac{1}{\alpha}}}) \setminus B(0,1)$, dunque
 	$$
 	\int_{[0, +\infty] \times (\mathbb{R}^n \setminus B(0,1))} \mathbb{1}_{[0; \frac{1}{|x|^\alpha}]} = \int_0^{1} \left(\int_{\mathbb{R}^n \setminus B(0,1)} \mathbb{1}_{[0; \frac{1}{\frac{1}{t^{\frac{1}{\alpha}}}})} dx \right) dt + \cancel{\int_1^{+\infty} \left( \int_{\mathbb{R}^n \setminus B(0, 1)} \mathbb{1}_{[0; \frac{1}{|x|^\alpha})} dx \right) dt}
 	$$
 	dove l'ultimo integrale si annulla per quanto detto prima. Osserviamo che il primo integrale invece è pari a
 	$$
-	\int_0^1 m_n \left(B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}} \right) \setminus B(0,1) \right)dt = \int_0^1 m_n \left( B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}}\right) \right) - m_n(B(0, 1))dt \stackrel{\text{per omogeneità}}{=} m_n(B(0,1))\int_0^1 t^{-\frac{n}{\alpha}} - 1 dt
+	\int_0^1 m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \setminus B(0,1) \right)dt = \int_0^1 m_n \left( B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}}\right) \right) - m_n(B(0, 1))dt \stackrel{\text{per omogeneità}}{=} m_n(B(0,1))\int_0^1 t^{-\frac{n}{\alpha}} - 1 dt
 	$$
 	il quale converge se e solo se $-\frac{n}{\alpha} > - 1 \implies \frac{n}{\alpha} < 1 \implies \alpha > n$.
 \end{proof}
@@ -1388,7 +1387,7 @@ Tramite questa definizione, possiamo dare un senso all'integrale curvilineo calc
 	\end{flalign*}
 \end{proof}
 \begin{example}
-	Sia $\gamma(t) = \begin{pmatrix} \cos{t} & \frac{\sin{t}}{\sqrt{2}} \end{pmatrix}, \gamma: [0, 2\pi] \to \mathbb{R}^2$. Calcolare $\int_\gamma \eta_0$, dove $\eta_0 = - \frac{y}{x^2 + y^2}dx + \frac{x}{x^2 + y^2}dy$.
+	Sia $\gamma(t) = \begin{pmatrix} \cos{t}, & \frac{\sin{t}}{\sqrt{2}} \end{pmatrix}, \gamma: [0, 2\pi] \to \mathbb{R}^2$. Calcolare $\int_\gamma \eta_0$, dove $\eta_0 = - \frac{y}{x^2 + y^2}dx + \frac{x}{x^2 + y^2}dy$.
 \end{example}
 \begin{proof}
 	$$\int_{0}^{2\pi} \left(\frac{1}{\sqrt{2}} \frac{\sin^2{t}}{\cos^2{t} + \frac{1}{2} \sin^2{t}} + \frac{1}{\sqrt{2}} \frac{\cos^2{t}}{\cos^2{t} + \frac{1}{2} \sin^2{t}} \right)dt = \frac{1}{\sqrt{2}} \int_0^{2\pi} \frac{1}{\cos^2{t} + \frac{1}{2} \sin^2{t}}dt$$. Osserviamo che, nonostante questo integrale non sia risolvibile, abbiamo un grande problema: la funzione non è definita su
@@ -1450,7 +1449,7 @@ Un'operazione molto utile che possiamo fare è il cosiddetto \emph{pull-back} di
 \end{remark}
 Un'interessante proprietà del pull-back è la seguente:
 $$
-\int_\gamma \omega = \int_{T^{-1} \circ \omega} T^*\omega
+\int_\gamma \omega = \int_{T^{-1} \circ \gamma} T^*\omega
 $$
 \begin{example}[forma d'area in coordinate polari]
 	Sia $T(\rho, \varphi) = \begin{pmatrix}	\rho \cos{\varphi} & \rho \sin{\varphi} \end{pmatrix}$ con $\rho > 0, 0 < \varphi < 2\pi$. Vogliamo determinare $T^*\omega$ dove, naturalmente, $\omega = \frac{xdy-ydx}{2}$. Il calcolo si ottiene, banalmente, sostituendo al posto di $x$ e $y$ le nuove "espressioni", calcolandone
@@ -1464,3 +1463,323 @@ $$
 	d\sigma = \frac{1}{2} \rho^2 d\varphi
 	$$
 \end{example}
+\begin{example}[area di una regione tramite la $1-$forma d'area in coordinate polari]
+	Consideriamo $E = \{(\rho \cos{\varphi}, \rho \sin{\varphi}) : \alpha \leq \varphi \leq \beta, 0 \leq \rho \leq r(\varphi) \}$ e consideriamo $r(\varphi) : [\alpha, \beta] \to [0; +\infty)$ continua con $0 \leq \alpha < \beta \leq 2 \pi$. Calcolare la forma d'area
+\end{example}
+\begin{proof}[Svolgimento]
+	Osserviamo che $E$ è un aperto regolare, il cui bordo può essere ottenuto tramite due segmenti radiali $\gamma_1, \gamma_3$ e una curva regolare $\gamma_2$ che descrive il bordo con lunghezza variabile.
+	$$
+	m_2(E) = \int_{\partial^{+} E} \omega = \int_{\partial^{+} E} \frac{-ydx + xdy}{2} = \int_{\gamma_1} \frac{-ydx + xdy}{2} + \int_{\gamma_2} \frac{-ydx + xdy}{2} + \int_{\gamma_3} \frac{-ydx + xdy}{2}
+	$$
+	e possiamo mostrare che $
+	\int\limits_{\gamma_1} \frac{-ydx + xdy}{2} = 0
+	$
+	siccome
+	$$
+	\int_{\gamma_1} \frac{-ydx + xdy}{2} = \frac{1}{2} \int_{T^{-1} \circ \gamma_1} \rho^2 d\varphi = 0 
+	$$
+	siccome $\varphi=\text{costante}$. Similmente per $\gamma_3$, da cui possiamo concludere che
+	$$
+	m_2(E) = \frac{1}{2} \int_{T^{-1} \circ \gamma_2} \rho^2 d\varphi \stackrel{\Gamma = T^{-1} \circ \gamma}{=} \frac{1}{2} \int_\Gamma \rho^2 d\varphi  
+	$$
+\end{proof}
+\begin{exercise}
+	Scrivere in coordinate polari $xdy$ e $-ydx$
+\end{exercise}
+\begin{proof}
+	E' banale dalla formula del pull-back: se $\omega(x, y) = xdy$ allora
+	$$
+	\omega(T(\rho, \varphi)) = \rho \cos{\varphi} d(\rho \sin{\varphi}) = \rho \sin{\varphi} \cos{\varphi} d\rho + \rho^2 \cos^2{\varphi} d\varphi  
+	$$
+	mentre per $\omega(x, y) = -ydx$ allora
+	$$
+	\omega(T(\rho, \varphi)) = -\rho \sin{\varphi} d\rho + \rho^2 \sin^2{\varphi} d\varphi  
+	$$
+\end{proof}
+\begin{exercise}
+	Calcolare l'area dell'ellisse di equazione $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ con $a, b > 0$ scegliendo un'oppurtuna forma d'area
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Possiamo sfruttare il teorema di Gauss-Green: possiamo parametrizzare il bordo dell'ellisse come
+	$$
+	\begin{cases}
+		x = a \cos{\varphi} \\
+		y = b \sin{\varphi}
+	\end{cases} \implies \frac{x^2}{a^2} + \frac{y^2}{b^2} = \cos^2{\varphi} + \sin^2{\varphi} = 1
+	$$
+	Usando la forma d'area unito al teorema di Gauss-Green abbiamo che
+	\begin{flalign*}
+	&\int_{\partial^{+} \Omega} xdy = \int_E dxdy = \int_{\gamma} xdy = \int_0^{2\pi} ab \cos^2{\varphi} = ab \int_0^{2\pi} \frac{1+\cos{2\varphi}}{2}d\varphi = ab \left( \int_0^{2\pi} \frac{1}{2} d\varphi + \frac{1}{2} \int_0^{2\pi} \cos{2\varphi} d\varphi \right) = \pi ab
+	\end{flalign*}
+\end{proof}
+\begin{remark}
+	E' possibile ricavare la $1-$forma d'area senza l'utilizzo del teorema di Gauss-Green nella seguente maniera: posto l'insieme
+	$$
+	E = \{(\rho \cos{\varphi}, \rho \sin{\varphi}): \varphi \in (\alpha, \beta) \text{ e } 0 < \rho < r(\varphi) \}
+	$$
+	dove abbiamo naturalmente che $0 \leq \alpha < \beta \leq 2\pi$ e $r: [\alpha, \beta] \to [0; +\infty)$ è continua. Vediamo $E$ come l'immagine della trasformazione $T(\rho, \varphi) = (\rho \cos{\varphi}, \rho \sin{\varphi})$ dell'insieme
+	$$
+	F = \{(\rho, \varphi) : 0 < \rho < r(\varphi), \alpha < \varphi < \beta \}
+	$$
+	pertanto
+	\begin{flalign*}
+	&m_2(E) = \int_E dxdy = \int_{T^{-1}(E)} \rho d \rho d\varphi = \int_{F} \rho d\rho d\varphi = \int_{\alpha}^{\beta} \int_0^{r(\varphi)} \rho d\rho \implies m_2(E) = \frac{1}{2} \int_\alpha^\beta r(\varphi)^2 d\varphi
+	\end{flalign*}
+	Dunque, sempre ponendo $\Gamma = T^{-1} \circ \gamma$ avremo che
+	$$
+	\int_\Gamma \omega = \int_\alpha^\beta \omega(\Gamma(\varphi))(\dot{\Gamma}(\varphi)) = \frac{1}{2} \int_{\alpha}^{\beta} r(\varphi) d\varphi
+	$$
+	si osservi che la curva dà un'area positiva se si muove in senso antiorario (poiché l'angolo $\varphi$ cresce).
+\end{remark}
+\begin{exercise}
+Consideriamo $F(x, y) = (e^{x^2}-xy^2, e^{-\sin{e^y}} + x^2 y)$ e l'aperto regolare
+$$
+\Omega = \{(x, y) \in \mathbb{R}^2 : y^2 - x^2 < 1, 0 < x < \sqrt{3}, y > 0 \}
+$$
+Sia $\Gamma$ una curva $C^1_\text{tratti}$, chiusa e semplice che percorre $\partial \Omega$ in senso orario. Calcoliamo $\int_\Gamma F$
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Usiamo il teorema di Gauss-Green
+	\begin{flalign*}
+	&\int_\Gamma F = -\int_{\gamma_1 + \gamma_2 + \gamma_3 + \gamma_4} F = \int_{\partial^{+} \Omega} F = -\int_{\Omega} \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = -\int_\Omega (2yx + 2yx) dxdy = -4\int_\Omega yz dxdy = \\
+	&= - 4 \int_0^{\sqrt{3}} dx + \int_0^{\sqrt{1+x^2}} yx dxdy = - 4 \int_0^{\sqrt{3}} x \left( \frac{1+x^2}{2} \right) dx = -\left( \frac{x^2}{2} + \frac{x^4}{4} \right)\Bigg|_{x=0}^{x=\sqrt{3}} = - \frac{15}{2}
+\end{flalign*}
+\end{proof}
+\section{Flusso e teorema della divergenza}
+
+Vogliamo definire il concetto di flusso attraverso una superficie, nozione che ha molte applicazioni in molte discipline scientifiche. Dobbiamo, tuttavia, stabilire un modo per orientare una superficie 
+\begin{definition}[superficie regolare orientata da $\nu$]
+	Sia $\Sigma \subseteq \mathbb{R}^3$ una superficie regolare, diremo che $\Sigma$ è orientata da $\nu: \Sigma \mapsto \mathbb{S}^2$ è continua e 
+	\begin{align*}
+	\nu(x) \perp T_{x} \Sigma \, \, \forall x \in \Sigma.
+	\end{align*}
+	Diremo che $\nu(x)$ è un campo normale a $\Sigma$
+\end{definition}
+
+\begin{definition}[flusso di $F$ attraverso $\Phi$]
+	Se $F \in C^0(\mathcal{U}, \mathbb{R}^3), \mathcal{U} \subseteq \mathbb{R^3}$ aperto con $\Sigma \subseteq \mathcal{U}$ e $\int_\Sigma |F|d\sigma < +\infty$, definiamo il flusso di $F$ attraverso $\nu$ come
+	$$
+	\Phi(F, \Sigma, \nu) = \int_\Sigma \innerprod{F}{\nu}d\sigma
+	$$
+\end{definition}
+\begin{remark}
+	Esistono superfici regolari non orientabili: un esempio è il nastro di Möbius
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+			  hide axis,
+			  view = {40}{40}
+			]
+			\addplot3 [
+			  surf,
+			  colormap/greenyellow,
+			  shader     = faceted interp,
+			  point meta = x,
+			  samples    = 40,
+			  samples y  = 5,
+			  z buffer   = sort,
+			  domain     = 0:360,
+			  y domain   =-0.5:0.5
+			] (
+			  {(1+0.5*y*cos(x/2)))*cos(x)},
+			  {(1+0.5*y*cos(x/2)))*sin(x)},
+			  {0.5*y*sin(x/2)}
+			);
+		  
+			\addplot3 [
+			  samples=50,
+			  domain=-145:180, % The domain needs to be adjusted manually,
+							   % depending on the camera angle, unfortunately
+			  samples y=0,
+			  thick
+			] (
+			  {cos(x)},
+			  {sin(x)},
+			  {0}
+			);
+			\end{axis}
+		  \end{tikzpicture}
+		  \caption{Nastro di Möbius. La circonferenza disegnata serve proprio per far vedere che un giro attorno a questo nastro inverte l'orientazione: se io prendessi un versore normale "puntato" verso l'esterno, allora dopo un giro questo sarebbe invertito, dunque ci sarebbe una discontinuità e $\nu$ non sarebbe continua,
+		  come riesco dalla definizione di superficie orientabile}
+	\end{figure}
+\end{remark}
+\begin{example}[esempio di calcolo del flusso attraverso una superficie] \hspace{1cm} \\
+	Sia $T=\left\{(x, y, z) \in \mathbb{R}^3: x, y, z > 0, x + \frac{y}{2}+\frac{z}{4}=1 \right\}$ e $F(x, y, z)=(y, x, \frac{z}{2}+ y - 2)$. Calcolare il flusso attraverso questa superficie
+\end{example}
+\begin{proof}[Svolgimento]
+	Osserviamo che, essendo il triangolo un piano "confinato" a $x, y, z > 0$, possiamo facilmente trovare il versore normale prendendo il vettore $(1, \frac{1}{2}, \frac{1}{4})$. Possiamo altrimenti porre
+	$g(x, y, z) = x + \frac{y}{2} + \frac{z}{4}$ e definire il nostro triangolo tramite la funzione definente $g$: lo spazio tangente ad ogni punto $x_0$ di questa superficie sarà dato da $\nabla g(x_0) = (1, \frac{1}{2},\frac{1}{4})$. \\
+	Esplicitiamo la $x$:
+	$$
+	x = 1 - \frac{y}{2} - \frac{z}{4} > 0 \text{ siccome } 0 < x = 1 - \frac{y}{2} - \frac{z}{4} = \varphi(y, z)
+	$$
+	La normale a questo piano è dato naturalmente dal gradiente che corrisponde proprio a
+	$$
+	\nabla g(x, y, z) = \begin{pmatrix} 
+		\partial_y \varphi & \partial_z \varphi \\
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix} \implies |\nabla g| = \sqrt{(\partial_y \varphi)^2 + (\partial_z \varphi)^2 + 1} = \sqrt{1 + |\nabla \varphi|^2} 
+	$$
+	dunque il vettore normale è proprio
+	$$
+	\nu = \frac{(1, \frac{1}{2}, \frac{1}{4})}{\sqrt{1 + (\frac{1}{2})^2 + (\frac{1}{4})^2}} \implies \Phi(F, \Sigma, \nu) = \int_H \innerprod{F}{\frac{\nabla g}{\sqrt{1 + |\nabla \varphi|^2}}} \sqrt{1 + |\nabla \varphi|^2} dydz
+	$$
+	dove $H = \{(y, z) \in \mathbb{R}^2 : 0 < \frac{y}{2} + \frac{z}{4} < 1 \}$. Dunque
+	$$
+	\int_H \innerprod{F}{(1, \frac{1}{2}, \frac{1}{4})} dydz =	int_0^2 y \int_0^{4 - 2y} dz = \frac{8}{3}
+	$$
+\end{proof}
+
+\subsection{Frontiera regolare di un aperto}
+
+\begin{definition}[punto regolare di frontiera e derivata esterna] \hspace{1cm} \\
+	Sia $\Omega \subseteq \mathbb{R}^3$ un insieme aperto. Diremo ceh $x \in \text{Fr} \, \Omega$ è un punto di frontiera regolare se
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\exists O \subseteq \mathbb{R}^3$ aperto tale che $x \in O \cap \text{Fr} \, \Omega$
+		\item $\exists g \in C^1(O)$ tale che $O \cap \Omega = \{y \in O : g(y) < 0 \}$
+		\item $\nabla g(y) \neq 0 \, \, \forall y \in O$
+	\end{enumerate}
+	Denoteremo con $\partial_{\text{reg}}$ la frontiera regolare o bordo regolare di $\Omega$. Diremo che $g$ definisce una porzione di frontiera regolare
+	$O \cap \text{Fr} \, \Omega$ e
+	$$
+	\nu(y) = \frac{\nabla g(y)}{|\nabla g(y)|} \, \, \forall y \in O \cap \text{Fr} \, \Omega
+	$$
+	dove $\nu: \partial_{\text{reg}} \Omega \mapsto \mathbb{S}^2$ è detta normale esterna ad $\Omega$ in $x \in \partial_{\text{reg}} \Omega$.
+\end{definition}
+\begin{remark}
+I punti regolari di frontiera sono quei punti che separano l'interno dall'esterno, ma sono dei "buoni" punti, nel senso che non sono discontinui. Per esempio se avessi una punta la normale sarebbe discontinua (inserire immagine)
+\end{remark}
+\begin{prop}
+	Dato $\Omega \subseteq \mathbb{R}^3$ il sottoinsieme $\partial_{\text{reg}} \Omega$ di $\text{Fr} \, \Omega$ è un'unione al più numerabile di superfici regolari.
+\end{prop}
+\begin{proof}[Idea della dimostrazione]
+Si osserva che $\partial_{\text{reg}} \Omega$ è un'aperto in $\text{Fr} \, \Omega$ rispetto la topologia (indotta) di sottospazio e che tale topologia ha una base numerabile di aperti, dunque per il teorema di Lindelöf ogni ricoprimento aperto
+ha un sottoricoprimento numerabile. Prendendo come aperti del ricoprimento di $\partial_{\text{reg}} \Omega$ gli $\{O_x : x \in \partial_{\text{reg}} \Omega \}$ dove $O_x \subseteq \mathbb{R}^3$ e $g: O_x \to \mathbb{R}$ definisce $\partial_{\text{reg}} \Omega$
+intorno a $x$, dunque la tesi.
+\end{proof}
+\begin{prop}
+Se $\nu: \partial_{\text{reg}} \to \mathbb{S}^2$ è la normale esterna allora è continua
+\end{prop}
+\begin{proof}
+$$
+\nu(y) = \frac{\nabla g(y)}{|\nabla g(y)|} \, \, y \in O \cap \text{Fr} \, \Omega
+$$
+è continua sulla porzione di frontiera $O \cap \text{Fr} \, \Omega$ siccome rapporto di funzioni continue
+\end{proof}
+Presa una funzione $F: \mathbb{R}^3 \to \mathbb{R}^3$ possiamo allora definire il flusso, supponendo che $\int_{\partial_{\text{reg}}} |F| < +\infty$ (ovvero $F$ è $\sigma-$integrale su $\partial_{\text{reg}}$), attraverso la frontiera regolare
+$$
+\Phi(F, \partial_{\text{reg}} \Omega, \nu) = \int_{\partial_{\text{reg}} \Omega} \innerprod{F}{\nu} d \sigma
+$$
+\begin{definition}[divergenza]
+	Sia $F \in C^1(\Omega, \mathbb{R}^3), \Omega \subseteq \mathbb{R}^3$ aperto, allora definiamo la divergenza di $F$ la funzione scalare
+	$$
+	\Div F = \partial_x F_x + \partial_y F_y + \partial_z F_z
+	$$
+	dove $F=(F_x, F_y, F_z)$
+\end{definition}
+\begin{theorem}[teorema della divergenza]
+	Sia $\Omega \subseteq \mathbb{R}^3$ limitato e connesso per archi tale che
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\sigma(\text{Fr} \, \Omega \setminus \partial_{\text{reg}}) = 0$
+		\item $\sigma(\partial_{\text{reg}}) < +\infty$
+	\end{enumerate}
+	allora se $F \in C^1(\mathcal{U}, \mathbb{R}^3), \bar{\Omega} \subseteq \mathcal{U}$ dove $\mathcal{U} \subseteq \mathbb{R}^3$ è aperto vale la seguente formula
+	$$
+	\int_\Omega \Div F dm_3 = \int_{\partial_{\text{reg}} \Omega} \innerprod{F}{\nu} d\sigma = \Phi(F, \partial_{\text{reg}} \Omega, \nu)
+	$$
+\end{theorem}
+Mostriamo due esempi famosi del teorema della divergenza
+\subsection{Legge di Gauss}
+Sia $E = k_e \frac{q}{r^2}\hat{r}$ il campo elettrico generato da una carica puntiforme, allora
+$$
+\Div E = \Div(k_e \frac{q}{r^2} \hat{r}) = \Div(k_e \frac{q}{r^3}r) = k_e q \sum_{i=1}^3 \partial_{x_i} (\frac{x_i}{|x|^3}) = k_e q \sum_{i=1}^3 \frac{|x|^3 - 3 x_i^2 |x|}{|x|^6} = k_e q \frac{3|x|^2 - 3 |x|^2}{|x|^5} = 0
+$$ 
+$E$ è ben definito $\Omega \setminus B(x_0, \varepsilon)$ e, dunque, possiamo applicare il teorema della divergenza su $\Omega \setminus B(x_0, \varepsilon)$, da cui deduciamo che
+\begin{align*}
+&\Phi(E, \partial_{\text{reg}} (\Omega \setminus B(x_0, \varepsilon)), \nu) = \int_{\partial \Omega} \innerprod{E}{\nu} d\sigma + \int_{\partial B(x_0, \varepsilon)} \innerprod{E}{\nu} d\sigma = \Phi(E, \partial \Omega, \nu) - k_e \frac{q}{\varepsilon^2} (4 \pi \varepsilon^2) = \\
+&=\int_{\Omega \setminus B(x_0, \varepsilon)} \Div E dm_3 = 0 \implies \Phi(E, \partial \Omega, \nu) = 4 \pi k_e q
+\end{align*}
+dove abbiamo usato il fatto che $\int\limits_{B(x_0, \varepsilon)} \innerprod{E}{\nu} = E 4 \pi \varepsilon^2$ in virtù delle simmetria radiale del campo elettrico.
+\subsection{Equazione di continuità in fluidodinamica}
+Sia $\Omega$ una regione di spazio di un fluido che sta "uscendo" da questo e indichiamo con $d\Sigma$ l'elemento infinitesimo di superficie, $d\sigma$ l'elemento infinitesimo di area e $v(x, y, z, t)$ la velocità della particella di un liquido nel punto $(x, y, z)$ al tempo $t$. In un tempo
+infinitesimale $dt$, l'elemento infinitesimale di volume di liquido passante attraverso l'elemento di superficie $d\Sigma$ è pari a $|\vec{v} \cdot \nu|d\sigma$, dove $\vec{v}$ è la velocità del liquido mentre $\nu$ è la normale alla
+superficie. Supponendo che il nostro liquido abbia una densità $\rho(x, y, z, t) \geq 0$ variabile, la quantità di fluido totale è data da
+$$
+V = \int_\Sigma \rho (\vec{v} \cdot \nu)d\sigma = \Phi(\rho \vec{v}, \Sigma, \nu) 
+$$
+Per la conservazione della massa dobbiamo avere che
+$$
+\frac{M_t - M_{t+dt}}{dt} = V
+$$
+ma sapendo che $M_t = \int\limits_\Omega \rho(x, y, z, t) dxdydz$ (ovvero la massa di tutto il fluido è l'integrale in tutta la regione di spazio $\Omega$ in cui si trova il fluido al tempo $t$), allora
+$$
+-\frac{\partial}{\partial t} \int_\Omega \rho(x, y, z, t)dxdydz = \int_{\partial \Omega} \rho \vec{v} \cdot \nu d\sigma
+$$
+dove il $-$ deriva dal fatto che la $V$ è naturalmente positiva ma il bilancio di massa dove che il fluido esce dalla superficie diminuisce, dunque la derivata è negativa. Tramite la teoria di Lebesgue è possibile portare la derivata all'interno dell'integrale con ipotesi deboli, dunque
+$$
+\int_\Omega - \frac{\partial \rho}{\partial t} dm_3 = \Phi(\rho \vec{v}, \partial \Omega, \nu) \stackrel{\text{thm divergenza}}{=} \int_\Omega \Div(\rho \vec{v}) \implies \frac{\partial \rho}{\partial t} + \Div(\rho \vec{v}) = 0
+$$
+che prende il nome di equazione di continuità.
+
+\begin{example}[calcolo del flusso tramite il teorema della divergenza]
+	Calcolare $\Phi(F, \Sigma, \nu)$ dove $F(x, y, z)=(x, y, z)$ e $\Sigma=\{(x, y, z) \in \mathbb{R}^3 : 4x^2 + 4y^2 + z^2 = 4, x \leq 0 \}$, dove questa è orientata dalla normale $\nu$ che è individuata dalla condizione
+	$\nu(-1, 0, 0) = (-1, 0, 0)$.
+\end{example}
+\begin{proof}[Svolgimento]
+	Osserviamo che sul semipiano $D = \Sigma \cap \{x = 0\}$ avremo che la normale $\eta = (1, 0, 0)$ mentre per quanto riguarda il resto della superficie dobbiamo essere un po' più originali.
+	$$
+	\Phi(F, \partial \Omega, n) = \Phi(F, \Sigma, \nu) + \Phi(F, D, \eta) \stackrel{\text{thm divergenza}}{=} \int_\Omega \Div F dm_3 = 3\int_\Omega dm_3 = 3m_3(\Omega) 
+	$$
+	dove $\Omega = \{(x, y, z) \in \mathbb{R}^3 | 4x^2 + 4y^2 + z^2 < 4, x < 0 \}$. Possiamo fare questo integrale senza problemi in coordinate sferiche
+	$$
+	m_3(\Omega) = \int_\Omega dxdydz = 2 \int_{\Omega'} dxdydz' = 2 m_3(B(0, 1) \cap \{ x < 0 \})= \frac{4}{3} \pi 
+	$$
+	dove, per agevolare il calcolo dell'integrale, abbiamo fatto il cambio di coordinate $(x', y', z') \mapsto (x', y', 2z') = (x, y, z)$ dunque il jacobiano di questa trasformazione era pari a $2$ e poi abbiamo diviso per $2$ per ottenere solo metà contributo della sfera (siccome la condizionee $x<0$ taglia metà della sfera).
+	Dunque
+	$$
+	\Phi(F, \Sigma, \nu) = 3m_3(\Omega) = 4\pi
+	$$
+\end{proof}
+\section{Teorema del rotore}
+\begin{definition}[curva regolare a tratti]
+	Una curva $\gamma: [a, b] \to \mathbb{R}^n$ si dice regolare a tratti se $\gamma \in C^1_\text{tratti}$ e $\dot{\gamma}(t) \neq 0 \, \, \forall t \in (t_{i-1}, t_i) \, \, \forall i \in \{1, \ldots, N \}$ dove $a=t_0 < t_1 < \ldots < t_{N-1} < t_N = b$ è il partizionamento che rende $\gamma$ $C^1_\text{tratti}$. Se $N=1$, ovvero $t_0=a$ e $t_1=b$ diremo che $\gamma$ è regolare.
+\end{definition}
+\begin{definition}[dominio piano elementare]
+	Un insieme $H \subseteq \mathbb{R}^2$ è detto dominio piano elementare se è limitato e la sua frontiera $\partial H$ è una curva semplice, chiusa e regolare a tratti 
+\end{definition}
+\begin{remark}
+Il "bordo" di questo dominio può essere frastagliato in alcuni punti
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=2]
+		\filldraw[fill=gray!20, draw=black, thick] 
+			(0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
+		
+		% Etichetta della regione H
+		\node at (1, 1) {\Huge $H$};
+	
+		% Disegna la frontiera con frecce per l'orientamento
+		\draw[->, thick] (0, 0) -- (1, 0.25);
+		\draw[->, thick] (2, 0.5) -- (2.25, 1);
+		\draw[->, thick] (2.5, 1.5) -- (2, 2);
+		\draw[->, thick] (1.5, 2.5) -- (0.5, 2.25);
+		\draw[->, thick] (-0.5, 2) -- (-0.25, 1);
+	
+		% Etichetta della frontiera
+		\node at (2.7, 1.5) {\Large $\partial H$};
+	
+		% Disegna una curva rossa tra due punti adiacenti sulla frontiera
+		%\draw[thick, red] (2, 0.5) to[out=120, in=240] (2.5, 1.5);
+	
+		% Punti di partenza e arrivo della curva
+		\filldraw[red] (2, 0.5) circle (0.05);   % Punto iniziale
+		\filldraw[red] (2.5, 1.5) circle (0.05); % Punto finale
+	
+		% Aggiungi un clip per evitare che il riempimento si estenda oltre la curva rossa
+		\clip (0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
+	\end{tikzpicture}
+	\caption{Esempio di dominio piano elementare. Come si vede il bordo è frastagliato, eppure è possibile parametrizzare il bordo con una curva semplice, chiusa e regolare a tratti}
+\end{figure}
+\end{remark}

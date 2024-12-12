@@ -219,7 +219,7 @@ $$
 \label{thm:caratt_tang}
 \end{theorem}
 \begin{proof}
-Mostriamo che $V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$: come avevamo già visto in precedenza, se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(0) \implies \frac{d}{dt} g(\gamma(t)) = \frac{d}{dt} \gamma(0) = \innerprod{\nabla f(\gamma(0))}{\dot{\gamma}(0)} = df(\gamma(0))(\dot{\gamma}(0)) \implies \, (\forall \dot{\gamma}(0), \dot{\gamma}(0) \in V_{x_0} \Sigma \implies \dot{\gamma}(0) \in T_{x_0} \Sigma) \iff V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$. \\
+Mostriamo che $V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$: come avevamo già visto in precedenza, se $\gamma \in C^{1}((-\varepsilon, \varepsilon), \Sigma)$ tale che $\gamma(0)=x_0$ e $g^{-1}(g(x_0)) = \Sigma \implies g(\gamma(t)) = \gamma(0) \implies \frac{d}{dt} g(\gamma(t)) = \frac{d}{dt} \gamma(0) = \innerprod{\nabla g(\gamma(0))}{\dot{\gamma}(0)} = dg(\gamma(0))(\dot{\gamma}(0)) \implies \, (\forall \dot{\gamma}(0), \dot{\gamma}(0) \in V_{x_0} \Sigma \implies \dot{\gamma}(0) \in T_{x_0} \Sigma) \iff V_{x_0} \Sigma \subseteq T_{x_0} \Sigma$. \\
 Mostriamo adesso che $T_{x_0} \Sigma \subseteq V_{x_0} \Sigma$: facciamo la dimostrazione per $n=2$ e per $n=3$. Nel caso $n=2$ sappiamo, in virtù della funzione implicita, che $\exists \varphi: I \to J$ tale che 
 \begin{align*}
 &\gamma(t) = (t, \varphi(t)) & &\text{ o } & &\gamma(t)=(\varphi'(t), t)
@@ -308,7 +308,7 @@ Tutto questo che abbiamo fatto in cosa si traduce? In pratica, se abbiamo una fu
 \end{remark}
 \begin{theorem}[dei moltiplicatori di Lagrange]
 Sia $f \in C^{1} (\Omega), x_0 \in \Omega \cap S, \Omega \subseteq \mathbb{R}^n$ aperto, $n= \{ 2, 3 \}$, $S \subseteq \mathbb{R}^n, g \in C^1 (\Omega)$ tale che $\Omega \cap S = g^{-1}(g(x_0)) = \Sigma \subseteq \mathbb{R}^n, \nabla g(x) \neq 0 \forall x \in \Sigma$ ($\Sigma$ è una curva/superficie regolare). \\
-Allora $x_0 \in \Sigma$ è un punto critico di $f$ su $\Sigma$ se e solo se $\exists \lambda \in \mathbb{R}$ tale che $\nabla f(x_0) = \lambda g(x_0)$
+Allora $x_0 \in \Sigma$ è un punto critico di $f$ su $\Sigma$ se e solo se $\exists \lambda \in \mathbb{R}$ tale che $\nabla f(x_0) = \lambda \nabla g(x_0)$
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
 $\boxed{\Rightarrow}$: sia $x_0 \in \Sigma$ un punto critico di $f$ su $\Sigma$, allora per il teorema~\ref{thm:punti_crit_su_curve}  avremo che $\nabla f(x_0) \perp T_{x_0} \Sigma \implies \nabla f(x_0) \in (T_{x_0} \Sigma)^{\perp}$, tuttavia, siccome $\Sigma = g^{-1}(g(x_0))$, abbiamo che $(\nabla g(x_0))^{\perp} = T_{x_0} \Sigma$ da cui concludiamo che $\nabla f(x_0), \nabla g(x_0) \in (T_{x_0} \Sigma)^{\perp}$ e, siccome $\dim{(T_{x_0} \Sigma)^{\perp}} = 1$ visto che $g: \mathbb{R}^n \to \mathbb{R}$($\implies df(x_0): \mathbb{R}^n \to \mathbb{R}$), concludiamo che 

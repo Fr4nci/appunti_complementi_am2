@@ -358,7 +358,7 @@ $$
 d(g \circ f)(x_0)(v) = D(g \circ f)(x_0)(v) = dg(f(x_0))(df(x_0)(v)) = Dg(f(x_0))Df(x_0)v \implies D(g \circ f)(x_0) = Dg(f(x_0))Df(x_0)
 $$
 \end{proof}
-\section{Interpretazione geometrica delle derivate prime}
+\subsection{Interpretazione geometrica delle derivate prime}
 Nel caso delle funzioni a singola variabile, la derivata di $f: \Omega \to \mathbb{R}$ (dove $\Omega \subseteq \mathbb{R}$ aperto) nel punto $x_0 \in \Omega$ rappresenta il coefficiente angolare della retta tangente al grafico della funzione $f$ nel punto $(x_0, f(x_0))$. In più variabili la differenziabilità che significato ha? \\
 Mostriamo innanzitutto che una funzione a singola variabile a valori in $R$ derivabile è equivalente a dire che essa è differenziabile:
 \begin{prop}[differenzialità $\iff$ derivabilità]
@@ -429,7 +429,7 @@ Sia adesso $f: \Omega \to \mathbb{R}$, con $\Omega \subseteq \mathbb{R}^m$ apert
 &= \{ (x, t) \in \mathbb{R}^{n+1} : \innerprod{\begin{pmatrix} -\nabla{f(x_0)}, & 1 \end{pmatrix}}{\begin{pmatrix} x-p, & t-f(p) \end{pmatrix}} = 0 \}
 \end{align*}
 Dunque possiamo interpretare come la differenziabilità della funzione in un punto come quella funzione che descrive il piano tangente alla funzione nel punto.
-\section{Legame fra differenziabilità e continuità}
+\subsection{Legame fra differenziabilità e continuità}
 Mostriamo adesso il legame fra differenziabilità e continuità. Per fare questo dobbiamo mostrare il seguente lemma:
 \begin{lemma}
 Ogni funzione lineare $L: \mathbb{R}^n \to \mathbb{R}^m$ continua e se $A = (a_{ij}) \in \mathbb{R}^{m \times n}$ è la sua matrice allora $|Lx| \leq | A | |x|  \, \forall x \in \mathbb{R}^n$, dove
