@@ -1,58 +1,32 @@
-\documentclass[openany, italian]{book}
-\input{new_preamble}
-\input{letterfonts}
-\input{macros}
-\usepackage{fancyhdr}
-\usepackage{titlesec}  % Opzionale, per controllo avanzato sui titoli
-\setlength{\parindent}{0pt}
-\pagestyle{fancy}
-
-% Definizione dell'intestazione per pagine dispari (Odd)
-\fancyhead[LO]{\textbf{\thepage}}  % Numero di pagina in grassetto a sinistra
-\fancyhead[RO]{\rightmark}         % Capitolo e sezione a destra
-
-% Definizione dell'intestazione per pagine pari (Even)
-\fancyhead[LE]{\leftmark}          % Capitolo e sezione a sinistra
-\fancyhead[RE]{\textbf{\thepage}}  % Numero di pagina in grassetto a destra
-
-% Cancella il footer
-\fancyfoot{}
-
-% Personalizzazione della linea orizzontale
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Personalizza il comando per segnare il capitolo
-\renewcommand{\chaptermark}[1]{%
-  \markboth{\thechapter.\ #1}{}}
-
-% Personalizza il comando per segnare la sezione (include il capitolo)
-\renewcommand{\sectionmark}[1]{%
-  \markright{\thesection\ #1}}
-\pgfplotsset{compat=newest}
-\title{Appunti di Complementi di Analisi Matematica 2}
-\author{Francesco Sermi}
-\date{\today}
-\pgfplotsset{
-	compat = newest,
-	colormap/violet
-}
-\begin{document}
-\maketitle
-\section{Esercizi su massimi e minimi vincolati}
-Consideriamo
-$$
-f(x, y, z) = xz + y
-$$
-vincolato alla superficie $S=\begin{cases}
-x^2 - z^2 - y^2 = 0 \\
-(x, y, z) \in B(0, 1)
-\end{cases}$
-Osserviamo che vogliamo utilizzare i moltiplicatori di Lagrange a questa superficie $S$, osservando che $\nabla f = \lambda \nabla g$. Disegniamo questa superficie:
-\begin{tikzpicture}
-	\begin{axis}
-		\addplot3[surf, opacity=0.8, shader=interp]
-        {x^2 - y^2 - z^2};
-	\end{axis}
-\end{tikzpicture}
-\end{document}
+\chapter{Altri esercizi proposti}
+\begin{exercise}
+	Sia $E=\{(x, y, z) \in \mathbb{R}^3 : z \geq 0, y \geq 1, y^{2 \alpha}(z + x^2) \leq 1 \}$. Determinare se è misurabile
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Osserviamo che la condizione $z + x^2 \leq y^{-2 \alpha} \implies 0 \leq y^{-2\alpha}$ e $x^2 \leq y^{-2 \alpha}$. Sezioniamo con Tonelli con la $y$
+	$$
+	\int_E dxdydz = \int_1^{+\infty} dy \int_{E_y} dxdz
+	$$
+	dove $E_y$ è un sezionamento a $y$ costante. Possiamo allora sezionare con $x^2 \leq y^{-2\alpha} \implies -y^{-\alpha} < x < y^{\alpha}$
+	\begin{align*}
+	&\int_1^{+\infty} dy \int_{E_y} dxdz = \int_1^{+\infty} dy \int_{-y^{-\alpha}}^{y^{-\alpha}} dx \int_0^{y^{-2 \alpha} - x^2} dz = 2 \int_1^{+\infty} dy \int_0^{y^{-\alpha}} y^{-2 \alpha} - x^2 dx = \\
+	&=\int_1^{+\infty} y^{-3 \alpha} - \frac{x^3}{3}\Bigg|_0^{y^{-\alpha}} dy = \frac{4}{3} \frac{y^{-3\alpha + 1}}{1 - 3 \alpha}\Bigg|_1^{+\infty} \implies \alpha \neq \frac{1}{3}
+	\end{align*}
+\end{proof}
+\begin{exercise}
+Siano $\gamma(t)=(t^2 e^t, t^2)$ e siano $c(t)=(te, t)$ con $\gamma, c:[0,1] \to \mathbb{R}$. Calcolare l'area fra le due curve
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Possiamo usare la forma differenziale d'area per calcolare quest'area. \textbf{Attenzione:} usare una forma differenziale d'area rispetta ad un'altra fa cambiare il valore delle aree sotto le curve $\gamma$ e $c(t)$, in maniera tale che le differenze e le somme diano lo stesso valore: la forma differenziale
+	$$
+	\Gamma_c = \int_{\partial^{+} E} \frac{xdy - ydx}{2} = 0
+	$$
+	mentre
+	$$
+	\Gamma_c = \int_{\partial^{+} E} xdy = \frac{e}{2} \neq 0
+	$$
+	Quindi quando si usano le forme differenziali e si sceglie quale usare, dobbiamo fare i conti tutti con la stessa!
+\end{proof}
+\begin{exercise}
+	Sia $\omega = \log(x^2 + y^2 + z^2)xdx + \log(x^2+y^2+z^2)ydy + \log(x^2+y^2+z^2)zdz$ definita su $\Omega = \mathbb{R}^3 \setminus \{(0, 0, 0)\}$. Mostrare che 
+\end{exercise}

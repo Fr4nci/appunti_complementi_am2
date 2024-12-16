@@ -1573,7 +1573,7 @@ Vogliamo definire il concetto di flusso attraverso una superficie, nozione che h
 			]
 			\addplot3 [
 			  surf,
-			  colormap/greenyellow,
+			  colormap/violet,
 			  shader     = faceted interp,
 			  point meta = x,
 			  samples    = 40,
@@ -1635,7 +1635,7 @@ Vogliamo definire il concetto di flusso attraverso una superficie, nozione che h
 \subsection{Frontiera regolare di un aperto}
 
 \begin{definition}[punto regolare di frontiera e derivata esterna] \hspace{1cm} \\
-	Sia $\Omega \subseteq \mathbb{R}^3$ un insieme aperto. Diremo ceh $x \in \text{Fr} \, \Omega$ è un punto di frontiera regolare se
+	Sia $\Omega \subseteq \mathbb{R}^3$ un insieme aperto. Diremo che $x \in \text{Fr} \, \Omega$ è un punto di frontiera regolare se
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
 		\item $\exists O \subseteq \mathbb{R}^3$ aperto tale che $x \in O \cap \text{Fr} \, \Omega$
 		\item $\exists g \in C^1(O)$ tale che $O \cap \Omega = \{y \in O : g(y) < 0 \}$
@@ -1649,7 +1649,33 @@ Vogliamo definire il concetto di flusso attraverso una superficie, nozione che h
 	dove $\nu: \partial_{\text{reg}} \Omega \mapsto \mathbb{S}^2$ è detta normale esterna ad $\Omega$ in $x \in \partial_{\text{reg}} \Omega$.
 \end{definition}
 \begin{remark}
-I punti regolari di frontiera sono quei punti che separano l'interno dall'esterno, ma sono dei "buoni" punti, nel senso che non sono discontinui. Per esempio se avessi una punta la normale sarebbe discontinua (inserire immagine)
+I punti regolari di frontiera sono quei punti che separano l'interno dall'esterno. Fare riferimento alla seguente immagine
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            view={45}{45},        % Angolazione della vista
+            xlabel={$x$},         % Etichetta asse x
+            ylabel={$y$},         % Etichetta asse y
+            zlabel={$z$},         % Etichetta asse z
+            domain=-1:1,          % Limiti degli assi x
+            y domain=-1:1,        % Limiti degli assi y
+            samples=50,
+            clip=false,           % Disabilita il clipping
+            z buffer=sort
+        ]
+        % Grafico della superficie limitato alla regione z > 0.01
+        \addplot3[
+            surf,
+            opacity=0.6,          % Riduci l'opacità
+            shader=interp,
+            colormap/viridis,     % Sfumatura di colori più delicata
+        ]
+        {max(0.01, 1 - x^2 - y^2)}; % Imposta un valore minimo di z
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
 \end{remark}
 \begin{prop}
 	Dato $\Omega \subseteq \mathbb{R}^3$ il sottoinsieme $\partial_{\text{reg}} \Omega$ di $\text{Fr} \, \Omega$ è un'unione al più numerabile di superfici regolari.
@@ -1690,6 +1716,25 @@ $$
 	\int_\Omega \Div F dm_3 = \int_{\partial_{\text{reg}} \Omega} \innerprod{F}{\nu} d\sigma = \Phi(F, \partial_{\text{reg}} \Omega, \nu)
 	$$
 \end{theorem}
+\begin{example}[calcolo del flusso tramite il teorema della divergenza]
+	Calcolare $\Phi(F, \Sigma, \nu)$ dove $F(x, y, z)=(x, y, z)$ e $\Sigma=\{(x, y, z) \in \mathbb{R}^3 : 4x^2 + 4y^2 + z^2 = 4, x \leq 0 \}$, dove questa è orientata dalla normale $\nu$ che è individuata dalla condizione
+	$\nu(-1, 0, 0) = (-1, 0, 0)$.
+\end{example}
+\begin{proof}[Svolgimento]
+	Osserviamo che sul semipiano $D = \Sigma \cap \{x = 0\}$ avremo che la normale $\eta = (1, 0, 0)$ mentre per quanto riguarda il resto della superficie dobbiamo essere un po' più originali.
+	$$
+	\Phi(F, \partial \Omega, n) = \Phi(F, \Sigma, \nu) + \Phi(F, D, \eta) \stackrel{\text{thm divergenza}}{=} \int_\Omega \Div F dm_3 = 3\int_\Omega dm_3 = 3m_3(\Omega) 
+	$$
+	dove $\Omega = \{(x, y, z) \in \mathbb{R}^3 | 4x^2 + 4y^2 + z^2 < 4, x < 0 \}$. Possiamo fare questo integrale senza problemi in coordinate sferiche
+	$$
+	m_3(\Omega) = \int_\Omega dxdydz = 2 \int_{\Omega'} dxdydz' = 2 m_3(B(0, 1) \cap \{ x < 0 \})= \frac{4}{3} \pi 
+	$$
+	dove, per agevolare il calcolo dell'integrale, abbiamo fatto il cambio di coordinate $(x', y', z') \mapsto (x', y', 2z') = (x, y, z)$ dunque il jacobiano di questa trasformazione era pari a $2$ e poi abbiamo diviso per $2$ per ottenere solo metà contributo della sfera (siccome la condizionee $x<0$ taglia metà della sfera).
+	Dunque
+	$$
+	\Phi(F, \Sigma, \nu) = 3m_3(\Omega) = 4\pi
+	$$
+\end{proof}
 Mostriamo due esempi famosi del teorema della divergenza
 \subsection{Legge di Gauss}
 Sia $E = k_e \frac{q}{r^2}\hat{r}$ il campo elettrico generato da una carica puntiforme, allora
@@ -1723,25 +1768,6 @@ $$
 $$
 che prende il nome di equazione di continuità.
 
-\begin{example}[calcolo del flusso tramite il teorema della divergenza]
-	Calcolare $\Phi(F, \Sigma, \nu)$ dove $F(x, y, z)=(x, y, z)$ e $\Sigma=\{(x, y, z) \in \mathbb{R}^3 : 4x^2 + 4y^2 + z^2 = 4, x \leq 0 \}$, dove questa è orientata dalla normale $\nu$ che è individuata dalla condizione
-	$\nu(-1, 0, 0) = (-1, 0, 0)$.
-\end{example}
-\begin{proof}[Svolgimento]
-	Osserviamo che sul semipiano $D = \Sigma \cap \{x = 0\}$ avremo che la normale $\eta = (1, 0, 0)$ mentre per quanto riguarda il resto della superficie dobbiamo essere un po' più originali.
-	$$
-	\Phi(F, \partial \Omega, n) = \Phi(F, \Sigma, \nu) + \Phi(F, D, \eta) \stackrel{\text{thm divergenza}}{=} \int_\Omega \Div F dm_3 = 3\int_\Omega dm_3 = 3m_3(\Omega) 
-	$$
-	dove $\Omega = \{(x, y, z) \in \mathbb{R}^3 | 4x^2 + 4y^2 + z^2 < 4, x < 0 \}$. Possiamo fare questo integrale senza problemi in coordinate sferiche
-	$$
-	m_3(\Omega) = \int_\Omega dxdydz = 2 \int_{\Omega'} dxdydz' = 2 m_3(B(0, 1) \cap \{ x < 0 \})= \frac{4}{3} \pi 
-	$$
-	dove, per agevolare il calcolo dell'integrale, abbiamo fatto il cambio di coordinate $(x', y', z') \mapsto (x', y', 2z') = (x, y, z)$ dunque il jacobiano di questa trasformazione era pari a $2$ e poi abbiamo diviso per $2$ per ottenere solo metà contributo della sfera (siccome la condizionee $x<0$ taglia metà della sfera).
-	Dunque
-	$$
-	\Phi(F, \Sigma, \nu) = 3m_3(\Omega) = 4\pi
-	$$
-\end{proof}
 \section{Teorema del rotore}
 \begin{definition}[curva regolare a tratti]
 	Una curva $\gamma: [a, b] \to \mathbb{R}^n$ si dice regolare a tratti se $\gamma \in C^1_\text{tratti}$ e $\dot{\gamma}(t) \neq 0 \, \, \forall t \in (t_{i-1}, t_i) \, \, \forall i \in \{1, \ldots, N \}$ dove $a=t_0 < t_1 < \ldots < t_{N-1} < t_N = b$ è il partizionamento che rende $\gamma$ $C^1_\text{tratti}$. Se $N=1$, ovvero $t_0=a$ e $t_1=b$ diremo che $\gamma$ è regolare.
@@ -1751,7 +1777,7 @@ che prende il nome di equazione di continuità.
 \end{definition}
 \begin{remark}
 Il "bordo" di questo dominio può essere frastagliato in alcuni punti
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[scale=2]
 		\filldraw[fill=gray!20, draw=black, thick] 
@@ -1774,8 +1800,8 @@ Il "bordo" di questo dominio può essere frastagliato in alcuni punti
 		%\draw[thick, red] (2, 0.5) to[out=120, in=240] (2.5, 1.5);
 	
 		% Punti di partenza e arrivo della curva
-		\filldraw[red] (2, 0.5) circle (0.05);   % Punto iniziale
-		\filldraw[red] (2.5, 1.5) circle (0.05); % Punto finale
+		%\filldraw[red] (2, 0.5) circle (0.05);   % Punto iniziale
+		%\filldraw[red] (2.5, 1.5) circle (0.05); % Punto finale
 	
 		% Aggiungi un clip per evitare che il riempimento si estenda oltre la curva rossa
 		\clip (0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
@@ -1783,3 +1809,35 @@ Il "bordo" di questo dominio può essere frastagliato in alcuni punti
 	\caption{Esempio di dominio piano elementare. Come si vede il bordo è frastagliato, eppure è possibile parametrizzare il bordo con una curva semplice, chiusa e regolare a tratti}
 \end{figure}
 \end{remark}
+Tramite i domini elementari possiamo definire le superfici elementari
+\begin{definition}[superfici]
+	Sia $H \subseteq \mathbb{R}^2$ dominio piano elementare, $U \subseteq \mathbb{R}^2$ aperto con $\bar{H} \subseteq \mathcal{U}$, $\Phi \in C^1(\mathcal{U}, \mathbb{R}^3)$ con
+		\begin{enumerate}[label=\protect\circled{\arabic*}]
+			\item $\Phi$ iniettiva;
+			\item $d\Phi: \mathbb{R}^2 \to \mathbb{R}^3$ iniettivo $\forall u \in H$;
+		\end{enumerate}
+		allora $\Sigma = \Phi(H)$ è una superficie elementare con $\Phi$ parametrizzazione di $\Sigma$ tale che
+		\begin{equation}
+			\partial \Sigma = \Phi(\partial H)
+			\label{eq:bordo}
+		\end{equation}
+\end{definition}
+\begin{remark}
+	La condizione $\Phi(\partial H) = \partial \Sigma$ serve per evitare delle situazioni come il grafico dell'\emph{otto}: possiamo parametrizzare un $8$ solo per $y>0$ ma in $z=0$, se invertiamo la funzione localmente, possiamo estenderla anche al semipiano inferiore ottenendo qualcosa che non è più un $(x, y)-$grafico.
+\end{remark}
+\begin{remark}
+Possiamo mostrare che una superficie elementare è una superficie regolare, siccome $\Sigma$ è localmente un grafico. Infatti
+$$
+D\Phi(u) = \begin{pmatrix}
+\nabla \Phi_1(u) \\
+\nabla \Phi_2(u) \\
+\nabla \Phi_3(u)
+\end{pmatrix}
+$$
+e supponiamo che $M_{\text{12}}(D\Phi) = \det \begin{bmatrix} \nabla \Phi_1 \\ \nabla \Phi_2 \end{bmatrix} \neq 0$: possiamo considerare $\Phi_{(1, 2)}: U \to \mathbb{R}^2$ tale che $u \mapsto (\Phi_1(u), \Phi_2(u))$. Per ipotesi avremo che $\det D\Phi_{(1, 2)}(u) = M_{12}(D\Phi(u)) \neq 0 \implies$ per il teorema della funzione inversa $\exists \delta > 0: \exists V \subseteq \mathbb{R}^2: \Phi_{(1,2)}: B(u, \delta) \to V$ invertibile con inversa $\Psi: V \to B(u, \delta) \in C^1(V, B(u, \delta))$.
+Ma allora $(\Phi \circ \Psi)(u) = (\Phi_1(\Psi(v)), \Phi_2(\Psi(v)), \Phi_3(\Psi(v))) = (\Phi_{(1,2)}(\Psi(v)), \Phi_3(\Psi(v))) = (v, \Phi_3(\Psi(v)))$ siccome $\Psi = \Phi_{(1,2)}^{-1}$. A questo punto possiamo localmente vedere questa superficie elementare come quella che soddisfa l'equazione $z = \Phi_3(\Psi(v))$ e, ponendo $g = \Phi_3 \circ \Psi$, avremo la seguente equazione definente $z=g(v) \implies z - g(v) = 0 \implies \Sigma=f^{-1}(0)$ dove $f(v, z) = z - g(v)$. \\
+
+\end{remark}
+\newpage 
+\newpage 
+\newpage
