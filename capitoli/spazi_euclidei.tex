@@ -58,7 +58,7 @@ $$
 	\end{enumerate}
 	(analogamente per uno spazio definito su $\mathbb{C}$ sostituendo $\mathbb{C}$ a $\mathbb{R}$)
 \end{definition}
-\noindent \textbf{Notazione}: la norma di un vettore verrà indicata all'interno di questo documento, per comodità, sia con $|\cdot|$ e sia con $|\cdot|$
+\noindent \textbf{Notazione}: la norma di un vettore verrà indicata all'interno di questo documento, per comodità, sia con $|\cdot|$ e sia con $||\cdot||$
 \begin{remark}
 Osserviamo che se $(V, \varphi)$ è uno spazio euclideo allora $| \cdot | = \sqrt{\varphi(\cdot, \cdot)}$ è una norma: il prodotto scalare \emph{induce} una norma su $V$. Mostreremo più avanti il punto $\circled{4}$ (ovvero la proprietà \emph{meno} banale fra quelle) usando la norma indotta dal prodotto scalare
 \end{remark}
@@ -429,7 +429,8 @@ $\boxed{\Leftarrow} \,$: già mostrato per la proposizione~\ref{prop:base_pos_or
 $\boxed{\Rightarrow} \,$: supponiamo di avere la seguente base ortonormale positivamente orientata $\{\underline{i}, \underline{j}, \underline{k} \}$, allora abbiamo che questa segue la regola della mano destra, dunque $\underline{i} \times \underline{j} = \alpha \underline{k}$ con $k \in \mathbb{R}$. Ma allora, per la proposizione~\ref{prop:norm_unit_cross_prod}, abbiamo che $|\alpha \underline{k}|=1$ (siccome $\underline{v} \perp \underline{w}$) dunque $\underline{i} \times \underline{j} = \underline{k}$. 	
 \end{proof}
 \section{Topologia di $\mathbb{R}^n$}
-Come visto dal corso di Analisi Matematica del primo anno, possiamo pensare $\mathbb{R}^n$ come uno spazio metrico se consideriamo la distanza indotta dal prodotto scalare. Per una trattazione più specifica nella materia (pur conservando un approccio rivolto verso l'applicazione all'Analisi matematica) consiglio di sfogliare l'eccellente capitolo presente in \cite{rudin} o nel \cite{ambrosio} oppure un buon libro di Topologia, di cui consiglio \cite{manetti} oppure \cite{munkres}. \\
+Come visto dal corso di Analisi Matematica del primo anno, possiamo pensare $\mathbb{R}^n$ come uno spazio metrico se consideriamo la distanza indotta dal prodotto scalare. Non introdurremo in questa sezione "tutta" la topologia necessaria per l'Analisi siccome sarebbe, secondo la mia opinione, troppo dispersivo siccome rallenterebbe lo studio; dunque mi sono focalizzato nel mostrare una buona parte delle definizioni e nel fornire degli esercizi per impratichirsi. In ogni caso, per coloro che sono interessati
+ad una trattazione più specifica nella materia (pur conservando un approccio rivolto verso l'applicazione all'Analisi matematica) consiglio di sfogliare l'eccellente capitolo presente in \cite{rudin} o nel \cite{ambrosio} oppure un buon libro di Topologia, di cui consiglio \cite{manetti} oppure \cite{munkres}. \\
 Possiamo dunque andare a definire le \textbf{palle}:
 \begin{definition}[palle aperte e chiuse]
 Sia $x \in \mathbb{R}^n$ e fissiamo $r > 0$. Allora definiamo la palla aperta di raggio $r$ nella seguente maniera
@@ -565,14 +566,6 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 \begin{exercise}
 	$A \subseteq \mathbb{R}^n$ è chiuso $\iff \text{Fr} \, A \subseteq A$
 \end{exercise}
-\begin{exercise}
-	Provare che $\bar{A} = A \cup \text{Fr} \, A$
-\end{exercise}
-\begin{proof} \hspace{1cm} \\
-	Il fatto che $\bar{A} \subseteq A \cup \text{Fr} \, A$ si ottiene osservando che. Il viceversa si ottiene dal seguente ragionamento: supponiamo che $\exists x \in A \cup \text{Fr} \, A$ tale che $x \not\in \bar{A}$, allora escludiamo che $x \not\in A$ siccome $A \subseteq \bar{A}$. Dunque $x \in \text{Fr} \, A$ ma $\forall x \in \text{Fr} \, A$ abbiamo che
-	$\forall r > 0, B(x, r) \cap A \neq \emptyset \wedge B(x, r) \cap A^c \neq \emptyset$, dunque $x$ è un punto di aderenza di $A$ il che è un assurdo siccome implicherebbe che $x \in \bar{A}$.
-\end{proof}
-Strutturalmente parlando, nella dimostrazione qua sotto si deve usare implicitamente il fatto che $\bar{A} = A \cap \text{Fr} \, A$, dunque la propongo sotto la precedente proposizione, tuttavia nel corso viene proposto di risolverlo senza utilizzare questa sopra.
 \begin{proof} \hspace{1cm} \\
 	$\boxed{\Rightarrow}$: osserviamo che se $A$ è chiuso, allora $A = \bar{A}$, pertanto siccome $\text{Fr} \, A \subseteq \bar{A} \implies \text{Fr} \, A \subseteq A$. Si ha necessariamente che $\text{Fr} \, A \subseteq \bar{A}$ siccome $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$. \\
 	$\boxed{\Leftarrow}$: se $\text{Fr} \, A \subseteq A$ allora preso $x \in \bar{A}$ avremo due possibilità:
@@ -581,6 +574,13 @@ Strutturalmente parlando, nella dimostrazione qua sotto si deve usare implicitam
 		\item $x \in \text{Fr} \, A \subseteq A \implies x \in A$
 	\end{itemize}
 	dunque $\bar{A} \subseteq A \implies A = \bar{A}$.
+\end{proof}
+\begin{exercise}
+	Provare che $\bar{A} = A \cup \text{Fr} \, A$
+\end{exercise}
+\begin{proof} \hspace{1cm} \\
+	Mostriamo che vale $\bar{A} \supseteq A \cup \text{Fr} \, A$: è banale vedere che $A \subseteq \bar{A}$ e, in virtù di quanto visto in un esercizio precedente, siccome $\text{Fr} \, A = \bar{A} \cap \bar{A^c} \implies \text{Fr} \, A \subseteq \bar{A} \implies A \cup \text{Fr} \, A \subseteq \bar{A}$. \\
+	L'inclusione opposta si ottiene prendendo $x \in \bar{A}$ e ragionando come sopra.
 \end{proof}
 \begin{definition}[punti interni]
 	Sia $A \subseteq \mathbb{R}^n$, diremo che $x$ è un punto interno di $A$ se $\exists r > 0: B(x, r) \subseteq A$
