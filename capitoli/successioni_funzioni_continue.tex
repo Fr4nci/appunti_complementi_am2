@@ -174,16 +174,16 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 	\centering
 	\begin{tikzpicture}
 		% Assi cartesiani
-		\draw[->] (-5, 0) -- (5, 0) node[right] {$x$};
-		\draw[->] (0, -5) -- (0, 5) node[above] {$y$};
+		\draw[->] (-3.1, 0) -- (3.1, 0) node[right] {$x$};
+		\draw[->] (0, -3.1) -- (0, 3.1) node[above] {$y$};
 	  
 		% Iperbole nel primo e terzo quadrante: y = 1/x
-		\draw[thick, black, domain=0.2:5, samples=100] plot (\x, {1/\x});
-		\draw[thick, black, domain=0.2:5, samples=100] plot (-\x, {-1/\x});
+		\draw[thick, black, domain=0.333:3, samples=100] plot (\x, {1/\x});
+		\draw[thick, black, domain=0.333:3, samples=100] plot (-\x, {-1/\x});
 	  
 		% Iperbole nel secondo e quarto quadrante: y = -1/x
-		\draw[thick, black, domain=0.2:5, samples=100] plot (-\x, {1/\x});
-		\draw[thick, black, domain=0.2:5, samples=100] plot (\x, {-1/\x});
+		\draw[thick, black, domain=0.333:3, samples=100] plot (-\x, {1/\x});
+		\draw[thick, black, domain=0.333:3, samples=100] plot (\x, {-1/\x});
 	  
 		% Etichetta per |xy| = 1
 		\node at (1.2, 0.2) {\small $|xy| = 1$};
@@ -202,7 +202,7 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 \begin{theorem}[teorema di Heine-Borel]
 	Dato $E \subseteq \mathbb{R}^n$, allora 
 	\begin{align*}
-		E \subseteq \mathbb{R}^n \iff E \text{ è chiuso e limitato.}
+		E \subseteq \mathbb{R}^n \text{ è compatto } \iff E \text{ è chiuso e limitato.}
 	\end{align*}
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
@@ -316,7 +316,14 @@ $$
 $\boxed{\Rightarrow}$: si osserva che, presa una qualunque successione $p_k$ che soddisfa le ipotesi della proposizione sulla destra, avremo che il limite $\lim_{k \to +\infty} f(p_k)$ è un limite dove avviene la composizione della successione $p_k$ con la funzione $f$ e sono verificate tutte le ipotesi riguardo al cambio di variabile nel limite, dunque $\lim_{k \to +\infty} f(p_k) = \lim_{x \to q} f(x) = v$. \\
 $\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la definizione di limite, avremo che $\exists \varepsilon: \forall \delta > 0, \exists x \in B(q, \delta) \cap A \setminus \{ q \}: |f(x) - v| \geq \varepsilon$. Ma allora, restringendosi a degli intorni di $q$ via via sempre più piccoli, come $V_k = (q-\frac{1}{k}, q + \frac{1}{k})$ esisterebbe $x_k \in A \cap V_k : |f(x_k) - v| > \varepsilon$. Ma questo è un assurdo, siccome $x_k \to q$ e ma $f(x_k) \not\to v$ contraddicendo la nostra ipotesi iniziale.
 \end{proof}
-\noindent Da questo teorema importantissimo segue questo semplice corollario (la cui dimostrazione è omessa siccome è banale)
+\noindent Da questo teorema importantissimo segue questo semplice corollario (la cui dimostrazione è omessa siccome segue direttamente dalla definizione di funzione continua)
+\begin{cor}
+	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $f: \Omega \to \mathbb{R}^m$. Allora valgono le seguenti proprietà:
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $f$ è continua in $x_0 \in \Omega \iff \lim\limits_{x \to q} f(x) = f(q)$;
+		\item $f$ è continua in $\Omega \iff \, \, \forall q \in \Omega, \lim\limits_{x \to q} f(x) = f(q)$
+	\end{enumerate}
+\end{cor}
 \begin{theorem}[teorema del confronto]
 Siano $h, g, f: A \to \mathbb{R}, x_0 \in \text{Fr} A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
 \begin{align*}
