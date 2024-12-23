@@ -299,6 +299,16 @@ f(p_0 + h) - f(p_0) - L(h) = o(h)
 $$
 ovvero la tesi.
 \end{proof}
+Prima di procedere con la prossima dimostrazione, introduciamo la norma di Hilbert-Schmidt
+\begin{definition}[norma di Hilbert-Schmidt]
+Sia $A \in \mathbb{R}^{m \times n}$, definiamo
+$$
+|| A || = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
+$$
+\end{definition}
+\begin{remark}
+$|Lx| \leq ||A|| \, |x| \, \, \forall x \in \mathbb{R}^n$
+\end{remark}
 \begin{theorem}[differenziale della composizione]
 Sia $f: \Omega \to \mathbb{R}^m, g: U \to \mathbb{R}^k$ con $\Omega \subseteq \mathbb{R}^n$ aperto, $U \subseteq \mathbb{R}^m$ aperto, $f(\Omega) \subseteq U$ e sia $p_0 \in \Omega$. Allora se $f$ differenziabile in $p_0$ e $g$ differenziabile in $f(p_0)$ allora
 $$
@@ -571,7 +581,7 @@ Sia $f \in C^k (\Omega), x_0 \in \Omega, v \in \mathbb{R}^n$ con $v = (\xi_1, \l
 &\frac{d}{dt} f(x_0 + tv) = \sum_{i=1}^n \partial_{x_i} f (x_0 + tv) \xi_i \implies \frac{d^2}{dt^2} f(x_0 + tv) = \sum_{i_1, i_2 = 1}^{n} \partial_{x_{i_1}} \partial_{x_{i_2}} f(x_0 + tv) \xi_{i_1} \xi_{i_2}\stackrel{\text{per induz.}}{\implies} \\ &\stackrel{\text{per induz.}}{\implies} \frac{d^k f}{dt^k} f(x_0 + tv) = d^k f(x_0 + tv) \implies \\
 \end{align*}
 \begin{equation}
-\implies \boxed{\frac{\partial^k f}{\partial v^k} f(x_0) = d^l f(x_0)(v)}
+\implies \boxed{\frac{\partial^k}{\partial v^k} f(x_0) = d^l f(x_0)(v)}
 \end{equation}
 \end{remark}
 Come per le derivate prime, possiamo "definire" anche una matrice delle derivate. Particolarmente importante, oltre alla matrice jacobiana, è la matrice hessiana, ovvero la matrice delle derivate seconde:
@@ -597,6 +607,7 @@ e quindi è omogeneo di grado $2$, ovvero
 \end{align*}
 In sintesi $df^2 (x_0): \mathbb{R}^n \to \mathbb{R}$ è un polinomio omogeneo (di cui daremo la definizione formale nel prossimo paragrafo) di secondo grado in $n$ variabili. \\
 \section{Funzioni polinomiali omogenee e polinomio di Taylor}
+\label{sec:polinomio_taylor}
 Riprendiamo il concetto di forma quadratica dal corso di Geometria
 \begin{definition}[forma quadratica]
 $g: \mathbb{R}^n \to \mathbb{R}$ è una forma quadratica se $\exists A = A^T \in \mathbb{R}^n$ tale che $q(x)=\innerprod{x}{Ax} \iff q(x) = \sum\limits_{i,j=1}^n a_{ij}x_i x_j$ con $A = (a_{ij})_{i=1, \ldots n \atop j=1, \ldots, n}$
@@ -667,11 +678,11 @@ $$
 \end{definition}
 Andiamo adesso a studiare alcune proprietà che caratterizzano il polinomio di Taylor, partendo dalla seguente proposizione
 \begin{prop}
+\label{prop:caratterizzazione_taylor}
 Sia $f \in C^k(\Omega)$, $x_0 \in \Omega$. Allora, per ogni $1 \leq i_1, \ldots, i_l \leq n$ e $1 \leq l \leq k$,
 $$
 \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) = \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0)(x_0)
 $$
-
 \end{prop}
 \begin{proof}
 Consideriamo

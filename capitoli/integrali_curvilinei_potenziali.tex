@@ -37,17 +37,17 @@ $$
 \begin{proof}
 Possiamo innanzitutto osservare che, fissando una parametrizzazione $a=t_0 < t_1 < \ldots < t_k = b$ per cui la curva $\gamma \in C^1_\text{tratti}([a, b])$, allora:
 $$
-	\int_{j=1}^k |\gamma(t_j) - \gamma(t_{j-1})| = \sum_{i=1}^k |\int_{t_{j-1}}^{t_j} \dot{\gamma}(t)dt| \leq \sum_{i=1}^k \int_{t_{j-1}}^{t_j} |\dot{\gamma}(t)dt| = \int_a^b |\dot{\gamma}(t)dt|
+	\sum_{j=1}^k |\gamma(t_j) - \gamma(t_{j-1})| = \sum_{i=1}^k |\int_{t_{j-1}}^{t_j} \dot{\gamma}(t)dt| \leq \sum_{i=1}^k \int_{t_{j-1}}^{t_j} |\dot{\gamma}(t)dt| = \int_a^b |\dot{\gamma}(t)dt|
 $$
 dunque, siccome la parametrizzazione scelta è arbitraria, allora
 $$
 l(\gamma) = \sup \left\{ \sum_{j=1}^k |\gamma(t_j) - \gamma(t_{j-1})| : a = t_0 < t_1 < \ldots < t_k = b, \, k \in \mathbb{N}^+ \right\} \leq \int_a^b |\dot{\gamma}(t)|dt
 $$
-Possiamo, per concludere la dimostrazione, osservare che $\dot{\gamma}$, per il teorema di Heine-Cantor(), è uniformemente continua (siccome $\gamma \in C_\text{tratti}^1$, dunque la sua derivata continua), ovvero
+Possiamo, per concludere la dimostrazione, osservare che $\dot{\gamma}$, per il teorema di Heine-Cantor, è uniformemente continua (siccome $\gamma \in C_\text{tratti}^1$, la sua derivata sarà continua $\forall x \in (t_{i-1}, t_i) \, \, \forall i$), ovvero
 $$
 \forall \varepsilon > 0, \exists \delta > 0: \forall x, y, |x-y| < \delta \implies |\dot{\gamma}(x) - \dot{\gamma}(y)| < \varepsilon
 $$
-e possiamo allora prendere una suddivisione tale che $\max{t_{j+1} - t_{j}} < \delta$ in maniera tale che
+e possiamo allora prendere una suddivisione tale che $\max\{t_{j+1} - t_{j}\} < \delta$ in maniera tale che
 $$
 |\gamma(x)-\gamma(y)| \leq \varepsilon \, \, \forall x, y \in [t_j, t_{j+1}]
 $$
@@ -451,9 +451,9 @@ dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ 
 \begin{proof} \hspace{1cm} \\
 	$\boxed{\Rightarrow}$: è banale siccome se $\omega$ è chiusa allora possiamo prendere una curva $\gamma \in C^1_\text{tratti}([a, b], \Omega)$ e $\Gamma \in C^1_\text{tratti}([c, d], \Omega)$ e definiamo una curva $\alpha(t)$ come fatto nella proposizione
 	~\ref{prop:somma_curve}, dunque avremo che
-	$$
-	\oint_\alpha \omega = \int_\gamma \omega + \int_{\tilde{\Gamma}} \omega \stackrel{\text{corollario~\ref{cor:cammini_chiusi}}}{=} 0 \implies \int_\gamma \omega = \int_\Gamma \omega
-	$$
+	\begin{flalign*}
+	&\oint_\alpha \omega = \int_\gamma \omega + \int_{\tilde{\Gamma}} \omega \stackrel{\text{corollario~\ref{cor:cammini_chiusi}}}{=} 0 \implies \int_\gamma \omega = \int_\Gamma \omega &
+	\end{flalign*}
 	ovvero quello che volevamo mostrare. \\
 	$\boxed{\Leftarrow}$: consideriamo una curva chiusa $c(t): [t_1, t_2] \to \Omega$ con $c \in C^1_\text{tratti}$ con $-\infty < t_1 < t_2 < +\infty$. Possiamo prendere $\tau = \frac{t_1 + t_2}{2}$ e $c_1 = c_{|_{[t_1, \tau]}}$ e $c_2 = c_{|_{[\tau, t_2]}}$. \\
 	In analogia a quanto fatto nei precedenti teoremi possiamo definire una funzione $\tilde{c}_2: [\tau, t_2] \to \Omega$ dove $\tilde{c}_2 = c_2(t_2 + \tau - t)$, pertanto avremo che $\tilde{c}_2(t_2) = c_2(t_2 + \tau - t_2) = c_2(t_2) = c(t_2) = c(t_1) = c_1(t_1)$ essendo $c$ una curva chiusa.

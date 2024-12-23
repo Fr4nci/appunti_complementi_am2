@@ -1,2 +1,104 @@
 \chapter{Notazione multi-indice}
-	La notazione multi-indice si può facilmente introdurre vedendola come un modo compatto di scrivere le cose. La realtà delle cose è un po' diversa, soprattutto se si guardano le cose da un punto di vista della combinatoria multinomiale
+
+La notazione multi-indice è una notazione matematica che consente di semplificare enormemente la scrittura di formule matematiche. Ciò è possibile \emph{generalizzando} il concetto di indice che passa dall'essere
+un semplice "numero" ad una $n-$upla ordinata di indici. Consideriamo $\alpha \in \mathbb{N}^n$, ovvero $\alpha = (\alpha_1, \ldots, \alpha_n)$ come nostro multi-indice, allora possiamo definire una serie di operazioni: la più semplice di tutti, data la natura di spazio vettoriale di cui gode $\mathbb{N}^n$, è sicuramente la somma dei multi-indici:
+$$
+\forall \alpha, \beta \in \mathbb{N}^n, \alpha \pm \beta = (\alpha_1 \pm \beta_1, \ldots, \alpha_n \pm \beta_n).
+$$
+Per quanto riguarda i nostri scopi, è utile definire la \emph{norma multi-indice}, il \emph{fattoriale multi-indice} e il \emph{coefficiente multinomiale}:
+\begin{definition}[norma multi-indice]
+	Sia $\alpha \in \mathbb{N}^n$ allora definiamo la norma multi-indice come
+	$$
+	|\alpha| = \sum_{i=1}^n \alpha_i
+	$$
+\end{definition}
+\begin{definition}[fattoriale multi-indice]
+	Sia $\alpha \in \mathbb{N}^n$, definiamo il fattoriale multi-indice di $\alpha$ come
+	$$
+	\alpha! = \alpha_1 ! \alpha_2 ! \ldots \alpha_n !
+	$$
+\end{definition}
+\begin{definition}[coefficiente multinomiale]
+	Sia $\alpha \in \mathbb{N}^n$ tale che $|\alpha| = k$, allora definiamo il coefficiente multinomiale come
+	$$
+	\binom{k}{\bm{\alpha}} = \frac{k!}{\alpha!} = \frac{k!}{\alpha_1 ! \alpha_2 ! \ldots \alpha_n !}
+	$$
+\end{definition}
+\textbf{Notazione}: per distinguerlo dal normale coefficiente binomiale, nel caso del coefficiente multinomiale, metterò in grassetto il multi-indice.
+\begin{remark}
+	Potremmo pensino introdurre un ordinamento parziale (ma non è di grande interesse) dicendo che $\alpha \leq \beta \iff \alpha_i \leq \beta_i \, \, \forall i \in \{1, \ldots, n \}$. Si vede subito che, così come è stato definito, questo non può essere un ordinamento totale
+\end{remark}
+Vediamo come questa notazione può agevolarci la scrittura del polinomio di Taylor e la scrittura dei polinomi in $n$-variabili. Innanzitutto definiamo
+\begin{definition}[potenza multi-indice]
+	Sia $x \in \mathbb{R}^n$ allora
+	\begin{align*}
+		x^{\alpha} = x_1^{\alpha_1} x_2^{\alpha_2} \ldots x_n^{\alpha_n}
+	\end{align*}
+\end{definition}
+Questa notazione facilita enormemente la scrittura dei polinomi in $n-$variabili, infatti
+\begin{definition}[polinomio in $n-$variabili]
+	$P: \mathbb{R}^n \to \mathbb{R}$ è un polinomio in $n-$variabili di grado $k \geq 0$ se
+	$$
+	\exists C = \{c_\alpha : |\alpha| \leq k, \alpha \in \mathbb{N}^n \} \subset \mathbb{R} 
+	$$
+	dove $0 \neq c_\beta \in C$ e $|\beta| = k$. Allora
+	$$
+	P(x) = \sum_{|\alpha| \leq k} c_\alpha x^{\alpha}
+	$$
+\end{definition}
+Oltre a questo possiamo definire la derivata multi-indice
+\begin{definition}[derivata multi-indice]
+	Sia $\alpha \in \mathbb{N}^n$ allora 
+	$$
+	\partial^{\alpha}_x = \partial_{x_1}^{\alpha_1} \ldots \partial_{x_n}^{\alpha_n}
+	$$
+	dove, naturalmente, poniamo che $\partial_{x_j}^0 = 1$
+\end{definition}
+Riprendiamo il polinomio di Taylor: da quanto visto nella sezione \ref{sec:polinomio_taylor} abbiamo visto che possiamo scrivere il polinomio di Taylor di una funzione $f: \mathbb{R}^n \to \mathbb{R}$ come
+$$
+P_k(f, \xi)\sum_{i_1, \ldots, i_k=1}^k \partial_{x_{i_1}} \ldots \partial_{x_{i_k}} f(\xi) (x_{i_1} - \xi_{i_1}) \ldots (x_{i_k} - \xi_{i_k}).
+$$
+Osserviamo che possiamo allora usare la potenza multi-indice per scrivere i termini $(x_{i_j} - \xi_{i_j})$, considerando $\alpha \in \mathbb{N}^n$ e osservando che $\alpha_{j_1}, \ldots, \alpha_{j_m} \geq 1$ e $1 \leq j_1, \ldots, j_m \leq n$ tali che $\alpha_{j_1} + \ldots + \alpha_{j_m} = k$. In altre parole avremo solamente le derivate di ordine superiore
+$$
+\partial_{x_{j_1}}^{\alpha_{j_1}} \partial_{x_{j_2}}^{\alpha_{j_2}} \ldots \partial_{x_{j_m}}^{\alpha_{j_m}} f(\xi)
+$$
+e $\alpha_i = 0$ se $i \neq j_1, \ldots, j_m$. \\
+Adesso ricordiamo che il teorema di Schwarz ci assicura che la derivata di una funzione di ordine $C^k$ rispetto agli indici $\alpha_{j_1}, \ldots, \alpha_{j_m}$ (rispetto, naturalmente, in ordine a $x_{j_1}, \ldots, x_{j_m}$) è pari a quella ottenuta con una permutazione $\sigma$ degli indici $\alpha_{j_1}, \ldots, \alpha_{j_m}$, dunque dobbiamo moltiplicare i termini della serie di Taylor per un termine che ci "tronca" i termini uguali (si ricordi la dimostrazione della proposizione \ref{prop:caratterizzazione_taylor}, dove compariva il termine $l!$). La possibilità di avere $\alpha_{j_1}$ derivate rispetto a $x_{j_1}$ sulle $k$ possibili è pari a $\binom{k}{\alpha_{j_1}}$ (non siamo interessati all'ordine, dunque usiamo per questo il coefficiente binomiale) e la stessa cosa vale per tutti gli altri termini, infatti
+le possibilità di avere $\alpha_{j_2}$ derivate rispetto a $x_{j_2}$ sulle $k-\alpha_{j_1}$ rimanenti è pari a $\binom{k - \alpha_{j_1}}{\alpha_{j_2}}$ e così via. In generale, il numero di modi in cui possiamo distribuire le derivate è pari a
+\begin{flalign*}
+&\binom{k}{\alpha_{j_1}} \binom{k - \alpha_{j_1}}{\alpha_{j_2}} \ldots \binom{k - \alpha_{j_1} - \ldots - \alpha_{j_{m-1}}}{\alpha_{j_m}} = \frac{k!}{\alpha_{j_1}! (k - \alpha_{j_1})} \frac{(k-\alpha_{j_1})!}{\alpha_{j_2}!(k - \alpha_{j_1} - \alpha_{j_2})!} \frac{(k - \alpha_{j_1} - \alpha_{j_2})!}{\alpha_{j_3}! (k - \alpha_{j_1} - \alpha_{j_2} - \alpha_{j_3})!} \ldots & &\\
+&\cdot \frac{(k - \alpha_{j_1} - \ldots - \alpha_{j_{m-2}})!}{\alpha_{j_{m-1}}! (k - \alpha_{j_1} \ldots - \alpha_{j_{m-1}})!} \frac{\alpha_{j_m}}{\alpha_{j_m}! 0!} = \frac{k!}{\alpha_{j_1}! \alpha_{j_2}! \ldots \alpha_{j_m}!} = \binom{k}{\bm{\alpha}}
+\end{flalign*}
+Con gli argomenti precedenti in combinazione con il teorema di Schwarz di ordine superiore, possiamo dunque dimostrare il seguente lemma
+\begin{lemma}
+	Sia $f \in C^k(\Omega)$ e $\xi \in \Omega$, allora abbiamo
+	$$
+	d^l f(\xi)(x - \xi) = \sum_{|\alpha|=l} \binom{l}{\bm{\alpha}} \partial^{\alpha} f(\xi) (x - \xi)^{\alpha}.
+	$$
+\end{lemma}
+\begin{prop}
+	Se $f \in C^k(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto e $\xi \in \Omega$, allora abbiamo che
+	$$
+	P_k(f, \xi)(x) = \sum_{|\alpha| \leq k} \frac{1}{\alpha!} \partial^{\alpha} f(\xi) (x - \xi)^{\alpha}
+	$$
+\end{prop}
+\begin{proof}
+	Sappiamo che per $0 \leq j \leq k$ abbiamo che
+	$$
+	d^j f(\xi)(h) = \sum_{|\alpha| = j} \binom{j}{\bm{\alpha}} \partial^{\alpha} f(\xi) h^{\alpha}
+	$$
+	e ciò implica, per quanto visto nel capitolo 3, che
+	\begin{align*}
+	&P_k(f, \xi) = \sum_{j=0}^k \frac{1}{j!} d^j f(\xi)(x - \xi) = \sum_{j=0}^k \sum_{|\alpha| = j} \binom{j}{\bm{\alpha}} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} \stackrel{\binom{j}{\bm{\alpha}} = \frac{j!}{\alpha!}}{=} \sum_{j=0}^k \sum_{|\alpha| = j} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} = & &\\
+	&= \sum_{0 \leq |\alpha| \leq k} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha}
+	\end{align*}
+\end{proof}
+\begin{theorem}[formula di Taylor coi multi-indici]
+	Se $f \in C^k(\Omega), \xi \in \Omega, \Omega \subseteq \mathbb{R}^n$ aperto, allora abbiamo che
+	$$
+	f(x) = \sum_{0 \leq |\alpha| \leq k} \frac{1}{\alpha!} \partial_x^{\alpha} f(\xi) (x - \xi)^{\alpha} + o(|x-\xi|^{\alpha})
+	$$
+\end{theorem}
+\begin{proof}
+	La dimostrazione segue dalla precedente proposizione e dalla formula di Taylor che abbiamo visto nel capitolo 3.
+\end{proof}
