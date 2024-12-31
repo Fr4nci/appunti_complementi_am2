@@ -10,9 +10,9 @@ The document is divided into key chapters of the course of "Analisi Matematica 2
 * Regular curves and surfaces
 * Integrals and differential forms
 * Brief introduction to Lebesgue measure theory
+* Multi-index notation (appendix)
 
 IN PROGRESS
 * Gauss-Green theorem, Divergence and Stokes theorem
 * Wedge product (appendix)
-* Multi-index notation (appendix)
 * Further contents in Measure Theory (appendix)
