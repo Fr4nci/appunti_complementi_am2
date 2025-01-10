@@ -72,9 +72,10 @@ $$
 f(x) = f(x_0) + L(x-x_0) + o(|x-x_0|) \text{ per } x \to x_0
 $$
 Il viceversa è analogo, siccome se
-$$
-f(x_0 + h) - f(x_0) - L(h) = o(|h|) \implies \frac{f(x_0 + h) - f(x_0) - L(h)}{|h|} \to 0 \implies f \text{ è differenziabile in } x_0
-$$
+\begin{align*}
+&f(x_0 + h) - f(x_0) - L(h) = o(|h|) \implies \frac{f(x_0 + h) - f(x_0) - L(h)}{|h|} \to 0 \implies \\
+&\text{f è differenziabile in } x_0
+\end{align*}
 \end{proof}
 \noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione lineare affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, diciamo essere un'approssimazione del primo ordine. \\
 Dopo questa definizione siamo persino pronti a definire il concetto di derivata direzionale, nozione strettamente connessa a quella di differenziabilità.
@@ -103,7 +104,7 @@ $$
 \begin{proof}
 Siccome $f$ è differenziabile in $x_0 \in \Omega$ allora $\exists L: \mathbb{R}^n \to \mathbb{R}$ tale che $f(x_0 + tv) = f(x_0) + L(tv) + o(|tv|)$ dove $|tv| \to 0$ per $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Ma questo allora implica che
 \begin{align*}
-&\frac{f(x_0 + tv) - f(x_0) - L(|tv|)}{t} \to 0 \implies \frac{f(x_0 + tv) - f(x_0) - tL(v)}{t} \to 0 \implies \lim_{t \to 0} (\frac{f(x_0 + tv) - f(x_0)}{t} - L(v)) \to 0 \implies \\ &\implies \exists \partial_v f(x_0) = L(v) = df(x_0)(v)
+&\frac{f(x_0 + tv) - f(x_0) - L(|tv|)}{t} \to 0 \implies \frac{f(x_0 + tv) - f(x_0) - tL(v)}{t} \to 0 \implies \\ &\implies \lim_{t \to 0} (\frac{f(x_0 + tv) - f(x_0)}{t} - L(v)) \to 0 \implies \implies \exists \partial_v f(x_0) = L(v) = df(x_0)(v)
 \end{align*}
 \end{proof}
 \begin{theorem}[rappresentazione e unicità del differenziale]
@@ -243,21 +244,22 @@ $$
 \pi_i \circ L(x) = df_i(p_0)(x) = \innerprod{\nabla{f(p_0)}}{x}
 $$
 il che naturalmente implica che
-$$
-L(x) = \sum_{i=1}^m L_i(x) e_i = \sum_{i=1}^m (\pi_i \circ L)(x) e_i = \sum_{i=1}^m \innerprod{\nabla{f_i(x_0)}}{x} e_i = \begin{pmatrix} \partial_{x_1} f_1(p_0) & \ldots & \partial_{x_n} f_1(p_0) \\
+\begin{align*}
+&L(x) = \sum_{i=1}^m L_i(x) e_i = \sum_{i=1}^m (\pi_i \circ L)(x) e_i = \sum_{i=1}^m \innerprod{\nabla{f_i(x_0)}}{x} e_i = \begin{pmatrix} \partial_{x_1} f_1(p_0) & \ldots & \partial_{x_n} f_1(p_0) \\
 \vdots & \vdots & \vdots \\
 \partial_{x_1} f_m(p_0) & \ldots & \partial_{x_n} f_m(p_0)  \end{pmatrix} \begin{pmatrix}
 x_1 \\
 x_2 \\
 \vdots \\
 x_n
-\end{pmatrix} = Df(x_0)x
-$$
-E questo mostra la tesi. \\
+\end{pmatrix} = \\
+&= Df(x_0)x
+\end{align*}
+e questo mostra la tesi. \\
 $\boxed{\Leftarrow}$: se $f_i$ è differenziabile in $p_0 \, \forall i \in 1, \ldots, n$ definiamo $df_i(x_0): \mathbb{R}^n \to \mathbb{R}$ e osserviamo che
 \begin{align*}
-&f(p_0 + h) - f(p_0) = \sum_{i=1}^m (f_i(p_0 + h) - f_i(p_0))e_i = \sum_{i=1}^m (df_i(p_0)(h) + o(h))e_i = \sum_{i=1}^m df_i(p_0)(h)e_i + \sum_{i=1}^m o_i(h)e_i = L(h) + o(h) \implies \\
-&\implies f \text{ è differenziale in } p_0
+&f(p_0 + h) - f(p_0) = \sum_{i=1}^m (f_i(p_0 + h) - f_i(p_0))e_i = \sum_{i=1}^m (df_i(p_0)(h) + o(h))e_i = \\
+&= \sum_{i=1}^m df_i(p_0)(h)e_i + \sum_{i=1}^m o_i(h)e_i = L(h) + o(h) \implies f \text{ è differenziale in } p_0
 \end{align*}
 dove, naturalmente, abbiamo che
 $$
@@ -281,15 +283,18 @@ $$
 possiamo notare come
 \begin{align*}
 &f(p_0 + h) - f(p_0) - L(h) = \\
-&= f(p_0 + h) - f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) - f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) - \ldots - f(p_0) - L(h)
+&= f(p_0 + h) - f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-1} h_j e_j \right) - f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) + f \left( p_0 + \sum_{i=1}^{n-2} h_j e_j \right) - \ldots \\ 
+&- f(p_0) - L(h)
 \end{align*}
 possiamo raggruppare a 2 a due i termini, notando che:
-$$
-\left( f(p_0 + h) - f(p_0 + \sum_{i=1}^{n-1} h_j e_j) \right) + \left( f(p_0 + \sum_{i=1}^{n-1} h_j e_j) - f(p_0 + \sum_{i=1}^{n-2} h_j e_j) \right) + \ldots + \left( f(p_0 + h_1) - f(p_0) \right) - L(h)
-$$
+\begin{align*}
+&\left( f(p_0 + h) - f(p_0 + \sum_{i=1}^{n-1} h_j e_j) \right) + \left( f(p_0 + \sum_{i=1}^{n-1} h_j e_j) - f(p_0 + \sum_{i=1}^{n-2} h_j e_j) \right) + \ldots + \\
+&\left( f(p_0 + h_1) - f(p_0) \right) - L(h)
+\end{align*}
 al raggruppamento $j$-esimo teniamo fisso la $n-j+1$ componente dell'argomento della funzione sulla sinistra, pertanto possiamo applicare il teorema di Lagrange se definiamo una funzione dipendente esclusivamente dalla variabile $h_j$, dunque:
 \begin{align*}
-&f(p_0 + h) - f(p_0) - L(h) = \partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) h_n + \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) h_{n-1} + \ldots - L(h) = \\
+&f(p_0 + h) - f(p_0) - L(h) = \\
+&=\partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) h_n + \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) h_{n-1} + \ldots - L(h) = \\
 &= \left( \partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) - \partial_{x_n} f(p_0) \right) + \left( \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) - \partial_{x_{n-1}} f(p_0) \right) + \ldots = \\
 &=o(1)h_n + \ldots + o(1)h_1 \, \text{ per } |h| \to 0
 \end{align*}
@@ -402,7 +407,7 @@ Per rispondere a questa domanda dobbiamo ricordare al lettore qualche concetto p
 \begin{equation}
 ax + by + cz + d = 0
 \end{equation}
-L'equazione qua sopra può essere ottenuta in due modi: il primo consiste nel trovare una base del piano e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più il vettore $v$ appartenente alla base, da cui si ottiene. Possiamo facilmente estendere questa definizione per dimensione arbitraria, osservando che presi $u < n = \dim{\mathbb{R}^n}$ vettori linearmente indipendenti allora possiamo individuare facilmente, tramite la nozione di prodotto scalare, il piano generato da tutti questi vettori ortogonali: infatti, se indichiamo con $W^{\perp}$ il sottospazio vettoriale costituito da questi vettori $u$, basterà trovare una base per il radicale di $W^{\perp}$ (che, grazie all'ipotesi di non degenerità del prodotto scalare euclideo, sappiamo essere $(W^{\perp})^{\perp} = W$) e possiamo banalmente concludere che ogni combinazione lineari dei vettori della base di $W$ sarà dunque perpendicolare a ogni combinazione lineare dei vettori della base di $W^{\perp}$. Possiamo vedere che questo procedimento porta alla formula vista prima: sapendo che un piano $\pi$, in $\mathbb{R}^3$, ha dimensione pari a 2, allora $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$, possiamo prendere un generico vettore $v = (a, b, c)$ (la base del nostro $(\pi)^{\perp}$) e osservare che, se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ siamo interessati a verificare che, preso $P = (x, y, z)$, allora
+L'equazione qua sopra può essere ottenuta in due modi: il primo consiste nel trovare una base del piano\footnote{più correttamente, si dovrebbe parlare di giacitura perché a priori lavoriamo con dei piani che dobbiamo supporre affini. Ricordiamo però dal corso di Geometria, che un sottospazio affine è uno spazio vettoriale "traslato" di un vettore e tale spazio vettoriale, che avrà dunque una sua base, è ciò che prima ho chiamato giacitura} e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più un vettore di coordinate generiche $(x, y, z)$ che supponiamo appartenere al piano: la matrice avrà, conseguentemente, determinante nullo; ottenendo la formula attesa sopra attesa. Usufruendo, invece, del prodotto scalare possiamo possiamo osservare che, presa una base ortogonale del piano, allora possiamo decomporre lo spazio vettorale $\mathbb{R}^3$ in due sottospazi: il piano (di dimensione $2$) che indicheremo $W$ e lo Span del vettore ortogonale al piano (di dimensione $1$) $W^{\perp}$ (riprendendo la notazione del corso di Geometria), dunque, siccome sappiamo dal corso di Geometria che ogni combinazione lineari dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$, possiamo definire il nostro piano come l'insieme dei vettori il cui prodotto scalare con il vettore ortogonale è nullo. Questo ragionamento effettuato è facilmente estendibile a spazi euclidei muniti del prodotto scalare canonico di dimensione $n$ per iperpiani di dimensione $n-1$: infatti, presi $n-1$ vettori linearmente ortogonali come base dell'iperpiano che indichiamo con $W$, allora $W^{\perp}$ avrà dimensione $1$ (grazie all'ipotesi di coercività del prodotto scalare) dunque $W^{\perp} = \text{Span}(v)$ con $v$ vettore ortogonale; a questo punto possiamo ottenere la formula mostrata sopra osservando, come fatto prima, che ogni combinazione lineare dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$ e, quindi, indicare il piano come l'insieme dei vettori per cui il prodotto scalare con il vettore $v$ è nullo. Vedendo questo procedimento in maniera esplicita, possiamo considerare un piano $\pi \in \mathbb{R}^3$ di dimensione pari a $2$ da cui abbiamo che $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$ e, prendendo un generico vettore $v = (a, b, c)$ (ovvero la base del nostro $(\pi)^{\perp}$), se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ preso $P = (x, y, z)$ appartenente al piano, allora per quanto detto, dobbiamo avere che
 $$
 \vec{P_0P} \perp v
 $$

@@ -1,4 +1,5 @@
-\documentclass[oneside, italian, fontsize=12pt]{book}
+\RequirePackage{fix-cm}
+\documentclass[12pt, oneside, italian]{book}
 \input{h_preamble/new_preamble}
 \input{h_preamble/letterfonts}
 \input{h_preamble/macros}
@@ -17,7 +18,8 @@
 
 % Cancella il footer
 \fancyfoot{}
-
+\setlength{\headheight}{14.49998pt}
+\addtolength{\topmargin}{-2.49998pt}
 % Personalizzazione della linea orizzontale
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
