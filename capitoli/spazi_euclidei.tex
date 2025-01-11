@@ -108,8 +108,7 @@ $$
 \Delta = 4\innerprod{\underline{v}}{\underline{w}}^2 - 4 \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} < 0 \implies \innerprod{\underline{v}}{\underline{w}}^2 < \innerprod{\underline{v}}{\underline{v}} \innerprod{\underline{w}}{\underline{w}} \implies |\innerprod{\underline{v}}{\underline{w}}| < |\underline{v}| \, |\underline{w}|
 $$
 \end{proof}
-\begin{prop}[Disuguaglianza triangolare] \hfill \\
-$ \forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
+\begin{prop}[Disuguaglianza triangolare] $\forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item $|\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|$
 	\item $|\underline{v}| - |\underline{w}| \leq |\underline{v} - \underline{w}|$
@@ -118,12 +117,16 @@ $ \forall \underline{v}, \underline{w} \in \mathbb{E}_n, $
 \end{prop}
 \begin{proof}
 osserviamo che
+\begin{align*}
+|\underline{v} + \underline{w}|^2 = \innerprod{\underline{v} + \underline{w}}{\underline{v} + \underline{w}} = \innerprod{\underline{v}}{\underline{v}} + 2\innerprod{\underline{v}}{\underline{w}} + \innerprod{\underline{w}}{\underline{w}} = |\underline{v}|^2 + 2 \innerprod{\underline{v}}{\underline{w}} + |\underline{w}|^2
+\end{align*}
+Osserviamo che possiamo utilizzare la disuguaglianza di Cauchy-Schwarz per minorare l'ultima espressione ottenuta, da cui si deduce che
+\begin{align*}
+|\underline{v} + \underline{w}|^2 \leq |\underline{v}|^2 + 2|\underline{v}| \, |\underline{w}| + |\underline{w}|^2
+\end{align*}
+in cui riconosciamo che $|\underline{v}|^2 + 2 |\underline{v}| \, |\underline{w}| + |\underline{w}|^2 = (|\underline{v}| + |\underline{w}|)^2$, dunque
 $$
-|\underline{v} + \underline{w}|^2 = \innerprod{\underline{v} + \underline{w}}{\underline{v} + \underline{w}} = \innerprod{\underline{v}}{\underline{v}} + 2\innerprod{\underline{v}}{\underline{w}} + \innerprod{\underline{w}}{\underline{w}} = |\underline{v}|^2 + 2 \innerprod{\underline{v}}{\underline{w}} + |\underline{w}|^2 \stackrel{\text{dis. di Cauchy-Schwarz}}{\leq} |\underline{v}|^2 + 2|\underline{v}| \, |\underline{w}| + |\underline{w}|^2
-$$
-dunque
-$$
-|\underline{v} + \underline{w}|^2 \leq |\underline{v}|^2 + 2|\underline{v}| \, |\underline{w}| + |\underline{w}|^2 = (|\underline{v}| + |\underline{w}|)^2 \implies |\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|
+|\underline{v} + \underline{w}|^2 \leq (|\underline{v}| + |\underline{w}|)^2 \implies |\underline{v} + \underline{w}| \leq |\underline{v}| + |\underline{w}|
 $$
 e si ottiene la tesi del punto $\circled{1}$. \\
 Il punto $\circled{2}$ si ottiene come corollario del primo punto osservando che

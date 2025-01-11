@@ -241,16 +241,16 @@ Ogni aperto di $\mathbb{R}^n$ è unione numerabile di $n-$intervalli a due a due
 	$$
 	x_i - \varepsilon < \alpha_i < x_i < \beta_i < x_i + \varepsilon 
 	$$
-	Dunque avremo che l'$n-$intervallo $I'=\prod\limits_{i=1} (\alpha_i, \beta_i]$ contiene il punto $x$, dunque $x \in \mathcal{V} \implies x \in \bigcup\limits_{I \in \mathcal{V}} I \implies A \subseteq \bigcup_{I \in \mathcal{V}} I$. Concludiamo
+	Dunque avremo che l'$n-$intervallo $I'=\prod\limits_{i=1} (\alpha_i, \beta_i]$ contiene il punto $x$, dunque $x \in \mathcal{V} \implies x \in \bigcup\limits_{I \in \mathcal{V}} I \implies A \subseteq \bigcup\limits_{I \in \mathcal{V}} I$. Concludiamo
 	che $A = \bigcup\limits_{i=1} I$. \\
-	Mostriamo adesso che possiamo prendere gli $n-$intervalli a due a due disgiunti. Consideriamo $A = \bigcup_{i=i}^{+\infty} I_i$ ma allora, posto $J_i = I_i \setminus \bigcup_{j=1}^{i-1} I_j$, possiamo vedere facilmente che
+	Mostriamo adesso che possiamo prendere gli $n-$intervalli a due a due disgiunti. Consideriamo $A = \bigcup\limits_{i=i}^{+\infty} I_i$ ma allora, posto $J_i = I_i \setminus \bigcup\limits_{j=1}^{i-1} I_j$, possiamo vedere facilmente che
 	$$
 	\bigcup_{i=1}^{+\infty} I_i = \bigcup_{i=1}^{+\infty} J_i = A
 	$$
 \end{proof}
 Siamo pronti adesso a dimostrare il teorema:
 \begin{proof}[Dimostrazione (del teorema)]
-	Sia $A$ un insieme aperto. Per il lemma precedente sappiamo che $A = P = \bigcup_{k=1}^{+\infty} I_i$ dove $I_i$ è un $n-$intervallo, dunque $m_n(P \setminus A) = m_n(\emptyset) = 0$.
+	Sia $A$ un insieme aperto. Per il lemma precedente sappiamo che $A = P = \bigcup\limits_{k=1}^{+\infty} I_i$ dove $I_i$ è un $n-$intervallo, dunque $m_n(P \setminus A) = m_n(\emptyset) = 0$.
 	Pertanto $P \setminus A \in \mathfrak{M}(\mathbb{R}^n)$ e $P \in \mathfrak{M}(\mathbb{R}^n)$ siccome unione di $n-$intervalli. 
 \end{proof}
 \begin{cor}
@@ -653,8 +653,8 @@ $$
 \begin{exercise}
 	Consideriamo $f: \Omega \to \mathbb{R}$ dove $\Omega = \{(x, y) \in \mathbb{R}^2 : 1 < x < y < e^2, y > e \}$ e $f(x,y) = \frac{1}{x\log{y}}$. Stabilire se $f$ è integrabile ed, in tal caso, calcolare $\int_\Omega f dm_2$
 \end{exercise}
-\begin{proof}
-	Osserviamo innanzitutto che la funzione $f > 0 \forall (x, y) \in \Omega$, $f$ è continua e quindi anche misurabile in $\Omega$ ed è pertanto ben definito $\int_\Omega \frac{1}{x\log{y}}dxdy$. Possiamo, pertanto, applicare il teorema di Tonelli rispetto ad uno dei possibili sezionamenti:
+\begin{proof}[Svolgimento]
+	Osserviamo innanzitutto che la funzione $f > 0 \, \, \forall (x, y) \in \Omega$, $f$ è continua e quindi anche misurabile in $\Omega$ ed è pertanto ben definito $\int_\Omega \frac{1}{x\log{y}}dxdy$. Possiamo, pertanto, applicare il teorema di Tonelli rispetto ad uno dei possibili sezionamenti:
 	$$
 	\int_\Omega \frac{1}{x} \frac{1}{\log{y}}dxdy = \int_\mathbb{R} \left( \int_{\Omega_y} \frac{1}{x}\frac{1}{\log{y}} dx \right)dy = \int_e^{e^2} \frac{1}{\log{y}} \left( \int_1^y \frac{1}{y} dx \right) dy = \int_e^{e^2} 1dy = e(e-1)
 	$$
@@ -733,9 +733,10 @@ di cui godono certi insiemi oppure certe funzioni (si pensi a voler calcolare il
 	DL = A = [v_1, \ldots, v_n]
 	$$
 	e dunque per l'osservazione precedente avremo che
-	$$
-	m_n (L([0, l_1] \times \ldots \times [0, l_n])) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| l_1 \ldots l_n = DL m_n([0, l_1] \times \ldots \times [0, l_n]) \implies DL = \frac{m_n(L([0, l_1] \times \ldots \times [0, l_n]))}{m_n([0, l_1] \times \ldots \times [0, l_n])}
-	$$
+	\begin{align*}
+	&m_n (L([0, l_1] \times \ldots \times [0, l_n])) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| l_1 \ldots l_n = DL m_n([0, l_1] \times \ldots \times [0, l_n]) \implies \\ 
+	&DL = \frac{m_n(L([0, l_1] \times \ldots \times [0, l_n]))}{m_n([0, l_1] \times \ldots \times [0, l_n])}
+	\end{align*}
 	dove in realtà $Q$ può essere sostituito da un qualunque insieme $E \in \mathfrak{M}(\mathbb{R}^n)$ con $m_n(E) > 0$.
 \end{remark}
 In maniera euristica possiamo dare una traccia di dimostrazione del teorema di cambio di variabile che vogliamo adesso utilizzare. Supponiamo di voler effettuare un cambio di variabili all'interno dell'integrale: la funzione $f(x) \in C^1$ intorno a $x_0$ può
