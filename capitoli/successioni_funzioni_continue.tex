@@ -233,7 +233,7 @@ Sia $A \subset \mathbb{R}^n$ un insieme compatto e sia $f: A \to \mathbb{R}$ una
 \label{thm:weierstrass}
 \end{theorem}
 \begin{proof}
-Per caratterizzazione del $\sup{f(A)}$ sappiamo che esiste una successione $\lim\limits_{k \to +\infty} y_k = \sup f(A)$ dove $y_k \in f(A) \, \forall k \geq 1$ che vi ci tende. Siccome $y_k \in f(A)$ allora $\exists x_k \in A: f(x_k) = y_k \, \forall k \geq 1$. Ma allora noi sappiamo che, per al compattezza di $A$, che esiste una sottosuccessione $x_{\alpha (k)}$ tale che $x_{\alpha(k)} \to z \in A$, da cui si deduce che
+Per caratterizzazione del $\sup{f(A)}$ sappiamo che esiste una successione $y_k$ tale che $y_k \in f(A) \, \forall k \geq 1$ e $y_k \stackrel{k \to +\infty}{\to} \sup f(A)$, ovvero esiste una successione a valori in $f(A)$ che tende all'estremo superiore di tale insieme. Siccome $\forall \, k \geq 1, \, y_k \in f(A)$ allora $\exists x_k \in A: f(x_k) = y_k \, \forall k \geq 1$. Ma allora noi sappiamo che, per al compattezza di $A$, che esiste una sottosuccessione $x_{\alpha (k)}$ tale che $x_{\alpha(k)} \to z \in A$, da cui si deduce che
 $$
 f(z) = \lim_{k \to +\infty} f(x_{\alpha(k)}) = \lim_{k \to +\infty} y_{\alpha(k)} = \sup_A{f}
 $$
@@ -369,7 +369,8 @@ $$
 \begin{proof}
 la dimostrazione è banale, siccome 
 \begin{align*}
-&\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |x-x_0|^\alpha \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \iff \forall \varepsilon > 0 \exists \delta > 0: \frac{|f(x)|}{|x-x_0|^\alpha} \leq \varepsilon \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \\ &\iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
+&\forall \varepsilon > 0 \exists \delta > 0: |f(x)| \leq \varepsilon |x-x_0|^\alpha \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \iff \forall \varepsilon > 0 \exists \delta > 0: \\
+&\frac{|f(x)|}{|x-x_0|^\alpha} \leq \varepsilon \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \} \iff \lim_{x \to x_0} \frac{f(x)}{|x-x_0|^\alpha} = 0
 \end{align*}
 \end{proof}
 \begin{prop}

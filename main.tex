@@ -11,7 +11,7 @@
 
 % Definizione dell'intestazione per pagine dispari (Odd)
 \fancyhead[LO]{\textbf{\thepage}}  % Numero di pagina in grassetto a sinistra
-\fancyhead[RO]{\rightmark}         % Capitolo e sezione a destra
+\fancyhead[RO]{\nouppercase\rightmark}         % Capitolo e sezione a destra
 
 % Definizione dell'intestazione per pagine pari (Even)
 \fancyhead[LE]{\leftmark}          % Capitolo e sezione a sinistra
@@ -25,19 +25,6 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Personalizza il comando per segnare il capitolo
-\renewcommand{\chaptermark}[1]{%
-  \ifthenelse{\equal{#1}{INDICE}}
-    {\markboth{indice}{}}
-    {\markboth{\thechapter.\ #1}{}}
-}
-
-% Personalizza il comando per segnare la sezione (include il capitolo)
-\renewcommand{\sectionmark}[1]{%
-  \ifthenelse{\equal{#1}{INDICE}}%
-    {\markright{Indice}}% Se la sezione è "INDICE", usa "Indice"
-    {\markright{\thesection\ #1}}% Altrimenti, usa la numerazione e il nome della sezione
-}
 \pgfplotsset{compat=newest}
 \title{Appunti di Complementi di Analisi Matematica 2}
 \author{Francesco Sermi}

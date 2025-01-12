@@ -293,12 +293,12 @@ possiamo raggruppare a 2 a due i termini, notando che:
 \end{align*}
 al raggruppamento $j$-esimo teniamo fisso la $n-j+1$ componente dell'argomento della funzione sulla sinistra, pertanto possiamo applicare il teorema di Lagrange se definiamo una funzione dipendente esclusivamente dalla variabile $h_j$, dunque:
 \begin{align*}
-&f(p_0 + h) - f(p_0) - L(h) = \\
-&=\partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) h_n + \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) h_{n-1} + \ldots - L(h) = \\
-&= \left( \partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) - \partial_{x_n} f(p_0) \right) + \left( \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) - \partial_{x_{n-1}} f(p_0) \right) + \ldots = \\
-&=o(1)h_n + \ldots + o(1)h_1 \, \text{ per } |h| \to 0
+    & f(p_0 + h) - f(p_0) - L(h) = \\
+    & = \quad \partial_{x_n} f (p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) h_n + \partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) h_{n-1} + \ldots - L(h) = \\
+    & = \quad \left(\partial_{x_n} f(p_0 + \sum_{j=1}^{n-1} h_j e_j + \theta_n h_n e_n) - \partial_{x_n} f(p_0)\right) h_n + \left(\partial_{x_{n-1}} f(p_0 + \sum_{j=1}^{n-2} h_j e_j + \theta_{n-1} h_{n-1} e_{n-1}) - \right. \\
+    & -\partial_{x_{n-1}} f(p_0) \bigg) h_{n-1} + \ldots = o(1) h_n + o(1) h_{n-1} + \ldots + o(1) h_1 \quad \text{per } |h| \to 0.
 \end{align*}
-e, sempre per $|h| \to 0$, osserviamo che $o(1)h_j \leq o(1)|h| \implies \frac{o(1)h_j}{|h|} \leq \frac{o(1)|h|}{|h|} = o(1) \implies o(1)h_j = o(h)$ e chiaramente $\frac{o(1)h_n + \ldots + o(1)h_1}{|h|} \to 0$. Dunque 
+dove la penultima uguaglianza segue da come avevamo definito $L(h)$ e l'ultima dalla continuità delle derivate parziali che avevamo richiesto nelle ipotesi. Dunque, per $|h| \to 0$, osserviamo che $o(1)h_j \leq o(1)|h| \implies \frac{o(1)h_j}{|h|} \leq \frac{o(1)|h|}{|h|} = o(1) \implies o(1)h_j = o(h)$ e chiaramente $\frac{o(1)h_n + \ldots + o(1)h_1}{|h|} \to 0$. Dunque 
 $$
 f(p_0 + h) - f(p_0) - L(h) = o(h)
 $$
@@ -358,10 +358,10 @@ e osserviamo
 $$
 o(|f(x)-f(x_0)|) < \varepsilon |df(x_0)(x-x_0) + o(|x-x_0|)|
 $$
-e $|x-x_0| < \delta_\varepsilon$ tale che $|df(x_0)(x-x_0) + o(|x-x_0|)| < \sigma_{\varepsilon}$. Essendo 
+e $|x-x_0| < \delta_\varepsilon$ tale che $|df(x_0)(x-x_0) + o(|x-x_0|)| < \sigma_{\varepsilon}$. Facendo qualche piccola minorazione 
 \begin{align*}
-&o(|f(x)-f(x_0)|) < \varepsilon |f(x)-f(x_0)| < \varepsilon|df(x_0)(x-x_0) + o(|x-x_0|)| < \varepsilon |df(x_0)(x-x_0) + \varepsilon|x-x_0| < \\ 
-&< \varepsilon (|Df(x_0)| \, |x-x_0| + \varepsilon |x-x_0|) = \varepsilon (|Df(x_0)| + 1)|x-x_0| \implies \\
+&o(|f(x)-f(x_0)|) < \varepsilon |f(x)-f(x_0)| < \varepsilon|df(x_0)(x-x_0) + o(|x-x_0|)| < \varepsilon |df(x_0)(x-x_0) + \\
+& \varepsilon|x-x_0|| <\varepsilon (|Df(x_0)| \, |x-x_0| + \varepsilon |x-x_0|) = \varepsilon (|Df(x_0)| + 1)|x-x_0| \implies \\
 &\implies o(|f(x)-f(x_0)|) = o(|x-x_0|)
 \end{align*}
 Dunque si ottiene che
@@ -369,9 +369,10 @@ $$
 g(f(x)) = g(f(x_0)) + (dg(f(x_0)) \circ df(x_0))(x-x_0)+ o(|x-x_0|) \text{ per } x \to x_0
 $$
 Osserviamo infine che
-$$
-d(g \circ f)(x_0)(v) = D(g \circ f)(x_0)(v) = dg(f(x_0))(df(x_0)(v)) = Dg(f(x_0))Df(x_0)v \implies D(g \circ f)(x_0) = Dg(f(x_0))Df(x_0)
-$$
+\begin{align*}
+&d(g \circ f)(x_0)(v) = D(g \circ f)(x_0)(v) = dg(f(x_0))(df(x_0)(v)) = Dg(f(x_0))Df(x_0)v \implies \\
+&\implies D(g \circ f)(x_0) = Dg(f(x_0))Df(x_0)
+\end{align*}
 \end{proof}
 \subsection{Interpretazione geometrica delle derivate prime}
 Nel caso delle funzioni a singola variabile, la derivata di $f: \Omega \to \mathbb{R}$ (dove $\Omega \subseteq \mathbb{R}$ aperto) nel punto $x_0 \in \Omega$ rappresenta il coefficiente angolare della retta tangente al grafico della funzione $f$ nel punto $(x_0, f(x_0))$. In più variabili la differenziabilità che significato ha? \\
@@ -504,9 +505,10 @@ $$
 \varphi(\tau) = f(x_0 + \tau e_i + t e_j) - f(x_0 + \tau e_i)
 $$
 dove $t$ è sufficientemente piccolo e fissato, dunque:
-$$
-\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - (f(x_0 + te_j) - f(x_0)) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - f(x_0 + te_j) + f(x_0)
-$$
+\begin{align*}
+&\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - (f(x_0 + te_j) - f(x_0)) = \\
+&=f(x_0 + te_i + te_j) - f(x_0 + te_i) - f(x_0 + te_j) + f(x_0)
+\end{align*}
 Adesso sappiamo, per il teorema di Lagrange, che
 $$
 \varphi(t) - \varphi(0) = \varphi'(\theta t)t
@@ -518,9 +520,10 @@ $$
 \varphi(t) - \varphi(0) = [(z(t) - z(0)) - (h(t) - h(0))]t = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t
 $$
 Possiamo riapplicare nuovamente il teorema di Lagrange su questa differenza, osservando che
-$$
-[\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j) - f(x_0 + \theta te_i))]t = \partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + te_j)t^2
-$$
+\begin{align*}
+[\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j) - f(x_0 + \theta te_i))]t = \\
+=\partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + te_j)t^2
+\end{align*}
 Ripetendo questo ragionamento invertendo gli indici, possiamo dunque concludere, per continuità delle derivate seconde nel punto $x_0$, che:
 $$
 \lim_{t \to 0} \frac{\varphi(t) - \varphi(0)}{t^2} = \partial_{x_i} \partial_{x_j} f(x_0) = \partial_{x_j} \partial_{x_i} f(x_0)
@@ -724,9 +727,10 @@ $$
 \begin{proof}
 Faremo questa dimostrazione per induzione su $k$. Per ora studiamo la funzione $g(x)=f(x)-P_k(f, x_0)(x)$ senza fissare un particolare valore di $k$ (vogliamo innanzitutto studiare quali sono i passaggi comuni a tutti i valori di $k$). Osserviamo, grazie alla proposizione precedente, che $g(x_0) = 0$ e $\forall 1 \leq i_1, \ldots, i_l \leq n$ e $\forall 1 \leq l \leq k$. \\
 Facciamo il cambio di variabile $x = x_0 + h$ e consideriamo il caso in cui $k=1$: proviamo a questo punto che $g(x_0+h) = g(x_0 + h) - g(x_0)$ siccome $g(x_0) = 0$. Ma allora
-$$
-g(x_0 + h) - g(x_0) = \int_0^1 \frac{d}{dt} g(x_0 + th)dt = \int_0^1 \partial_h g(x_0 + th)dt = \int_0^1 dg(x_0 + th)(h)dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th) h_j dt
-$$
+\begin{align*}
+& & g(x_0 + h) - g(x_0) = \int_0^1 \frac{d}{dt} g(x_0 + th)dt = \int_0^1 \partial_h g(x_0 + th)dt &= \int_0^1 dg(x_0 + th)(h)dt = & \\
+& & &=\int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th) h_j dt
+\end{align*}
 dove queste eguaglianze derivano dalla semplice osservazione del seguente fatto:
 $$
 \partial_h g(x_0 + th) = \lim_{\Delta t \to 0} \frac{g(x_0 + (t+\Delta t)h) - g(x_0 + th)}{\Delta t} = \frac{d}{dt} g(x_0 + th)
