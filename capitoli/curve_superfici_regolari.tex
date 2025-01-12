@@ -96,28 +96,30 @@ $$
 \tilde{f}(\tilde{g}(x, y)) = \tilde{f}((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
 $$
 permettendoci di concludere che
-$$
-\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) = \implies \begin{cases}
+\begin{align*}
+&\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) \implies \\
+&\implies \begin{cases}
 g_1(x, y) = x \\
 f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
 \end{cases}
-$$
+\end{align*}
 permettendoci, in conclusione, di giungere alla tesi definendo $\varphi(x) = g_2(x, f(x_0, y_0))$
 $$
 f(x, \varphi(x)) = f(x, g_2(x, f(x_0, y_0)) = f(x_0, y_0)
 $$
 Per dimostrare la formula della derivata basta derivare quest'ultima relazione rispetto ad $x$:
-$$
-\partial_x f(x, \varphi(x)) = \partial_x f(x_0, y_0) \implies \partial_x f(x, \varphi(x)) + \partial_y f(x, \varphi(x)) \partial_x \varphi(x) = 0 \implies \partial_x \varphi(x) = - \frac{\partial_x f(x, g(x))}{\partial_y f(x, g(x))}
-$$
+\begin{align*}
+&\partial_x f(x, \varphi(x)) = \partial_x f(x_0, y_0) \implies \partial_x f(x, \varphi(x)) + \partial_y f(x, \varphi(x)) \partial_x \varphi(x) = 0 \implies \\
+&\implies \partial_x \varphi(x) = - \frac{\partial_x f(x, g(x))}{\partial_y f(x, g(x))}
+\end{align*}
 \end{proof}
 \begin{remark}
 Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede che $\nabla f \neq 0$. Ciò è possibile rifacendo la dimostrazione ma ridefinendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$. Enunciamo qua sotto tutte le "versioni" alternative del teorema nel caso di $n=2$ e $n=3$
 \end{remark}
 \begin{theorem}[teorema della funzione implicita rispetto a $y$]
-Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e $f \in C^{1}(\Omega)$ con $\partial_{x} f(x_0) \neq 0$
+Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e $f \in C^{1}(\Omega)$ con $\partial_{x} f(x_0) \neq 0$. Allora
 $$
-\implies \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1} - \sigma, x_{0_1} + \sigma) \times (x_{0_2} - \delta, x_{0_2} + \delta) = \{ (\varphi(t), t) : |t-x_{0_2}| < \delta \}
+\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1} - \sigma, x_{0_1} + \sigma) \times (x_{0_2} - \delta, x_{0_2} + \delta) = \{ (\varphi(t), t) : |t-x_{0_2}| < \delta \}
 $$
 ovvero $\exists \varphi : (x_{0_2} - \delta, x_{0_2} + \delta) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ tale che $\varphi(x_{0_2}) = x_{0_1}$ e dunque
 $$
@@ -138,9 +140,10 @@ Evidenziando la regolarità di $C$, diremo che $C$ è una curva di classe $C^k$
 \end{definition}
 \begin{theorem}[funzione implicita rispetto a $y$ e $z$]
 Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 ( \Omega )$ tale che $\partial_x f(x_0) \neq 0$. Allora
-$$
-\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}), \delta) \}
-$$
+\begin{align*}
+&\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap ((x_{0_1} - \sigma, x_{0_1} + \sigma) \times B((x_{0_2}, x_{0_3}), \delta) = \\
+&=\{ (\varphi(x_2, x_3), x_2, x_3) : (x_2, x_3) \in B((x_{0_2}, x_{0_3}), \delta) \}
+\end{align*}
 ed esiste $\varphi: B((x_{0_2}, x_{0_3}) \to (x_{0_1} - \sigma, x_{0_1} + \sigma)$ con $\varphi(x_{0_2}, x_{0_3}) = x_{0_1}$ tale che
 $$
 f(\varphi(x_2, x_3), x_2, x_3) = f(x_{0_1}, x_{0_2}, x_{0_3})
@@ -154,10 +157,11 @@ $$
 Si modifica la dimostrazione fatta prima scomponendo la funzione $f(x_{1}, x_2, x_3) = f(x, y)$ con $x \in \mathbb{R}, y \in \mathbb{R}^2$, considerando la funzione $\tilde{f} = (f(x, y), x, y)$ imponendo che $D_y f \neq 0$.
 \end{proof}
 \begin{theorem}[teorema della funzione implicita rispetto a $x$ e $y$]
-Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $x_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 (\Omega)$ tale che $\partial_{x_3} f(x_0) \neq 0 \implies$
-$$
-\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (B((x_{0_1}, x_{0_2}), \delta) \times (x_{0_3} - \sigma, x_{0_3} + \sigma)) = \{(x_1, x_2, \varphi(x_1, x_2)) : (x_1, x_2) \in B((x_{0_1}, x_{0_2}), \delta) \}
-$$
+Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $x_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 (\Omega)$ tale che $\partial_{x_3} f(x_0) \neq 0$. Allora
+\begin{align*}
+&\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (B((x_{0_1}, x_{0_2}), \delta) \times (x_{0_3} - \sigma, x_{0_3} + \sigma)) = \\
+&=\{(x_1, x_2, \varphi(x_1, x_2)) : (x_1, x_2) \in B((x_{0_1}, x_{0_2}), \delta) \}
+\end{align*}
 ed esiste $\varphi: B((x_{0_1},x_{0_2}), \delta) \to (x_{0_3} - \sigma, x_{0_3} + \sigma)$ con $\varphi \in C^1(B((x_{0_1}, x_{0_2}), \delta)$ e $\varphi(x_{0_1}, x_{0_2}) = x_{0_3}$ tale che
 $$
 f(x_1, x_2, \varphi(x_1, x_2)) = f(x_{0_1}, x_{0_2}, x_{0_3})

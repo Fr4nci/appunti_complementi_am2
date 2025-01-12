@@ -348,17 +348,18 @@ $$
 $$
 e, inoltre, osserviamo che
 $$
+o(|f(x)-f(x_0)|) = o(|df(x_0)(x-x_0) + o(|x-x_0|)|).
+$$
+A questo punto fissiamo $0 < \varepsilon < 1$, da cui deduciamo che
+$$
 o(|f(x)-f(x_0)|) = o(|df(x_0)(x-x_0) + o(|x-x_0|)|)
 $$
-fissiamo $0 < \varepsilon < 1$,
-$$
-o(|f(x)-f(x_0)|) = o(|df(x_0)(x-x_0) + o(|x-x_0|)|)
-$$
-e osserviamo
+dunque
 $$
 o(|f(x)-f(x_0)|) < \varepsilon |df(x_0)(x-x_0) + o(|x-x_0|)|
 $$
-e $|x-x_0| < \delta_\varepsilon$ tale che $|df(x_0)(x-x_0) + o(|x-x_0|)| < \sigma_{\varepsilon}$. Facendo qualche piccola minorazione 
+e consideriamo $|x-x_0| < \delta_\varepsilon$ tale che $|df(x_0)(x-x_0) + o(|x-x_0|)| < \sigma_{\varepsilon}$. Sappiamo allora, per definizione di $o-$piccolo, che $\exists \bar{\delta}_\varepsilon > 0: |f(x) - f(x_0)| < \varepsilon |x-x_0|$, dunque prendiam
+$|x - x_0| < \min(\delta_\varepsilon, \bar{\delta}_\varepsilon)$ affinché valgano entrambe le disuguaglianze dette sopra e, a questo punto, facendo qualche piccola minorazione possiamo dedurre che 
 \begin{align*}
 &o(|f(x)-f(x_0)|) < \varepsilon |f(x)-f(x_0)| < \varepsilon|df(x_0)(x-x_0) + o(|x-x_0|)| < \varepsilon |df(x_0)(x-x_0) + \\
 & \varepsilon|x-x_0|| <\varepsilon (|Df(x_0)| \, |x-x_0| + \varepsilon |x-x_0|) = \varepsilon (|Df(x_0)| + 1)|x-x_0| \implies \\
@@ -545,9 +546,10 @@ La dimostrazione è omessa siccome è un banale corollario del precedente teorem
 E' adesso comodo introdurre i cosiddetti spazi funzionali $C^k(\Omega)$, con $k \in \mathbb{N} \setminus \{ 0 \}$:
 \begin{definition}[spazio $C^k$]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $k \in \mathbb{N} \setminus \{ 0 \}$. Definiamo
-$$
-C^k(\Omega) = \left\{ f: \Omega \to \mathbb{R} \mid \forall l \in \{1, \ldots, k\}, \, \exists \, \partial_{x_{i_1}} \partial_{x_{i_2}} \cdots \partial_{x_{i_l}} f: \Omega \to \mathbb{R} \text{ continua in } \Omega \text{ per ogni } i_1, \ldots, i_l \in \{1, \ldots, n\} \right\}
-$$
+\begin{flalign*}
+&C^k(\Omega) = \left\{ f: \Omega \to \mathbb{R} \mid \forall l \in \{1, \ldots, k\}, \, \exists \, \partial_{x_{i_1}} \partial_{x_{i_2}} \cdots \partial_{x_{i_l}} f: \Omega \to \mathbb{R} \text{ continua in } \Omega \text{ per ogni } \right. \\
+& i_1, \ldots, i_l \in \{1, \ldots, n\} \Bigg\}
+\end{flalign*}
 Se $f \in C^{k}(\Omega)$ allora diremo che $f$ è una funzione di classe $C^k$.
 \end{definition}
 \begin{remark}
@@ -642,7 +644,7 @@ b_{11} & \frac{b_{12}}{2} & \frac{b_{13}}{2} & \ldots & \frac{b_{1n}}{2} \\
 \begin{proof}
 In virtù della definizione precedente sappiamo che 
 $$
-q(x) = \sum_{i, j=1}^n b_{ij} x_i x_j = \sum_{i=1}^n a_ii x_i^2 + \sum_{1 \leq i < j \leq n} b_{ij} x_i x_j 
+q(x) = \sum_{i, j=1}^n b_{ij} x_i x_j = \sum_{i=1}^n a_{ii} x_i^2 + \sum_{1 \leq i < j \leq n} b_{ij} x_i x_j 
 $$
 con un semplice "riarrangiamento" dei termini presenti. Si vede facilmente che
 $$
@@ -674,9 +676,10 @@ P(x) = \sum_{(i_1, \ldots i_l) \in \mathcal{I}_k} c_{i_1, \ldots, i_k} x_{i_1} \
 $$
 \end{definition}
 Il differenziale $d^k f(x_0): \mathbb{R}^n \to \mathbb{R}$ di ordine $k$ è un polinomio in $n$ variabili omogeneo di ordine $k$. Abbiamo infatti per $t \in \mathbb{R}, x \in \mathbb{R}^n$
-$$
-d^k f(x_0) = \sum_{i_1, \ldots i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}}(tx_{i_1})(tx_{i_2}) \ldots (tx_{i_k}) = t^k \sum_{i_1, \ldots, i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}} x_1 \ldots x_{i_k} = t^k d^k f(x_0)
-$$
+\begin{align*}
+& & d^k f(x_0) = \sum_{i_1, \ldots i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}}(tx_{i_1})(tx_{i_2}) \ldots (tx_{i_k}) &= t^k \sum_{i_1, \ldots, i_k = 1}^n \frac{\partial^k f(x_0)}{\partial x_{i_1} \ldots \partial x_{i_k}} x_1 \ldots x_{i_k} = \\
+& & &=t^k d^k f(x_0)
+\end{align*}
 Possiamo a questo punto definire il polinomio di Taylor
 \begin{definition}[polinomio di Taylor di $f$ in $x_0$ di ordine $k$]
 Sia $f \in C^{k}(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto. Definiamo il polinomio di Taylor di $f$ nel punto $x_0 \in \Omega$ di ordine $k$ come quel polinomio di grado $\leq k$ tale che
@@ -708,7 +711,7 @@ Ora osserviamo che il secondo termine di questa addizione è nullo per $x \to x_
 &\partial_{x_{i_1}} \ldots \partial_{x_{i_l}} P_k(f, x_0) = \frac{1}{l!} \sum_{j_1, \ldots, j_l = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_l}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0j_1}) \ldots (x_{j_l} - x_{0j_l}) \right) + \\
 &\sum_{p=l+1}^k \frac{1}{p!} \sum_{j_1, \ldots, j_p = 1}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0j_1}) \ldots (x_{j_p} - x_{0j_p}) \right)
 \end{align*}
-Osserviamo che la sommatoria $\sum\limits_{p=l+1}^n \frac{1}{p!} \sum\limits_{j_1, \ldots j_l}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}) \right)$ tende a $0$ per $x \to x_0$ siccome se valutata in $x_0$, per continuità dei termini, tende a $0$. Per quanto riguarda il primo termine, osserviamo che della sommatoria sugli indici $j_1, \ldots j_l$ \emph{sopravvive} solamente i termini con indici che rappresentano una permutazione di $(i_1, \ldots i_l)$ che, in virtù del teorema di Schwarz di ordine superiore, abbiamo che le derivate, indipendentemente dall'ordine in cui deriviamo, coincidono
+Osserviamo che la sommatoria $$\sum\limits_{p=l+1}^n \frac{1}{p!} \sum\limits_{j_1, \ldots j_l}^n \partial_{x_{j_1}} \ldots \partial_{x_{j_p}} f(x_0) \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} \left( (x_{j_1} - x_{0_{j_1}}) \ldots (x_{j_p} - x_{0_{j_p}}) \right)$$ tende a $0$ per $x \to x_0$ siccome se valutata in $x_0$, per continuità dei termini, tende a $0$. Per quanto riguarda il primo termine, osserviamo che della sommatoria sugli indici $j_1, \ldots j_l$ \emph{sopravvive} solamente i termini con indici che rappresentano una permutazione di $(i_1, \ldots i_l)$ che, in virtù del teorema di Schwarz di ordine superiore, abbiamo che le derivate, indipendentemente dall'ordine in cui deriviamo, coincidono
 $$
 \sum_{\sigma: \{i_1, \ldots i_l \} \to \{ i_1, \ldots, i_l \} \atop \sigma \text{ bigettiva }} \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) = \partial_{x_{i_1}} \ldots \partial_{x_{i_l}} f(x_0) l!
 $$
@@ -740,9 +743,10 @@ $$
 g(x_0 + h) = \int_{0}^1 \innerprod{\nabla g(x_0 + th)}{h}dt
 $$
 da cui segue, tramite la~\ref{prop:dis_cs} (disuguaglianza di Cauchy-Schwarz), che 
-$$
-|g(x_0 + h)| = \Bigg| \int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt  \Bigg| \leq \Bigg| \int_{0}^{1} | \innerprod{\nabla g(x_0+th)}{h}|dt \Bigg| \leq \Bigg| \Bigg| \int_0^1 \nabla g(x_0 + th) dt \Bigg| \Bigg| \, \, | h |
-$$
+\begin{align*}
+& & |g(x_0 + h)| = \Bigg| \int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt  \Bigg| &\leq \Bigg| \int_{0}^{1} | \innerprod{\nabla g(x_0+th)}{h}|dt \Bigg| \leq \\
+& & &\leq \Bigg| \Bigg| \int_0^1 \nabla g(x_0 + th) dt \Bigg| \Bigg| \, \, | h |
+\end{align*}
 e poiché $\nabla g(x_0) = 0$ allora
 $$
 \int_0^1 |\nabla g(x_0 + th)| = o(1) \, \, \text{per h } \to 0
@@ -762,7 +766,9 @@ $$
 $$
 da cui segue che
 \begin{align*}
-&g(x_0 + h) = \int_0^1 \innerprod{\nabla g(x_0 + th)}{h}dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th)h_j \stackrel{\text{ip. induttiva}}{=} \int_0^1 \sum_{j=1}^n o_j(|th|^{k-1})h_j dt = \\ &= \int_0^1 \sum_{j=1}^n o_j(|h|^{k-1})h_j dt \implies |g(x_0+h)| \leq |h| \int_0^1 |(o_1(|h|^{k-1}, \ldots o_n(|h|^{k-1}))|dt = o(|h|^k) \, \text{ per } h \to 0
+&g(x_0 + h) = \int_0^1 \innerprod{\nabla g(x_0 + th)}{h}dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th)h_j \stackrel{\text{ip.induttiva}}{=} \\
+&\stackrel{\text{ip. induttiva}}{=} \int_0^1 \sum_{j=1}^n o_j(|th|^{k-1})h_j dt = \int_0^1 \sum_{j=1}^n o_j(|h|^{k-1})h_j dt \implies & & \\
+&\implies |g(x_0+h)| \leq |h| \int_0^1 |(o_1(|h|^{k-1}, \ldots o_n(|h|^{k-1}))|dt = o(|h|^k) \, \text{ per } h \to 0 & &
 \end{align*}
 ovvero la tesi.
 \end{proof}
@@ -976,7 +982,8 @@ o(|x-x_0|^2) \geq -|o(|x-x_0|^2)| \geq -\frac{\lambda}{2}|x-x_0|^2
 $$
 dunque $\forall x \in B(x_0, \delta) \setminus \{ x_0 \}$
 \begin{align*}
-&f(x) = f(x_0) + \frac{1}{2}\innerprod{Hf(x_0)(x-x_0)}{(x-x_0)} + o(|x-x_0|^2) = f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)\frac{x-x_0}{|x-x_0|}}{\frac{x-x_0}{|x-x_0|}}|x-x_0|^2 + o(|x-x_0|^2) \geq \\
+&f(x) = f(x_0) + \frac{1}{2}\innerprod{Hf(x_0)(x-x_0)}{(x-x_0)} + o(|x-x_0|^2) = \\
+&=f(x_0) + \frac{1}{2} \innerprod{Hf(x_0)\frac{x-x_0}{|x-x_0|}}{\frac{x-x_0}{|x-x_0|}}|x-x_0|^2 + o(|x-x_0|^2) \geq \\
 &\geq f(x_0) + \frac{\lambda}{2}|x-x_0|^2 - \frac{\lambda}{2}|x-x_0|^2 = f(x_0) \implies f(x) \geq f(x_0)
 \end{align*}
 questo conclude la dimostrazione.
