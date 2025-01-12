@@ -464,8 +464,8 @@ $|f| = f^+ + f^-$ dove $f^{+} = \max\{f, 0 \}$ e $f^{-}=\max\{0, -f \}$. Sappiam
 	$$
 	Osserviamo che possiamo "spaccare" il nostro integrale, per linearità rispetto agli ordini di integrazione, fra multipli interi di $\pi$:
 	\begin{align*}
-	&\int_1^{+\infty} \Big| \frac{\sin{x}}{x} \Big| = \int_1^{\pi} \frac{\sin{x}}{x} + \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{x} \Big|dx \geq \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{(k+1)\pi} \Big| = \sum_{k=1}^{+\infty} \frac{1}{(k+1)\pi}\int_{k\pi}^{(k+1)\pi} |\sin{x}|dx = \\
-	&=\sum_{k=1}^{+\infty} \frac{1}{k\pi} = \frac{1}{\pi}\sum_{k=1} \frac{1}{k+1} = +\infty
+	&\int_1^{+\infty} \Big| \frac{\sin{x}}{x} \Big| = \int_1^{\pi} \frac{\sin{x}}{x} + \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{x} \Big|dx \geq \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{(k+1)\pi} \Big| = \\
+	&=\sum_{k=1}^{+\infty} \frac{1}{(k+1)\pi}\int_{k\pi}^{(k+1)\pi} |\sin{x}|dx = \sum_{k=1}^{+\infty} \frac{2}{(k+1)\pi} = \frac{2}{\pi}\sum_{k=1} \frac{1}{k+1} \geq \frac{2}{\pi} \sum_{k=1} \frac{1}{k} = +\infty
 	\end{align*}
 	Possiamo anche far vedere che la funzione $\frac{\sin{x}}{x}$ ammette integrale convergente in $(1, +\infty)$, infatti:
 	$$
@@ -568,8 +568,9 @@ $$
 	\int\limits_E fdm_n = \int\limits_{\mathbb{R}^k} \left( \int\limits_{E_x} f(x,y)dm_h(y) \right)dm_k(x) = \int\limits_{\mathbb{R}^h} \left( \int\limits_{E_y} f(x, y)dm_k(x) \right) dm_h(y)
 $$
 ovvero la formula di scambio dell'integrazione. \\
-Nel caso particolare in cui $E = A \times B$ con $A \in \mathfrak{M}(\mathbb{R}^k)$ e $B \in \mathfrak{M}(\mathbb{R}^h)$ (dunque $E \in \mathfrak{M}(\mathbb{R}^n)$ che andrebbe mostrato, ma lo daremo per buono), allora
-$$f: A \times B \to [0; +\infty] \text{ misurabile } \implies \int\limits_{A \times B} fdm_n = \int\limits_A \left(\int\limits_B f(x, y)dy\right)dx = \int\limits_B \left(\int\limits_A f(x, y)dx\right)dy$$ siccome $(A \times B)_x = B \, \, \forall x \in A$ e $(A \times B)_y = A \, \, \forall y \in B$. \\
+Nel caso particolare in cui $E = A \times B$ con $A \in \mathfrak{M}(\mathbb{R}^k)$ e $B \in \mathfrak{M}(\mathbb{R}^h)$ (dunque $E \in \mathfrak{M}(\mathbb{R}^n)$ che andrebbe mostrato, ma lo daremo per buono), allora presa $f: A \times B \to [0, +\infty]$ misurabile allora
+$$\int\limits_{A \times B} fdm_n = \int\limits_A \left(\int\limits_B f(x, y)dy\right)dx = \int\limits_B \left(\int\limits_A f(x, y)dx\right)dy$$ 
+siccome $(A \times B)_x = B \, \, \forall x \in A$ e $(A \times B)_y = A \, \, \forall y \in B$. \\
 Nel caso ancora più particolare in cui, oltre alle condizioni di prima, abbiamo che $f: A \times B \to [0; +\infty]$ misurabile con $f(x, y) = g(x)w(y)$ con $g: A \to [0; +\infty]$ e $w: B \to [0;+\infty]$ allora
 $$
 \int\limits_{A \times B} f(x,y)dm_n = \int\limits_A g(x)dx \int\limits_B w(y)dy
@@ -597,9 +598,10 @@ Andiamo a formulare un teorema simile a quello di Tonelli ma valido per le funzi
 	$\int_{(0,1)^2} f(x,y)dxdy = 0$.
 \end{example}
 \begin{proof}[Svolgimento]
-$$
-\int_{(0,1)^2} fdm_2 \stackrel{(0,1)^2 = (0,1) \times (0,1)}{=} \int_0^1 \left( \int_0^1 f(x, y) dy \right)dx = -\int_0^1 \left( \int_0^1 f(y,x) dy \right) dx = - \int_{(0,1)^2} fdm_2 \implies \int_{(0,1)^2} fdm_2 = 0 
-$$
+\begin{align*}
+&\int_{(0,1)^2} fdm_2 \stackrel{(0,1)^2 = (0,1) \times (0,1)}{=} \int_0^1 \left( \int_0^1 f(x, y) dy \right)dx = -\int_0^1 \left( \int_0^1 f(y,x) dy \right) dx = \\
+&= - \int_{(0,1)^2} fdm_2 \implies \int_{(0,1)^2} fdm_2 = 0 
+\end{align*}
 \end{proof}
 \begin{example}
 	Consideriamo la funzione $f(x, y)=\frac{x^2 - y^2}{(x^2 + y^2)^2}$ che soddisfa $f(x, y) = -f(y,x)$. Mostrare che non è integrabile.
@@ -645,8 +647,9 @@ $$
 	Possiamo, pertanto, anche scambiare l'ordine di integrazione osservando che $|y| < \frac{1}{\sqrt{x}} \implies x < \frac{1}{y^2}$: tuttavia devono essere vere contemporaneamente le due disuguaglianze $0 < x \leq 1$ e $0 < x < \frac{1}{y^2} \implies 0 < x < \min\{1, \frac{1}{y^2}\}$. Dunque
 	\begin{align*}
 	&m_2(E) = \int_{\mathbb{R}^2} \mathbb{1}_E dm_2 = \int_\mathbb{R} \left( \int_\mathbb{R} \mathbb{1}_E(x,y)dx \right)dy = \int_\mathbb{R} m_1(E_y)dy = \\
-	&=\int_{\mathbb{R}} m_1 \left( \left\{x \in (0, 1) : |y| < \frac{1}{\sqrt{x}} \right\} \right)dy = 2 \int_0^{+\infty} m_1 \left( \left\{x \in (0,1) : 0 < x < \frac{1}{y^2} \right\} \right)dy = 2 \int_0^{+\infty} \left( \int_0^{\min\{1, \frac{1}{y^2}\}} \mathbb{1}_E dx \right)dy = \\
-	&=2 \int_0^1 \left( \int_0^1 \mathbb{1}_E dx \right)dy + 2\int_1^{+\infty} \left( \int_0^{\frac{1}{y^2}} \mathbb{1}_E dx \right)dy = 2 + 2\int_1^{+\infty} \frac{1}{y^2}dy = 2 + 2 = 4
+	&=\int_{\mathbb{R}} m_1 \left( \left\{x \in (0, 1) : |y| < \frac{1}{\sqrt{x}} \right\} \right)dy =2 \int_0^{+\infty} m_1 \left( \left\{x \in (0,1) : 0 < x < \frac{1}{y^2} \right\} \right)dy = \\
+	&=2 \int_0^{+\infty} \left( \int_0^{\min\{1, \frac{1}{y^2}\}} \mathbb{1}_E dx \right)dy = 2 \int_0^1 \left( \int_0^1 \mathbb{1}_E dx \right)dy + \\
+	&+2\int_1^{+\infty} \left( \int_0^{\frac{1}{y^2}} \mathbb{1}_E dx \right)dy = 2 + 2\int_1^{+\infty} \frac{1}{y^2}dy = 2 + 2 = 4
 	\end{align*}
 	Dunque da questo esercizio capiamo bene che spesso sono conveniente alcuni sezionamenti rispetto ad altri
 \end{proof}
@@ -660,8 +663,8 @@ $$
 	$$
 	Scambiamo l'ordine di integrazione
 	\begin{flalign*}
-	&\int_\Omega \frac{1}{x} \frac{1}{\log{y}}dxdy = \int_1^{e^2} \frac{1}{x} \left( \int_{\Omega_x} \frac{1}{\log{y}dy} \right)dx =\int_1^e \frac{1}{x} \left( \int_e^{e^2} \frac{1}{\log{y}}dy \right) dx + \int_e^{e^2} \frac{1}{x} \left( \int_x^{e^2} \frac{1}{\log{y}}dy \right)dx = & \\
-	&= \int_e^{e^2} \frac{1}{\log{y}}dy + \int_e^{e^2} \left( \int_x^{e^2} \frac{1}{\log{y}}dx \right) dy
+	&\int_\Omega \frac{1}{x} \frac{1}{\log{y}}dxdy = \int_1^{e^2} \frac{1}{x} \left( \int_{\Omega_x} \frac{1}{\log{y}dy} \right)dx =\int_1^e \frac{1}{x} \left( \int_e^{e^2} \frac{1}{\log{y}}dy \right) dx + \\
+	&+\int_e^{e^2} \frac{1}{x} \left( \int_x^{e^2} \frac{1}{\log{y}}dy \right)dx = \int_e^{e^2} \frac{1}{\log{y}}dy + \int_e^{e^2} \left( \int_x^{e^2} \frac{1}{\log{y}}dx \right) dy
 	\end{flalign*}
 	tuttavia $\int_e^x \frac{1}{\log{t}}dt$ non ha primitiva esprimibile sotto forma delle note funzioni che conosciamo. 
 \end{proof}
@@ -673,7 +676,8 @@ $$
 	Per le proposizioni viste in precedenza sappiamo che $f^{-}(x, y, z)$ è ben definita e misurabile $\implies \int\limits_E f^{-}(x, y, z)dx$ è ben definito, dunque possiamo applicarvi il teorema di Tonnelli (ricordiamo infatti che tale teorema è applicabile esclusivamente il nostro dominio è
 	scrivibile sotto forma di prodotti cartesiani):
 	\begin{align*}
-	\int_E f^{-}(x, y, z)dm_3 = \int_0^1 \left( \int_{E_x} f dydz \right) dx = \int_0^1 \left( \int_{E_x} fdydz \right)dx = \int_0^1 \left( \int_{E_x} \sqrt{x^2 - z^2}\log{y}dydz \right)dx
+	&\int_E f^{-}(x, y, z)dm_3 = \int_0^1 \left( \int_{E_x} f dydz \right) dx = \int_0^1 \left( \int_{E_x} fdydz \right)dx = \\
+	&=\int_0^1 \left( \int_{E_x} \sqrt{x^2 - z^2}\log{y}dydz \right)dx
 	\end{align*}
 	osserviamo che $E_x = \{(y, z) \in \mathbb{R}^2 : 0 \leq z \leq x, 0 < y \leq z \}$, dunque
 	$$
@@ -684,12 +688,14 @@ $$
 	\int_0^x \log{y}dy = y\log{y}\Bigg|_{y \to 0^+}^{y=x} - \int_0^x 1dy = x\log{x} - x
 	\end{flalign*}
 	\begin{flalign*}
-		&\int_0^x (x^2 - z^2)^{\frac{1}{2}}dz = x^2 \int_0^1 \sqrt{1-t^2}dt = x^2 \int_0^{\frac{\pi}{2}} \sqrt{1-\sin^2{\theta}}\cos{\theta}d\theta = x^2 \int_0^\frac{\pi}{2} \cos^2{\theta}d\theta = x^2 \int_0^\frac{\pi}{2} \left(\frac{1+\cos{2\theta}}{2} \right)d\theta = & \\ 
-		&x^2 \left( \frac{\pi}{4} + \frac{1}{2}\int_0^{\frac{\pi}{2}} \cos{2 \theta}d\theta \right) = x^2 \frac{\pi}{4}
+		&\int_0^x (x^2 - z^2)^{\frac{1}{2}}dz = x^2 \int_0^1 \sqrt{1-t^2}dt = x^2 \int_0^{\frac{\pi}{2}} \sqrt{1-\sin^2{\theta}}\cos{\theta}d\theta = x^2 \int_0^\frac{\pi}{2} \cos^2{\theta}d\theta = \\
+		&=x^2 \int_0^\frac{\pi}{2} \left(\frac{1+\cos{2\theta}}{2} \right)d\theta = x^2 \left( \frac{\pi}{4} + \frac{1}{2}\int_0^{\frac{\pi}{2}} \cos{2 \theta}d\theta \right) = \\
+		&=x^2 \frac{\pi}{4}
 	\end{flalign*}
 	dunque
 	\begin{align*}
-	&\int_E fdm_3 = \int_0^1 (x \log{x} - x) \frac{\pi}{4}x^2 dx = \frac{\pi}{4} \int_0^1 \left( x^3 \log{x} - x^3 \right) dx = \frac{\pi}{4} \left( \frac{x^4}{4} \log{x}\Bigg|_{x \to 0^+}^{x=1} - \int_0^1 \frac{x^3}{4}dx - \frac{1}{4} \right) = \frac{\pi}{4} \left(-\frac{1}{4} - \frac{1}{16} \right) = \\
+	&\int_E fdm_3 = \int_0^1 (x \log{x} - x) \frac{\pi}{4}x^2 dx = \frac{\pi}{4} \int_0^1 \left( x^3 \log{x} - x^3 \right) dx = \\
+	&\frac{\pi}{4} \left( \frac{x^4}{4} \log{x}\Bigg|_{x \to 0^+}^{x=1} - \int_0^1 \frac{x^3}{4}dx - \frac{1}{4} \right) = \frac{\pi}{4} \left(-\frac{1}{4} - \frac{1}{16} \right) = \\
 	&= -\frac{5\pi}{64}
 	\end{align*}
 \end{proof}
@@ -697,13 +703,13 @@ $$
 Come nel caso degli integrali a singola variabile, vogliamo adesso effettuare dei cambi di variabile all'interno degli integrali. Infatti il passaggio a coordinate permette, spesso, di fruire più facilmente di alcune simmetrie
 di cui godono certi insiemi oppure certe funzioni (si pensi a voler calcolare il volume occupato da una sfera: in coordinate cartesiane può essere un incubo parametrizzare le variabili, tuttavia potremmo pensare di scrivere le coordinate dei punti $(x, y, z) \mapsto (\rho, \theta, \varphi)$). Per fare ciò abbiamo bisogno di una serie di risultati:
 \begin{theorem}
-	Sia $v_1, \ldots, v_n \in \mathbb{R}^n$ e sia $L : \mathbb{R}^n \to \mathbb{R}^n, L(x) = \sum_{i=1}^n x_i v_i$. Allora
+	Sia $v_1, \ldots, v_n \in \mathbb{R}^n$ e sia $L : \mathbb{R}^n \to \mathbb{R}^n, L(x) = \sum\limits_{i=1}^n x_i v_i$. Allora
 	\begin{equation}
 		m_n(L([0, 1]^n)) = \left| \det \begin{bmatrix} v_1 & \ldots & v_n \end{bmatrix} \right|
 	\end{equation}	
 \end{theorem}
 \begin{remark}
-	Naturalmente se $v_1, \ldots, v_n$ sono una base ortonormale di $\mathbb{R}^n$ allora 
+	Naturalmente se $\{ v_1, \ldots, v_n \}$ sono una base ortonormale di $\mathbb{R}^n$ allora 
 	$$
 	m_n(L([0,1]^n)) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| = 1
 	$$
@@ -712,12 +718,12 @@ di cui godono certi insiemi oppure certe funzioni (si pensi a voler calcolare il
 \begin{remark}
 	Supponendo che $l_1, \ldots, l_n > 0$, allora
 	$$
-	L([0, l_1] \times \ldots \times [0, l_n]) = \left\{ v = \sum_{i=1}^n t_i v_i : 0 \leq t_i \leq x_i \right\} = \left\{ \sum_{i=1}^n \tau_i l_i v_i :  0 \leq \tau_i \leq 1 \right\} = T([0,1]^n) \text{ dove } T(x)=\sum_{i=1} \tau_i l_i v_i
+	L([0, l_1] \times \ldots \times [0, l_n]) = \left\{ v = \sum_{i=1}^n t_i v_i : 0 \leq t_i \leq x_i \right\} = \left\{ \sum_{i=1}^n \tau_i l_i v_i :  0 \leq \tau_i \leq 1 \right\} = T([0,1]^n)
 	$$
-	dunque
+	dove $T(x)=\sum\limits_{i=1}^n \tau_i l_i v_i$, dunque
 	\begin{flalign*}
-	&m_n(L([0, l_1] \times \ldots \times [0, l_n])) = m_n(T([0,1]^n)) = \left| \det \begin{bmatrix} l_1v_1, l_2v_2, \ldots, l_n v_n \end{bmatrix} \right| = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| \prod_{i=1}^n l_i = & \\ 
-	&\left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| m_n([0, l_1] \times \ldots \times [0, l_n])  
+	&m_n(L([0, l_1] \times \ldots \times [0, l_n])) = m_n(T([0,1]^n)) = \left| \det \begin{bmatrix} l_1v_1, l_2v_2, \ldots, l_n v_n \end{bmatrix} \right| = \\
+	&=\left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| \prod_{i=1}^n l_i = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| m_n([0, l_1] \times \ldots \times [0, l_n])  
 	\end{flalign*}
 \end{remark}
 \begin{definition}[jacobiano]
@@ -735,7 +741,7 @@ di cui godono certi insiemi oppure certe funzioni (si pensi a voler calcolare il
 	e dunque per l'osservazione precedente avremo che
 	\begin{align*}
 	&m_n (L([0, l_1] \times \ldots \times [0, l_n])) = \left| \det \begin{bmatrix} v_1, \ldots, v_n \end{bmatrix} \right| l_1 \ldots l_n = DL m_n([0, l_1] \times \ldots \times [0, l_n]) \implies \\ 
-	&DL = \frac{m_n(L([0, l_1] \times \ldots \times [0, l_n]))}{m_n([0, l_1] \times \ldots \times [0, l_n])}
+	&\implies DL = \frac{m_n(L([0, l_1] \times \ldots \times [0, l_n]))}{m_n([0, l_1] \times \ldots \times [0, l_n])}
 	\end{align*}
 	dove in realtà $Q$ può essere sostituito da un qualunque insieme $E \in \mathfrak{M}(\mathbb{R}^n)$ con $m_n(E) > 0$.
 \end{remark}
@@ -810,14 +816,14 @@ DT(\rho, \varphi) = \det \begin{bmatrix} \cos{\varphi} && -\rho \sin{\theta} \\
 	\sin{\varphi} && \rho \cos{\theta}
 \end{bmatrix} 
 $$
-per garantire l'iniettiva della nostra trasformazione, definiamo $T: \mathbb{R}^+ \times (0, 2\pi) \mapsto \mathbb{R}^2 \setminus ([0; +\infty) \times \{0\})$ dunque
+per garantire l'iniettiva della nostra trasformazione, definiamo $T: \mathbb{R}^+ \times (0, 2\pi) \mapsto \mathbb{R}^2 \setminus ([0; +\infty) \times \{0\})$ pertanto verrà "generato" tutto il piano trannne l'asse delle ascisse positive, come si può vedere dall'immagine qua sotto:
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		% Assi
-		\draw[->] (-3, 0) -- (0, 0);
-		\draw[->, dashed] (0, 0) -- (3, 0) node[right] {\(x\)};
-		\draw[->] (0, -3) -- (0, 3) node[above] {\(y\)};
+		\draw[] (-1, 0) -- (0, 0);
+		\draw[->, dashed] (-1, 0) -- (3, 0) node[right] {\(x\)};
+		\draw[->] (0, -1) -- (0, 3) node[above] {\(y\)};
 		% Il segmento che rappresenta \rho
 		\node[above] at (2, 2) {\((x, y)\)};
 		\draw[thick] (0, 0) -- (2, 2) node[midway, above left] {\(\rho\)};
@@ -857,8 +863,8 @@ Per le coordinate polari, dunque, se $E \subseteq \mathbb{R}^2$ misurabile allor
 	$$
 	dunque possiamo studiare direttamente l'integrale in due variabili dove possiamo passare alle coordinate polari. Osserviamo che
 	\begin{align*}
-	&\int_{\mathbb{R}^2} e^{-x^2 - y^2} dxdy = \int_{0}^{+\infty} \int_{0}^{2\pi} e^{-\rho^2 \cos^2{\varphi} - \rho^2 \sin^2{\varphi}} \rho d\theta d\rho = \int_0^{+\infty} \rho d\rho \int_{0}^{2 \pi} e^{-\rho^2} \rho d\rho = -\pi \int_0^{+\infty} -2 \rho e^{-\rho^2} d\rho = - \pi e^{-\rho^2}\Bigg|^{+\infty}_{0} = \\
-	&=0 + \pi = \pi
+	&\int_{\mathbb{R}^2} e^{-x^2 - y^2} dxdy = \int_{0}^{+\infty} \int_{0}^{2\pi} e^{-\rho^2 \cos^2{\varphi} - \rho^2 \sin^2{\varphi}} \rho d\theta d\rho = \int_0^{+\infty} \rho d\rho \int_{0}^{2 \pi} e^{-\rho^2} \rho d\rho = \\
+	&=-\pi \int_0^{+\infty} -2 \rho e^{-\rho^2} d\rho = - \pi e^{-\rho^2}\Bigg|^{+\infty}_{0} =0 + \pi = \pi
 	\end{align*}
 	dunque $\int\limits_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi}$ 
 \end{proof}
@@ -866,9 +872,10 @@ Per le coordinate polari, dunque, se $E \subseteq \mathbb{R}^2$ misurabile allor
 	Mostrare che $\int\limits_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy = +\infty$
 \end{exercise}
 \begin{proof}
-	$$
-	\int_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy \geq \int_{B(0,1) \cap (0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2} dxdy = \int_{0}^1 \int_0^{2\pi} \frac{|\cos^2{\varphi} - \sin^2{\varphi}|}{\rho} d\rho d\varphi = \int_0^{1} \frac{1}{\rho} d\rho \int_0^{2\pi} |\cos{\frac{\varphi}{2}}| d\varphi = +\infty
-	$$
+	\begin{align*}
+	&\int_{(0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2}dxdy \geq \int_{B(0,1) \cap (0,1)^2} \frac{|x^2 - y^2|}{(x^2 + y^2)^2} dxdy = \int_{0}^1 \int_0^{2\pi} \frac{|\cos^2{\varphi} - \sin^2{\varphi}|}{\rho} d\rho d\varphi = \\
+	&=\int_0^{1} \frac{1}{\rho} d\rho \int_0^{2\pi} |\cos{\frac{\varphi}{2}}| d\varphi = +\infty
+	\end{align*}
 \end{proof}
 \subsection{Volumi dei solidi di rotazione}
 Definiamo un solido di rotazione attorno all'asse z come l'insieme misurabile $E \subseteq \mathbb{R}^3$ descritto dal profilo $\rho: [h_1, h_2] \to [0; +\infty)$ continuo tale che abbiamo
@@ -877,8 +884,8 @@ E = \{(x, y, z) \in \mathbb{R}^3 : x^2 + y^2 \leq \rho(z), h_1 \leq z \leq h_2 \
 $$
 Per misurare tale insieme possiamo usare il teorema di Tonelli banalmente
 \begin{align*}
-&m_3(E) = \int_E \mathbb{1}_E dm_3 = \int_{h_1}^{h_2} \left( \int_{E_z} dxdy \right) = \int_{h_1}^{h_2} \left( \int_{E_z} \rho d\rho d\varphi \right) = \int_{h_1}^{h_2} \left( \int_0^{\rho(z)} \rho d\rho \int_0^{2\pi} d\varphi \right)dz = \int_{h_1}^{h_2} \pi \rho^2(z) dz \\
-&= \pi \int_{h_1}^{h_2} \rho^2(z) dz  
+&m_3(E) = \int_E \mathbb{1}_E dm_3 = \int_{h_1}^{h_2} \left( \int_{E_z} dxdy \right) = \int_{h_1}^{h_2} \left( \int_{E_z} \rho d\rho d\varphi \right) = \\
+&\int_{h_1}^{h_2} \left( \int_0^{\rho(z)} \rho d\rho \int_0^{2\pi} d\varphi \right)dz = \int_{h_1}^{h_2} \pi \rho^2(z) dz = \pi \int_{h_1}^{h_2} \rho^2(z) dz
 \end{align*}
 \begin{example}
 Consideriamo un cono retto di altezza $H > 0$ e raggio $R > 0$. Definiamo $\rho(z)$ lineare e tale che $\rho(H) = 0, \rho(0) = R \implies \rho(z) = R - \frac{R}{H}z, \rho: [0, H] \to [0; +\infty)$, pertanto
@@ -893,10 +900,11 @@ Abbiamo quindi mostrato il seguente teorema:
 	m_3(E) = \pi \int_{h_1}^{h_2} \rho^2(z)dz
 	$$
 \end{theorem}
-Adesso cerchiamo di estendere la definizione di coordinate polari a $3$ dimensioni. Vogliamo che, nel caso di $z$ costante, individuare alla vecchia maniera 2-dimensionale. Pertanto una possibile trasformazione può essere la seguente
+Adesso cerchiamo di estendere la definizione di coordinate polari a $3$ dimensioni. Vogliamo che, nel caso di $z$ costante, individuare un punto alla "vecchia" maniera 2-dimensionale: in pratica si vuole individuare una trasformazione per cui il punto è caratterizzato dalla sua "altezza" (ovvero la sua coordinata $z$) e, proiettando il punto sul piano $(x, y)$, dalla lunghezza e dall'angolo formato con l'asse $x$ del segmento che congiunge l'origine con il punto proiettato. Una possibile trasformazione "candidata" può essere la seguente
 $$
 	T(\rho, \varphi, h) = (\rho \cos{\varphi}, \rho \sin{\varphi}, h) = (x, y, z) \implies \begin{cases} x = \rho \cos{\varphi} \\ y = \rho \sin{\varphi} \\ z = h \end{cases}
 $$
+e riporto una figura più chiarire meglio il concetto espresso sopra:
 \begin{figure}[H]
 	\centering
 	\tdplotsetmaincoords{60}{110}
@@ -1020,7 +1028,8 @@ Provare che $\int_{B(0, 1)} \frac{1}{|x|^\alpha}$ converge $\iff 0 < \alpha < n$
 	$t \geq 1$ avremo invece che $t^{\frac{1}{\alpha}} \geq 1 \implies \frac{1}{t^{\frac{1}{\alpha}}} \leq 1 \implies |x| < \frac{1}{t^{\frac{1}{\alpha}}}$ dunque la funzione caratteristica non si annullerà per $|x| < \frac{1}{t^{\frac{1}{\alpha}}}$
 	\begin{align*}
 	&\int_0^1 \left( \int_{B(0,1)} \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx \right)dt + \int_1^{+\infty} \int_{B(0,1)} \left( \mathbb{1}_{B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right)}(x)dx	\right)dt = \\
-	&m_n(B(0, 1)) + \int_1^{+\infty} m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \right) \stackrel{\text{per omogeneità}}{=} m_n(B(0,1)) + m_n(B(0,1)) \int_1^{+\infty} \frac{1}{t^{\frac{n}{\alpha}}} = m_n(B(0,1))(1 + \frac{t^{-\frac{n}{\alpha} + 1}}{1 - \frac{n}{\alpha}}\Bigg|^{+\infty}_{1})
+	&=m_n(B(0, 1)) + \int_1^{+\infty} m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \right) \stackrel{\text{per omogeneità}}{=} \\
+	&\stackrel{\text{per omogeneità}}{=} m_n(B(0,1)) + m_n(B(0,1)) \int_1^{+\infty} \frac{1}{t^{\frac{n}{\alpha}}} = m_n(B(0,1))(1 + \frac{t^{-\frac{n}{\alpha} + 1}}{1 - \frac{n}{\alpha}}\Bigg|^{+\infty}_{1})
 	\end{align*}
 	dove quest'ultima espressione converge solamente per $0 < \alpha < n$.
 \end{proof}
@@ -1035,13 +1044,15 @@ Provare che $\int\limits_{\mathbb{R}^n \setminus B(0,1)} \frac{1}{|x|^\alpha}dx 
 	\end{cases}
 	$$
 	e possiamo dunque considerare l'integrale della funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha})} : [0; +\infty] \times (\mathbb{R}^n \setminus B(0,1))$, parametrizzando la $|x|$ in funzione della $t$ osservando che quando $1 \leq t \leq +\infty$ siamo nella regione in cui la funzione caratteristica si annulla. Fra $[0, 1]$ la funzione $\mathbb{1}_{[0; \frac{1}{|x|^\alpha}]}$ sarà $0$ per $t \geq \frac{1}{|x|^\alpha} \implies |x| \geq t^{-\frac{1}{\alpha}}$. Fissando la $t$ integreremo la $x$ fra $B(0, \frac{1}{t^{-\frac{1}{\alpha}}}) \setminus B(0,1)$, dunque
-	$$
-	\int_{[0, +\infty] \times (\mathbb{R}^n \setminus B(0,1))} \mathbb{1}_{[0; \frac{1}{|x|^\alpha}]} = \int_0^{1} \left(\int_{\mathbb{R}^n \setminus B(0,1)} \mathbb{1}_{[0; \frac{1}{\frac{1}{t^{\frac{1}{\alpha}}}})} dx \right) dt + \cancel{\int_1^{+\infty} \left( \int_{\mathbb{R}^n \setminus B(0, 1)} \mathbb{1}_{[0; \frac{1}{|x|^\alpha})} dx \right) dt}
-	$$
+	\begin{align*}
+	&\int_{[0, +\infty] \times (\mathbb{R}^n \setminus B(0,1))} \mathbb{1}_{[0; \frac{1}{|x|^\alpha}]} = \\
+	&=\int_0^{1} \left(\int_{\mathbb{R}^n \setminus B(0,1)} \mathbb{1}_{[0; \frac{1}{\frac{1}{t^{\frac{1}{\alpha}}}})} dx \right) dt + \cancel{\int_1^{+\infty} \left( \int_{\mathbb{R}^n \setminus B(0, 1)} \mathbb{1}_{[0; \frac{1}{|x|^\alpha})} dx \right) dt}
+	\end{align*}
 	dove l'ultimo integrale si annulla per quanto detto prima. Osserviamo che il primo integrale invece è pari a
-	$$
-	\int_0^1 m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \setminus B(0,1) \right)dt = \int_0^1 m_n \left( B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}}\right) \right) - m_n(B(0, 1))dt \stackrel{\text{per omogeneità}}{=} m_n(B(0,1))\int_0^1 t^{-\frac{n}{\alpha}} - 1 dt
-	$$
+	\begin{align*}
+	&\int_0^1 m_n \left(B \left(0, \frac{1}{t^{\frac{1}{\alpha}}} \right) \setminus B(0,1) \right)dt = \int_0^1 m_n \left( B \left(0, \frac{1}{t^{-\frac{1}{\alpha}}}\right) \right) - m_n(B(0, 1))dt \stackrel{\text{per omogeneità}}{=} \\
+	&\stackrel{\text{per omogeneità}}{=} m_n(B(0,1))\int_0^1 t^{-\frac{n}{\alpha}} - 1 dt
+	\end{align*}
 	il quale converge se e solo se $-\frac{n}{\alpha} > - 1 \implies \frac{n}{\alpha} < 1 \implies \alpha > n$.
 \end{proof}
 Potremmo mostrare, in maniera più formale, la seguente proposizione
@@ -1224,7 +1235,7 @@ Dal precedente esercizio, sappiamo è possibile parametrizzare come
 	\begin{flalign*}
 	&\int_{(0, 2pi)^2} \frac{(R+r\cos{\theta}) |\cos{\varphi}||r\sin{\theta}|r(R+r\cos{\theta})}{R+r\cos{\theta}}d\varphi d\theta = r^2 \int_{(0,2\pi)^2} \frac{|\cos{\varphi}| |\sin{\theta}|}{R + r\cos{\theta}} d\varphi d\theta = & \\
 	&= r^2 \int_0^{2\pi} |\cos{\varphi}|d\varphi \int_0^{2 \pi} \frac{|\sin{\theta}|}{R + r\cos{\theta}} d\theta = 4r \int_0^\pi \frac{\sin{\theta}}{R + r\cos{\theta}}d\theta - 4r \int_\pi^{2\pi} \frac{\sin{\theta}}{R + r\cos{\theta}}d\theta & \\
-	= 8r\log{\frac{R+r}{R-r}}
+	&= 8r\log{\frac{R+r}{R-r}}
 	\end{flalign*}
 \end{proof}
 Adesso abbiamo tutti gli strumenti per determinare l'area ottenuta facendo ruotare una curva di $2\pi$ attorno ad un asse: supponiamo di avere una curva $\gamma: [a, b] \to \mathbb{R}^2$ $C^1_\text{tratti}$ tale che $\gamma_1(t) > 0 \, \, \forall t \in [a, b]$ e di voler
@@ -1383,8 +1394,8 @@ Tramite questa definizione, possiamo dare un senso all'integrale curvilineo calc
 	Il valore dell'integrale lungo il bordo è, ovviamente, indipendente dalla parametrizzazione. Conseguentemente potremmo pensare di applicare il teorema di Gauss-Green sulla curva semplice, chiusa e $C^1_\text{tratti}$ più "semplice" possibile, ovvero una curva di forma rettangolare.
 	Pertanto
 	\begin{flalign*}
-	&\int_{\gamma} F = -\int_{\partial^{+} \Omega} F = - \int_{\partial^{+} \Omega} F_1 dx + F_2 dy = - \int_\Omega \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = \int_{-1}^{1} dx \int_1^2 (-1 - 2x)dy = \int_{-1}^{1} (-1 - 2x)dx = & \\ 
-	&= -2 - 2 \int_{-1}^1 xdx = -2 \implies \int_{\gamma} F = - 2
+	&\int_{\gamma} F = -\int_{\partial^{+} \Omega} F = - \int_{\partial^{+} \Omega} F_1 dx + F_2 dy = - \int_\Omega \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = \\ 
+	&\int_{-1}^{1} dx \int_1^2 (-1 - 2x)dy = \int_{-1}^{1} (-1 - 2x)dx = -2 - 2 \int_{-1}^1 xdx = -2 \implies \int_{\gamma} F = - 2
 	\end{flalign*}
 \end{proof}
 \begin{example}
@@ -1510,7 +1521,8 @@ $$
 	$$
 	Usando la forma d'area unito al teorema di Gauss-Green abbiamo che
 	\begin{flalign*}
-	&\int_{\partial^{+} \Omega} xdy = \int_E dxdy = \int_{\gamma} xdy = \int_0^{2\pi} ab \cos^2{\varphi} = ab \int_0^{2\pi} \frac{1+\cos{2\varphi}}{2}d\varphi = ab \left( \int_0^{2\pi} \frac{1}{2} d\varphi + \frac{1}{2} \int_0^{2\pi} \cos{2\varphi} d\varphi \right) = \pi ab
+	&\int_{\partial^{+} \Omega} xdy = \int_E dxdy = \int_{\gamma} xdy = \int_0^{2\pi} ab \cos^2{\varphi} = ab \int_0^{2\pi} \frac{1+\cos{2\varphi}}{2}d\varphi = \\
+	&=ab \left( \int_0^{2\pi} \frac{1}{2} d\varphi + \frac{1}{2} \int_0^{2\pi} \cos{2\varphi} d\varphi \right) = \pi ab
 	\end{flalign*}
 \end{proof}
 \begin{remark}
@@ -1524,7 +1536,8 @@ $$
 	$$
 	pertanto
 	\begin{flalign*}
-	&m_2(E) = \int_E dxdy = \int_{T^{-1}(E)} \rho d \rho d\varphi = \int_{F} \rho d\rho d\varphi = \int_{\alpha}^{\beta} \int_0^{r(\varphi)} \rho d\rho \implies m_2(E) = \frac{1}{2} \int_\alpha^\beta r(\varphi)^2 d\varphi
+	&m_2(E) = \int_E dxdy = \int_{T^{-1}(E)} \rho d \rho d\varphi = \int_{F} \rho d\rho d\varphi = \int_{\alpha}^{\beta} \int_0^{r(\varphi)} \rho d\rho \implies \\
+	&\implies m_2(E) = \frac{1}{2} \int_\alpha^\beta r(\varphi)^2 d\varphi
 	\end{flalign*}
 	Dunque, sempre ponendo $\Gamma = T^{-1} \circ \gamma$ avremo che
 	$$
@@ -1542,8 +1555,9 @@ Sia $\Gamma$ una curva $C^1_\text{tratti}$, chiusa e semplice che percorre $\par
 \begin{proof}[Svolgimento]
 	Usiamo il teorema di Gauss-Green
 	\begin{flalign*}
-	&\int_\Gamma F = -\int_{\gamma_1 + \gamma_2 + \gamma_3 + \gamma_4} F = \int_{\partial^{+} \Omega} F = -\int_{\Omega} \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = -\int_\Omega (2yx + 2yx) dxdy = -4\int_\Omega yz dxdy = \\
-	&= - 4 \int_0^{\sqrt{3}} dx + \int_0^{\sqrt{1+x^2}} yx dxdy = - 4 \int_0^{\sqrt{3}} x \left( \frac{1+x^2}{2} \right) dx = -\left( \frac{x^2}{2} + \frac{x^4}{4} \right)\Bigg|_{x=0}^{x=\sqrt{3}} = - \frac{15}{2}
+	&\int_\Gamma F = -\int_{\gamma_1 + \gamma_2 + \gamma_3 + \gamma_4} F = \int_{\partial^{+} \Omega} F = -\int_{\Omega} \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dxdy = \\
+	&=-\int_\Omega (2yx + 2yx) dxdy = -4\int_\Omega yz dxdy = - 4 \int_0^{\sqrt{3}} dx + \int_0^{\sqrt{1+x^2}} yx dxdy = \\
+	&=- 4 \int_0^{\sqrt{3}} x \left( \frac{1+x^2}{2} \right) dx = -\left( \frac{x^2}{2} + \frac{x^4}{4} \right)\Bigg|_{x=0}^{x=\sqrt{3}} = - \frac{15}{2}
 \end{flalign*}
 \end{proof}
 \section{Flusso e teorema della divergenza}
@@ -1739,9 +1753,10 @@ $$
 Mostriamo due esempi famosi del teorema della divergenza
 \subsection{Legge di Gauss}
 Sia $E = k_e \frac{q}{r^2}\hat{r}$ il campo elettrico generato da una carica puntiforme, allora
-$$
-\Div E = \Div(k_e \frac{q}{r^2} \hat{r}) = \Div(k_e \frac{q}{r^3}r) = k_e q \sum_{i=1}^3 \partial_{x_i} (\frac{x_i}{|x|^3}) = k_e q \sum_{i=1}^3 \frac{|x|^3 - 3 x_i^2 |x|}{|x|^6} = k_e q \frac{3|x|^2 - 3 |x|^2}{|x|^5} = 0
-$$ 
+\begin{align*}
+&\Div E = \Div(k_e \frac{q}{r^2} \hat{r}) = \Div(k_e \frac{q}{r^3}r) = k_e q \sum_{i=1}^3 \partial_{x_i} (\frac{x_i}{|x|^3}) = k_e q \sum_{i=1}^3 \frac{|x|^3 - 3 x_i^2 |x|}{|x|^6} = \\
+&=k_e q \frac{3|x|^2 - 3 |x|^2}{|x|^5} = 0
+\end{align*}
 $E$ è ben definito $\Omega \setminus B(x_0, \varepsilon)$ e, dunque, possiamo applicare il teorema della divergenza su $\Omega \setminus B(x_0, \varepsilon)$, da cui deduciamo che
 \begin{align*}
 &\Phi(E, \partial_{\text{reg}} (\Omega \setminus B(x_0, \varepsilon)), \nu) = \int_{\partial \Omega} \innerprod{E}{\nu} d\sigma + \int_{\partial B(x_0, \varepsilon)} \innerprod{E}{\nu} d\sigma = \Phi(E, \partial \Omega, \nu) - k_e \frac{q}{\varepsilon^2} (4 \pi \varepsilon^2) = \\
