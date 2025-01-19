@@ -481,6 +481,65 @@ ma allora
 \end{align*}
 ovvero la tesi. Analogamente si può fare la dimostrazione nel caso di campi vettoriali.
 \end{proof}
+\begin{remark}
+	L'ipotesi che $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$ è fondamentale: esistono infatti delle forme differenziali esatte che non sono chiuse. Come esempio, consideriamo la funzione definita su $\mathbb{R}^2$
+	$$
+	F(x, y) = \begin{cases}
+		\frac{xy(x^2 - y^2)}{x^2 + y^2} & (x, y) \neq (0, 0) \\
+		0 & (x, y) = (0, 0)
+	\end{cases}
+	$$
+	osserviamo che $F(x, 0) = F(y, 0) = 0 \, \forall x \in \mathbb{R}, \forall y \in \mathbb{R}$. Avremo dunque che
+	$$
+	\partial_x F(0, 0) = \lim_{x \to 0} \frac{F(x, 0) - F(0, 0)}{x} = \lim_{x \to 0} \frac{0 - 0}{x} = 0
+	$$
+	mentre, al di fuori dell'origine, avremo che
+	$$
+	\partial_x F(x, y) = \frac{y(x^4 + 4x^2 y^2 - y^4)}{(x^2 + y^2)^2}
+	$$
+	dunque
+	$$
+	\partial_x F = \begin{cases}
+		\frac{y(x^4 + 4x^2 y^2 - y^4)}{(x^2 + y^2)^2} & (x, y) \neq (0, 0) \\
+		0 & (x, y) = (0, 0)
+	\end{cases}
+	$$
+	La continuità della derivata segue dal fatto che
+	$$
+	\lim_{(x, y) \to (0, 0)} \partial_x F(x, y) = \partial_x F(0, 0) = 0
+	$$
+	infatti, passando in coordinate polari, abbiamo che
+	\begin{align*}
+	&\lim_{(x, y) \to (0, 0)} \partial_x F(x, y) = \lim_{\rho \to 0} \frac{\rho \sin{\varphi} \rho^4 (\cos^4{\varphi} + 4 \cos^2{\varphi} \sin^2{\varphi} - \sin^4{\varphi})}{\rho^4} = \\
+	&\lim_{\rho \to 0} \rho \sin{\varphi}(\cos{2\varphi} + \sin^2{2\varphi}) = 0.
+	\end{align*}
+	Analogamente si ricava lo stesso per quanto riguarda la derivata parziale rispetto a $y$
+	$$
+	\partial_y F(x, y) = \begin{cases}
+		\frac{x(x^4 - 4x^2 y^2 - y^4)}{(x^2 + y^2)^2} & (x, y) \neq (0, 0) \\
+		0 & (x, y) = (0, 0).
+	\end{cases}
+	$$
+	Definiamo allora la $1-$forma
+	$$
+	\omega = X(x, y)dx + Y(x, y)dy
+	$$
+	dove
+	\begin{align*}
+		&X(x, y) = \partial_x F(x, y) \\
+		&Y(x, y) = \partial_y F(x, y).
+	\end{align*}
+	Questa forma è, naturalmente, esatta, siccome ha come primitiva la funzione $F(x, y) + c$. Tale forma non risulta chiusa, però, infatti
+	$$
+	\partial_y X(0, 0) = F_{xy}(0, 0) = \lim_{y \to 0} \frac{\partial_x F(0, y) - \partial_x F(0, 0)}{y} = \lim_{y \to 0} \frac{-\frac{y^5}{y^4} - 0}{y} = \lim_{y \to 0} (-1) = -1 
+	$$
+	mentre
+	$$
+	\partial_x Y(0, 0) = F_{yx}(0, 0) = \lim_{x \to 0} \frac{\partial_y F(x, 0) - \partial_y F(0, 0)}{x} = \lim_{x \to 0} \frac{\frac{x^5}{x^4}-0}{x} = 1.
+	$$
+	Il fatto che la forma dell'esempio sia esatta su $\mathbb{R}^2$ ma non chiusa è legata al fatto che i suoi coefficienti $X$ e $Y$, sebbene continui su $\mathbb{R}^2$ e di cui esiste la derivata $\partial_y X$ e $\partial_x Y$, non ammettono derivate continue. 
+\end{remark}
+
 Faremo uso adesso del seguente lemma
 \begin{lemma}[CF2]
 	Sia $\Omega \subseteq \mathbb{R}^n$ un insieme aperto, connesso per archi e sia $f \in C^1(\Omega)$ tale che $\nabla f(x) = 0 \, \, \forall x \in \Omega$. Allora
@@ -593,7 +652,7 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 	\end{align*}
 	per la convessità di $E$ avremo che $H(s, t) \in E$. Avremo per $s = 0$ che $H(0, t)=\gamma(t)$ e per $s=1$ che $H(1, t)=x_0$. Siccome $H$ è continua, avremo che $H$ è un'omotopia in $E$ tra $\gamma$ e $x_0$.
 \end{proof}
-\begin{theorem}
+\begin{theorem}[lemma di Poincare per gli aperti semplicemente connesi]
 	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e semplicemente connesso e sia $\omega \in C^1(\Omega, (\mathbb{R}^n)^*)$. Allora
 	\begin{align*}
 		\omega \text{ è chiusa } \iff \omega \text{ è esatta }. 
@@ -603,7 +662,10 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 		F \text{ è irrotazionale } \iff F \text{ è conservativo }.
 	\end{align*}
 \end{theorem}
-\begin{proof} la dimostrazione verrà fatta, senza perdere di generalità, nel caso delle $1-$forme differenziali. \\
+La dimostrazione proposta per l'implicazione verso destra ($\Rightarrow$) riporta qua sotto vale nel caso di insiemi stellati rispetto a $x_0$, ovvero insiemi in cui esiste almeno un punto $x_0$ per cui ogni segmento fra $x_0$ e $x$ appartenente all'insieme è contenuto in esso. Tuttavia sebbene $\text{insieme stellato} \implies \text{insieme semplicemente connesso}$, non vale il viceversa.
+Nelle appendici riporterò la dimostrazione per insiemi semplicemente connessi, dove necessito di usare alcuni strumenti della geometria differenziale.
+\begin{proof} 
+	la dimostrazione verrà fatta, senza perdere di generalità, nel caso delle $1-$forme differenziali. \\
 	$\boxed{\Leftarrow}:$ già dimostrato nella proposizione~\ref{prop:esattezza_imp_chiusura} \\
 	$\boxed{\Rightarrow}:$ %questa dimostrazione si rifà a delle proprietà del \emph{prodotto wedge}, che trovate nelle appendici.
 	%Sappiamo che $\omega = a_1(x)dx_1 + \ldots + a_n(x)dx_n$ e, siccome la forma $\omega$ è chiusa, abbiamo che $d\omega = 0$, dunque

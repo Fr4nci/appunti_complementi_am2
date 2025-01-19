@@ -90,8 +90,8 @@ Con gli argomenti precedenti in combinazione con il teorema di Schwarz di ordine
 	$$
 	e ciò implica, per quanto visto nel capitolo 3, che
 	\begin{align*}
-	&P_k(f, \xi) = \sum_{j=0}^k \frac{1}{j!} d^j f(\xi)(x - \xi) = \sum_{j=0}^k \sum_{|\alpha| = j} \binom{j}{\bm{\alpha}} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} \stackrel{\binom{j}{\bm{\alpha}} = \frac{j!}{\alpha!}}{=} \sum_{j=0}^k \sum_{|\alpha| = j} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} = & &\\
-	&= \sum_{0 \leq |\alpha| \leq k} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha}
+	&P_k(f, \xi) = \sum_{j=0}^k \frac{1}{j!} d^j f(\xi)(x - \xi) = \sum_{j=0}^k \frac{1}{j!} \sum_{|\alpha| = j} \binom{j}{\bm{\alpha}} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} \stackrel{\binom{j}{\bm{\alpha}} = \frac{j!}{\bm{\alpha}!}}{=} \\
+	&\stackrel{\binom{j}{\bm{\alpha}} = \frac{j!}{\bm{\alpha}!}}{=} \sum_{j=0}^k \sum_{|\alpha| = j} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha} = \sum_{0 \leq |\alpha| \leq k} \frac{1}{\alpha!} \partial^{\alpha}_x f(\xi) (x - \xi)^{\alpha}
 	\end{align*}
 \end{proof}
 \begin{theorem}[formula di Taylor coi multi-indici]
