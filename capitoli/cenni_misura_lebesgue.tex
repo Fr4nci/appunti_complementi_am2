@@ -11,6 +11,9 @@ L'intuizione ci porta a pensare che questa funzione goda delle seguenti propriet
 	\item Se $A, B \subseteq X$ tali che $A \subseteq B \implies m_n(A) \leq m_n(B)$
 	\item Se $A, B \subseteq X$ tali che $A \cap B = \emptyset \implies m_n(A \cup B) = m_n(A) + m_n(B)$
 \end{enumerate}
+Prima di procedere ulteriormente sullo sviluppo della teoria della misura di Lebesgue, vorrei aprire una breve parentesi "qualitativa" su come trovare la misura di un insieme: l'approccio più \emph{naive} possibile consiste nel coprire il nostro insieme con dei rettangoli e sommare i volumi di questi rettangoli. Questo approccio ci consente di ottenere quello che viene chiamata \emph{misura esterna}, ovvero una funzione d'insieme che è ben definita su ogni insieme e che soddisfa tutte le buone
+proprietà che ci aspettiamo da una misura che generalizza il nostro concetto di misura tranne quella di additività della misura. Per essere una misura "vera e propria" (ovvero che goda anche di additività) si può mostrare che è necessario restringerci
+ad una classe di insiemi (che saranno gli insiemi \emph{misurabili}) su cui la nostra misura esterna godrà di additività (questo risultato prende il nome di \emph{teorema di Caratheodory}, di cui non daremo dimostrazione).
 \begin{definition}[misura di un intervallo e di un $n-$intervallo]
 	Per ogni intervallo $I \subseteq \mathbb{R}$ limitato definiamo
 	$$
@@ -28,14 +31,6 @@ L'intuizione ci porta a pensare che questa funzione goda delle seguenti propriet
 		\label{eq:def_lebesgue}
 	\end{equation}
 \end{definition}
-\begin{remark}
-	Con un procedimento abbastanza simile a come abbiamo fatto per la misura di Peano-Jordan, approssimiamo un insieme $E$ tramite degli $n-$intervalli dall'esterno. La sostanziale differenza, per come stiamo introducendo la misura di Lebesgue, è che stiamo approssimando solamente "da fuori".
-	In questa maniera possiamo misurare una classe di insiemi più ampia rispetto a quella della misura di Peano-Jordan, in cui si richiedeva che la misura approssimata "da dentro" coincideva con la misura approssimata "da fuori".
-\end{remark}
-Come vedremo fra un po', esistono degli insiemi che non sono misurabili per Lebesgue; dunque per ogni sottoinsieme di $X$ non è possibile definire una misura $m_n$ (non su tutti gli insiemi essa è additiva come richiesto, dunque non è una misura). \\ Ci basta, tuttavia, definire una misura \emph{esterna}, ovvero
-una funzione che stima il volume di un qualunque insieme $E$ attraverso una collezione di insiemi che ricopre dall'esterno il nostro insieme. In questa maniera è possibile definire una funzione d'insieme definita per ogni insieme, tuttavia non rispetta la proprietà di additività numerabile che noi vogliamo per effettuare operazioni come i limiti: tramite 
-il teorema di Caratheodory si può tuttavia mostrare che, presa una misura esterna $\mu^*$, esiste uno spazio di misura in cui la misura coincide con quella esterna. \\
-Successivamente, dovremo cercare un criterio con cui stabilire se un insieme $E$ è misurabile o meno.
 \begin{definition}
 	Diremo che $\mu^*: \mathcal{P}(X) \mapsto [0; +\infty]$ è una misura esterna se
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -81,8 +76,7 @@ Successivamente, dovremo cercare un criterio con cui stabilire se un insieme $E$
 	\mu^* \left( \bigcup_{i=1}^k E_i \right) \leq \sum_{i=1}^k \mu^*(E_i)
 	$$
 \end{proof}
-Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effettivamente una misura esterna, dunque è un buon punto di partenza per poter definire una misura che possieda le proprietà che abbiamo enunciato all'inizio di questo capitolo, siccome il teorema di 
-Caratheodory ci assicura di poter trovare uno spazio di misura in cui la misura esterna $\mu^*$ è effettivamente una misura (ovvero è additiva su ogni insieme dello sapzio e non subadditiva).
+Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effettivamente una misura esterna, dunque, in virtù di quanto detto, possiamo individuare e restringere $m_n$ ad una classe di insiemi per cui $m_n$ rappresenta una vera e propria misura.
 \begin{prop}[misura di Lebesgue è una misura esterna]
 	$m_n: \mathcal{P}(X) \to [0; +\infty]$ è una misura esterna
 	\label{prop:lebesgue_mis_esterna}
