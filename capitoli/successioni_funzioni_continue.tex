@@ -207,6 +207,7 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 	\begin{align*}
 		E \subseteq \mathbb{R}^n \text{ è compatto } \iff E \text{ è chiuso e limitato.}
 	\end{align*}
+	\label{thm:heine_borel}
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
 $\boxed{\Rightarrow}$: sia $x_k \to x \implies$ (per l'ipotesi di compattezza) $\exists y \in E \exists \alpha: \mathbb{N} \to \mathbb{N} x_{\alpha(k)} \to y \in E \implies x=y \in E$ per unicità del limite. Se $E$ non fosse limitato $\implies \exists \{x_k \} \subset E : |x_k| \to +\infty$ e per la compattezza $\exists \beta: \mathbb{N} \to \mathbb{N}$ strettamente crescente tale che $x_{\beta(k)} \to x \in E$ ma per unicità del limite $|x_\beta(k)| \to |x_k| \to +\infty$ e questo contraddice il limite $+\infty$. \\
