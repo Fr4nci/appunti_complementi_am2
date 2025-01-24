@@ -1,4 +1,7 @@
 \chapter{Spazi euclidei}
+	\pagestyle{plain}
+	\thispagestyle{empty}
+	\pagestyle{fancy}	
 	In questo capitolo, ci soffermeremo su alcuni risultati che possono essere ottenuti considerando uno spazio euclideo e sullo studio della sua topologia, siccome molti concetti dell'Analisi 1 devono essere concettualmente rivisti per poter essere generalizzati a spazi di dimensione diversa da 1. \\
 	Nell'utilizzo a dimensioni maggiore di $1$ siamo quasi "obbligati" a fare riferimento ad alcuni strumenti presi dal corso di Geometria per sviluppare correttamente la teoria, pertanto per una trattazione più accurata rimando ai libri più celebri riguardo a Geometria come \cite{lang} oppure \cite{sernesi}.
 	
@@ -463,12 +466,14 @@ dunque $|z-x| < r$ il che implica che $B(y, \varepsilon) \subset B(x, r)$
 \end{proof}
 \begin{exercise}
 Siano $\{A_j: j \in J \}$ una famiglia di aperti (non necessariamente numerabile), allora $\bigcup\limits_{j \in J} A_j$ è un insieme aperto.
+\label{exercise:union_open_set_is_open}
 \end{exercise}
 \begin{proof}[Svolgimento]
 si osserva che, siccome $A_j$ è un insieme aperto $\forall j$, allora $\forall a \in A_j \exists r > 0: B(a, r) \subset A_j$, ma allora $B(a, r) \subset \bigcup\limits_{j \in J} A_j$, dunque $\forall a \in \bigcup\limits_{j \in J} A_j \exists r > 0: B(a, r) \subset \bigcup\limits_{j \in J} A_j$
 \end{proof}
 \begin{exercise}
 Siano $A_1, \ldots A_k \subseteq \mathbb{R}^n$ aperti, allora $\bigcap\limits_i^k A_i$ è un aperto
+\label{exercise:intersec_open_set_is_open}
 \end{exercise}
 \begin{proof}
 Sia $x \in \bigcap\limits_{i}^k A_i \implies \, \, \forall i \in \{1, \ldots, n \}, x \in A_i$ e, siccome per ipotesi sono aperti, avremo che $\forall i \, \, \exists r_i(x) : B(x, r_i(x)) \subseteq A_i$, dunque preso $r=\min\limits_i{ \{ r_i(x) : i \in \{1, \ldots, k \} \} }$ avremo che $\forall i \in \{1, \ldots, k \}, B(x, r) \subseteq A_i \implies B(x, r) \subseteq \bigcup\limits_i^k A_i$,
@@ -561,6 +566,7 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 \end{definition}
 \begin{exercise}
 	Provare che $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$
+	\label{exercise:frontiera_intersec}
 \end{exercise}
 \begin{proof}
 	Sia $x \in \text{Fr} \, A \implies \forall r > 0, B(x, r) \cap A \neq \emptyset \wedge B(x, r) \cap A^c \neq \emptyset$, ma allora $\forall r > 0, B(x, r) \cap A \neq \emptyset \implies x$ è un punto di aderenza di $A$, dunque $x \in \bar{A}$, e $\forall r > 0, B(x, r) \cap A^c \neq \emptyset \implies x$ è un punto
@@ -593,6 +599,7 @@ $A$ aperto $\iff A = \text{Int} \, A$
 \end{remark}
 \begin{prop}
 $F$ è chiuso $\iff F^c$ è aperto
+\label{prop:set_closed_iff_compl_open}
 \end{prop}
 \begin{proof} \hspace{1cm} \\
 	$\boxed{\Rightarrow}$: se $F$ è chiuso e $z \in F^c \implies z \in \text{Int} \, (F^c)$. Se per assurdo $z \not\in \text{Int} \, (F^c)$ allora $\forall r > 0: B(z, r) \not\subseteq F^c \implies B(z, r) \cap F \neq \emptyset \implies z \in \bar{F} = F \implies z \in F$, che contraddice l'ipotesi iniziale. \\

@@ -1,4 +1,7 @@
 \chapter{Curve e superfici regolari}
+\pagestyle{plain}
+\thispagestyle{empty}
+\pagestyle{fancy}
 In questo capitolo ci si sofferma nello studio delle curve e della superfici regolari, con particolare riguardo alla caratterizzazione delle curve tramite pre-immagini di funzioni implicite e lo studio dei massimi e i minimi di una funzione vincolata. Questo è particolarmente utile nello studio di alcuni tipi di problemi che possono capitare nella vita di tutti in giorni, in cui si è interessati a dei massimi o dei minimi vincolati ad una curva oppure ad una superficie.
 
 \section{Teorema della funzione inversa}
@@ -17,27 +20,18 @@ Innanzitutto, fissato $\Omega \subseteq \mathbb{R}^n$ e definiamo lo spazio di t
 \begin{definition}[spazio delle funzioni vettoriali di classe $C^k$]
 Sia $\Omega \subseteq \mathbb{R}^n, A \subseteq \mathbb{R}^m$ e $k \in \mathbb{N}$. Allora definiamo lo spazio delle funzioni vettoriali di classe $C^k$ come
 $$
-C^k(\Omega,A) = \{f: \Omega \to A, f = (f_1, \ldots, f_m) \wedge \forall j \in \{1, \ldots m \}, f_j \in C^k(\Omega) \}
+C^k(\Omega,A) = \{f: \Omega \to A \text{ con } f = (f_1, \ldots, f_m) \big| \forall j \in \{1, \ldots m \}, f_j \in C^k(\Omega) \}
 $$
 \end{definition}
-Adesso siamo pronti ad enunciare il seguente teorema, di cui non forniremo la dimostrazione, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
+Adesso siamo pronti ad enunciare il seguente teorema, di cui la dimostrazione è riportata nelle appendici, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
 \begin{theorem}[teorema della funzione inversa]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
-Allora $\exists r > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, r)}} \in C^{k}(B(x_0, r), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, r)}})^{-1}:U \to B(x_0, r)$, abbiamo che
-$g \in C^k(U, B(x_0, r))$ con
+Allora $\exists \rho > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, \rho)}} \in C^{k}(B(x_0, \rho), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, \rho)}})^{-1}:U \to B(x_0, \rho)$, abbiamo che
+$g \in C^k(U, B(x_0, \rho))$ con
 $$
-Dg(y) = (Df(g(y))^{-1} \, \forall y \in U
+Dg(y) = (Df(g(y)))^{-1} \, \forall y \in U
 $$
-\begin{proof}[Idea della dimostrazione]
-Nella dimostrazione è presente un richiamo al teorema di Newton in più variabili: come avevo accennato, noi vogliamo studiare le soluzioni all'equazione 
-$$
-f(x) = 0
-$$
-allora noi possiamo definire, siccome $f$ è differenziabile, una funzione del tipo
-$$
-f(x) - f(\xi) = \eta
-$$
-\end{proof}
+\end{theorem}
 \section{Teorema delle funzioni implicite o del Dini}
 Adesso il nostro argomento di interesse saranno le curve e le superfici: vogliamo sviluppare degli strumenti con cui trattare questo tipo di oggetti. In generale, possiamo procedere verso il nostro obbiettivo con due \emph{approcci} possibili:
 \begin{itemize}
@@ -78,7 +72,6 @@ Osserviamo due cose molto importanti:
 	\item viene richiesta un'ipotesi di \textbf{regolarità} sulla funzione $f$ (questo risulta intuitivo, da un lato, siccome stiamo cercando di approssimare, in un intorno \emph{piccolo} una funzione che vive, per esempio, in $\mathbb{R}^2$ con un $x$-grafico quindi deve essere regolare, d'altra parte dobbiamo applicare il teorema della funzione inversa per esplicitare una variabile in funzione dell'altra localmente);
 	\item è necessario conoscere almeno un valore della funzione $f$: nel caso del teorema è il punto $x_0 \in \Omega$, il quale svolge la funzione di una sorta di "ancora" per definire il comportamento locale della funzione
 \end{enumerate}
-\end{theorem}
 \begin{proof}
 Presa la funzione $f(x,y)$ possiamo considerare la funzione $\tilde{f}:\Omega \to \mathbb{R}^2$ tale che
 $$
@@ -93,11 +86,11 @@ D\tilde{f}(x_0, y_0) = \begin{pmatrix}
 $$
 e, dunque, il determinante di questa funzione è pari a $\partial_y f(x_0, y_0)$ che, per ipotesi, è diverso da zero, il che ci consente di applicare il teorema della funzione inversa a $\tilde{f}$. Conseguentemente, esisterà un intorno $U$ di $(x_0, f(x_0, y_0))$ tale che $\exists \tilde{g}: U \to \Omega$ tale che, ricordando che se $f: X \to Y$ e $g=f^{-1}: Y \to X$ allora $f(g(y))=y \, \, \forall y \in Y$,  allora $f(\tilde{g}(x, y)) = (x, y) \, \, \forall (x, y) \in U$. Ma, posto $\tilde{g}(x,y)=(g_1(x, y), g_2(x, y))$, possiamo dedurre che
 $$
-\tilde{f}(\tilde{g}(x, y)) = \tilde{f}((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y))
+\tilde{f}(\tilde{g}(x, y)) = \tilde{f}((g_1(x, y), g_2(x,y)) = (g_1(x, y), f(g_2(x, y)))
 $$
 permettendoci di concludere che
 \begin{align*}
-&\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y)) \implies \\
+&\forall (x, y) \in U, \, (x, y) = \tilde{f}(\tilde{g}(x, y)) = (g_1(x, y), f(g_1(x, y), g_2(x, y))) \implies \\
 &\implies \begin{cases}
 g_1(x, y) = x \\
 f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
@@ -105,7 +98,7 @@ f(g_1(x,y), g_2(x,y)) = f(x, g_2(x, y)) = y
 \end{align*}
 permettendoci, in conclusione, di giungere alla tesi definendo $\varphi(x) = g_2(x, f(x_0, y_0))$
 $$
-f(x, \varphi(x)) = f(x, g_2(x, f(x_0, y_0)) = f(x_0, y_0)
+f(x, \varphi(x)) = f(x, g_2(x, f(x_0, y_0))) = f(x_0, y_0)
 $$
 Per dimostrare la formula della derivata basta derivare quest'ultima relazione rispetto ad $x$:
 \begin{align*}

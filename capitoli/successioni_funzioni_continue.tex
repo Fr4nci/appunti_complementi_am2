@@ -1,4 +1,7 @@
 \chapter{Successioni e funzioni continue}
+	\pagestyle{plain}
+	\thispagestyle{empty}
+	\pagestyle{fancy}
 In questo capitolo andremo a definire il concetto di successione e vedere il forte collegamento presente fra esse e il concetto di continuità in più variabili. \\
 Ricordiamo al lettore che una successione a valori in un insieme $A$ è una funzione $x_k: \mathbb{N} \to A$. Vediamo adesso come si definisce il concetto di \emph{successione convergente} in più variabili
 \begin{definition}[convergenza di una successione]
@@ -58,7 +61,7 @@ l'importanza di questa dimostrazione sta nel fatto che questo teorema dimostra c
 \end{prop}
 \begin{proof} \hspace{1em} \newline
 $\boxed{\Rightarrow}$: Se $A$ è chiuso, considerando una generica $\underline{x_k} \to \underline{z}, \underline{x_k} \in A \, \forall k$, allora $\forall r > 0$ dato che $|\underline{x_k} - \underline{z}| \to 0 \, \exists k_r \in \mathbb{N}$ tale che $|\underline{x_k} - \underline{z}| < r \, \forall k \geq k_r \implies \underline{x_k} \in B(z, r) \implies B(z, r) \cap A \neq \emptyset \implies z \in \bar{A}$. Siccome A è chiuso allora $\bar{A} = A$ dunque $z \in A$. \\
-$\boxed{\Leftarrow}$: Sia $\underline{w} \in \bar{A} \implies B(\underline{w}, \frac{1}{k}) \cap A \neq \emptyset \, \forall k \geq 1$ quindi esiste una successione $\underline{x_k}$ (potremmo prendere per esempio $\underline{w}-\frac{1}{k}$). Ma allora $|\underline{x_k} - \underline{w}| < \frac{1}{k} \implies \underline{x_k} \stackrel{k \to +\infty}{\to} \underline{w} \implies \underline{w} \in A$ per la seconda proprietà, ma allora $\bar{A} \subset A \implies \bar{A} = A$ e dunque $A$ è chiuso per definizione. 
+$\boxed{\Leftarrow}$: Sia $\underline{w} \in \bar{A} \implies B(\underline{w}, \frac{1}{k}) \cap A \neq \emptyset \, \forall k \geq 1$ quindi esiste una successione $\underline{x_k}$ (potremmo prendere per esempio $\underline{w}-\frac{1}{k}$) tale che $|\underline{x_k} - \underline{w}| < \frac{1}{k} \implies \underline{x_k} \stackrel{k \to +\infty}{\to} \underline{w} \implies \underline{w} \in A$ per la seconda proprietà, ma allora segue che $\bar{A} = A$, dunque $A$ è chiuso per definizione. 
 \end{proof}
 \noindent Questa proprietà è molto importante, siccome garantisce l'equivalenza fra \textbf{chiusura sequenziale} e \textbf{chiusura} (che negli spazi topologici non è generalmente garantito) in $\mathbb{R}^n$. \\
 In $\mathbb{R}^n$, dato un insieme $A \subset \mathbb{R}^n$, se vogliamo verificare che sia chiuso sarà dunque necessario verificare che ogni successione $\underline{x_k}$ tali che $\forall k, \underline{x_k} \in A$ avremo che $\underline{x_k} \to \underline{x} \in A$, ovvero che ogni successione convergente in $A$ converga ad un punto che appartiene ad $A$.

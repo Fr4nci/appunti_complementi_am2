@@ -1,0 +1,306 @@
+\chapter{Dimostrazione del teorema della funzione inversa}
+\pagestyle{plain}
+\thispagestyle{empty}
+\pagestyle{fancy}
+\begin{theorem}[teorema della funzione inversa]
+    Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
+    Allora $\exists \rho > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, \rho)}} \in C^{k}(B(x_0, \rho), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, \rho)}})^{-1}:U \to B(x_0, \rho)$, abbiamo che
+    $g \in C^k(U, B(x_0, \rho))$ con
+    $$
+    Dg(y) = (Df(g(y)))^{-1} \, \forall y \in U
+    $$
+    \label{thm:inverse_function}
+    \end{theorem}
+Per dimostrare questo risultato, è conveniente passare ad una norma differente di quella di Hilbert-Schmidt. Sebbene tutte le norme, in uno spazio finito dimensionale sono equivalenti (e dunque inducono la stessa topologia) l'utilizzo di questa norma rende più semplice la trattazione
+di alcuni risultati che abbiamo visto. Iniziamo dando la definizione di definizione di spazio delle applicazione lineari fra due spazi vettoriali, la quale dovrebbe già essere stata data nel corso di Geometria
+\begin{definition}[spazio delle applicazioni lineari]
+    Siano $X, Y$ due spazi vettoriali su un campo $\mathbb{K}$. Definiamo
+    $$
+    \mathcal{L}(X, Y) = \{f: X \mapsto Y | f \text{ è lineare} \}
+    $$
+\end{definition}
+\begin{remark}
+    Se $A : \mathbb{R}^n \mapsto \mathbb{R}^n$ lineare, scriveremo che $A \in \mathcal{L}(\mathbb{R}^n)$
+\end{remark}
+\begin{remark}
+    $\mathcal{L}(X, Y)$ con $X, Y$ spazi vettoriali su un campo $\mathbb{K}$ è uno spazio vettoriale
+\end{remark}
+\begin{definition}[norma matriciale]
+    Sia $A \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^m)$, allora definiamo la norma $|| A ||$ matriciale di A come
+    \begin{equation}
+        || A || = \sup_{x \in \mathbb{S}^{n-1}} |Ax|
+    \end{equation}
+    dove $|\cdot|:\mathbb{R}^m \to \mathbb{R}$ è la usuale norma euclidea.
+\end{definition}
+\begin{remark}
+    Osserviamo che
+    \begin{equation}
+    |Ax| \leq || A || \, |x|
+    \label{eq:matrix_norm_inequality}
+    \end{equation}
+    vale $\forall x \in \mathbb{R}^n$. Inoltre, se $\exists \lambda \in \mathbb{R} : \forall x \in \mathbb{R}^n, |Ax| \leq \lambda |x|$ allora $|| A || \leq \lambda$
+\end{remark}
+\begin{exercise}
+    Mostrare la disuguaglianza (\ref{eq:matrix_norm_inequality}).
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Sia $x \in \mathbb{R}^n$. Allora sappiamo che
+    $$
+    |Ax| = \big|A( \, |x| \, \frac{x}{|x|} )\big| = |x| \, \big|A\frac{x}{|x|}\big| \leq |x| \, || A ||
+    $$
+    siccome $\frac{x}{|x|}$ è un vettore di norma unitaria.
+\end{proof}
+Dobbiamo utilizzare qualche risultato che adesso andiamo ad enunciare. Alcuni di essi dovrebbero essere già noti dal corso di Analisi Matematica:
+\begin{theorem}[teorema di Banach-Caccioppoli]
+	Sia $X$ uno spazio metrico completo e sia $\varphi: X \to X$ una contrazione (ovvero una funzione $L-$lipschtziana con $L < 1$). Allora $\exists ! x \in X : \varphi(x) = x$
+\end{theorem}
+\begin{proof}
+	Sia $(X, d)$ uno spazio metrico completo e sia $x_0 \in X$. Definiamo una successione $\{ x_n \}$ in maniera ricorsiva, imponendo che
+	\begin{align*}
+		&x_{n+1} = \varphi(x_n) & &(n = 0, 1, \ldots).
+	\end{align*}
+	La dimostrazione segue in due \emph{step}: la prima consiste nel mostrare l'esistenza di un punto fisso, la seconda l'unicità di tale punto. \\
+	\emph{Esistenza}: l'idea è quella di mostrare che questa successione da noi definita è una successione di Cauchy, da cui segue, data la completezza di $X$, che la successione converge a $x \in X$. \\
+	Siccome $\varphi$ è una contrazione, allora $\exists c \in \mathbb{R}$ tale che $c < 1$ e $\forall x, y \in X, d(\varphi(x), \varphi(y)) \leq c d(x, y)$. Dunque avremo che
+	$$
+	d(x_{n+1}, x_n) = d(\varphi(x_n), \varphi(x_{n-1})) \leq c d(x_n, x_{n-1})
+	$$
+	Procedendo induttivamente (il caso $n=1$ è naturalmente banale) avremo che
+	$$
+	d(x_{n+1}, x_n) \leq c d(x_n, x_{n-1}) \leq c^n d(x_1, x_0)
+	$$
+	mentre se prendiamo $n \neq m$ e supponiamo (senza perdere di generalità) che $n > m$ allora
+	\begin{align*}
+	d(x_n, x_m) &\stackrel{\text{dis. triang.}}{\leq} \sum_{i = m}^{n-1} d(x_i, x_{i+1}) \leq \sum_{i=m}^{n-1} c^{i} d(x_1, x_0) = d(x_1, x_0) \sum_{i=m}^{n+1} c^{i} = \\
+	&= d(x_1, x_0) \left( \frac{1-c^{n+1}}{1-c} - \frac{1 - c^{m+1}}{1-c} \right) = \frac{c^{m} - c^{n}}{1-c} d(x_1, x_0).
+	\end{align*}
+	Ma, siccome $c < 1$, se $m \to +\infty$ e $n > m$ allora quest'ultima quantità tende a $0$, dunque risulta che $\{ x_n \}$ è una successione di Cauchy. Conseguentemente, essendo $X$ completo,
+	tale successione converge ad un punto $x \in X$ e, usando la continuità di $\varphi$, abbiamo che
+	$$
+	x_{k+1} = \varphi(x_k) \implies \lim_{k \to +\infty} x_{k+1} = \lim_{x \to +\infty} \varphi(x_k) \implies x = \varphi(x).
+	$$
+	\emph{Unicità}: supponiamo per assurdo che esistano due punti fissi, ovvero $\exists x, y \in X, x \neq y : \varphi(x) = x, \varphi(y) = y$. Allora avremo che
+	$$
+	d(x, y) = d(\varphi(x), \varphi(y)) \leq c d(x, y) \implies d(x, y) \leq c d(x, y) \implies c > 1
+	$$
+	il che è un assurdo siccome $\varphi$ è una contrazione.
+\end{proof}
+\begin{theorem}[criterio di Lipschtiz]
+	Sia $\Omega \subset \mathbb{R}^n$ convesso, $f: \Omega \to \mathbb{R}^m$ una funzione di classe $C^1(\Omega, \mathbb{R}^m)$ e supponiamo che si abbia $L = \sup\limits_{x \in \Omega} ||Df(x)|| < +\infty$. Allora la funzione
+	$f$ è $L-$lipschtziana, ossia
+	$$
+	\forall x, y \in \Omega, |f(x) - f(y)| \leq L|x-y|
+	$$
+\end{theorem}
+\begin{proof}
+	Fissiamo $x, x' \in \Omega$, allora consideriamo la funzione $g(t) = f(tx + (1-t)y)$ con $t \in [0, 1]$, pertanto $g: [0, 1] \to \mathbb{R}^m$ ed è anch'essa di classe $C^1$ e si ha che
+	$$
+	g'(t) = Df(tx + (1-t)y)(x - y)
+	$$
+	e, dalla formula fondamentale del calcolo integrale, segue che 
+	$$
+	f(x) - f(y) = g(1) - g(0) = \int_0^1 g'(t)dt = \int_0^1 Df(tx + (1-t)y)(x-y)dt
+	$$
+	da cui segue che
+	\begin{align*}
+	|f(x) - f(y)| = |\int_0^1 Df(tx + (1-t)y)(x-y)dt| &\leq \int_0^1 || Df(tx + (1-t)y) || |x-y|dt \leq \\
+	&\leq \int_0^1 Ldt |x-y| = L|x-y|
+	\end{align*}
+\end{proof}
+\begin{lemma}
+    $\forall n > 0, \forall r > 0, \forall x \in \mathbb{R}^n, B_r(x) \subset \mathbb{R}^n$ sono convesse.
+\end{lemma}
+\begin{proof}
+    Fissiamo $n > 0$, $r > 0$ e $x \in \mathbb{R}^n$. Siano adesso $y, z \in B_r(x)$ e consideriamo il luogo dei punti descritti da
+    $$
+    \alpha = ty + (1-t)z, \text{ con } t \in [0, 1].
+    $$
+    Allora
+    \begin{align*}
+    | \alpha - x | &= |ty + (1-t)z - x| \leq |ty + (1-t)z - tx - (1 - t)x| \leq |ty - tx| + |(1-t)z - (1-t)x| = \\
+    &=t \, |y - x| + (1-t) \, |z - x| < tr + (1-t)r = r 
+    \end{align*}
+\end{proof}
+\begin{remark}
+    Questa dimostrazione è valida, in realtà, per ogni spazio vettoriale munito di norma. Il fatto che le palle siano convesse non è valido per ogni spazio metrico: un esempio può essere dato da $\mathbb{R}^2$ munito della distanza
+    $$
+    d((x_1, x_2), (y_1, y_2)) = \sqrt{|x_1 - y_1|} + \sqrt{|x_2 - y_2|}
+    $$
+    dove la palla centrata in $(0, 0)$ e di raggio $1$ assume la seguente forma
+    
+    \begin{figure}[H]
+        \centering
+        \scalebox{1.5}{\begin{tikzpicture}
+            % Imposta l'area del luogo geometrico
+            \fill[blue!20, domain=0:1, samples=200, smooth]
+                plot[samples=200, domain=0:1] ({\x^2}, {(1-\x)^2}) -- % Primo quadrante
+                plot[samples=200, domain=0:1] ({-(1-\x)^2}, {\x^2}) -- % Secondo quadrante
+                plot[samples=200, domain=0:1] ({-\x^2}, {-(1-\x)^2}) -- % Terzo quadrante
+                plot[samples=200, domain=0:1] ({(1-\x)^2}, {-\x^2}) -- cycle; % Quarto quadrante
+        
+            % Disegna il bordo del luogo geometrico
+            \draw[thick, blue, smooth, domain=0:1]
+                plot[samples=200] ({\x^2}, {(1-\x)^2}) -- % Primo quadrante
+                plot[samples=200] ({-(1-\x)^2}, {\x^2}) -- % Secondo quadrante
+                plot[samples=200] ({-\x^2}, {-(1-\x)^2}) -- % Terzo quadrante
+                plot[samples=200] ({(1-\x)^2}, {-\x^2}) -- cycle; % Quarto quadrante
+        
+            % Disegna gli assi
+            \draw[->] (-1, 0) -- (1, 0);
+            \draw[->] (0, -1) -- (0, 1);
+        \end{tikzpicture}}
+    \end{figure}
+\end{remark}
+Nel prossimo teorema facciamo uso del seguente risultato che propongo come esercizio
+\begin{exercise}
+    Sia $A \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^m)$ e sia $B \in \mathcal{L}(\mathbb{R}^m, \mathbb{R}^k)$, allora
+    $$
+        || BA || \leq || B || \, || A ||
+    $$
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Osserviamo che, posto $C = BA$, abbiamo che
+    \begin{align*}
+    || C || = \sqrt{\sum_{i, j} c_{ij}^2} &= \sqrt{\sum_{i}^k \sum_j^n (\sum_{k=1} a_{ik} b_{kj})^2} \leq \sqrt{\sum_{i}^k \sum_j^n \sum_{l=1}^m a_{il}^2 \sum_{l=1}^m b_{lj}^2} = \\
+    &= \sqrt{\sum_i^k \sum_{l}^m a_{il}^2 \sum_{j}^n \sum_{l}^m b_{lj}^2} = \sqrt{\sum_{i, l} a_{il}^2 \sum_{l, j} b_{lj}^2} = || B || \, || A ||
+    \end{align*}
+    dove abbiamo utilizzato la disuguaglianza di Cauchy-Schwarz per giustificare la minorazione. Dunque
+    $$
+    || BA || \leq || B || \, || A ||.
+    $$
+\end{proof}
+\begin{theorem}[continuità dell'operazione di inversione di una matrice]
+    Sia $\mathit{\Omega}$ l'insieme di tutte le applicazioni lineari invertibili a valori in $\mathbb{R}^n$. Allora
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item Se $A \in \mathit{\Omega}$, $B \in \mathcal{L}(\mathbb{R}^n)$ e
+        \begin{equation*}
+            || B - A || \cdot || A^{-1} || < 1 \tag{$\ast$}
+        \end{equation*}
+        allora $B \in \mathit{\Omega}$.
+        \item $\mathit{\Omega}$ è un insieme aperto di $\mathcal{L}(R^n)$ e la mappa $A \mapsto A^{-1}$ è continua su $\mathit{\Omega}$ 
+    \end{enumerate}
+    \label{thm:continuity_of_the_inverse_matrix}
+\end{theorem}
+\begin{proof}
+Mostriamo la \circled{1}. Osserviamo che prese $A \in \mathit{\Omega}, B \in \mathcal{L}(\mathbb{R}^n)$ che soddisfano la ($\ast$) e, per comodità, poniamo $\frac{1}{\alpha} = || A^{-1} ||$ e $|| B - A || = \beta$. Dunque la ($\ast$) diventa
+$$
+\frac{\beta}{\alpha} < 1 \implies \alpha > \beta.
+$$
+Osserviamo adesso che $\forall x \in \mathbb{R}^n$
+$$
+\alpha |x| = \alpha | A^{-1} A x | \leq \alpha || A^{-1} || \, |Ax| = |Ax| = |(A - B + B)x| \leq |(A-B)x| + |Bx| \leq \beta |x| + |Bx|
+$$
+dunque
+\begin{equation*}
+0 \leq (\alpha - \beta) |x| \leq |Bx| \tag{\text{$\star$}}
+\end{equation*}
+dove la prima eguaglianza segue dal fatto che $\alpha - \beta > 0$. Ma questo allora implica che $Bx \neq 0$ se $x \neq \underline{0}$: questo implica per una serie di noti risultati visti dal corso di Geometria che $B$ è un isomorfismo, dunque è invertibile, quindi $B \in \mathit{\Omega}$. \\
+Mostriamo la \circled{2}. Prendiamo $x = B^{-1}y$ e mettiamola all'interno della ($\star$)
+$$
+(\alpha - \beta) |B^{-1}y| \leq |BB^{-1}y| = |y|
+$$
+che una relazione valida $\forall y \in \mathbb{R}^n$ da cui possiamo dedurre che
+$$
+    |B^{-1}y| \leq \frac{1}{\alpha - \beta} |y| \implies || B || \leq \frac{1}{\alpha - \beta}.
+$$
+Osservando che
+$$
+    B^{-1} - A^{-1} = B^{-1} (A-B) A^{-1}
+$$
+abbiamo che
+$$
+|| B^{-1} - A^{-1} || \leq || B^{-1} || \, || A - B || \, || A^{-1} || \leq \frac{1}{\alpha - \beta} \beta \frac{1}{\alpha} = \frac{\beta}{\alpha (\alpha - \beta)}
+$$
+e per $\beta \to 0$ osserviamo che $|| B - A || \to 0$, dunque la mappa che associa ad una matrice la sua inversa è continua.
+\end{proof}
+\begin{lemma}
+    $\forall \Omega \subseteq \mathbb{R}^n, \text{Fr} \, \Omega$ è un insieme chiuso.
+    \label{lemma:frontiera_chiusa}
+\end{lemma}
+\begin{proof}
+    La dimostrazione è immediata: sappiamo dall'esercizio (\ref{exercise:frontiera_intersec}) che la frontiera di $\Omega$ è definita come $\text{Fr} \, \Omega = \overline{\Omega} \cap \overline{\Omega^c}$. Conseguentemente,
+    abbiamo che $\overline{\Omega}$ è un insieme chiuso, $\overline{\Omega^c}$ è chiuso e abbiamo che
+    $$
+        (\overline{\Omega} \cap \overline{\Omega^c})^c = (\mathbb{R}^n \setminus \overline{\Omega}) \cup (\mathbb{R}^n \setminus \overline{\Omega^c})
+    $$
+    ma, per quanto mostrato nella proposizione (\ref{prop:set_closed_iff_compl_open}), abbiamo che $\mathbb{R}^n \setminus \overline{\Omega}$ e $\mathbb{R}^n \setminus \overline{\Omega^c}$ sono insiemi aperti e, per quanto visto nell'esercizio (\ref{exercise:union_open_set_is_open}), abbiamo che
+    l'unione di insiemi aperti è un insieme aperto. Ma allora il complementare di $\text{Fr} \, \Omega$ è aperto, dunque, sempre per la proposizione (\ref{prop:set_closed_iff_compl_open}), avremo che è un insieme chiuso.
+\end{proof}
+\begin{lemma}
+    Siano dati $A \subseteq \mathbb{R}^n$ aperto e $B \subseteq \mathbb{R}^n$ chiuso. Allora $A \setminus B$ è aperto e $B \setminus A$ è chiuso.
+    \label{lemma:diff_open_closed_set}
+\end{lemma}
+\begin{proof}
+    Siccome $B$ è chiuso, allora $B^c = \mathbb{R}^n \setminus B$ è aperto in virtù della proposizione (\ref{prop:set_closed_iff_compl_open}), dunque 
+    $$
+    A \setminus B = A \cap B^c = A \cap (\mathbb{R}^n \setminus B)
+    $$
+    tuttavia, per quanto visto nell'esercizio (\ref{exercise:intersec_open_set_is_open}), abbiamo che l'intersezione di aperti è un insieme aperto. Per quanto riguarda $B \setminus A$ osserviamo che
+    $$
+    (B \cap (\mathbb{R}^n \setminus A))^c = B^c \cup (\mathbb{R}^n \setminus A)^c = B^c \cup A
+    $$
+    che è aperto come conseguenza dell'esercizio (\ref{exercise:union_open_set_is_open}), dunque $B \cap (\mathbb{R}^n \setminus A)$ è chiuso sempre per la proposizione (\ref{exercise:intersec_open_set_is_open}) ma
+    $$
+    B \setminus A = B \cap (\mathbb{R}^n \setminus A) \implies B \setminus A \text{ è aperto.}
+    $$
+\end{proof}
+Procediamo nella dimostrazione del teorema della funzione inversa
+\begin{proof}[Dimostrazione (del teorema \ref{thm:inverse_function})]
+	Denotiamo con $\mathbb{R}^{n \times n} \ni A = Df(x_0)$. L'idea è quello di utilizzare il teorema di Banach-Caccioppoli per mostrare che, preso un insieme $U \subset f(B(x_0, r))$ aperto sufficientemente piccolo\\
+	Siccome $\Omega$ è aperto e $f \in C^1(\Omega, \mathbb{R}^n) \implies Df: \Omega \to \mathbb{R}^n$ è continuo, allora possiamo scegliere $\rho > 0$ in maniera tale che
+	\begin{align*}
+	&\overline{B_{\rho}(x_0)} \subset \Omega \text{    e    } |Df(x) - Df(x_0)| < \frac{1}{2 || A ||} \forall x \in \overline{B_\rho(x_0)}.
+	\end{align*}
+	Poniamo $r = \frac{\rho}{2 || A ||}, y_0 = f(x_0)$. Fissato $y \in B_r(y_0)$, consideriamo l'applicazione
+	$$
+	T : \overline{B_{\rho}(x_0)} \mapsto \mathbb{R}^n \text{ tale che } 	T(x) = x + A(y-f(x))
+	$$
+	e osserviamo che $T(x) = x \iff y=f(x)$. Allora, ricordando che $ADf(x_0) = \text{Id}$, avremo, per $x \in \overline{B_p(x_0)}$, che
+	$$
+	|| DT(x) || = || \text{Id} - ADf(x) ||  \leq || A || \, || Df(x) - Df(x_0) || \leq || A || \frac{1}{2 || A ||} = \frac{1}{2}
+	$$
+	dunque, per il criterio di Lipschtiz, avremo che la funzione $T$ è $\frac{1}{2}-$lipschtziana. Mostriamo adesso che $T(\overline{B_\rho(x_0)}) \subset \overline{B_\rho(x_0)}$: infatti, preso $x \in \overline{B_\rho(x_0)}$, abbiamo che
+	\begin{align*}
+	|T(x) - x_0| \stackrel{\text{dis. triang.}}{\leq} |T(x) - T(x_0)| + |T(x_0) - x_0| &\leq \frac{1}{2} |x-x_0| + |A(y - y_0)| \leq \frac{\rho}{2} + || A || r = \\
+	&=\frac{\rho}{2} + || A || \frac{r}{2 || A ||} = \rho.
+	\end{align*}
+	Dunque $T : \overline{B_\rho(x_0)} \mapsto \overline{B_\rho(x_0)}$ è una contrazione, $B_\rho(x_0)$ è uno spazio metrico completo (rispetto alla metrica indotta) e, quindi, per il teorema delle contrazioni esiste un'unica soluzione all'equazione
+	$$
+		T(x) = x.
+	$$
+	Ma prendendo arbitrariamente $y_0 \in B_\rho(y_0)$ possiamo trovare un unico $x \in B_\rho(x_0)$ che risolve l'equazione $f(x) = y$
+	pertanto possiamo definire $g$ l'applicazione $y \in B_{r}(y_0) \mapsto x \in B_{\rho}(x_0)$
+	\begin{align*}
+		&g: B_{r}(y_0) \subset \overline{B_{\rho} (x_0)} \mapsto \overline{B_\rho(x_0)}, & &f(g(y)) = x.
+    \end{align*}
+	Cerchiamo di capire, adesso, dove viene mandata la frontiera di $B_\rho(x_0)$. Consideriamo l'insieme $\Sigma = f(\text{Fr} \, B_\rho(x_0))$: dalla continuità di $f$ e dal fatto che $\text{Fr} \, B_\rho(x_0)$ è compatto (la limitatezza è banale da mostrare, mentre è chiuso in virtù del lemma (\ref{lemma:frontiera_chiusa})) deriva che $\Sigma$ è compatto. Inoltre
+    $y_0 \neq \Sigma$ siccome, per quanto mostrato in precedenza, $\exists ! x \in \overline{B_\rho(x_0)}$ per cui $f(x) = y_0$ e tale punto è proprio $x_0 \neq \text{Fr} \, B_\rho(x_0)$. Dunque avremo che $V = B_r(y_0) \setminus \Sigma$ è un insieme aperto (in virtù del lemma (\ref{lemma:diff_open_closed_set})). Posto $U = g(V)$ risulta che $f_{|U} : U \to V$ è bigettiva
+    e ha $g$ come inversa. Inoltre, per costruzione, abbiamo evitato che $U$ possieda tutti i punti di $\text{Fr} \, B_\rho(x_0)$ e, dunque, risulta che $U \subset B_\rho(x_0)$. \\
+    Vogliamo mostrare adesso che $U$ è aperto: preso $x \in U$ poniamo $y = f(x)$ da cui, per come abbiamo definito $U$ e $V$, si deduce che $y \in V$. Siccome quest'ultimo insieme è aperto, sappiamo che $\exists \varepsilon > 0: B_\varepsilon(y) \subset V$ ed, essendo $f$ continua, possiamo trovare $\delta > 0$ tale che
+    $$
+    f(B_\delta(x)) \subset B_\varepsilon(y) \subset V,
+    $$
+    ma allora, siccome $x \in U \subset B_\rho(x_0)$, a meno di rimpicciolire $\delta$ possiamo supporre che $B_\delta(x) \subset B_\rho(x_0)$. Risulta, dunque, che $f(B_\delta(x)) \subset V \implies B_\delta(x) = g(f(B_\delta(x))) \subset U$. Dunque $U$ contiene un intorno di ogni suo punto, dunque è aperto. \\
+    Mostriamo, infine, che $g$ è differenziale in ogni suo punto $y \in B_r(y_0)$ e che il suo differenziale $Dg(y)$ è uguale a $Df(x)^{-1}$ con $x = g(y)$, ossia si vuole mostrare che
+    $$
+        \lim_{y' \to y} \frac{g(y') - g(y) - Df(x)^{-1}(y'-y)}{|y-y'|} = 0.
+    $$
+    Osserviamo, tuttavia, che $y \in B_r(y_0)$ dunque stiamo considerando la seguente quantità (che abbiamo riscritto sfruttando la differenziabilità della funzione $f$)
+    \begin{align*}
+    &\frac{g(y') - g(y) - Df(x)^{-1}(f(x')-f(x))}{|y' - y|} = \frac{x' - x - Df(x)^{-1}(Df(x)(x'-x) + o(|x' - x|))}{|y' - y|} = \\
+    &=\frac{Df(x)^{-1}(o(|x'-x|))}{|y'-y|} = \frac{Df(x)^{-1}(o(|x'-x|))}{|x'-x|} \frac{|x'-x|}{|y'-y|}.
+    \end{align*}
+    Per concludere, ci basta mostrare che se $y' \to y \implies x' \to x$, cosicché il primo termine dell'ultimo prodotto tende a zero per definizione di $o-$piccolo. Per fare questo, possiamo riutilizzare
+    l'applicazione $T$ definita in precedenza: ricordando che essa è $\frac{1}{2}-$lipschtziana abbiamo che
+    \begin{align*}
+    \frac{1}{2} |x' - x| \geq  |T(x') - T(x)| = |x' - x + A(y - f(x))| &\geq |x' - x| - |A(y - f(x'))| = & \\
+    &=|x'-x| - || A || \, |y'-y| &
+    \end{align*}
+    da cui possiamo dedurre che $|x' - x| \leq 2 \, || A || \, |y' - y|$, pertanto $x' \to x$ se $y' \to y$ e per $y' \to y$ il rapporto $\frac{|x'-x|}{|y'-y|}$ è limitato. Questo ci porta a concludere che
+    $$
+    \frac{Df(x)^{-1}(o(|x'-x|))}{|x'-x|} \frac{|x'-x|}{|y'-y|} \to 0 \text{ per } y' \to y.
+    $$
+    Questo ci permette di concludere che la funzione $g$ è differenziale in $y$ (e dall'arbitrarietà di tale punto segue che è differenziale per ogni punto in $B_r(y_0)$, dunque anche in $V \subset B_r(y_0)$). A
+    questo punto, resta da mostrare che il differenziale $Dg(y)$ è una funzione continua, ma dato che $Dg(y) = Df(g(y))^{-1}$ si osserva che essendo $g$ continua (in quanto differenziabile), essendo $Df$ continua (per ipotesi)
+    ed essendo continua anche la mappa che associa ad una matrice la sua inversa (in virtù del teorema (\ref{thm:continuity_of_the_inverse_matrix})), la funzione $Dg$ dev'essere continua.
+\end{proof}
