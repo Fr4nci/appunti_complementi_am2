@@ -5,7 +5,7 @@
 In questa appendice ci proponiamo di dimostrare in maniera rigorosa il teorema della funzione inversa, riportando tutti i teoremi precedentemente non enunciati necessari per effettuare la dimostrazione. Sarebbe anche interessante mostrare che il teorema del Dini implica il teorema della funzione inversa, mostrando così
 che i due teoremi sono equivalenti, tuttavia ciò non verrà fatto.
 
-\begin{theorem}[teorema della funzione inversa]
+\begin{theorem}[della funzione inversa]
     Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
     Allora $\exists \rho > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, \rho)}} \in C^{k}(B(x_0, \rho), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, \rho)}})^{-1}:U \to B(x_0, \rho)$, abbiamo che
     $g \in C^k(U, B(x_0, \rho))$ con
@@ -182,10 +182,10 @@ Per pura completezza, riporto la dimostrazione che due norme, nel caso finito-di
     $$
     ovvero le norme $||\cdot||_{\flat}$ e $||\cdot||_{\sharp}$ sono equivalenti.
 \end{proof}
-\section{Qualche risultato preparatorio}
+\section{Alcuni risulti preliminari per la dimostrazione}
 
 Andiamo ad enunciare alcuni risultati di cui abbiamo bisogno per dimostrare quanto ci siamo prefissi all'inizio di questa appendice. Alcuni di essi dovrebbero essere già noti dal corso di Analisi Matematica:
-\begin{theorem}[teorema di Banach-Caccioppoli]
+\begin{theorem}[di Banach-Caccioppoli]
 	Sia $X$ uno spazio metrico completo e sia $\varphi: X \to X$ una contrazione (ovvero una funzione $L-$lipschtziana con $L < 1$). Allora $\exists ! x \in X : \varphi(x) = x$
 \end{theorem}
 \begin{proof}
@@ -390,6 +390,7 @@ e per $\beta \to 0$ osserviamo che $|| B - A || \to 0$, dunque la mappa che asso
     B \setminus A = B \cap (\mathbb{R}^n \setminus A) \implies B \setminus A \text{ è aperto.}
     $$
 \end{proof}
+\section{Dimostrazione del tereoma}
 Procediamo nella dimostrazione del teorema della funzione inversa
 \begin{proof}[Dimostrazione (del teorema \ref{thm:inverse_function})]
 	Denotiamo con $\mathbb{R}^{n \times n} \ni A = Df(x_0)$. L'idea è quello di utilizzare il teorema di Banach-Caccioppoli per mostrare che, preso un insieme $U \subset f(B(x_0, r))$ aperto sufficientemente piccolo\\

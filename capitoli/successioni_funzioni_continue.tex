@@ -77,7 +77,7 @@ Diremo che $f: A \to \mathbb{R}$ con $A \subset \mathbb{R}^n$ è continua in $A$
 Fissato $A \subset \mathbb{R}^n$ diremo che $S \subset A$ è aperto in $A$ se $\exists \Omega \subset \mathbb{R}^n$ aperto tale che $$S = A \cap \Omega$$
 \end{definition}
 Dopo questa definizione siamo pronti per enunciare una serie di teoremi sulle funzioni continue che le caratterizzano in $\mathbb{R}^n$.
-\begin{theorem}[teorema C1]
+\begin{theorem}[C1]
 Sia $f: A \to \mathbb{R}^m$ con $A \subset \mathbb{R}^n$. Allora $f$ è continua $\iff \forall U \subset \mathbb{R}^m$ aperto $f^{-1}(U)$ è aperto in $A$
 \label{thm:theo_c1}
 \end{theorem}
@@ -89,13 +89,13 @@ $$
 ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Ma allora $f(z) \not\in U$: infatti, $U^c$ è chiuso dunque, per la proposizione~\ref{prop:caratt_chiusi}, abbiamo che ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$, ma ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
 $\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
 \end{proof}
-\begin{theorem}[teorema della permanenza del segno]
+\begin{theorem}[della permanenza del segno]
 Sia $f: A \to \mathbb{R}$ continua in $z \in A$. Se $f(z) > 0$ allora $\exists \delta > 0$ tale che $\forall x \in A \cap B(z, \delta), f(x) > 0$
 \end{theorem}
 \begin{proof}
 Se neghiamo la tesi allora otteniamo che $\forall \delta > 0, \exists x \in A \cap B(z, \delta): f(x) < 0$. Ma allora deduciamo che $\exists \underline{x_k} \in A \cap B(z, \frac{1}{k}): f(x_k) <0$, ma $\underline{x_k} \to z$ e $f(x_k) \to f(z) \leq 0$ che rappresenta una contraddizione.
 \end{proof}
-\begin{theorem}[teorema C2]
+\begin{theorem}[C2]
 Siano $A \subset \mathbb{R}^n$, $f, g: A \to \mathbb{R}^m$ e $h: B \to \mathbb{R}^k$ con $f(A) \subset B \subset \mathbb{R}^m$. Se $f$ e $g$ sono continue in $z \in A$ e $h$ è continua in $f(z) \in B$ allora valgono le seguenti proprietà:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item $\forall \lambda, \mu \in \mathbb{R}$ abbiamo che $\lambda f + \mu g$ è continua in $z \in A$;
@@ -202,7 +202,7 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 	x_{\alpha(k)} \to x \in E
 	$$
 \end{definition}
-\begin{theorem}[teorema di Heine-Borel]
+\begin{theorem}[di Heine-Borel]
 	Dato $E \subseteq \mathbb{R}^n$, allora 
 	\begin{align*}
 		E \subseteq \mathbb{R}^n \text{ è compatto } \iff E \text{ è chiuso e limitato.}
@@ -210,9 +210,9 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 	\label{thm:heine_borel}
 \end{theorem}
 \begin{proof} \hspace{1cm} \\
-$\boxed{\Rightarrow}$: sia $x_k \to x \implies$ (per l'ipotesi di compattezza) $\exists y \in E \exists \alpha: \mathbb{N} \to \mathbb{N} x_{\alpha(k)} \to y \in E \implies x=y \in E$ per unicità del limite. Se $E$ non fosse limitato $\implies \exists \{x_k \} \subset E : |x_k| \to +\infty$ e per la compattezza $\exists \beta: \mathbb{N} \to \mathbb{N}$ strettamente crescente tale che $x_{\beta(k)} \to x \in E$ ma per unicità del limite $|x_\beta(k)| \to |x_k| \to +\infty$ e questo contraddice il limite $+\infty$. \\
+$\boxed{\Rightarrow}$: sia $x_k \to x \implies$ (per l'ipotesi di compattezza) $\exists y \in E : \exists \alpha: \mathbb{N} \to \mathbb{N} : x_{\alpha(k)} \to y \in E \implies x=y \in E$ per unicità del limite. Se $E$ non fosse limitato $\implies \exists \{x_k \} \subset E : |x_k| \to +\infty$ e per la compattezza $\exists \beta: \mathbb{N} \to \mathbb{N}$ strettamente crescente tale che $x_{\beta(k)} \to x \in E$ ma per unicità del limite $|x_\beta(k)| \to |x_k| \to +\infty$ e questo contraddice il limite $+\infty$. \\
 $\boxed{\Leftarrow}$: Se $\{ x_ k\} \subset E$ e $x_k = (x_{k_1}, \ldots, x_{k_n}) \implies x_{k_j}$ sono successioni reali limitate tali che $\exists x_{{\alpha_1(k)}_1} \to x_1, \exists x_{{\alpha_2(k)}_2} \to x_2, \ldots \implies 
-\exists x_{\alpha_1 \ldots \alpha_n(k)} \to x = (x_1, \ldots, x_n)$ e $x \in E$ per la chiusura di $E$. Il fatto di poter estrarre delle sottosuccessioni convergenti è garantito dal teorema di Bolzano-Weierstrass.
+\exists x_{\alpha_1 \ldots \alpha_n(k)} \to x = (x_1, \ldots, x_n)$ (il fatto di poter estrarre una successione convergente è conseguenza del teorema di Bolzano-Weierstrass) e $x \in E$ per la chiusura di $E$. Il fatto di poter estrarre delle sottosuccessioni convergenti è garantito dal teorema di Bolzano-Weierstrass.
 \end{proof}
 \noindent A questo punto ricordiamo la definizione di massimo e minimo locale o globale
 \begin{definition}[massimo globale]
@@ -232,7 +232,7 @@ $$
 \end{align*}
 per indicare, rispettivamente, il massimo e il minimo assoluto. \\
 Enunciamo il seguente teorema, valido in $\mathbb{R}^n$, che garantisce l'esistenza del massimo e del minimo di una funzione continua quando \emph{mappa} un insieme compatto ad un altro. \\
-\begin{theorem}[teorema di Weierstrass]
+\begin{theorem}[di Weierstrass]
 Sia $A \subset \mathbb{R}^n$ un insieme compatto e sia $f: A \to \mathbb{R}$ una funzione continua su $A$. Allora $\exists \max\limits_A{f}, \min\limits_A{f}$. 
 \label{thm:weierstrass}
 \end{theorem}
@@ -264,7 +264,7 @@ Un'altra buona proprietà delle funzioni continue è quello di preservare la con
 	che corrisponde ad una corona circolare. E' connesso per archi siccome presi due punti possiamo trovare una curva che li "collega" tuttavia non è detto che, presi i due punti, sia possibile individuare un segmento che non passi nella zona che non fa parte di $A$.
 \end{remark}
 \noindent Dimostriamo adesso che la continuità preserva la connessione per archi di un insieme:
-\begin{theorem}[teorema C4]
+\begin{theorem}[C4]
 	Sia $f: C \to \mathbb{R}^m$ continua e sia $C$ connesso per archi. Allora $f(C) \subset R^m$ è connesso per archi
 \end{theorem}
 \begin{proof}
@@ -328,7 +328,7 @@ $\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la def
 		\item $f$ è continua in $\Omega \iff \, \, \forall q \in \Omega, \lim\limits_{x \to q} f(x) = f(q)$
 	\end{enumerate}
 \end{cor}
-\begin{theorem}[teorema del confronto]
+\begin{theorem}[del confronto]
 Siano $h, g, f: A \to \mathbb{R}, x_0 \in \text{Fr} A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
 \begin{align*}
 h(x) \leq f(x) \leq g(x) \, \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}

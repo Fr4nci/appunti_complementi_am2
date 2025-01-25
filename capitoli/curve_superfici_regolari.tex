@@ -24,7 +24,7 @@ C^k(\Omega,A) = \{f: \Omega \to A \text{ con } f = (f_1, \ldots, f_m) \big| \for
 $$
 \end{definition}
 Adesso siamo pronti ad enunciare il seguente teorema, di cui la dimostrazione è riportata nelle appendici, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
-\begin{theorem}[teorema della funzione inversa]
+\begin{theorem}[della funzione inversa]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
 Allora $\exists \rho > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, \rho)}} \in C^{k}(B(x_0, \rho), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, \rho)}})^{-1}:U \to B(x_0, \rho)$, abbiamo che
 $g \in C^k(U, B(x_0, \rho))$ con
@@ -54,7 +54,7 @@ $$
 $$
 quindi definire la circonferenza come la pre-immagine del valore $0$ assunto dalla funzione $g$. \\
 Il teorema della funzione inversa rende possibile anche la caratterizzazione delle funzioni implicite ad un livello \emph{locale}: infatti ci dice che, in un intorno molto piccolo del punto $f(x_0)$, è possibile visualizzare la funzione implicita come un oggetto che vive in una dimensione più piccola. Andiamo ad enunciare questo teorema
-\begin{theorem}[teorema della funzione implicita rispetto a $x$]
+\begin{theorem}[della funzione implicita rispetto a $x$]
 Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e sia $f \in C^k (\Omega)$, $\partial_y f(x_0) \neq 0$
 $$\implies \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1}-\delta, x_{0_1}+\delta) \times (x_{0_2} - \sigma, x_{0_2}+\sigma) = \{(t, \varphi(t)) : |t-x_{0_1}| < \delta \}$$
 ovvero esiste una funzione $\varphi: (x_{0_1} - \delta, x_{0_1} + \delta) \to (x_{0_2}-\sigma, x_{0_2} + \sigma)$ tale che $\varphi(x_{0_1}) = x_{0_2}$ e dunque
@@ -109,7 +109,7 @@ Per dimostrare la formula della derivata basta derivare quest'ultima relazione r
 \begin{remark}
 Possiamo riformulare il teorema della funzione implicita nei punti in cui $\partial_y f(x_0) = 0$ ma $\partial_x f(x_0) \neq 0$: infatti, la versione più generale del teorema richiede che $\nabla f \neq 0$. Ciò è possibile rifacendo la dimostrazione ma ridefinendo ad hoc la funzione $\tilde{f}$ in maniera tale che il determinante della sua matrice jacobiana sia pari a $\partial_x f(x_0)$. Enunciamo qua sotto tutte le "versioni" alternative del teorema nel caso di $n=2$ e $n=3$
 \end{remark}
-\begin{theorem}[teorema della funzione implicita rispetto a $y$]
+\begin{theorem}[della funzione implicita rispetto a $y$]
 Sia $\Omega \subseteq \mathbb{R}^2$ aperto, $\bm{\underline{x}}_0 = (x_{0_1}, x_{0_2}) \in \Omega$ e $f \in C^{1}(\Omega)$ con $\partial_{x} f(x_0) \neq 0$. Allora
 $$
 \exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (x_{0_1} - \sigma, x_{0_1} + \sigma) \times (x_{0_2} - \delta, x_{0_2} + \delta) = \{ (\varphi(t), t) : |t-x_{0_2}| < \delta \}
@@ -149,7 +149,7 @@ $$
 \begin{proof}
 Si modifica la dimostrazione fatta prima scomponendo la funzione $f(x_{1}, x_2, x_3) = f(x, y)$ con $x \in \mathbb{R}, y \in \mathbb{R}^2$, considerando la funzione $\tilde{f} = (f(x, y), x, y)$ imponendo che $D_y f \neq 0$.
 \end{proof}
-\begin{theorem}[teorema della funzione implicita rispetto a $x$ e $y$]
+\begin{theorem}[della funzione implicita rispetto a $x$ e $y$]
 Sia $\Omega \subseteq \mathbb{R}^3$ aperto, $x_0 = (x_{0_1}, x_{0_2}, x_{0_3}) \in \Omega$ e sia $f \in C^1 (\Omega)$ tale che $\partial_{x_3} f(x_0) \neq 0$. Allora
 \begin{align*}
 &\exists \delta, \sigma > 0 : f^{-1}(f(x_0)) \cap (B((x_{0_1}, x_{0_2}), \delta) \times (x_{0_3} - \sigma, x_{0_3} + \sigma)) = \\
@@ -284,7 +284,7 @@ $$
 \forall (\gamma \in C^1 ((-\varepsilon, \varepsilon), \Sigma), \gamma(0) = x_0), \frac{d}{dt} (f \circ \gamma)_{|_{t=0}} = \innerprod{\nabla f(x_0)}{\dot{\gamma}(0)} = 0
 $$
 \end{definition}
-\begin{theorem}[teorema dei punti critici]
+\begin{theorem}[dei punti critici]
 Sia $\Sigma \subseteq \mathbb{R}^n$ una curva regolare per $n=2$ o per $n=3$. Sia $f \in C^1(\Omega), x_0 \in \Omega \subseteq \mathbb{R}^n$ aperto. Allora 
 \begin{align*}
 x_0 \in \Sigma \text{ è un punto critico di } f \text{ su } \Sigma  \iff \nabla f(x_0) \perp T_{x_0} \Sigma

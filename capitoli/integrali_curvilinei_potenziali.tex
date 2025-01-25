@@ -398,7 +398,7 @@ e questo conclude la dimostrazione.
 \begin{remark}
 	Motivati da questa proprietà appena mostrata, si fa spesso uso della seguente notazione $\alpha = \gamma + \Gamma$, tuttavia bisogna naturalmente tenere di conto che non si tratta di una somma effettiva di curve.
 \end{remark}
-\begin{theorem}[teorema CF1]
+\begin{theorem}[CF1]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$. Allora $\omega$ è esatta $\iff \, \forall \gamma \in C^1_\text{tratti} ([a, b], \Omega)$ chiusa abbiamo che
 $$
 \oint_\gamma \omega = 0
@@ -432,7 +432,7 @@ $$
 $$
 dunque, se fissiamo $\varepsilon > 0$, allora sappiamo che per $|h| < \delta$ abbiamo che
 \begin{align*}
-&\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x)|h| \leq \varepsilon |h| \implies \\
+&\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x) | \, |h| \leq \varepsilon |h| \implies \\
 &\frac{|\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt|}{|h|} \leq \varepsilon \implies \int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt = o(|h|) 
 \end{align*}
 dunque $V(x)$ è differenziabile con $dV = \omega$ (per unicità del differenziale) e, dunque, $V \in C^1(\Omega)$. \\
@@ -444,7 +444,7 @@ $$
 $$
 dove si osserva che $\int_{\tilde{\Gamma}_x} \omega = - \int_{\Gamma_x} \omega$ per il teorema di invarianza (teorema~\ref{thm:teo_di_invarianza}) siccome $\tilde{\Gamma}_x = \Gamma_x \circ \varphi$ dove $\varphi(t) = c + d - t$. Abbiamo pertanto dimostrato che dunque la funzione $V(x)$ non dipende dalla curva $C^1$ a tratti scelta
 \end{proof}
-\begin{theorem}[teorema CF2]
+\begin{theorem}[CF2]
 	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Sia $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$, allora $\omega \, \text{ è esatta} \iff \forall \gamma \in C^1_\text{tratti}([a,b], \Omega) \text{ e } \forall \Gamma \in C^1_\text{tratti}([c,d], \Omega) \text{ tali che } \gamma(a) = \Gamma(c) \text{ e } \gamma(b) = \Gamma(d), $
 	$$ 
 	\int_\gamma \omega = \int_\Gamma \omega
@@ -685,7 +685,7 @@ Nelle appendici riporterò la dimostrazione per insiemi semplicemente connessi, 
 	ma possiamo derivare sotto il segno di integrale (la derivata di $\omega \circ \gamma$ esiste ed è continua siccome composizione di funzioni derivabili lungo una direzione $x_j$):
 	\begin{align*}
 	&\partial_{x_j} F(x) = \int_0^1 \partial_{x_j} \left(\sum_{i=1}^n a_i((1-t)x_0 + tx)(x_i-x_{0_i}) \right) = \int_0^1 \left(a_j((1-t)x_0 + tx) + \right. \\
-	&+\sum_{i=1}^n t\frac{\partial a_i}{\partial x_j}((1-t)x_0 + tx)(x_i - x_{0_i}) \Bigg) dt
+	&+ \left. \sum_{i=1}^n t\frac{\partial a_i}{\partial x_j}((1-t)x_0 + tx)(x_i - x_{0_i}) \right) dt
 	\end{align*}
 	adesso osserviamo che la chiusura della $1-$forma differenziale implica che $\forall 1 \leq i < j \leq n$
 	$$
