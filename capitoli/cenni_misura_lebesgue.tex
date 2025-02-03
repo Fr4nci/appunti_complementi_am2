@@ -1857,7 +1857,6 @@ Ma allora $(\Phi \circ \Psi)(u) = (\Phi_1(\Psi(v)), \Phi_2(\Psi(v)), \Phi_3(\Psi
 \end{remark}
 Le superfici elementari "non hanno buchi", ovvero sono degli insiemi semplicemente connessi: consideriamo una curva $\gamma: [a,b] \to \Sigma$ chiusa, allora possiamo considerare la composizione $\Phi^{-1} \circ \gamma : [a, b] \to \bar{H}$ e, siccome $\Phi$ è iniettiva su $\bar{H}$, avremo che la curva $\Phi \circ \gamma$ è anch'essa una curva chiusa. Ma allora sappiamo che $\exists x_0 \in \bar{H} : \exists \mathcal{H} : [0, 1] \times [a, b] \to \bar{H} : \mathcal{H}(0, \cdot) = \Phi^{-1} \circ \gamma(\cdot), \mathcal{H}(1, \cdot) = x_0$, da cui si deduce che
 la funzione $\Phi \circ \mathcal{H} : [0, 1] \times [a, b] \to \Sigma$ è una funzione continua tale che $\Phi \circ \mathcal{H}(0, \cdot) = \gamma(\cdot), \Phi \circ \mathcal{H}(1, \cdot) = \Phi(x_0)$ e $\forall t, \mathcal{H}(t, a) = \mathcal{H}(t, b) \implies \Phi \circ \mathcal{H}(t, a) = \Phi \circ \mathcal{H}(t, b)$ per l'iniettività di $\Phi$. La funzione $\Phi \circ H$ è allora è un'omotopia di $\gamma$ in $\Phi(x_0)$.
-
 \begin{prop}
 	Se $\gamma \in C^1(\mathcal{U}), \mathcal{U} \subset \mathbb{R}^2$ aperto, $H \subset \mathbb{R}^2$ è un dominio piano elementare e $\bar{H} \subset \mathcal{U}$, allora $\Phi(x, y) = (x, y, \varphi(x, y)), (x, y) \in \mathcal{U}$ definisce una superficie regolare $\Sigma = \Phi(\mathcal{U})$ che è il grafico di $\varphi$ su $\mathcal{U}$.
 \end{prop}
@@ -1887,29 +1886,29 @@ Possiamo a questo punto definire il concetto di normale esterna
 		\node at (1, 1) {\Huge $H$};
 
 		% Frontiera con frecce per l'orientamento
-		\draw[->, thick] (0 + 1, 0+0.25) -- (1+1, 0.25+0.25);
+		\draw[->, thick] (0 + 1, 0+0.25) -- (1+0.50, 0.25+0.125);
 		\draw[->, thick] (2, 0.5) -- (2.25, 1); 
 		\node[anchor=north west] at (2, 0.5) {\Large $\gamma(t)$};
 		\draw[->, thick] (2.5, 1.5) -- (2, 2);
-		\draw[->, thick] (1.5, 2.5) -- (0.5, 2.25);
-		\draw[->, thick] (-0.5, 2) -- (-0.15, 1.75);
+		\draw[->, thick] (1.5, 2.5) -- (0.5, 2.25); % vettore in alto
+		\draw[->, thick] (-0.5, 2) -- (-0.25, 1); 
 
 		% Vettori normali esterni ortogonalizzati
-		\draw[->, red, thick] (1, 0.25) -- (1.125, -0.35); % Normale esterna in basso (rotazione 90°)
+		\draw[->, red, thick] (1, 0.25) -- (1.125, -0.34); % Normale esterna in basso (rotazione 90°)
 		\draw[->, red, thick] (2.25, 1) -- (2.75, 0.75);  % Normale esterna a destra
-		\draw[->, red, thick] (2, 2) -- (2.35, 2.625);    % Normale esterna in alto a destra
-		\draw[->, red, thick] (0.5, 2.25) -- (0.25, 2.75); % Normale esterna in alto a sinistra
-		\draw[->, red, thick] (-0.25, 1.75) -- (-0.75, 2);  % Normale esterna a sinistra
+		\draw[->, red, thick] (2, 2) -- (2.35, 2.35);    % Normale esterna in alto a destra
+		\draw[->, red, thick] (0.5, 2.25) -- (0.35, 2.75); % Normale esterna in alto a sinistra
+		\draw[->, red, thick] (-0.25, 1) -- (-0.75, 0.86);  % Normale esterna a sinistra
 
 		% Clip per mantenere il riempimento
 		\clip (0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
 	\end{tikzpicture}
-	\caption{(Da sistemare): normale esterna nel caso di un dominio piano elementare}
+	\caption{Normale esterna nel caso di un dominio piano elementare}
 \end{figure}
 
 Consideriamo adesso $\Phi: U \to \mathbb{R}^3$ di classe $C^1$ una parametrizzazione di una superficie elementare $\Sigma = \Phi(H)$ e $H$ un dominio piano elementare. Abbiamo visto dal capitolo \ref{cap:curve_superfici_regolari} che preso $p \in \Sigma$ con $p = \Phi(w), w \in H$ allora abbiamo che lo spazio tangente a $\Sigma$ in $p \in \Sigma$ è dato da
 $$
-	T_p(\Sigma) = \text{Span}{\partial_1 \Phi(w), \partial_2 \Phi(w)}
+	T_p(\Sigma) = \text{Span} \{\partial_1 \Phi(w), \partial_2 \Phi(w) \}
 $$
 mentre una normale a $\Sigma$ in $p$ è data da
 $$
