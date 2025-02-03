@@ -2,6 +2,7 @@
 \pagestyle{plain}
 \thispagestyle{empty}
 \pagestyle{fancy}
+\label{cap:curve_superfici_regolari}
 In questo capitolo ci si sofferma nello studio delle curve e della superfici regolari, con particolare riguardo alla caratterizzazione delle curve tramite pre-immagini di funzioni implicite e lo studio dei massimi e i minimi di una funzione vincolata. Questo è particolarmente utile nello studio di alcuni tipi di problemi che possono capitare nella vita di tutti in giorni, in cui si è interessati a dei massimi o dei minimi vincolati ad una curva oppure ad una superficie.
 
 \section{Teorema della funzione inversa}
@@ -23,7 +24,7 @@ $$
 C^k(\Omega,A) = \{f: \Omega \to A \text{ con } f = (f_1, \ldots, f_m) \big| \forall j \in \{1, \ldots m \}, f_j \in C^k(\Omega) \}
 $$
 \end{definition}
-Adesso siamo pronti ad enunciare il seguente teorema, di cui la dimostrazione è riportata nelle appendici, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo
+Adesso siamo pronti ad enunciare il seguente teorema, di cui la dimostrazione è riportata nelle appendici, che risponde alla domanda che ci siamo posti all'inizio di questo paragrafo \newline \newline
 \begin{theorem}[della funzione inversa]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $f \in C^k(\Omega, \mathbb{R}^n), x_0 \in \Omega$ e $Df(x_0) \in \mathbb{R}^{n \times n}$ invertibile. \\
 Allora $\exists \rho > 0: \exists U \subseteq \mathbb{R}^n$ aperto tali che $f_{|_{B(x_0, \rho)}} \in C^{k}(B(x_0, \rho), U)$ è invertibile e, posto $g=(f_{|_{B(x_0, \rho)}})^{-1}:U \to B(x_0, \rho)$, abbiamo che

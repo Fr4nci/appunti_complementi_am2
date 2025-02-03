@@ -1,0 +1,161 @@
+\chapter{Forme chiuse su semplicemente connessi}
+\pagestyle{plain}
+\thispagestyle{empty}
+\pagestyle{fancy}
+
+La dimostrazione che ho riportato nel capitolo \ref{cap:integrali_curvilinei} riguardo all'esattezza delle forme chiuse richiede delle ipotesi molto forti. Ci chiediamo, adesso, se sia possibile indebolire ancora di
+più le ipotesi affinché una $1-$forma differenziale chiusa sia anche esatta: in questa appendici cercheremo di rispondere a questa domanda, prefiggendoci il compito di dimostrare che le forme differenziali chiuse su insiemi semplicemente connessi sono tutte esatte. 
+Questo risultato è estendibile agli insiemi contraibili e, naturalmente, questo risultato può essere generalizzato anche per le $k-$forme, tuttavia ci limiteremo al caso delle $1-$forme.
+
+\section{Omotopia e gruppo fondamentale}
+
+Sia $U \subseteq \mathbb{R}^n$ un insieme connesso. Abbiamo visto, nel capitolo \ref{cap:integrali_curvilinei}, che sono equivalenti le due affermazioni:
+\begin{enumerate}[label=\protect\circled{\arabic*}] 
+    \item $\omega$ è esatta;
+    \item $\forall \gamma: [a, b] \to U, \gamma(a) = \gamma(b), \int_\gamma \omega = 0$.
+\end{enumerate} 
+Vogliamo utilizzare questo fatto per dimostrare che su insiemi semplicemente connessi, le forme chiuse sono esatte. Per fare ciò dobbiamo ragionare più in generale, introducendo alcuni aspetti dell'omotopia che
+non avevamo trattato in precedenza. \\
+
+Prima di procedere, dobbiamo innanzitutto andare nel più astratto: per generalizzare il risultato ottenuto dobbiamo fare riferimento a degli strumenti più astratti di quelli visti per adesso. Dobbiamo, tuttavia, procedere
+"cautamente": per utilizzare correttamente questi strumenti è necessario che questi siano ben definiti e ben posti. Per fare questo, introduciamo inizialmente il concetto di spazio topologico, un concetto attorno a cui stiamo
+"orbitando" da tutto il corso ma di cui non abbiamo avuto mai bisogno di utilizzare, siccome abbiamo sempre lavorato utilizzando la distanza euclidea. 
+
+\begin{definition}[spazio topologico]
+    Una coppia $(S, \tau)$ si dice spazio topologico tale che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item $S$ è un insieme;
+        \item $\tau$ è una collezione di insiemi di $S$ tali che
+        \begin{enumerate}
+            \item $\emptyset, S \in \tau$; (\emph{l'insieme vuoto e } $X$ \emph{ appartengono a } $\tau$);
+            \item $\forall Z \in \tau, \bigcup Z \in \tau$ (\emph{l'unione arbitraria di insiemi appartenenti a } $\tau$ \emph{ appartiene a } $\tau$);
+            \item $\forall Z \in \tau, \bigcap Z \in \tau$ (\emph{l'intersezione finita di insiemi appartenenti a } $\tau$ \emph{ appartiene a } $\tau$).
+        \end{enumerate}
+    \end{enumerate}
+    Diciamo che $\tau$ è una topologia su $X$. Inoltre diciamo che gli insiemi che appartengono a $\tau$ sono aperti in $X$. 
+    \label{def:topological_space}
+\end{definition}
+
+Soffermiamoci un momento su questa definizione: la topologia, nonostante la definizione astratta, altro non è che uno spazio in cui abbiamo la nozione di apertura e chiusura. Possiamo infatti ben vedere come uno spazio metrico
+altro non è che uno spazio topologico in cui la topologia è indotta dalla metrica: la definizione di insieme aperto e chiuso, infatti, sono state date tirando in causa la nozione di distanza; tuttavia questo non toglie la natura
+topologica dello spazio. Anzi, più avanti mostreremo (per completezza) che una distanza induce proprio una topologia. \\
+\begin{example}[esempio di spazio topologico]
+    Consideriamo l'insieme $S = \{a,b,c \}$. Osserviamo che
+    \begin{enumerate}[label=\protect\circled{\arabic*}]
+        \item le collezioni $R = \{\emptyset, S, \{a \} \}$ e $X = \{ \emptyset, S, \{a\}, \{b\}, \{c\} \}$ altro non sono che topologie su $S$.
+        \item la collezione $Z = \{\emptyset, S, \{ a \}, \{ b \} \}$ non è una topologia su $S$ siccome manca l'unione di $\{ a \}, \{ b \}$.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}[insieme chiuso]
+    Sia $(S, \tau)$ uno spazio topologico, un sottoinsieme $A \subseteq S$ si dice chiuso se $S \setminus A$ è aperto.
+    \begin{equation*}
+        A \text{ è chiuso } \iff A^c \in \tau.
+    \end{equation*}
+\end{definition}
+\begin{remark}
+    Preso $(S, \tau)$ spazio topologico, allora $\emptyset, S$ sono sia aperti che chiusi in ogni topologia.
+\end{remark}
+Prima di procedere ulteriormente, vorrei innanzitutto far vedere che, preso $(X, d)$ spazio metrico, allora la distanza induce una topologia. Vogliamo mostrare il seguente teorema
+\begin{theorem}[degli aperti metrici]
+    Sia $(X, d)$ uno spazio metrico. Sia $\tau$ la famiglia dei sottoinsiemi $A \subseteq X$ tali che
+    $$
+    \forall a \in A, \exists \varepsilon > 0 : B(a, \varepsilon) \subseteq A.
+    $$
+    Allora $\tau$ è una topologia su $X$.
+\end{theorem}
+\begin{proof}
+    La dimostrazione verte nel mostrare che $\tau$ soddisfa le buone proprietà richieste nella definizione \ref{def:topological_space}. Osserviamo che, chiaramnete, il vuoto e $X$ appartengono a $\tau$. Mostriamo
+    adesso che $\tau$ è chiusa per unioni qualsiasi. Sia $\{ A_i \}_{i \in I} \subseteq \tau$: vogliamo far vedere che $\bigcup\limits_{i \in I} A_i \in \tau$. Allora, si osservi che preso $x \in \bigcup\limits_{i \in I} A_i \exists j \in I : x \in A_j$. Quindi sappiamo
+    che $\exists \varepsilon > 0 : B(x, \varepsilon) \subseteq A_j$, ma siccome $A_j \subseteq \bigcup\limits_{i \in I} A_i \implies B(x, \varepsilon) \subseteq \bigcup\limits_{i \in I} A_i$.
+    Passiamo adesso alle intersezioni finite. Sia $A = \bigcap\limits_{i=1}^n A_i$ con $A_i \in \tau \, \forall i \in \{ 1, \ldots, n\}$. Allora sappiamo che $\exists \varepsilon_1, \ldots, \varepsilon_n > 0: B(x, \varepsilon_i) \subseteq A_i$ con $i \in \{1, \ldots, n \}$. Ma allora si conclude necessariamente
+    che, posto $\varepsilon = \min(\varepsilon_1, \ldots, \varepsilon_n)$, sappiamo che $\varepsilon > 0$ (siccome il minimo di $n$ numeri strettamente positivi) e $\forall i \in \{1, \ldots, n \}, B(x, \varepsilon) \subseteq B(x, \varepsilon_i) \subseteq A_i$ (siccome $\forall i \in \{1, \ldots, n \}, \varepsilon \leq \varepsilon_i$) $\implies B(x, \varepsilon) \subseteq \bigcap\limits_{i=1}^n A_i$.
+\end{proof}
+
+Abbiamo già definito il concetto di \emph{omotopia} nel capitolo \ref{cap:integrali_curvilinei}. La definizione, nel caso di spazi topologici, è la seguente:
+\begin{definition}[omotopia]
+    Siano $X, Y$ due spazi topologici e siano $f, g : X \to Y$ funzioni continue. Una omotopia di $f$ in $g$ è una funzione continua $H: X \times I \to Y$ tale che $\forall x \in X, H(x, 0) = f(x), H(x, 1) = g(x)$. In tal caso
+    diremo che $f$ è omotopa a $g$ e si scrive $f \sim g$.
+\end{definition}
+Tuttavia in spazi topologici come si definisce la continuità? La prossima definizione risponderà alla nostra domanda
+\begin{definition}[continuità in spazi topologici]
+    Siano $X, Y$ due spazi topologici. Diremo che $f: X \to Y$ è continua se $\forall A \subseteq Y \text{ aperto}, f^{-1}(A) \text{ è aperto in } X$.
+\end{definition}
+\begin{remark}
+    Confrontiamo questa definizione con il teorema \ref{thm:theo_c1}: nel caso di $\mathbb{R}^n$ o, in generale negli spazi metrici, si poteva dimostrare che valeva questo fatto. Ma in generale tale teorema è proprio il punto di partenza
+    della topologia perché, in un certo senso, ci dice che per studiare la continuità non è necessario conoscere la distanza ma solamente la famiglia dei sottoinsiemi aperti: la topologia altro non è che la branca della matematica che si occupa
+    di studiare le trasformazioni continue e le proprietà di uno spazio che sono conservate da una trasformazione continua.
+\end{remark}
+Prima di procedere nella dimostrazione di quanto prefisso, abbiamo bisogno di dimostrare una serie di proprietà dell'omotopia che necessitano, tuttavia, di qualche proprietà insiemistica e topologica che dobbiamo dimostrare. La prima fra tutti è la seguente identità
+\begin{lemma}
+    Siano $X, Y$ due insiemi e sia $f: X \to Y$ una funzione fra i due. Allora, presi due sottoinsiemi $A \subseteq X, B \subseteq Y$, vale la seguente identità
+    \begin{equation*}
+        f^{-1}(Y \setminus B) = X \setminus f^{-1}(B).
+    \end{equation*}
+    \label{lemma:preimage_diff}
+\end{lemma}
+\begin{proof}
+    Per dimostrare questa affermazione è sufficiente mostrare, come al solito, che valgono le due inclusioni $\subseteq$ e $\supseteq$. \\
+    $\boxed{\subseteq}$: sia $x \in f^{-1}(Y \setminus B)$, allora, per definizione, sappiamo che $f(x) \in Y \setminus B$. Ma allora sappiamo che $f(x) \in Y$ e $f(x) \not\in B$, da cui deduciamo allora che $x \in f^{-1}(Y) = X$ (banale) e $x \not\in f^{-1}(B)$ dunque $x \in X \setminus f^{-1}(B)$. \\
+    $\boxed{\supseteq}$: sia $x \in X \setminus f^{-1}(B)$, allora sappiamo che $x \in X$ e $x \not\in f^{-1}(B)$. Ma allora $f(x) \in Y$ (banale) e $f(x) \not\in B$, dunque $f(x) \in Y \setminus B$, pertanto, per definizione, $x \in f^{-1}(Y \setminus B)$.
+\end{proof}
+\begin{lemma}
+    Siano $X, Y$ due spazi topologici. Diremo che $f$ è continua se e solo se $\forall A \subseteq Y$ chiuso, $f^{-1}(A)$ è chiuso.
+    \label{lemma:continuos_map_closed}
+\end{lemma}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Rightarrow}$: sappiamo che $f$ è continua se la preimmagine di aperti è aperta. Ma allora, preso $A \subseteq Y$, abbiamo che $f^{-1}(A)$ è aperto mentre
+    $$
+        X \setminus f^{-1}(A) = f^{-1}(Y \setminus A) = f^{-1}(A^c),
+    $$
+    dove la prima uguaglianza segue dalla definizione di complementare e dalla proprietà dimostrata nel lemma \ref{lemma:preimage_diff}. Sappiamo allora che $A$ è aperto $\implies A^c$ è chiuso e $f^{-1}(A)$ è aperto $\implies (f^{-1}(A))^c$ è chiuso. \\
+    Dunque abbiamo che per ogni chiuso $A \subseteq Y$, abbiamo che $f^{-1}(A)$ è chiuso. \\
+    $\boxed{\Leftarrow}$: sappiamo che $f^{-1}(A)$ è chiuso per ogni chiuso $A \subseteq Y$. Ma allora, preso $A \subseteq Y$ aperto, abbiamo che $f^{-1}(A^c)$ è chiuso, ma allora
+    $$
+        f^{-1}(A^c) = f^{-1}(Y \setminus A) = X \setminus f^{-1}(A)
+    $$
+    dove l'ultima uguaglianza segue sempre dal lemma \ref{lemma:preimage_diff}. Ma allora segue che $f^{-1}(A)$ è aperto, dunque $f$ è continua. 
+\end{proof}
+\begin{lemma}[dell'incollamento]
+    Siano $X = A \cap B$, con $A$ e $B$ sottospazi topologici chiusi di $X$, allora $f: X \to Y$ è continua se e solo se $f_{|A}$ e $f_{|B}$ sono continue.
+    \label{lemma:gluing_lemma}
+\end{lemma}
+\begin{proof} \hspace{1cm} \\
+    $\boxed{\Rightarrow}$: banalmente, se $f$ è una funzione continua, allora avremo che $f_{|A}$ e $f_{|B}$ sono continue. Infatti se $C = f(A)$ e $D = f(B)$ sono chiusi, allora per ogni aperto $C' \subseteq C$ avremo che
+    $f^{-1}(C')$ è aperto (per continuità di $f$) e similmente per ogni aperto di $D$. \\
+    $\boxed{\Leftarrow}$:  sia adesso $C$ un insieme chiuso di $Y$ allora $f^{-1}(A) \cap A$ e $f^{-1}(B) \cap B$ sono, rispettivamente, due chiusi in $A$ e in $B$, essendo $f_{|A}$ e $f_{|B}$ continue e per il lemma \ref{lemma:continuos_map_closed}. Ma allora
+    $f^{-1}(C) \cap A$ e $f^{-1}(C) \cap B$ sono chiusi in $X$, essendo $A$ e $B$ chiusi. Avremo allora che
+    $$
+    f^{-1}(C) = (f^{-1}(C) \cap A) \cup (f^{-1}(C) \cap B)
+    $$
+    è unione di chiusi, dunque è un chiuso. Allora $f$ è continua, sempre per il lemma \ref{lemma:continuos_map_closed}.
+\end{proof}
+\begin{prop}[l'omotopia è una relazione d'equivalenza]
+    Siano $X, Y$ spazi topologici. Allora l'omotopia definisce una relazione d'equivalenza sull'insieme delle funzioni continue da $X$ in $Y$.
+\end{prop}
+\begin{proof} \hspace{1cm} \\
+    Dobbiamo banalmente mostrare che valgono le proprietà di \emph{riflessività}, \emph{simmetria} e \emph{transitività} di cui gode un a relazione d'equivalenza. \\
+    \emph{Riflessività}: ogni funzione è banalmente omotopa a sé stessa, possiamo infatti considerare $H(x, \lambda) = f(x)$. \\
+    \emph{Simmetria}: sia $f \sim g$, allora osserviamo che $H(x, \lambda)$ è l'omotopia di $f$ in $g$ allora $H(x, 1-\lambda)$ è l'omotopia di $g$ in $f$. \\
+    \emph{Transitività}: siano $f \sim g, g \sim z$, dove $f, g, z : X \to Y$ e consideriamo le relative omotopie $H$ di $f$ in $g$ e $K$ di $g$ in $z$. Allora possiamo definire l'omotopia
+    $$
+        Z: X \to Y = \begin{cases}
+            H(x, 2\lambda) & \text{se } 0 \leq \lambda \leq \frac{1}{2} \\
+            K(x, 2\lambda - 1) & \text{se } \frac{1}{2} \leq \lambda \leq 1
+        \end{cases}
+    $$
+    e osservare che essa si tratta di un'omotopia di $f$ in $z$ siccome $Z(x, 0) = H(x, 0) = f(x)$ e $Z(x, 1) = K(x, 1) = z(x)$. La continuità dell'omotopia non è assolutamente banale, ma discende dal lemma \ref{lemma:gluing_lemma}.
+\end{proof}
+\begin{prop}
+    Uno spazio topologico $X$ connesso per archi è semplicemente connesso se e solo se esiste un'unica classse di omotopia di cammini chiusi che collegano due punti di $X$.
+\end{prop}
+\begin{proof}
+    Osserviamo che la connessione per archi in $X$ garantisce che $\forall x, y \in X, \exists \gamma: [0, 1] \to X : \gamma(0) = x, \gamma(1) = y$. \\
+    $\boxed{\Rightarrow}$: assumiamo che $X$ sia connesso per archi. In tal caso abbiamo che, prese due curve $\gamma, \delta : [0, 1] \to X$ tali che $\gamma(0) = \delta(0) = x$ e $\gamma(1) = \delta(1) = y$, avremo che,
+    presa $g : [0, 1] \to [0, 1]$ tale che $p \stackrel{g}{\mapsto} 1 - p$, allora $\gamma + g*\delta$ è un cammino chiuso. Ma sappiamo che $\pi_1(X, x_0) = 0$ (il gruppo fondamentale è banale) pertanto abbiamo che
+    $$
+    [\gamma] = [\gamma \bar{\delta} \delta] = [\delta],
+    $$
+    siccome il circuito $\gamma + g*\delta$ è un circuito banale su $x$. Concludiamo che esiste un'unica classe di omotopia di cammini chiusi. \\
+    $\boxed{\Leftarrow}$: Se esiste un'unica classe di omotopia di cammini fra $x_0$ e $x_0$ allora segue banalmente che $\pi(X, x_0) = 0$. Dall'arbitrarietà di $x_0$ segue che lo spazio è semplicemente connesso. 
+\end{proof}

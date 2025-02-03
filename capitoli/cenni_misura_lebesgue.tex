@@ -1782,6 +1782,11 @@ $$
 che prende il nome di equazione di continuità.
 
 \section{Teorema del rotore}
+
+Vogliamo adesso enunciare il teorema del rotore. Ci limiteremo all'enunciato relativo alle superfici elementari, ma naturalmente è possibile mostrare la sua valenza anche per superfici più "generali". Prima di fare ciò è necessaria e, soprattutto, doverosa qualche definizione.
+
+\subsection{Superfici elementari}
+
 \begin{definition}[curva regolare a tratti]
 	Una curva $\gamma: [a, b] \to \mathbb{R}^n$ si dice regolare a tratti se $\gamma \in C^1_\text{tratti}$ e $\dot{\gamma}(t) \neq 0 \, \, \forall t \in (t_{i-1}, t_i) \, \, \forall i \in \{1, \ldots, N \}$ dove $a=t_0 < t_1 < \ldots < t_{N-1} < t_N = b$ è il partizionamento che rende $\gamma$ $C^1_\text{tratti}$. Se $N=1$, ovvero $t_0=a$ e $t_1=b$ diremo che $\gamma$ è regolare.
 \end{definition}
@@ -1823,17 +1828,17 @@ Il "bordo" di questo dominio può essere frastagliato in alcuni punti
 \end{figure}
 \end{remark}
 Tramite i domini elementari possiamo definire le superfici elementari
-\begin{definition}[superfici]
-	Sia $H \subseteq \mathbb{R}^2$ dominio piano elementare, $U \subseteq \mathbb{R}^2$ aperto con $\bar{H} \subseteq \mathcal{U}$, $\Phi \in C^1(\mathcal{U}, \mathbb{R}^3)$ con
-		\begin{enumerate}[label=\protect\circled{\arabic*}]
-			\item $\Phi$ iniettiva;
-			\item $d\Phi: \mathbb{R}^2 \to \mathbb{R}^3$ iniettivo $\forall u \in H$;
-		\end{enumerate}
-		allora $\Sigma = \Phi(H)$ è una superficie elementare con $\Phi$ parametrizzazione di $\Sigma$ tale che
-		\begin{equation}
-			\partial \Sigma = \Phi(\partial H)
-			\label{eq:bordo}
-		\end{equation}
+\begin{definition}[superficie elmentare]
+	Diremo che $\Sigma \subseteq \mathbb{R}^3$ è una superficie elementare se esiste un dominio piano elementare $H \subseteq \mathbb{R}^2, \mathcal{U} \subseteq \mathbb{R}^2$ aperto e una funzione $\Phi: \bar{H} \to \mathbb{R}^3$ tali che
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $\Phi$ è iniettiva su $\bar{H}$, $\bar{H} \subset \mathcal{U}$, $\Phi \in C^1(\mathcal{U}, \mathbb{R}^3)$;
+		\item $d\Phi: \mathbb{R}^2 \to \mathbb{R}^3$ è iniettivo $\forall u \in \bar{H}$;
+		\item $\Sigma = \Phi(H)$.
+	\end{enumerate}
+	Inoltre, diremo che $\Phi$ è una parametrizzazione di $\Sigma$, $\bar{\Sigma} = \Phi(\bar{H})$ è la chiusura di $\Sigma$ pertanto, posto $\partial \Sigma = \Phi(\partial H)$, avremo che
+	\begin{equation}
+		\bar{\Sigma} = \Sigma \cup \partial \Sigma
+	\end{equation}
 \end{definition}
 \begin{remark}
 	La condizione $\Phi(\partial H) = \partial \Sigma$ serve per evitare delle situazioni come il grafico dell'\emph{otto}: possiamo parametrizzare un $8$ solo per $y>0$ ma in $z=0$, se invertiamo la funzione localmente, possiamo estenderla anche al semipiano inferiore ottenendo qualcosa che non è più un $(x, y)-$grafico.
@@ -1849,8 +1854,71 @@ D\Phi(u) = \begin{pmatrix}
 $$
 e supponiamo che $M_{\text{12}}(D\Phi) = \det \begin{bmatrix} \nabla \Phi_1 \\ \nabla \Phi_2 \end{bmatrix} \neq 0$: possiamo considerare $\Phi_{(1, 2)}: U \to \mathbb{R}^2$ tale che $u \mapsto (\Phi_1(u), \Phi_2(u))$. Per ipotesi avremo che $\det D\Phi_{(1, 2)}(u) = M_{12}(D\Phi(u)) \neq 0 \implies$ per il teorema della funzione inversa $\exists \delta > 0: \exists V \subseteq \mathbb{R}^2: \Phi_{(1,2)}: B(u, \delta) \to V$ invertibile con inversa $\Psi: V \to B(u, \delta) \in C^1(V, B(u, \delta))$.
 Ma allora $(\Phi \circ \Psi)(u) = (\Phi_1(\Psi(v)), \Phi_2(\Psi(v)), \Phi_3(\Psi(v))) = (\Phi_{(1,2)}(\Psi(v)), \Phi_3(\Psi(v))) = (v, \Phi_3(\Psi(v)))$ siccome $\Psi = \Phi_{(1,2)}^{-1}$. A questo punto possiamo localmente vedere questa superficie elementare come quella che soddisfa l'equazione $z = \Phi_3(\Psi(v))$ e, ponendo $g = \Phi_3 \circ \Psi$, avremo la seguente equazione definente $z=g(v) \implies z - g(v) = 0 \implies \Sigma=f^{-1}(0)$ dove $f(v, z) = z - g(v)$. \\
-
 \end{remark}
+Le superfici elementari "non hanno buchi", ovvero sono degli insiemi semplicemente connessi: consideriamo una curva $\gamma: [a,b] \to \Sigma$ chiusa, allora possiamo considerare la composizione $\Phi^{-1} \circ \gamma : [a, b] \to \bar{H}$ e, siccome $\Phi$ è iniettiva su $\bar{H}$, avremo che la curva $\Phi \circ \gamma$ è anch'essa una curva chiusa. Ma allora sappiamo che $\exists x_0 \in \bar{H} : \exists \mathcal{H} : [0, 1] \times [a, b] \to \bar{H} : \mathcal{H}(0, \cdot) = \Phi^{-1} \circ \gamma(\cdot), \mathcal{H}(1, \cdot) = x_0$, da cui si deduce che
+la funzione $\Phi \circ \mathcal{H} : [0, 1] \times [a, b] \to \Sigma$ è una funzione continua tale che $\Phi \circ \mathcal{H}(0, \cdot) = \gamma(\cdot), \Phi \circ \mathcal{H}(1, \cdot) = \Phi(x_0)$ e $\forall t, \mathcal{H}(t, a) = \mathcal{H}(t, b) \implies \Phi \circ \mathcal{H}(t, a) = \Phi \circ \mathcal{H}(t, b)$ per l'iniettività di $\Phi$. La funzione $\Phi \circ H$ è allora è un'omotopia di $\gamma$ in $\Phi(x_0)$.
+
+\begin{prop}
+	Se $\gamma \in C^1(\mathcal{U}), \mathcal{U} \subset \mathbb{R}^2$ aperto, $H \subset \mathbb{R}^2$ è un dominio piano elementare e $\bar{H} \subset \mathcal{U}$, allora $\Phi(x, y) = (x, y, \varphi(x, y)), (x, y) \in \mathcal{U}$ definisce una superficie regolare $\Sigma = \Phi(\mathcal{U})$ che è il grafico di $\varphi$ su $\mathcal{U}$.
+\end{prop}
+\begin{proof}
+Osserviamo banalmente che le condizioni $\circled{1}$, $\circled{2}$ della definizione di superficie regolare sono verificate, mentre l'ultima condizione segue da come è stata definita $\Sigma$.
+\end{proof}
+\begin{remark}
+	E' facile osservare che la proposizione $1$ si può formulare analogamente per i casi in cui $\Phi(x, z) = (x, \varphi(x, z), z), (x, z) \in \bar{H}$ e $\Phi(y, z) = (\varphi(y, z), y, z), (y, z) \in \bar{H}$.
+\end{remark}
+Possiamo a questo punto definire il concetto di normale esterna
+\begin{definition}[normale esterna]
+	Sia $H \subseteq \mathbb{R}^2$ aperto un dominio piano elementare e sia $\gamma : [a, b] \to \partial H$ una curva semplice, chiusa e regolare a tratti rispetto a $a = t_0 < t_1 < \leq < t_k = b$ la cui immagine è il bordo $\partial H$. Possiamo inoltre assumere che $\gamma$ orienti la curva positivamente, ovvero 
+	percorre $H$ lasciandolo a sinistra. Definiamo la normale esterna come
+	\begin{align*}
+	&\eta(\gamma(t)) = \frac{R\dot{\gamma}(t)}{|R\dot{\gamma}(t)|} & &\forall t \in (t_{j-1}, t_j) \, \forall k \in \{1, \ldots, k \}
+	\end{align*}
+	dove $R$ è la matrice di rotazione $\frac{\pi}{2}$ in senso orario.
+\end{definition}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=2]
+		% Regione H
+		\filldraw[fill=gray!20, draw=black, thick] 
+			(0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
+
+		% Etichetta della regione H
+		\node at (1, 1) {\Huge $H$};
+
+		% Frontiera con frecce per l'orientamento
+		\draw[->, thick] (0 + 1, 0+0.25) -- (1+1, 0.25+0.25);
+		\draw[->, thick] (2, 0.5) -- (2.25, 1); 
+		\node[anchor=north west] at (2, 0.5) {\Large $\gamma(t)$};
+		\draw[->, thick] (2.5, 1.5) -- (2, 2);
+		\draw[->, thick] (1.5, 2.5) -- (0.5, 2.25);
+		\draw[->, thick] (-0.5, 2) -- (-0.15, 1.75);
+
+		% Vettori normali esterni ortogonalizzati
+		\draw[->, red, thick] (1, 0.25) -- (1.125, -0.35); % Normale esterna in basso (rotazione 90°)
+		\draw[->, red, thick] (2.25, 1) -- (2.75, 0.75);  % Normale esterna a destra
+		\draw[->, red, thick] (2, 2) -- (2.35, 2.625);    % Normale esterna in alto a destra
+		\draw[->, red, thick] (0.5, 2.25) -- (0.25, 2.75); % Normale esterna in alto a sinistra
+		\draw[->, red, thick] (-0.25, 1.75) -- (-0.75, 2);  % Normale esterna a sinistra
+
+		% Clip per mantenere il riempimento
+		\clip (0, 0) -- (2, 0.5) -- (2.5, 1.5) -- (1.5, 2.5) -- (-0.5, 2) -- cycle;
+	\end{tikzpicture}
+	\caption{(Da sistemare): normale esterna nel caso di un dominio piano elementare}
+\end{figure}
+
+Consideriamo adesso $\Phi: U \to \mathbb{R}^3$ di classe $C^1$ una parametrizzazione di una superficie elementare $\Sigma = \Phi(H)$ e $H$ un dominio piano elementare. Abbiamo visto dal capitolo \ref{cap:curve_superfici_regolari} che preso $p \in \Sigma$ con $p = \Phi(w), w \in H$ allora abbiamo che lo spazio tangente a $\Sigma$ in $p \in \Sigma$ è dato da
+$$
+	T_p(\Sigma) = \text{Span}{\partial_1 \Phi(w), \partial_2 \Phi(w)}
+$$
+mentre una normale a $\Sigma$ in $p$ è data da
+$$
+	\nu(p) = \frac{\partial_1 \Phi(w) \times \partial_2 \Phi(w)}{|\partial_1 \Phi(w) \times \partial_2 \Phi(w)|}.
+$$
+Possiamo dunque orientare una superficie elementare scegliendo sempre il campo normale
+$$
+\nu(p) = \frac{\Phi_{u_1} \Phi(\Phi^{-1}(p)) \times \Phi_{u_2} (\Phi^{-1}(p))}{|\Phi_{u_1} \Phi(\Phi^{-1}(p)) \times \Phi_{u_2} (\Phi^{-1}(p))|}
+$$
 \newpage 
 \newpage 
 \newpage
