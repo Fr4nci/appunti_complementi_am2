@@ -5,10 +5,162 @@
 Le forme differenziali, dal punto di vista storico, derivano dalla generalizzazione al caso multidimensionale di concetti
 quali il lavoro di un campo su un cammino e il flusso di un liquido attraverso una superficie. In fisica classica, esse sono particolarmente
 rilevanti per la piena comprensione del formalismo hamiltoniano della meccanica classica mentre in fisica moderna sono fondamentali per la
-teoria della relatività generale e per la teoria dei campi quantistici.
+teoria della relatività generale e per la teoria dei campi quantistici. \\
+Gli argomenti qua esposti sono stati presi principalmente da \cite{arnold}, libro che consiglio di leggere per chi volesse approfondire meglio gli argomenti che adesso esporremo e alcuni aspetti del corso di Meccanica Analitica, tuttavia sono presenti anche in \cite{rudin}, in una forma più sintentica e, secondo me, meno chiara.
 
 \section{Forme algebriche esterne}
 Vogliamo introdurre definendo le forme algebriche esterne, strettamente collegate alle forme differenziali. Partiamo dalle $1-$forme algebriche esterne
 \begin{definition}
-    Sia $\omega : \mathbb{R}^n \to \mathbb{R}$, diremo che essa è $1-$forma algebrica esterna se è una funzione lineare.
+    Sia $\omega : \mathbb{R}^n \to \mathbb{R}$, diremo che essa è $1-$forma algebrica esterna se è una funzione lineare definita sui vettori,
+    $$
+    \omega(\lambda_1 \xi_1 + \lambda_2 \xi_2) = \lambda_1 \omega(\xi_1) + \lambda_2 \omega(\xi_2), \forall \lambda_1, \lambda_2 \in \mathbb{R}, \forall \xi_1, \xi_2 \in \mathbb{R}^n.
+    $$
 \end{definition}
+Un esempio di $1-$forma algebrica è sicuramente il lavoro di una forza $\vec{F}$ su un cammino $\gamma$. Similmente, possiamo andare a definire le $2-$forme
+\begin{definition}
+    Chiamiamo $2-$forma algebrica esterna una funzione $\omega^2: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$ una funzione definita sulle coppie di vettori bilineare e antisimmetrica,
+    \begin{align*}
+        &\omega^2(\lambda_1 \xi_1 + \lambda_2 \xi_2, \xi) = \lambda_1 \omega^2(\xi_1, \xi) + \lambda_2 \omega^2(\xi_2, \xi), \forall \lambda_1, \lambda_2 \in \mathbb{R}, \forall \xi_1, \xi_2, \xi \in \mathbb{R}^n \\
+        &\omega^2(\xi_1, \xi_2) = - \omega^2(\xi_2, \xi_1) \forall \xi_1, \xi_2 \in \mathbb{R}^n.
+    \end{align*}
+\end{definition}
+Un esempio di $2-$forma algebrica è il flusso di campo $\vec{F}$ attraverso una superficie $\Sigma$.
+\begin{prop}
+    Per ogni $2-$forma algebrica $\omega^2$ si ha sempre che
+    $$
+    \omega^2(\xi, \xi) = 0, \forall \xi \in \mathbb{R}^n.
+    $$
+\end{prop}
+\begin{proof}
+    Abbiamo che
+    $$
+    \omega^2(\xi, \xi) \stackrel{\text{per l'antisimmetricità}}{=} - \omega^2(\xi, \xi) \implies \omega^2(\xi, \xi) = 0.
+    $$
+\end{proof}
+
+L'insieme di tutte le $2-$forme differenziali forma uno spazio vettoriale con le seguenti operazioni:
+\begin{align*}
+    &(\omega_1^2 + \omega_2^2)(\xi_1, \xi_2) = \omega_1^2(\xi_1, \xi_2) + \omega_2^2(\xi_1, \xi_2) \\
+    &(\lambda \omega^2)(\xi_1, \xi_2) = \lambda \omega^2(\xi_1, \xi_2).
+\end{align*}
+\begin{exercise}
+    Trovare le dimensioni dello spazio vettoriale delle $2-$forme algebriche esterne, mostrando che è finito.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    E' chiaro che presi due vettori $\xi_1, \xi_2 \in \mathbb{R}^n$ distinti, sappiamo che $\xi_1 = \sum\limits_{i=1}^n \alpha_i e_i, \xi_2 = \sum\limits_{i=1}^n \beta_i e_i$ la $2-$forma algebrica esterna $\omega^2$ agisce su questi due nella seguente maniera:
+    $$
+        \omega^2(\xi_1, \xi_2) = \omega^2(\sum_{i=1}^n \alpha_i e_i, \sum_{j=1}^n \beta_j e_j) = \sum_{i, j} \alpha_i \beta_j (1-\delta_{ij}) A_{ij} = \sum_{i \neq j} \alpha_i \beta_j A_{ij}
+    $$
+    dove si è usato il fatto che $\omega^2(e_i, e_i) = 0 \implies \omega^2(e_i, e_j) = (1-\delta_{ij}) \omega^2(e_i, e_j)$ e definiamo la matrice $A_{ij} = \omega^2(e_i, e_j)$ antisimmetrica: abbiamo costruito un isomorfismo tra lo spazio delle $2-$forme algebriche esterne e lo spazio delle matrici antisimmetriche, siccome l'azione su una base può essere modellizzata tramite un'applicazione lineare antisimmetrica. Ne segue che lo spazio vettoriale delle $2-$forme algebriche esterne ha dimensione pari a $\frac{n(n-1)}{2}$.
+\end{proof}
+Astraiamo ancora di più il concetto di forma algebrica esterna, introducendo le $k-$forme
+\begin{definition}[$k-$forma algebrica esterna]
+    Sia $k \in \mathbb{N}^{> 0}$, diremo che una funzione $\omega^k: \varprod\limits_{i=1}^k \mathbb{R}^n \to \mathbb{R}$ antisimmetrica e multilineare è una $k-$forma algebrica esterna, ovvero se $\forall \xi_1', \xi_1'', \ldots, \xi_k \in \mathbb{R}^n$ soddisfa le seguenti proprietà:
+    \begin{align*}
+        &\omega^k(\lambda_1 \xi_1' + \lambda_2 \xi_1'', \ldots, \xi_k) = \lambda_1 \omega^k(\xi_1', \ldots, \xi_k) + \lambda_2 \omega^k(\xi_1'', \ldots, \xi_k), \forall \lambda_1, \lambda_2 \in \mathbb{R}, \\
+        &\omega^k(\xi_{i_1}, \ldots, \xi_{i_k}) = (-1)^{\nu} \omega^k(\xi_1, \ldots, \xi_k) \text{ con } \nu = \begin{cases} 1 & \text{ se la permutazione } i_1, \ldots, i_k \text{ è pari} \\ 0 & \text{ se la permutazione è dispari } \end{cases}.
+    \end{align*}
+\end{definition}
+
+Risulta evidente che, procedendo come fatto prima, definendo le seguenti operazioni sulle $k-$forme algebriche esterne
+\begin{align*}
+    \begin{aligned}
+        &(\omega_1^k + \omega_2^k)(\boldsymbol{\xi}) = \omega_1^k(\boldsymbol{\xi}) + \omega_2^k(\boldsymbol{\xi}) \\
+        &(\lambda \omega)^k(\boldsymbol{\xi}) = \lambda \omega^k(\boldsymbol{\xi})
+    \end{aligned}
+    \qquad \text{dove } \boldsymbol{\xi} = (\xi_1, \ldots, \xi_k) \text{ e } \forall i \in \{1, \ldots, k\},\ \xi_i \in \mathbb{R}.
+\end{align*}
+\begin{exercise}
+    Trovare le dimensioni dello spazio vettoriale delle $k-$forme algebriche esterne, mostrando che è finito.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Si può ragionare come fatto in precedenza, ragionando come agisce una $k-$forma algebrica esterna su una base $\{ e_1, \ldots, e_n \}$, osservando che in virtù della sua antisimmetria se sono presenti $2$ vettori uguali, il valore assunto dalla $k-$forma è nullo (basta ragionare come fatto prima nel caso delle $2-$forme). Risulta quindi chiaro che l'azione di una $k-$forma è dunque identificata dalla combinazione senza ripetizioni $\xi_{i_1}, \ldots, \xi_{i_k}$ di $k$ vettori presi dalla base $\{ e_1, \ldots, e_n \}$. Se ne conclude che la dimensione dello spazio delle $k-$forme è pari a $\binom{n}{k}$. 
+\end{proof}
+\section{Prodotto esterno}
+
+Si vuole introdurre il concetto di prodotto esterno tra forme algebriche esterne: se $\omega^k$ è una $k-$forma algebrica esterna e $\omega^l$ è una $l-$forma algebrica esterna, il prodotto esterno $\omega^k \wedge \omega^l$ sarà una $k + l-$forma algebrica esterna. Per adesso limitiamoci al prodotto fra due $1-$forme algebriche esterne: prese $\omega^1_1$ e $\omega^1_2$ avremo che $\omega_1^1 \wedge \omega_2^1$ è una $2-$forma algebrica esterna: preso $\mathbb{R}^{2n} \ni \mathbf{\xi} = (\xi_1, \xi_2)$ con $\xi_1, \xi_2 \in \mathbb{R}^n$ definiamo 
+$$
+\omega(\mathbf{\xi}) = (\omega_1^1 \wedge \omega_2^1)(\xi_1, \xi_2) = \det{\begin{bmatrix}
+    \omega_1^1(\xi_1) & \omega_2^1(\xi_1) \\
+    \omega_1^1(\xi_2) & \omega_2^1(\xi_2)
+\end{bmatrix}}
+$$
+\begin{exercise}
+    Verificare che $(\omega_1^1 \wedge \omega_2^1)$ è una $2-$forma algebrica esterna.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Posto $\omega = (\omega^1_1 \wedge \omega_2^1)$, è chiaro che $\omega: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, quindi è sufficiente mostrare che sia bilineare e antisimmetrica, che sono banali da verificare in virtù della definizione di determinante.
+\end{proof}
+\begin{exercise}
+    Dimostrare che l'applicazione $(\omega_1^1, \omega_2^1) \to (\omega_1^1 \wedge \omega_2^1)$ è bilinare e antisimmetrica
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Risulta chiara l'antisimmetria, in quanto
+    $$
+        \omega_2^1 \wedge \omega_1^1 = \det{\begin{bmatrix}
+            \omega_2^1(\xi_1) & \omega_1^1(\xi_1) \\
+            \omega_2^1(\xi_2) & \omega_1^1(\xi_2)
+        \end{bmatrix}} = - \det{\begin{bmatrix}
+            \omega_1^1(\xi_1) & \omega_2^1(\xi_1) \\
+            \omega_1^1(\xi_2) & \omega_2^1(\xi_2)
+        \end{bmatrix}} = - \omega_1^1 \wedge \omega_2^1,
+    $$
+    dove si è usato il fatto che il determinante è antisimmetrico per scambio di colonne.
+    Per quanto riguarda la bilinearità, è sufficiente osservare che
+    \begin{align*}
+        &(\lambda_1 \omega_1^1 + \lambda_1' \omega_1^{'1}) \wedge \omega_2^1 = \det{\begin{bmatrix}
+            \lambda_1 \omega_1^1(\xi_1) + \lambda_1' \omega_1^{'1}(\xi_1) & \omega_2^1(\xi_1) \\
+            \lambda_1 \omega_1^1(\xi_2) + \lambda_1' \omega_1^{'1}(\xi_2) & \omega_2^1(\xi_2)
+        \end{bmatrix}} = \\
+        &=\det{\begin{bmatrix}
+            \lambda_1 \omega_1^1(\xi_1) & \omega_2^1(\xi_1) \\
+            \lambda_1 \omega_1^1(\xi_2) & \omega_1(\xi_2)
+        \end{bmatrix}} + \det{\begin{bmatrix}
+            \lambda_1' \omega_1^{'1}(\xi_1) & \omega_2^1(\xi_1) \\
+            \lambda_1' \omega_1^{'1}(\xi_2) & \omega_2^1(\xi_2)
+        \end{bmatrix}} = (\lambda_1 \omega_1^1) \wedge \omega_2^1 + (\lambda_1' \omega_1^{'1}) \wedge \omega_2^1.
+    \end{align*}
+\end{proof}
+
+Assumiamo adesso che in $\mathbb{R}^n$ sia fissato un sistema di coordinate, ovvero siano date $n$ $1-$forme differenziali indipendenti $x_1, \ldots, x_n$ tali che $x_i: \mathbb{R}^n \to \mathbb{R}$ e preso $\mathbb{R}^n \ni \mathbf{\xi} = (\xi_1, \ldots, \xi_n) \stackrel{x_i}{\mapsto} \xi_i$ che chiamiamo \emph{forme di base}, allora i prodotti esterni delle forme di base sono le $2-$forme $x_i \wedge x_j$ da cui risulta chiaro, per quanto mostrato nell'esercizio precedente, che
+\begin{itemize}
+    \item $x_i \wedge x_i = 0$,
+    \item $x_i \wedge x_j = - x_j \wedge x_i$
+\end{itemize}
+e, in virtù di quanto visto nel corso di Geometria, la $2-$forma ottenuta con il prodotto esterno fra due forme di base (distinte) ha una chiara interpretazione geometrica: presa la coppia di vettori $(\xi_1, \xi_2)$ risulta che il prodotto esterno delle due $1-$forme è l'area orientata della proiezione del parallelogramma identificato dai vettori $\xi_1, \xi_2$ sul piano coordinato $x_i, x_j$.
+\begin{exercise}
+    Mostrare che le $\binom{n}{2} = \frac{n(n-1)}{2}$ forme $x_i \wedge x_j \, (i < j)$ sono linearmente indipendenti.
+\end{exercise}
+\begin{proof}
+    Supponiamo che esista una combinazione lineare nulla:
+    \[
+        \sum_{1 \le i < j \le n} \lambda_{ij} \, x_i \wedge x_j = 0.
+    \]
+    Applichiamo entrambi i membri al parallelogramma generato da \( \mathbf{x_r}, \mathbf{x_s} \) (dove qua intendiamo i vettori e non le loro forme di base), dove \( r < s \). Si ha:
+    \[
+        \left( \sum_{i < j} \lambda_{ij} \, x_i \wedge x_j \right)(e_r, e_s) = \lambda_{rs} (x_r \wedge x_s)(e_r, e_s) = \lambda_{rs}.
+    \]
+    Infatti, \( x_r(e_r) = 1, x_s(e_s) = 1 \), e tutte le altre forme \( x_i \wedge x_j \) si annullano su \( e_r, e_s \) perché restituiscono zero se \( \{i,j\} \ne \{r,s\} \).
+
+    Quindi \( \lambda_{rs} = 0 \). Poiché \( r < s \) è arbitrario, si ha che tutti i coefficienti \( \lambda_{ij} = 0 \). Ciò mostra che le \( x_i \wedge x_j \) (con \( i < j \)) sono linearmente indipendenti.
+\end{proof}
+\begin{exercise}
+    Dimostrate che tutte le 2-forme in uno spazio tridimensionale $(x_1, x_2, x_3)$ si esauriscono con le forme
+    $$
+        P x_2 \wedge x_3 + Q x_3 \wedge x_1 + R x_1 \wedge x_2.
+    $$
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Come mostrato nell'esercizio precedente, i prodotti esterni \( x_2 \wedge x_3, x_3 \wedge x_1 \) e \( x_1 \wedge x_2 \) sono linearmente indipendenti. Poiché la dimensione dello spazio delle 2-forme algebriche esterne è pari a \( \binom{3}{2} = 3 \) segue, per definizione equivalente di base come un insieme linearmente indipendente massimale, che ogni 2-forma algebrica esterna si può esprimere come combinazione lineare di questi tre elementi.
+\end{proof}
+\begin{exercise}
+    Mostrare che ogni $2-$forma nello spazio $n-$dimensionale si può scrivere in maniera univoca come combinazione lineare delle forme $x_i \wedge x_j$.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Consideriamo l’insieme delle forme $x_i \wedge x_j$ per $1 \le i < j \le n$. Tali forme sono $ \binom{n}{2} $ in numero e sono linearmente indipendenti, come mostrato in un esercizio precedente.
+
+    Inoltre, sappiamo che lo spazio delle 2-forme algebriche esterne su \( \mathbb{R}^n \) ha dimensione proprio \( \binom{n}{2} \). Pertanto, per il teorema generale secondo cui ogni insieme di \( d \) vettori linearmente indipendenti in uno spazio vettoriale di dimensione \( d \) forma una base, le forme \( x_i \wedge x_j \) costituiscono una base.
+
+    Ne segue che ogni 2-forma può essere scritta in modo unico come combinazione lineare delle forme \( x_i \wedge x_j \).
+\end{proof}
+
