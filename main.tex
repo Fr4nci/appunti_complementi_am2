@@ -1,4 +1,3 @@
-\RequirePackage{fix-cm}
 \documentclass[12pt, twoside, italian, openany]{book}
 \input{h_preamble/new_preamble}
 \input{h_preamble/letterfonts}
@@ -45,7 +44,7 @@
 	\vfill
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.040]{immagini/burning_ship.png}
+		\includegraphics[scale=0.125]{immagini/grey_burningship.png}
 	\end{figure}
     	%\begin{tikzpicture}
 	% Definisco lo stile dei vettori
@@ -80,8 +79,23 @@
     	%\end{axis}
 	%\end{tikzpicture}
 	\vfill	
-	{\large \hfill Pisa, \today \par}
 	\end{titlepage}
+	\thispagestyle{empty}
+	\cleardoublepage
+	
+	\thispagestyle{empty}
+	\vspace*{8cm}
+	\begin{center}
+		\thispagestyle{empty}
+			\begin{flushright}
+				\small\emph{A mia mamma Antonietta e al mio babbo Enrico. \\
+				Ai miei coinquilini Matteo, Anna e Alessandro. \\
+				A Beatrice. \\}
+			\end{flushright}
+		\vspace*{\fill}
+	\end{center}
+	\tableofcontents
+	\addcontentsline{toc}{chapter}{Introduzione}
 	\chapter*{Introduzione}
 	Queste note sono pensate come un riferimento per lo studio del corso di \emph{Complementi di Analisi Matematica} tenuto dal professore
 	Valentino Magnani. Esse fanno per lo più riferimento al programma seguito dal professore durante il primo semestre dell'anno 2023/2024,
@@ -89,12 +103,13 @@
 	Nella parte finale del documento (che si può riconoscere dalla presenza di una grafica che ho inserito sulla $\Gamma$) sono presenti delle appendici in cui affronto degli argomenti che il professore non è riuscito a "toccare" durante il corso,
 	ma che mi sono risultate utili per comprendere meglio altri corsi. \\
 	Prima di chiudere questa introduzione, vorrei spendere qualche parola per ringraziare tutti coloro che sono intervenuti nella correzione di questo documento. In particolar modo ringrazio Francesco Angelo Fabiano Antonacci per l'aiuto prestatomi nel correggere certe dimostrazioni, Stefano Nordio e Davide Geria per avermi aiutato nell'individuare alcuni errori di scrittura e/o mie dimenticanze. \\
-	Una menzione d'onore va a Beatrice, la mia ragazza, che mi ha dovuto sostenere e sopportare durante la stesura di questo documento che mi ha occupato un bel po' della mia esistenza e ai miei coinquilini Matteo, Anna e Alessandro che mi sopportano durante le mie farneticazioni fra spazi vettoriali. \\
 	Per segnalarmi eventuali errori nel documento (siano essi di typo oppure formali), contattatemi presso
 	\begin{center}
 		francesco291104 (\textbf{dot}) gmail.com
 	\end{center}
-	Buono studio!
+	Buono studio! \\ \\ \\
+	\vspace{5cm}
+	Pisa, \today \hfill \emph{Francesco Sermi} \\
 	\vfill
 	Appunti di Complementi di Analisi Matematica 2 © 2025 by Francesco Sermi is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
 	\chapter*{Notazioni}
@@ -139,7 +154,6 @@
 		\item $\sfrac{X}{\sim}$ insieme quoziente di $X$ rispetto alla relazione d'equivalenza
  
 	\end{itemize}
-	\tableofcontents
 	\input{capitoli/spazi_euclidei}
 	\input{capitoli/successioni_funzioni_continue}
 	\input{capitoli/calcolo_differenziale}
