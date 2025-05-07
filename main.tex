@@ -1,4 +1,4 @@
-\documentclass[12pt, twoside, italian, openany]{book}
+\documentclass[12pt, twoside, italian]{book}
 \input{h_preamble/new_preamble}
 \input{h_preamble/letterfonts}
 \input{h_preamble/macros}
@@ -80,41 +80,52 @@
 	%\end{tikzpicture}
 	\vfill	
 	\end{titlepage}
-	\thispagestyle{empty}
+	\pagestyle{empty}
+	\vspace*{\fill}
+	Appunti di Complementi di Analisi Matematica 2 © 2025 by Francesco Sermi is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
 	\cleardoublepage
-	
-	\thispagestyle{empty}
 	\vspace*{8cm}
 	\begin{center}
-		\thispagestyle{empty}
 			\begin{flushright}
-				\small\emph{A mia mamma Antonietta e al mio babbo Enrico. \\
+				\small\emph{Alla mia mamma Antonietta e al mio babbo Enrico. \\
 				Ai miei coinquilini Matteo, Anna e Alessandro. \\
 				A Beatrice. \\}
 			\end{flushright}
 		\vspace*{\fill}
 	\end{center}
+	\cleardoublepage
+	\pagestyle{fancy}
 	\tableofcontents
-	\addcontentsline{toc}{chapter}{Introduzione}
 	\chapter*{Introduzione}
-	Queste note sono pensate come un riferimento per lo studio del corso di \emph{Complementi di Analisi Matematica} tenuto dal professore
-	Valentino Magnani. Esse fanno per lo più riferimento al programma seguito dal professore durante il primo semestre dell'anno 2023/2024,
-	pertanto non garantisco che queste note riescano a coprire gli anni successivi. \\
-	Nella parte finale del documento (che si può riconoscere dalla presenza di una grafica che ho inserito sulla $\Gamma$) sono presenti delle appendici in cui affronto degli argomenti che il professore non è riuscito a "toccare" durante il corso,
-	ma che mi sono risultate utili per comprendere meglio altri corsi. \\
-	Prima di chiudere questa introduzione, vorrei spendere qualche parola per ringraziare tutti coloro che sono intervenuti nella correzione di questo documento. In particolar modo ringrazio Francesco Angelo Fabiano Antonacci per l'aiuto prestatomi nel correggere certe dimostrazioni, Stefano Nordio e Davide Geria per avermi aiutato nell'individuare alcuni errori di scrittura e/o mie dimenticanze. \\
-	Per segnalarmi eventuali errori nel documento (siano essi di typo oppure formali), contattatemi presso
-	\begin{center}
-		francesco291104 (\textbf{dot}) gmail.com
-	\end{center}
-	Buono studio! \\ \\ \\
-	\vspace{5cm}
-	Pisa, \today \hfill \emph{Francesco Sermi} \\
-	\vfill
-	Appunti di Complementi di Analisi Matematica 2 © 2025 by Francesco Sermi is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
-	\chapter*{Notazioni}
+	\pagestyle{empty}
+	\thispagestyle{empty}
+	\addcontentsline{toc}{chapter}{Introduzione}
+	\markboth{Introduzione}{Introduzione}
+	\pagestyle{fancy}
+	Queste note nascono come riferimento per lo studio del corso di \emph{Complementi di Analisi Matematica}, tenuto dal professor Valentino Magnani. Il contenuto segue prevalentemente il programma svolto nel primo semestre dell'anno accademico 2023/2024, per cui non garantisco che rimanga completamente valido anche per gli anni successivi.\
 
-	\pagestyle{plain}
+	Le presenti note sono state scritte con due obiettivi principali: fornire un materiale teorico il più possibile completo per affrontare l'esame, includendo le dimostrazioni dei teoremi e dei lemmi presentati a lezione, e al contempo offrire spunti per chi desideri approfondire ulteriormente alcuni argomenti. Questi due intenti, per mia inclinazione personale, si sono rivelati difficili da conciliare: tendo spesso a divagare o ad andare oltre gli scopi immediati del corso. Per questo ho deciso di raccogliere in appendice alcuni approfondimenti, sviluppati con l'intento di mantenerne la coerenza logica, ma senza pormi limiti in termini di lunghezza o complessità. Tali appendici sono riconoscibili per una grafica distintiva posta accanto alla lettera $\Gamma$ che ne segna l'inizio.\
+
+	Raccomando comunque di non limitarsi, nel caso si voglia approfondire, alla sola lettura delle appendici: esse vanno intese come introduzioni a temi molto più ampi. L'analisi matematica in più variabili, a mio avviso, rappresenta un punto di svolta fondamentale per accedere alle branche più moderne della matematica, come l'analisi funzionale, la geometria differenziale e la topologia. Purtroppo, per un percorso di studi incentrato sulla fisica, non è sempre possibile esplorare con la dovuta profondità questi argomenti all'interno di un corso di analisi, nonostante siano presenti in molti strumenti matematici che usiamo quotidianamente. Per questo motivo, all'inizio di ogni capitolo ho inserito una breve introduzione al contenuto trattato e suggerito del materiale utile per ripassare e approfondire.\
+
+	Un punto debole che riconosco in questo lavoro è la scarsità di esercizi. Ho cercato di includere un numero adeguato di esempi nel capitolo sull'integrale di Lebesgue, ma i capitoli precedenti ne sono quasi del tutto privi. Ciò è dovuto principalmente alla mancanza di tempo. Va detto, però, che il professore è sempre disponibile a fornire esercizi e chiarimenti, e che queste note \textbf{non} sostituiscono in alcun modo la frequenza alle lezioni, che raccomando vivamente di non trascurare.\
+
+	Prima di concludere, desidero ringraziare chi ha contribuito alla revisione di questo documento. In particolare, Francesco Angelo Fabiano Antonacci per il supporto nella verifica di alcune dimostrazioni, Stefano Nordio e Davide Geria per l'aiuto nell'individuazione di errori e sviste.\
+
+	Queste note sono state redatte tra mille impegni e spesso a notte fonda: un modo elegante per dire che \textbf{possono} contenere errori. Se ne trovate, vi sarei molto grato se voleste segnalarmeli — che siano refusi o imprecisioni più sostanziali — scrivendomi a:
+	\begin{center}
+	francesco291104 (\textbf{dot}) gmail.com
+	\end{center}
+
+	oppure fermandomi direttamente in dipartimento. In ogni caso, vi auguro di appassionarvi allo studio di questa materia.\
+
+	Buono studio a tutti! \\ \\ \\ \\
+	\emph{Pisa, \today} \hfill Francesco Sermi\
+	\vfill
+	\cleardoublepage
+	\chapter*{Notazioni}
+	\markboth{Notazioni}{Notazioni}
+	\pagestyle{empty}
 	\thispagestyle{empty}
 	\pagestyle{fancy}
 
@@ -161,7 +172,8 @@
 	\input{capitoli/integrali_curvilinei_potenziali}
 	\input{capitoli/cenni_misura_lebesgue}
 	\input{capitoli/esercizi}
-	\clearpage
+	\newpage
+	\cleardoublepage
 	\pagestyle{plain}
 	\thispagestyle{empty}
 	\vspace*{\fill}
@@ -171,7 +183,7 @@
 		\includegraphics[scale=0.25]{immagini/gamma_illustrata.png}
 	\end{figure}
 	\vspace*{\fill}
-	\pagestyle{fancy}
+	\pagestyle{empty}
 	\begin{appendices}
 		\pagestyle{fancy}
 		\fancyhead[LO]{\textbf{\thepage}}  % Numero di pagina in grassetto a sinistra
