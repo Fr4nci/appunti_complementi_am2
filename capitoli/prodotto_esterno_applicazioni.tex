@@ -136,6 +136,9 @@ e, in virtù di quanto visto nel corso di Geometria, la $2-$forma ottenuta con i
     \[
         \sum_{1 \le i < j \le n} \lambda_{ij} \, x_i \wedge x_j = 0.
     \]
+    \begin{remark}
+        E' chiaro che lo $0$ della precedente relazione è lo "zero" dello spazio vettoriale delle $2-$forme algebriche esterne, ovvero la $2-$forma nulla.
+    \end{remark}
     Applichiamo entrambi i membri al parallelogramma generato da \( \mathbf{x_r}, \mathbf{x_s} \) (dove qua intendiamo i vettori e non le loro forme di base), dove \( r < s \). Si ha:
     \[
         \left( \sum_{i < j} \lambda_{ij} \, x_i \wedge x_j \right)(e_r, e_s) = \lambda_{rs} (x_r \wedge x_s)(e_r, e_s) = \lambda_{rs}.
@@ -163,4 +166,95 @@ e, in virtù di quanto visto nel corso di Geometria, la $2-$forma ottenuta con i
 
     Ne segue che ogni 2-forma può essere scritta in modo unico come combinazione lineare delle forme \( x_i \wedge x_j \).
 \end{proof}
-
+Spinti da come abbiamo definito il prodotto esterno tra le $1-$forme algebriche esterne, possiamo adesso definire il prodotto esterno tra $k$ $1-$forme algebriche esterne in questa maniera:
+\begin{definition}
+    Date $k$ $1-$forme algebriche esterne $\omega_1, \ldots, \omega_k$ tali che $\omega_i: \mathbb{R}^k \to \mathbb{R}$ definiamo il prodotto esterno come
+    $$
+        \omega_1 \wedge \ldots \wedge \omega_k (\xi_1, \ldots, \xi_k) = \det{\begin{bmatrix}
+            \omega_1(\xi_1) & \ldots & \omega_k(\xi_1) \\
+            \omega_1(\xi_2) & \ldots & \omega_k(\xi_2) \\
+            \vdots & \vdots & \vdots \\
+            \omega_1(\xi_k) & \ldots & \omega_k(\xi_k)
+        \end{bmatrix}}
+    $$
+\end{definition}
+In pratica, il prodotto esterno tra $k$ $1-$forme algebriche esterne equivale al volume del parallelepipedo orientato generato dai $k$ vettori $\omega_1(\xi), \ldots, \omega_k(\xi)$ con $\xi = (\xi_1, \ldots, \xi_k)$.
+\begin{exercise}
+    Dimostrare che $\omega_1 \wedge \ldots \wedge \omega_k$ è una $k-$forma algebrica esterna.
+\end{exercise}
+\begin{proof}[Svolgimento]
+    E' chiaro che il prodotto esterno è multilineare, in quanto il determinante è multilineare rispetto alle colonne. L'antisimmetria è sempre garantita dallo scambio delle colonne del determinante. Questo implica la tesi.
+\end{proof}
+\begin{exercise}
+    Dimostrare che l'operazione di prodotto esterno di $k$ $1-$forme algebriche definisce un'applicazione bilineare e antisimmetrica
+    $$
+        (\omega_1, \ldots, \omega_k) \mapsto \omega_1 \wedge \ldots \wedge \omega_k
+    $$
+    ovvero
+    \begin{align*}
+        &(\lambda' \omega'_1 + \lambda'' \omega''_1) \wedge \omega_2 \wedge \ldots \wedge \omega_k = (\lambda' \omega'_1 \wedge \omega_2 \wedge \ldots \wedge \omega_k) + (\lambda'' \omega''_1 \wedge \omega_2 \wedge \ldots \wedge \omega_k) \\
+        &\omega_{i_1} \wedge \ldots \wedge \omega_{i_k} = (-1)^\nu \omega_1 \wedge \ldots \wedge \omega_k \text{ dove } \nu = \begin{cases}
+            1 & \text{ se la permutazione } i_1, \ldots, i_k \text{ è pari} \\
+            0 & \text{ se la permutazione } i_1, \ldots, i_k \text{ è dispari.}
+        \end{cases}
+    \end{align*}
+\end{exercise}
+\begin{proof}[Svolgimento]
+    Si ragiona come fatto con le $2-$forme algebriche esterne, usando le proprietà di cui gode il determinante.
+\end{proof}
+Consideriamo, come fatto in precedenza, un sistema di coordinate $\{ e_1, \ldots, e_n \}$ a cui associamo le $1-$forme di base $x_1, \ldots, x_n$. Il prodotto esterno di $k$ forme di base
+\begin{equation}
+    x_{i_1} \wedge x_{i_2} \wedge \ldots \wedge x_{i_k}, 1 \leq i_m \leq n, \forall m \in {1, \ldots, k}
+    \label{eq:k_form_prod}
+\end{equation}
+è il volume orientato del parallelepipedo generato dai $k$ vettori sul $k-$piano generato dai $k$ vettori $e_{i_1}, \ldots, e_{i_k}$, parallelamente alle altre coordinate. \\
+\begin{exercise}
+    Dimostrare che se due indici nella \ref{eq:k_form_prod} coincidono, allora il prodotto esterno è nullo. 
+\end{exercise}
+\begin{proof}
+    Basta riadattare il ragionamento già fatto prima.
+\end{proof}
+\begin{exercise}
+    Dimostrare che le forme $x_{i_1} \wedge \ldots \wedge x_{i_k}$ con $1 \leq i_1 < \ldots < i_k \leq n$ sono linearmente indipendenti.
+\end{exercise}
+\begin{proof}
+    Si ragiona come fatto per le $2-$forme algebriche esterne.
+\end{proof}
+\begin{exercise}
+    Dimostrare che ogni $k-$forma algebrica esterna si può scrivere come combinazione lineare delle forme $x_{i_1} \wedge \ldots \wedge x_{i_k}$.
+\end{exercise}
+\begin{proof}
+    Si ragiona come fatto in precedenza.
+\end{proof}
+E' interessante osservare che il precedente teorema sancisce che gli elementi della base dello spazio delle $k-$forme algebriche è pari a $\binom{n}{k}$: questo ci porta allora ad affermare il seguente corollario
+\begin{cor}[le $n-$forme sono volumi di parallelepipedi]
+    Ogni $n-$forma algebrica esterna in $\mathbb{R}^n$ o è il volume orientato di un parallelpepido generato da $n$ vettori distinti, oppure è nulla. In altre parole
+    $$
+        \omega^n = a (x_1 \wedge x_2 \wedge \ldots \wedge x_n) \text{ con } a \in \mathbb{R}.
+    $$
+\end{cor}
+\begin{exercise}
+    Dimostrare che ogni $k-$forma algebrica in $\mathbb{R}^n$ con $k > n$ è nulla.
+\end{exercise}
+\begin{proof}
+    Presi $k > n$ vettori, sappiamo che almeno uno di essi è combinazione lineare degli altri, quindi il loro prodotto esterno è nullo: ciò segue dalla multilinearità e dell'annullamento del prodotto esterno per vettori uguali.
+\end{proof}
+Torniamo adesso al problema di definire il prodotto esterno fra due forme algebriche esterne di ordine $k$ e $l$. Per quanto abbiamo visto, saremmo guidati a definire il prodotto esterno nella seguente maniera:
+\begin{definition}[prodotto esterno fra una $k-$forma e una $l-$forma]
+    Siano $\omega^k = \omega_1 \wedge \ldots \wedge \omega_k$ e $\omega^l = \omega_{k+1} \wedge \ldots \omega_{k+l}$ due forme algebriche esterne di ordine, rispettivamente, pari a $k$ e $l$, allora il prodotto esterno $\omega^k \wedge \omega^l$ è definito come
+    $$
+        (\omega^k \wedge \omega^l) =  \omega_1 \wedge \ldots \wedge \omega_k \wedge \omega_{k+1} \wedge \ldots \wedge \omega_{k+l}
+    $$
+    dove $\omega_i$ sono $1-$forme algebriche esterne $\forall i \in {1, \ldots, k+l}$.
+\end{definition}
+\begin{exercise}
+    Dimostrare che il prodotto esterno è associativo, ovvero
+    $$
+        (\omega^k \wedge \omega^l) \wedge \omega^m = \omega^k \wedge (\omega^l \wedge \omega^m),
+    $$
+    e anticommutativo, ovvero
+    $$
+        \omega^k \wedge \omega^l = (-1) ^ {kl} \omega^l \wedge \omega^k.
+    $$
+\end{exercise}
+Siamo adesso pronti a definire le $k-$forme differenziali

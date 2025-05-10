@@ -853,9 +853,9 @@ Per le coordinate polari, dunque, se $E \subseteq \mathbb{R}^2$ misurabile allor
 \end{exercise}
 \begin{proof}[Svolgimento]
 	La funzione $e^{-x^2}$ è naturalmente integrabile, siccome $\frac{e^{-x^2}}{\frac{1}{x^2}} \stackrel{x \to +\infty}{\to} 0$ per gli ordini di infinito, dunque $e^{-x^2} \ll \frac{1}{x^2} \implies \int_1^{+\infty} e^{-x^2} dx \ll \int_1^{+\infty} \frac{1}{x^2}$ mentre sull'intervallo $[0; 1]$ la funzione è limitata e continua. La parita della funzione garantisce lo stesso per l'intervallo $(-\infty; 0]$. Osserviamo
-	adesso che, tramite l'integrabilità, siamo sicuri di poter applicare $Fubini$ siccome l'intervallo $(-\infty; +\infty)$ è sicuramente misurabile in quanto aperto. Osserviamo che, applicando Fubini, su un insieme del tipo $\mathbb{R} \times \mathbb{R}$ allora
+	adesso che, tramite l'integrabilità, siamo sicuri di poter applicare Fubini, siccome l'intervallo $(-\infty; +\infty)$ è sicuramente misurabile in quanto aperto. Osserviamo che, applicando Fubini, su un insieme del tipo $\mathbb{R} \times \mathbb{R}$ allora
 	$$
-	\int_{-\infty}^{+\infty} e^{-(x^2 + y^2)}dxdy = \int_{-\infty}^{+\infty} e^{-y^2} dy \int_{-\infty}^{+\infty} e^{-x^2} dx = (\int_{-\infty}^{+\infty} e^{-x^2}dx)
+	\int_{-\infty}^{+\infty} e^{-(x^2 + y^2)}dxdy = \int_{-\infty}^{+\infty} e^{-y^2} dy \int_{-\infty}^{+\infty} e^{-x^2} dx = (\int_{-\infty}^{+\infty} e^{-x^2}dx)^2
 	$$
 	dunque possiamo studiare direttamente l'integrale in due variabili dove possiamo passare alle coordinate polari. Osserviamo che
 	\begin{align*}
