@@ -37,4 +37,105 @@ Siano $\gamma(t)=(t^2 e^t, t^2)$ e siano $c(t)=(te, t)$ con $\gamma, c:[0,1] \to
 		\item Sia $\gamma(t) : [0, \pi] \to \Omega$ con $\gamma(t) = (\sin(t), \cos(t), 0)$. Calcolare $\int_{\gamma} \omega$
 	\end{enumerate}
 \end{exercise}
-\cleardoublepage
+\begin{exercise}
+	Consideriamo l'insieme $E_\lambda = \{ (x, y, z) \in \mathbb{R}^3 : x, y, z \geq 0, x + y + z \leq \lambda \}$. Studiare l'integrabilità della funzione $z^{\alpha}$ su $E$ al variare di $\alpha, \lambda > 0$.
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Si osserva che $x + y + z \leq \lambda \implies z \leq \lambda \implies z^{\alpha} \leq \lambda^{\alpha} \implies \int_E z^{\alpha} \leq \int_E \lambda^{\alpha}$ e, siccome $E$ ha volume finito, quest'ultimo integrale è finito. Abbiamo allora che
+	\begin{align*}
+		&\int_E z^{\alpha} = \int_0^{\lambda} dz \int_0^{\lambda - z} dy \int_0^{\lambda - y - z} dx = \int_0^{\lambda} z^{\alpha} dz \int_0^{\lambda - z} dy (\lambda - y - z) = \\
+		&=\int_0^{\lambda} - z^{\alpha}\frac{(\lambda - y - z)^2}{2!}|^{\lambda - z}_0 dz = \int_0^{\lambda} - z^{\alpha} \lambda^2 + z^{\alpha}(\lambda - z)^2 dz = \int_0^{\lambda} + z^{\alpha + 2} - 2\lambda z^{\alpha + 1} = \\
+		&=\frac{\lambda^{\alpha + 2}}{}
+	\end{align*}
+\end{proof}
+\begin{exercise}
+	Sia $E = \{ (x, y, z) \in \mathbb{R}^3 : 0 \leq z \leq x \leq 2, 0 < y \leq x \}$ e sia $f: E \to \mathbb{R}$, con $f(x, y, z) = y(\log{y})\sqrt{x^2 - z^2}$. Stabilire se $f$ è integrabile su $E$ e calcolarne l'integrale in caso affermativo.
+\end{exercise}
+\begin{proof}[Svolgimento]
+	E' chiaro che $f$ è integrabile su $E$ se e solo se è finito l'integrale
+	$$
+		\int_E |f| = \int_0^2 dx \int_0^x dz \int_0^x dy |y(\log{y})\sqrt{x^2 - z^2}| \leq 2C \int_0^2 dx \int_0^x dz \int_0^x dy = 2C m_3(E),
+	$$
+	dove $C = \max\limits_{y \in (0, 2)} |y\log{y}|$. Concludiamo che $f$ è integrabile su $E$, pertanto
+	\begin{align*}
+	&\int_0^2 dx \int_0^x dz \int_0^x dy y(\log{y}) \sqrt{x^2 - z^2} = \int_0^2 dx \int_0^x \sqrt{x^2 - z^2} dz \int_0^x dy y(\log{y}) = \\
+	&\int_0^2 x^2 dx \int_0^x y\log{y} dy \int_0^1  \sqrt{1 - t^2} = \frac{\pi}{4} \int_0^2 x^2 dx \int_0^x y\log{y}dy. 
+	\end{align*}
+	Studiamo separatamente il secondo integrale:
+	\begin{align*}
+		&\int_0^x y\log{y}dy = \frac{y^2}{2} \log{y}|^x_0 - \int_0^x \frac{y^2}{2} \frac{1}{y}dy = \frac{x^2}{2} \log{x} - \frac{1}{4}x^2 = \\
+		&=\frac{\pi}{8} \int_0^2 \frac{x^4}{4} \log{x} dx - \frac{\pi}{16} \int_0^2 x^4 dx = \frac{\pi}{8} \left(\frac{x^5}{5} \log{x}|^2_0 - \int_0^2 \frac{x^5}{5} \frac{1}{x} dx \right) - \frac{\pi}{16} \int_0^2 x^4 dx = \\
+		&=\frac{4\pi}{5}(\log{2} - \frac{7}{10}).  
+	\end{align*}
+\end{proof}
+\begin{exercise}
+	Dimostrare l'integrabilità di $(x, y) \to \sin{(x+y)}$ su $E = (0, \frac{\pi}{2}) \times (0, \pi)$ e calcolare $\int_E \sin{(x+y)}dxdy$.
+\end{exercise}
+\begin{proof}
+	E' chiaro che $|\sin{(x+y)}| \leq 1$, dunque
+	$$
+		\int_E |\sin{(x+y)}| dxdy \leq \int_E 1 dxdy = \frac{\pi^2}{2} < +\infty.
+	$$
+	Procediamo con il calcolo dell'integrale:
+	\begin{align*}
+		&\int_E \sin{(x+y)}dxdy = \int_0^{\frac{\pi}{2}} \int_0^\pi \sin{(x+y)}dxdy = \int_0^{\frac{\pi}{2}} \cos{(x+y)}|^0_\pi dy = \left[ -\sin{(x+\pi)} + \sin{(x)} \right]^\frac{\pi}{2}_0 = \\
+		&= 2.
+	\end{align*}
+\end{proof}
+\begin{exercise}
+	Stabilire se l'insieme $E=\{(x, y, z) \in \mathbb{R}^3: x^2 \leq z \leq x - y^2 \}$ ha una misura finita e, in caso affermativo, calcolarla.
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Si osserva, innanzitutto, che l'insieme $E$ è misurabile: si osserva, infatti, che tale insieme è un chiuso, quindi è misurabile. Se $(x, y, z) \in E,$ allora $x^2 + y^2 \leq x$, dunque $y^2 \leq x - x^2$, da cui si deve allora avere che $x - x^2 \geq 0 \implies 0 \leq x \leq 1$. Segue, allora che $|y| \leq \sqrt{x - x^2} \implies |y| \leq 1$.
+	Possiamo allora calcolare il nostro integrale
+	\begin{align*}
+	&m_3(E) = \int_E dxdydz = \int \int_{E(x, y)} dz dxdy = \int (\int_{x^2}^{x-y^2} dz)dxdy = \int_A (x - y^2 - x^2) dxdy = \\
+	&=\int_A (\frac{1}{4} - y^2 - (x - \frac{1}{2})^2) =\frac{1}{4}m_2(A) - \int_A y^2 + (x-\frac{1}{2})dxdy \stackrel{x' = x-\frac{1}{2}}{=} \\
+	&=\frac{1}{4} m_2(A) - \int_A y^2 + x^2 = \frac{1}{4} m_2(A) - 2 \pi \int_0^{\frac{1}{2}} \rho^2 \rho d\rho = \frac{\pi}{32},
+	\end{align*}
+	dove abbiamo definito come $A = B((2^{-1}, 0), 2^{-1})$.
+\end{proof}
+\begin{exercise}
+	Siano $\alpha > 0$ e $E_\alpha = \{ (x, y) \in \mathbb{R}^2 : y>1, - \frac{1}{y^{\alpha} \leq x < 0 }\}$. Provare che $E_\alpha$ è misurabile e calcolarne la misura per $\alpha > 0$.
+\end{exercise}
+\begin{proof}[Svolgimento]
+	E' chiaro che possiamo scrivere il nostro insieme come l'intersezione fra l'aperto $\{(x, y) \in \mathbb{R}^2: y > 1, x < 0 \}$ con il chiuso $\{ (x, y) \in \mathbb{R}^2 : y \geq 1, - \frac{1}{y^\alpha} \leq x \}$: ne segue che la loro intersezione è misurabile e, pertanto, $E_\alpha$ lo è. Possiamo applicare il teorema di Tonelli, quindi
+	$$
+		m(E_\alpha) = \int_1^{+\infty} \int_{-\frac{1}{y^{\alpha}}}^{0} dxdy = \int_1^{+\infty} \frac{1}{y^{\alpha}} dy = (\frac{y^{1-\alpha}}{1-\alpha})|^{+\infty}_1 = \frac{1}{\alpha - 1}. 
+	$$
+	Chiaramente questo integrale converge solamente se $\alpha > 1$.
+\end{proof}
+\begin{exercise}
+	Si provi che l'insieme $D \subset \mathbb{R}^2$ costituito dai punti $(x, y) \in \mathbb{R}^2$ tali che
+	\begin{align*}
+	&-1 \leq xy \leq 1, & &x^2 + y^2 \leq 4, & &\min{x-y, x+y} \geq 0,  
+	\end{align*}
+	è misurabile. Si studi l'integrabilità di $f(x, y) = (x^2 - y^2)\cos{xy}$ su $D$ e, in tal caso, l'integrabilità.
+\end{exercise}
+\begin{proof}[Svolgimento]
+	Osserviamo che l'insieme $D$ è chiuso, dunque misurabile. Osserviamo, a questo punto, che
+	$$
+		\int_D |(x^2 - y^2)cos{xy}| \stackrel{x^2 \leq x^2 + y^2}{\leq} 4 \int_D |\cos{xy}| \leq 4 m_2(D).
+	$$
+	Ma è chiaro, per la monotonia della misura, che $m_2(D) \leq m_2(B((0, 0), 2))$ siccome $D \subset B((0, 0), 2)$, dunque la misura di $D$ è finita.
+	Facciamo il cambio di variabile ponendo $t = x - y$ e $u = x+y$, dunque $x = \frac{t+u}{2}$ e $y = \frac{u-t}{2}$, pertanto le altre condizioni diventano
+	$
+	-1 \leq (\frac{t+u}{2})(\frac{u-t}{2}) \leq 1 \implies |u^2 - t^2| \leq 1
+	$
+	e $(\frac{t+u}{2})^2 + (\frac{u-t}{2})^2 \leq 4 \implies \frac{u^2}{2} + \frac{t^2}{2} \leq 4 \implies u^2 + t^2 \leq 8$
+\end{proof}
+\begin{exercise}
+	Si consideri che $D = \{(x, y) \in \mathbb{R}^2 : -2 \leq x - y \leq 1 \leq y \leq 2 \}$ e si calcoli $\int_D (x^2 - y^2)dxdy$
+\end{exercise}
+\begin{proof}
+	Si osserva che il dominio qua considerato è un parallelogramma, dunque ha aerea finita. Osserviamo che
+	$$
+		\int_D |x^2 - y^2| \leq \int_D |x^2|dxdy \leq 4 m_2(D).
+	$$
+	Calcoliamo l'integrale
+	\begin{align*}
+		&\int_1^2 \int_{-2 + y}^{1 + y} (x^2 - y^2) dxdy = \int_1^2 dy [\frac{x^3}{3} - xy^2]^{y+1}_{y-2} = \\
+		&=\int_1^2 (\frac{(y+1)^3}{3} - y^2(y+1) - \frac{(y-2)^3}{3} + (y-2)y^2)dy = [\frac{(y+1)^4}{12} \cancel{- \frac{y^4}{4}} - \frac{y^3}{3} - \frac{(y-2)^4}{4} \cancel{+ \frac{y^4}{4}} - 2\frac{y^3}{3}]^2_1 = \\
+		&=[\frac{(y+1)^4}{12} - 3\frac{y^3}{3} - \frac{(y-2)^4}{4}]^2_1 = 3 \int_1^2 (1-y)dy = - \frac{3}{2}
+	\end{align*}
+\end{proof}
