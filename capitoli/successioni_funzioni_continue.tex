@@ -86,8 +86,8 @@ $\boxed{\Rightarrow}$: se $f$ è continua, supponiamo per assurdo che esista $U 
 $$
 |\underline{x_k} - \underline{w}| < \frac{1}{k} \to 0 \implies f(\underline{x_k}) \to f(\underline{z})
 $$
-ma allora $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Ma allora $f(z) \not\in U$: infatti, $U^c$ è chiuso dunque, per la proposizione~\ref{prop:caratt_chiusi}, abbiamo che ogni successione a valori in $U^c$ converge ad un punto appartenente in $U^c$, ma ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
-$\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)} - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| \leq \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)}-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
+e chiaramente abbiamo che $f(x_k) \in U^c$ (se appartenesse a $U$ allora $\underline{x_k} \in f^{-1}(U)$ il che contraddice come abbiamo definito la successione). \\ Ma allora $f(z) \not\in U$: infatti, $U^c$ è chiuso dunque, per la proposizione~\ref{prop:caratt_chiusi}, abbiamo che ogni successione a valori in $U^c$ convergente ad un punto implica che tale punto appartenga all'insieme chiuso, in questo caso $U^c$, ma ciò contraddice l'ipotesi iniziale che $z \in f^{-1}(U)$. \\
+$\boxed{\Leftarrow}$: sappiamo che la preimmagine di aperti è aperta in $A$ allora sia $\underline{x_k} \to \underline{z}$ con $\underline{x_k} \in A$ e $\underline{z} \in A$: se supponiamo, per assurdo, $f(\underline{x_k}) \not\to f(\underline{z})$ allora $\exists \alpha: \mathbb{N} \to \mathbb{N}$ tale che $\alpha(k) \stackrel{k \to +\infty}{\to} +\infty$ ed esiste $\sigma > 0: |f(\underline{x}_{\alpha(k)}) - f(\underline{z})| \geq \sigma$. D'altra parte $f^{-1}(B(f(z), \sigma)$ è aperto in $A$ (siccome preimmagine di una balla, che è aperta), dunque esiste $\delta > 0$ tale che $A \cap B(z, \delta) \subset f^{-1}(B(f(z)), \sigma)$ ed esiste $k_0 \geq 1$ tale che $x_k \in A \cap B(z, \delta) \subseteq f^{-1}(B(f(z)), \sigma) \, \forall k \geq k_0 \implies |f(\underline{x_k}) - f(\underline{z})| < \sigma$ e questo contraddice la precedente disequazione $|f(\underline{x}_{\alpha(k)})-f(\underline{z})| \geq \sigma$ per $k$ sufficientemente grande.
 \end{proof}
 \begin{theorem}[della permanenza del segno]
 Sia $f: A \to \mathbb{R}$ continua in $z \in A$. Se $f(z) > 0$ allora $\exists \delta > 0$ tale che $\forall x \in A \cap B(z, \delta), f(x) > 0$
@@ -212,7 +212,7 @@ Questo insieme, nel piano cartesiano, corrisponde ai punti che stanno sotto alla
 \begin{proof} \hspace{1cm} \\
 $\boxed{\Rightarrow}$: sia $x_k \to x \implies$ (per l'ipotesi di compattezza) $\exists y \in E : \exists \alpha: \mathbb{N} \to \mathbb{N} : x_{\alpha(k)} \to y \in E \implies x=y \in E$ per unicità del limite. Se $E$ non fosse limitato $\implies \exists \{x_k \} \subset E : |x_k| \to +\infty$ e per la compattezza $\exists \beta: \mathbb{N} \to \mathbb{N}$ strettamente crescente tale che $x_{\beta(k)} \to x \in E$ ma per unicità del limite $|x_\beta(k)| \to |x_k| \to +\infty$ e questo contraddice il limite $+\infty$. \\
 $\boxed{\Leftarrow}$: Se $\{ x_ k\} \subset E$ e $x_k = (x_{k_1}, \ldots, x_{k_n}) \implies x_{k_j}$ sono successioni reali limitate tali che $\exists x_{{\alpha_1(k)}_1} \to x_1, \exists x_{{\alpha_2(k)}_2} \to x_2, \ldots \implies 
-\exists x_{\alpha_1 \ldots \alpha_n(k)} \to x = (x_1, \ldots, x_n)$ (il fatto di poter estrarre una successione convergente è conseguenza del teorema di Bolzano-Weierstrass) e $x \in E$ per la chiusura di $E$. Il fatto di poter estrarre delle sottosuccessioni convergenti è garantito dal teorema di Bolzano-Weierstrass.
+\exists x_{\alpha_1 \ldots \alpha_n(k)} \to x = (x_1, \ldots, x_n)$ (il fatto di poter estrarre una successione convergente è conseguenza del teorema di Bolzano-Weierstrass) e $x \in E$ per la chiusura di $E$. 
 \end{proof}
 \noindent A questo punto ricordiamo la definizione di massimo e minimo locale o globale
 \begin{definition}[massimo globale]
@@ -289,7 +289,7 @@ Mostrare la proposizione precedente
 \end{exercise}
 \begin{proof}
 Per il corollario sappiamo che $f(A)$ è un intervallo. \\
-Se il minimo e il massimo della funzione sono ben definiti, allora l'immagine è banalmente contenuta fra il minimo e il massimo la cui esistenza è garantita dal teorema di Weierstrass. \\
+Se il minimo e il massimo della funzione sono ben definiti, allora l'immagine è banalmente contenuta fra il minimo e il massimo. \\
 Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di generalità, che $\not\exists \max\limits_{A} f$. Naturalmente, per caratterizzazione del $\sup$ abbiamo che $\forall \varepsilon > 0, \sup\limits_{A}{f} - \varepsilon \in f(A)$, dunque $\exists x \in A: f(x) = \sup\limits_{A}{f} - \varepsilon$, dunque $[\min\limits_{A} f, f(x)] \subseteq [\min\limits_A{f}, \sup\limits_{A}{f})$, dunque la tesi.
 \end{proof}
 \section{Accenni ai limiti in più variabili}
@@ -317,7 +317,7 @@ $$
 $$
 \end{theorem}
 \begin{proof} \hspace{1em} \newline
-$\boxed{\Rightarrow}$: si osserva che, presa una qualunque successione $p_k$ che soddisfa le ipotesi della proposizione sulla destra, avremo che il limite $\lim_{k \to +\infty} f(p_k)$ è un limite dove avviene la composizione della successione $p_k$ con la funzione $f$ e sono verificate tutte le ipotesi riguardo al cambio di variabile nel limite, dunque $\lim\limits_{k \to +\infty} f(p_k) = \lim\limits_{x \to q} f(x) = v$. \\
+$\boxed{\Rightarrow}$: si osserva che, presa una qualunque successione $p_k$ che soddisfa le ipotesi della proposizione sulla destra, avremo che il limite $\lim\limits_{k \to +\infty} f(p_k)$ è un limite dove avviene la composizione della successione $p_k$ con la funzione $f$ e sono verificate tutte le ipotesi riguardo al cambio di variabile nel limite, dunque $\lim\limits_{k \to +\infty} f(p_k) = \lim\limits_{x \to q} f(x) = v$. \\
 $\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la definizione di limite, avremo che $\exists \varepsilon: \forall \delta > 0, \exists x \in B(q, \delta) \cap A \setminus \{ q \}: |f(x) - v| \geq \varepsilon$. Ma allora, restringendosi a degli intorni di $q$ via via sempre più piccoli, come $V_k = (q-\frac{1}{k}, q + \frac{1}{k})$ esisterebbe $x_k \in A \cap V_k : |f(x_k) - v| > \varepsilon$. Ma questo è un assurdo, siccome $x_k \to q$ e ma $f(x_k) \not\to v$ contraddicendo la nostra ipotesi iniziale.
 \end{proof}
 \noindent Da questo teorema importantissimo segue questo semplice corollario (la cui dimostrazione è omessa siccome segue direttamente dalla definizione di funzione continua)

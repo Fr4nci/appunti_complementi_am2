@@ -36,7 +36,7 @@
 		\item $E_n$: spazio affine euclideo di dimensione finita $n$;
 		\item $\mathbb{E}_n$: spazio vettoriale euclideo, ottenuto fissando un'origine in $E_n$;
 	\end{itemize}
-	Sappiamo, dal corso di Geometria, che, fissando una base $\mathcal{B}$ di $\mathbb{E}_n$, le coordinate di un generico vettore $\underline{x} \in \mathbb{E}_n$ sono univoche e definendo la funzione $\varphi: \mathbb{E}_n \to \mathbb{R}^n$ tale che $\underline{x} \in \mathbb{E}_n \mapsto [\underline{x}]_{\mathcal{B}}$, dove con $[\underline{x}]_{\mathcal{B}}$ indichiamo il vettore delle coordinate del vettore $\underline{x}$ rispetto alla base $\mathcal{B}$ nello spazio $\mathbb{E}_n$. \\
+	Sappiamo, dal corso di Geometria, che, fissando una base $\mathcal{B}$ di $\mathbb{E}_n$, le coordinate di un generico vettore $\underline{x} \in \mathbb{E}_n$ sono univoche: possiamo definire l'applicazione lineare $\varphi: \mathbb{E}_n \to \mathbb{R}^n$ tale che $\underline{x} \in \mathbb{E}_n \mapsto [\underline{x}]_{\mathcal{B}}$, dove con $[\underline{x}]_{\mathcal{B}}$ indichiamo il vettore delle coordinate del vettore $\underline{x}$ rispetto alla base $\mathcal{B}$ nello spazio $\mathbb{E}_n$. \\
 Per comodità, noi vorremmo che questa base fosse anche ortonormale per semplificare la trattazione (l'esistenza è garantita, ovviamente, dal teorema di Lagrange). 
 \begin{definition}[base ortonormale]
 	sia $\mathcal{B} = \{ \underline{v}_1, \ldots \underline{v}_n \}$ una base di uno spazio euclideo, diciamo che essa è una base ortonormale se
@@ -52,7 +52,7 @@ $$
 \innerprod {\underline{v}}{\underline{w}} = \innerprod{\sum_{j=1}^n x_j \underline{v}_j}{\sum_{i=1}^n y_i \underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_j y_i \innerprod{\underline{v}_j}{\underline{v}_i} = \sum_{j=1}^n \sum_{i=1}^n x_i y_i \delta_{ij} = \sum_{i=1}^n x_i y_i
 $$
 \begin{definition}[norma]
-	Sia $V$ uno spazio vettoriale reale (o complesso). Si definisce norma un'applicazione $| \cdot |: V \to \mathbb{R}$ ($| \cdot |: V \to \mathbb{C}$) che verifica le seguenti condizioni:
+	Sia $V$ uno spazio vettoriale reale (o complesso). Si definisce norma un'applicazione $| \cdot |: V \to \mathbb{R}$ che verifica le seguenti condizioni:
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
 		\item $|\underline{v}| \geq 0 \, \, \forall \underline{v} \in V$
 		\item $| \underline{v} | = 0 \iff \underline{v} = \underline{0}$
@@ -335,7 +335,7 @@ $$
 $$
 dove abbiamo usato l'ipotesi che $R \in \text{SO}(3)$ dunque $\text{det}(R) = 1$ e siccome sappiamo che $R$ è un'isometria allora
 $$
-\innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}} = \text{det}\begin{pmatrix} \underline{v} & \underline{w} & \underline{u} \end{pmatrix} = \innerprod{\underline{v} \times \underline{w}}{\underline{u}} = \innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}}
+\innerprod{R\underline{v} \times R\underline{w}}{R\underline{u}} = \text{det}\begin{pmatrix} \underline{v} & \underline{w} & \underline{u} \end{pmatrix} = \innerprod{\underline{v} \times \underline{w}}{\underline{u}} = \innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}}
 $$
 ma allora $\innerprod{R\underline{v} \times R\underline{w}}{R\underline{u}} = \innerprod{R(\underline{v} \times \underline{w})}{R\underline{u}} \implies \innerprod{R(\underline{v} \times \underline{w}) - (R\underline{v} \times R\underline{w})}{R\underline{u}} = 0$. Ma allora, per la coercività del prodotto scalare, abbiamo necessariamente che
 $$
@@ -472,17 +472,17 @@ Siano $\{A_j: j \in J \}$ una famiglia di aperti (non necessariamente numerabile
 si osserva che, siccome $A_j$ è un insieme aperto $\forall j$, allora $\forall a \in A_j \exists r > 0: B(a, r) \subset A_j$, ma allora $B(a, r) \subset \bigcup\limits_{j \in J} A_j$, dunque $\forall a \in \bigcup\limits_{j \in J} A_j \exists r > 0: B(a, r) \subset \bigcup\limits_{j \in J} A_j$
 \end{proof}
 \begin{exercise}
-Siano $A_1, \ldots A_k \subseteq \mathbb{R}^n$ aperti, allora $\bigcap\limits_i^k A_i$ è un aperto
+Mostrare che presi $A_1, \ldots A_k \subseteq \mathbb{R}^n$ insieme aperti, allora $\bigcap\limits_i^k A_i$ è un aperto
 \label{exercise:intersec_open_set_is_open}
 \end{exercise}
-\begin{proof}
+\begin{proof}[Svolgimento]
 Sia $x \in \bigcap\limits_{i}^k A_i \implies \, \, \forall i \in \{1, \ldots, n \}, x \in A_i$ e, siccome per ipotesi sono aperti, avremo che $\forall i \, \, \exists r_i(x) : B(x, r_i(x)) \subseteq A_i$, dunque preso $r=\min\limits_i{ \{ r_i(x) : i \in \{1, \ldots, k \} \} }$ avremo che $\forall i \in \{1, \ldots, k \}, B(x, r) \subseteq A_i \implies B(x, r) \subseteq \bigcup\limits_i^k A_i$,
 dunque $\forall x \in \bigcap\limits_{i}^k A_i \, \, \exists r > 0 : B(x, r) \subseteq \bigcap\limits_i^k A_i$, dunque è aperto per definizione.
 \end{proof}
 \begin{exercise}
 Sia $A=\{(x, y) \in \mathbb{R}^2 : 1 < x^2 + y^2 < 4 \} = B(0, 2) \setminus \mathbb{B}(0,1)$, provare che $A$ è aperto
 \end{exercise}
-\begin{proof}
+\begin{proof}[Svolgimento]
 	Fissiamo $x \in A$ e prendiamo come $r=\min{ \{ 4-|x|, |x|-1 \} }$ avremo che
 	$$
 	|y| \leq |y-x+x| \leq |y-x| + |x| < |x| + r \stackrel{r \leq 4 - |x|^2}{\leq} |x| + 4 - |x| = 4
@@ -496,7 +496,7 @@ Sia $A=\{(x, y) \in \mathbb{R}^2 : 1 < x^2 + y^2 < 4 \} = B(0, 2) \setminus \mat
 \begin{exercise}
 Provare che $A = \{(x, y, z) : -1 < x < 2 \} = (-1, 2) \times \mathbb{R}^2$ ed è un insieme aperto in $\mathbb{R}^3$
 \end{exercise}
-\begin{proof} \hspace{1cm} \\
+\begin{proof}[Svolgimento] \hspace{1cm} \\
 	Mostriamo che $A \subseteq (-1, 2) \times \mathbb{R}^2$: osserviamo che, per definizione di $A$, $-1<x<2$ e, non essendoci altri vincoli, $y$, $z \in \mathbb{R}^2$; pertanto $A \subseteq (-1, 2) \times \mathbb{R}^2$. \\
 	Mostriamo che $(-1, 2) \times \mathbb{R}^2 \subseteq A$: osserviamo che, per definizione di prodotto cartesiano, preso $(x, y, z) \in \mathbb{R}^3$ allora $x \in (-1, 2) \implies -1 < x < 2$ dunque $(-1, 2) \times \mathbb{R}^2 \subseteq A$. \\
 	Dimostriamo che è aperto: preso $x'=(x, y, z) \in A$ allora possiamo considerare $r = \min{ \{x+1, 2-x \} }$ avremo che preso $y \in B(x', r)$ allora, posto $y=(y_x, y_y, y_z)$ e $x'=(x, x'_y, x'_z)$, avremo che
@@ -508,7 +508,7 @@ Provare che $A = \{(x, y, z) : -1 < x < 2 \} = (-1, 2) \times \mathbb{R}^2$ ed �
 \begin{exercise}
 	Provare che $\mathbb{R}^n$ è aperto
 \end{exercise}
-\begin{proof}
+\begin{proof}[Svolgimento]
 	Sia $x \in \mathbb{R}^n$, allora preso $r > 0$ e la palla $B(x, r)$ avremo che, per definizione, $\forall y \in B(x, r), y \in \mathbb{R}^n \implies B(x, r) \subseteq \mathbb{R}^n$.
 \end{proof}
 
@@ -523,7 +523,7 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 \begin{exercise}
 	Provare che $\text{Fr} \, B(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$ e $\text{Fr} \, \mathbb{B}(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$
 \end{exercise}
-\begin{proof}
+\begin{proof}[Svolgimento]
 	Mostriamo che $\text{Fr} \, B(x, r) = \{y \in \mathbb{R}^n : |x-y| = r \}$: %sia $y \in \text{Fr} \, B(x, r)$ allora avremo che $\forall r > 0: B(y, r) \cap B(x, r) \neq \emptyset$ e $B(y, r) \cap (B(x, r))^c \neq \emptyset$. \\
 	%Possiamo dunque una successione $r_k = \frac{1}{k}$ e dovremo avere che $B(y, r_k) \cap B(x, r) \neq \emptyset$ e $B(y, r_k) \cap (B(x, r))^c \neq \emptyset$ per quanto detto prima, 
 	possiamo osservare che $\forall z \in \{y \in \mathbb{R}^n : |x-y| = r \}, B(z, \varepsilon) \cap B(x, r) \neq \emptyset$, infatti possiamo considerare innanzitutto il segmento che congiunge il punto $y$ e $x$
@@ -568,14 +568,14 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 	Provare che $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$
 	\label{exercise:frontiera_intersec}
 \end{exercise}
-\begin{proof}
+\begin{proof}[Svolgimento]
 	Sia $x \in \text{Fr} \, A \implies \forall r > 0, B(x, r) \cap A \neq \emptyset \wedge B(x, r) \cap A^c \neq \emptyset$, ma allora $\forall r > 0, B(x, r) \cap A \neq \emptyset \implies x$ è un punto di aderenza di $A$, dunque $x \in \bar{A}$, e $\forall r > 0, B(x, r) \cap A^c \neq \emptyset \implies x$ è un punto
 	di aderenza di $A^c$, pertanto $x \in \bar{A} \cap \bar{A^c}$. Sia $x \in \bar{A} \cap \bar{A^c}$, allora, per definizione, avremo che $\forall r > 0: B(x, r) \cap A \neq \emptyset$ e $\forall r > 0: B(x, r) \cap A^c \neq \emptyset$, dunque $x \in \text{Fr} \, A$.
 \end{proof}
 \begin{exercise}
 	$A \subseteq \mathbb{R}^n$ è chiuso $\iff \text{Fr} \, A \subseteq A$
 \end{exercise}
-\begin{proof} \hspace{1cm} \\
+\begin{proof}[Svolgimento] \hspace{1cm} \\
 	$\boxed{\Rightarrow}$: osserviamo che se $A$ è chiuso, allora $A = \bar{A}$, pertanto siccome $\text{Fr} \, A \subseteq \bar{A} \implies \text{Fr} \, A \subseteq A$. Si ha necessariamente che $\text{Fr} \, A \subseteq \bar{A}$ siccome $\text{Fr} \, A = \bar{A} \cap \bar{A^c}$. \\
 	$\boxed{\Leftarrow}$: se $\text{Fr} \, A \subseteq A$ allora preso $x \in \bar{A}$ avremo due possibilità:
 	\begin{itemize}
@@ -587,7 +587,7 @@ Un concetto chiave sono i cosidetti \emph{punti di frontiera}, definiti come
 \begin{exercise}
 	Provare che $\bar{A} = A \cup \text{Fr} \, A$
 \end{exercise}
-\begin{proof} \hspace{1cm} \\
+\begin{proof}[Svolgimento] \hspace{1cm} \\
 	Mostriamo che vale $\bar{A} \supseteq A \cup \text{Fr} \, A$: è banale vedere che $A \subseteq \bar{A}$ e, in virtù di quanto visto in un esercizio precedente, siccome $\text{Fr} \, A = \bar{A} \cap \bar{A^c} \implies \text{Fr} \, A \subseteq \bar{A} \implies A \cup \text{Fr} \, A \subseteq \bar{A}$. \\
 	L'inclusione opposta si ottiene prendendo $x \in \bar{A}$ e ragionando come sopra.
 \end{proof}
