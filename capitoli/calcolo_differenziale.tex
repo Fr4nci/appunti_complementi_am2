@@ -79,10 +79,10 @@ Il viceversa è analogo, siccome se
 &\text{f è differenziabile in } x_0
 \end{align*}
 \end{proof}
-\noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione lineare affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, diciamo essere un'approssimazione del primo ordine. \\
+\noindent Ma in sostanza che cosa vuol dire essere differenziabili? Come forse alcuni avranno potuto capire dalla definizione, essere differenziabili vuol dire che è possibile approssimare la funzione, in quel punto $x_0 \in \Omega$ in cui è differenziabile, ad una applicazione affine del tipo $$a(x) = f(x_0) + df(x_0)(x-x_0)$$ che sarebbe, in maniera impropria, ciò che, in gergo da fisici, diciamo essere un'approssimazione del primo ordine. \\
 Dopo questa definizione siamo persino pronti a definire il concetto di derivata direzionale, nozione strettamente connessa a quella di differenziabilità.
 \begin{definition}[derivata direzionale]
-Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$, $f: \Omega \to \mathbb{R}^n$ e sia $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Definiamo la derivata direzionale rispetto a $v$ il limite (se esiste!)
+Sia $\Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$, $f: \Omega \to \mathbb{R}$ e sia $v \in \mathbb{R}^n \setminus \{ \underline{0} \}$. Definiamo la derivata direzionale rispetto a $v$ il limite (se esiste!)
 $$
 \partial_v f(x_0) = \lim_{t \to 0} \frac{f(x_0 + tv) - f(x_0)}{t}
 $$
@@ -356,12 +356,7 @@ A questo punto fissiamo $0 < \varepsilon < 1$, da cui deduciamo che
 $$
 o(|f(x)-f(x_0)|) = o(|df(x_0)(x-x_0) + o(|x-x_0|)|)
 $$
-dunque
-$$
-o(|f(x)-f(x_0)|) < \varepsilon |df(x_0)(x-x_0) + o(|x-x_0|)|
-$$
-e consideriamo $|x-x_0| < \delta_\varepsilon$ tale che $|df(x_0)(x-x_0) + o(|x-x_0|)| < \sigma_{\varepsilon}$. Sappiamo allora, per definizione di $o-$piccolo, che $\exists \bar{\delta}_\varepsilon > 0: |f(x) - f(x_0)| < \varepsilon |x-x_0|$, dunque prendiam
-$|x - x_0| < \min(\delta_\varepsilon, \bar{\delta}_\varepsilon)$ affinché valgano entrambe le disuguaglianze dette sopra e, a questo punto, facendo qualche piccola minorazione possiamo dedurre che 
+dunque, per definizione di $o-$piccolo abbiamo che $\exists \delta_\varepsilon > 0: \forall x \in \Omega \cap B(x_0, \delta_\varepsilon), |o(|f(x)-f(x_0)|)| < \varepsilon |df(x_0)(x-x_0) + o(|x-x_0|)|$. Oltre a questo si ha chiaramente che $\exists \bar{\delta}_\varepsilon > 0: \forall x \in B(x_0, \bar{\delta}_\varepsilon), |o(|x-x_0|)| < \varepsilon |x-x_0|$: ponendo quindi $\delta = \min \{\delta_\varepsilon, \bar{\delta}_ \varepsilon \}$ abbiamo che valgono contemporaneamente le due diseguaglianze sopra enunciate e si ha che
 \begin{align*}
 &o(|f(x)-f(x_0)|) < \varepsilon |f(x)-f(x_0)| < \varepsilon|df(x_0)(x-x_0) + o(|x-x_0|)| < \varepsilon |df(x_0)(x-x_0) + \\
 & \varepsilon|x-x_0|| <\varepsilon (|Df(x_0)| \, |x-x_0| + \varepsilon |x-x_0|) = \varepsilon (|Df(x_0)| + 1)|x-x_0| \implies \\
@@ -411,7 +406,7 @@ Per rispondere a questa domanda dobbiamo ricordare al lettore qualche concetto p
 \begin{equation}
 ax + by + cz + d = 0
 \end{equation}
-L'equazione qua sopra può essere ottenuta in due modi: il primo consiste nel trovare una base del piano\footnote{più correttamente, si dovrebbe parlare di giacitura perché a priori lavoriamo con dei piani che dobbiamo supporre affini. Ricordiamo però dal corso di Geometria, che un sottospazio affine è uno spazio vettoriale "traslato" di un vettore e tale spazio vettoriale, che avrà dunque una sua base, è ciò che prima ho chiamato giacitura} e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più un vettore di coordinate generiche $(x, y, z)$ che supponiamo appartenere al piano: la matrice avrà, conseguentemente, determinante nullo; ottenendo la formula attesa sopra attesa. Usufruendo, invece, del prodotto scalare possiamo possiamo osservare che, presa una base ortogonale del piano, allora possiamo decomporre lo spazio vettorale $\mathbb{R}^3$ in due sottospazi: il piano (di dimensione $2$) che indicheremo $W$ e lo Span del vettore ortogonale al piano (di dimensione $1$) $W^{\perp}$ (riprendendo la notazione del corso di Geometria), dunque, siccome sappiamo dal corso di Geometria che ogni combinazione lineari dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$, possiamo definire il nostro piano come l'insieme dei vettori il cui prodotto scalare con il vettore ortogonale è nullo. Questo ragionamento effettuato è facilmente estendibile a spazi euclidei muniti del prodotto scalare canonico di dimensione $n$ per iperpiani di dimensione $n-1$: infatti, presi $n-1$ vettori linearmente ortogonali come base dell'iperpiano che indichiamo con $W$, allora $W^{\perp}$ avrà dimensione $1$ (grazie all'ipotesi di coercività del prodotto scalare) dunque $W^{\perp} = \text{Span}(v)$ con $v$ vettore ortogonale; a questo punto possiamo ottenere la formula mostrata sopra osservando, come fatto prima, che ogni combinazione lineare dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$ e, quindi, indicare il piano come l'insieme dei vettori per cui il prodotto scalare con il vettore $v$ è nullo. Vedendo questo procedimento in maniera esplicita, possiamo considerare un piano $\pi \in \mathbb{R}^3$ di dimensione pari a $2$ da cui abbiamo che $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$ e, prendendo un generico vettore $v = (a, b, c)$ (ovvero la base del nostro $(\pi)^{\perp}$), se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ preso $P = (x, y, z)$ appartenente al piano, allora per quanto detto, dobbiamo avere che
+L'equazione qua sopra può essere ottenuta in due modi: il primo consiste nel trovare una base del piano\footnote{più correttamente, si dovrebbe parlare di giacitura perché a priori lavoriamo con dei piani che dobbiamo supporre affini. Ricordiamo però dal corso di Geometria, che un sottospazio affine è uno spazio vettoriale "traslato" di un vettore e tale spazio vettoriale, che avrà dunque una sua base, è ciò che prima ho chiamato giacitura} e, successivamente, ricavare l'equazione prendendo la matrice che ha come colonne i vettori della base più un vettore di coordinate generiche $(x, y, z)$ che supponiamo appartenere al piano: la matrice avrà, conseguentemente, determinante nullo; ottenendo la formula attesa sopra attesa. Usufruendo, invece, del prodotto scalare possiamo possiamo osservare che, presa una base ortogonale del piano, allora possiamo decomporre lo spazio vettorale $\mathbb{R}^3$ in due sottospazi: il piano (di dimensione $2$) che indicheremo $W$ e lo Span del vettore ortogonale al piano (di dimensione $1$) $W^{\perp}$, dunque, ricordando dal corso di Geometria che ogni combinazione lineari dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$, possiamo definire il nostro piano come l'insieme dei vettori il cui prodotto scalare con il vettore ortogonale è nullo. Questo ragionamento effettuato è facilmente estendibile a spazi euclidei muniti del prodotto scalare canonico di dimensione $n$ per iperpiani di dimensione $n-1$: infatti, presi $n-1$ vettori linearmente ortogonali come base dell'iperpiano che indichiamo con $W$, allora $W^{\perp}$ avrà dimensione $1$ (grazie all'ipotesi di coercività del prodotto scalare) dunque $W^{\perp} = \text{Span}(v)$ con $v$ vettore ortogonale; a questo punto possiamo ottenere la formula mostrata sopra osservando, come fatto prima, che ogni combinazione lineare dei vettori appartenenti a $W$ sarà ortogonale a $W^{\perp}$ e, quindi, indicare il piano come l'insieme dei vettori per cui il prodotto scalare con il vettore $v$ è nullo. Vedendo questo procedimento in maniera esplicita, possiamo considerare un piano $\pi \in \mathbb{R}^3$ di dimensione pari a $2$ da cui abbiamo che $\dim{(\pi)^{\perp}} = \dim{\mathbb{R}^3} - \dim{\pi} + \dim{\pi \cap (\mathbb{R}^n)^{\perp}} = 1$ e, prendendo un generico vettore $v = (a, b, c)$ (ovvero la base del nostro $(\pi)^{\perp}$), se vogliamo trovare l'equazione di un piano affine, allora, fissato un punto $P_0 = (x_0, y_0, z_0) \in \pi$ preso $P = (x, y, z)$ appartenente al piano, allora per quanto detto, dobbiamo avere che
 $$
 \vec{P_0P} \perp v
 $$
@@ -489,7 +484,7 @@ $$
 $$
 (si faccia attenzione alla notazione, in cui viene \textbf{sempre} specificato l'ordine in cui sono fatte le derivate). Di fatto potremmo definire anche le derivate terze, quarte, ecc.
 $$
-\partial_{x_3} \partial_{x_2} \partial_{x_1} f = f_{x_1 x_2 x_3} = \frac{\partial^3}{\partial x_3 \partial x_2 \partial x_1}
+\partial_{x_3} \partial_{x_2} \partial_{x_1} f = f_{x_1 x_2 x_3} = \frac{\partial^3 f}{\partial x_3 \partial x_2 \partial x_1}
 $$
 In generale, ove esistono, le derivate di ordine $k$ possono essere denotate nella seguente maniera:
 $$
@@ -507,25 +502,25 @@ Consideriamo la funzione
 $$
 \varphi(\tau) = f(x_0 + \tau e_i + t e_j) - f(x_0 + \tau e_i)
 $$
-dove $t$ è sufficientemente piccolo e fissato, dunque:
+dove $t$ è sufficientemente piccolo e fissato. Osserviamo che
 \begin{align*}
-&\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) - (f(x_0 + te_j) - f(x_0)) = \\
-&=f(x_0 + te_i + te_j) - f(x_0 + te_i) - f(x_0 + te_j) + f(x_0)
+&\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) + f(x_0 + te_j) - f(x_0) = \\
+&=f(x_0 + te_i + te_j) - f(x_0 + te_j) + f(x_0 + te_j) + f(x_0)
 \end{align*}
 Adesso sappiamo, per il teorema di Lagrange, che
 $$
 \varphi(t) - \varphi(0) = \varphi'(\theta t)t
 $$
 con $0 < \theta < 1$. Possiamo "accorpare" i termini come
-$$\varphi(t) - \varphi(0) = [(f(x_0 + te_i + te_j)-f(x_0 + te_j)) - (f(x_0 + te_i) - f(x_0))]t$$
-e, per il teorema di Lagrange, definendo le funzioni $z(\tau) = f(x_0 + \tau e_i + t e_j$ e $h(\tau) = f(x_0 + \tau e_i)$ allora avremo che
+$$\varphi(t) - \varphi(0) = [(f(x_0 + te_i + te_j)-f(x_0 + te_j)) - (f(x_0 + te_j) - f(x_0))]t$$
+e per il teorema di Lagrange, definendo le funzioni $z(\tau) = f(x_0 + \tau e_i + t e_j)$ e $h(\tau) = f(x_0 + \tau e_i)$ e ponendo $0 < \theta < 1$, avremo che
 $$
-\varphi(t) - \varphi(0) = [(z(t) - z(0)) - (h(t) - h(0))]t = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t
+\varphi(t) - \varphi(0) = [(z(t) - z(0)) + (h(t) - h(0))]t = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t.
 $$
-Possiamo riapplicare nuovamente il teorema di Lagrange su questa differenza, osservando che
+Possiamo riapplicare nuovamente il teorema di Lagrange su questa differenza, ponendo $0 < \theta' < 1$
 \begin{align*}
-[\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j) - f(x_0 + \theta te_i))]t = \\
-=\partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + te_j)t^2
+[\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j)) - \partial_{x_i} f(x_0 + \theta te_i)]t = \\
+=\partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + \theta' e_j)t^2.
 \end{align*}
 Ripetendo questo ragionamento invertendo gli indici, possiamo dunque concludere, per continuità delle derivate seconde nel punto $x_0$, che:
 $$
@@ -538,7 +533,7 @@ Con degli argomenti più sofisticati è possibile indebolire ulteriormente le ip
 \begin{theorem}[di Schwarz di ordine superiore]
 Sia $f: \Omega \to \mathbb{R}, \Omega$ aperto e $\Omega \subseteq \mathbb{R}^n$. Supponiamo che esistano tutte le derivate di $f$ fino all'ordine $k$ e che siano continue in $\xi \in \Omega$. Allora per ogni scelta di indici $1 \leq i_1, \ldots, i_k \leq n$ abbiamo
 $$
-\frac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \ldots \partial x_{i_k}}(\xi) = \frac{\partial^k f}{\partial x_{\sigma(1)} \partial x_{\sigma(2)} \ldots \partial x_{\sigma(k)}}(\xi)
+\frac{\partial^k f}{\partial x_{i_1} \partial x_{i_2} \ldots \partial x_{i_k}}(\xi) = \frac{\partial^k f}{\partial x_{i_{\sigma(1)}} \partial x_{i_{\sigma(2)}} \ldots \partial x_{i_{\sigma(k)}}}(\xi)
 $$
 dove $\sigma \in \sum_{k}$.
 \end{theorem}
@@ -572,7 +567,7 @@ Dunque possiamo generalizzare il teorema di Schwarz di ordine superiore che abbi
 \begin{theorem}
 Sia $f \in C^k(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto. Allora $\forall 1 \leq i_1, \ldots, i_l \leq n$ e $2 \leq l \leq k$, definendo $\sigma \in \sum_{l}$, abbiamo che
 $$
-\partial_{x_l} \partial_{x_{l-1}} \ldots \partial_{x_1} f = \partial_{x_{\sigma(l)}} \partial_{x_{\sigma(l-1)}} \ldots \partial_{x_{\sigma_{1}}} f
+\partial_{x_{i_l}} \partial_{x_{i_{l-1}}} \ldots \partial_{x_{i_1}} f = \partial_{x_{i_{\sigma(l)}}} \partial_{x_{i_{\sigma(l-1)}}} \ldots \partial_{x_{i_{\sigma_{1}}}} f
 $$
 \end{theorem}
 \begin{proof}
@@ -581,11 +576,11 @@ Segue banalmente dal teorema precedente.
 Questo teorema è molto importante siccome stabilisce che, per funzioni di classe $C^k$, l'ordine con cui deriviamo per ottenere una derivata parziale iterata non modifica la derivata. \\
 Adesso abbiamo tutti gli strumenti per introdurre i differenziali di ordine superiore
 \begin{definition}[differenziali di ordine superiore]
-	Sia $f \in C^k(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$ e preso $1 \leq l \leq k$ definiamo:
+	Sia $f \in C^k(\Omega), \Omega \subseteq \mathbb{R}^n$ aperto, $x_0 \in \Omega$ e preso $1 \leq l \leq k$ definiamo
 	$$
-	d^l f(x_0) = \sum_{i_1, \ldots, i_l = 1}^n \frac{\partial^l f}{\partial x_{i_1} \ldots \partial x_{i_l}} h_{i_1} \ldots h_{i_l}
+	d^l f(x_0)(h) = \sum_{i_1, \ldots, i_l = 1}^n \frac{\partial^l f}{\partial x_{i_1} \ldots \partial x_{i_l}} h_{i_1} \ldots h_{i_l},
 	$$
-	posto $h=(h_1, \ldots h_n) \in \mathbb{R}^n$ allora diciamo che $d^l f(x_0):\mathbb{R}^n \to \mathbb{R}$ è detto differenziale di ordine $l$
+	avendo posto $h=(h_1, \ldots h_n) \in \mathbb{R}^n$, diremo che $d^l f(x_0):\mathbb{R}^n \to \mathbb{R}$ è il differenziale di ordine $l$
 \end{definition}
 \begin{remark}
 Sia $f \in C^k (\Omega), x_0 \in \Omega, v \in \mathbb{R}^n$ con $v = (\xi_1, \ldots \xi_n) = \sum_{j=1}^n \xi_j e_j$. Allora abbiamo che
@@ -593,7 +588,7 @@ Sia $f \in C^k (\Omega), x_0 \in \Omega, v \in \mathbb{R}^n$ con $v = (\xi_1, \l
 &\frac{d}{dt} f(x_0 + tv) = \sum_{i=1}^n \partial_{x_i} f (x_0 + tv) \xi_i \implies \frac{d^2}{dt^2} f(x_0 + tv) = \sum_{i_1, i_2 = 1}^{n} \partial_{x_{i_1}} \partial_{x_{i_2}} f(x_0 + tv) \xi_{i_1} \xi_{i_2}\stackrel{\text{per induz.}}{\implies} \\ &\stackrel{\text{per induz.}}{\implies} \frac{d^k f}{dt^k} f(x_0 + tv) = d^k f(x_0 + tv) \implies \\
 \end{align*}
 \begin{equation}
-\implies \boxed{\frac{\partial^k}{\partial v^k} f(x_0) = d^l f(x_0)(v)}
+\implies \boxed{\frac{\partial^k f(x_0)}{\partial v^k} = d^l f(x_0)(v)}
 \end{equation}
 \end{remark}
 Come per le derivate prime, possiamo "definire" anche una matrice delle derivate. Particolarmente importante, oltre alla matrice jacobiana, è la matrice hessiana, ovvero la matrice delle derivate seconde:
@@ -617,12 +612,12 @@ e quindi è omogeneo di grado $2$, ovvero
 \begin{align*}
 &d^2 f(x_0)(tv) = t^2 d^2 f(x_0)(v) & &\forall t \in \mathbb{R}, \forall v \in \mathbb{R}^n
 \end{align*}
-In sintesi $df^2 (x_0): \mathbb{R}^n \to \mathbb{R}$ è un polinomio omogeneo (di cui daremo la definizione formale nel prossimo paragrafo) di secondo grado in $n$ variabili. \\
+In sintesi $d^2 f (x_0): \mathbb{R}^n \to \mathbb{R}$ è un polinomio omogeneo (di cui daremo la definizione formale nel prossimo paragrafo) di secondo grado in $n$ variabili. \\
 \section{Funzioni polinomiali omogenee e polinomio di Taylor}
 \label{sec:polinomio_taylor}
 Riprendiamo il concetto di forma quadratica dal corso di Geometria
 \begin{definition}[forma quadratica]
-$g: \mathbb{R}^n \to \mathbb{R}$ è una forma quadratica se $\exists A = A^T \in \mathbb{R}^n$ tale che $q(x)=\innerprod{x}{Ax} \iff q(x) = \sum\limits_{i,j=1}^n a_{ij}x_i x_j$ con $A = (a_{ij})_{i=1, \ldots n \atop j=1, \ldots, n}$
+$q: \mathbb{R}^n \to \mathbb{R}$ è una forma quadratica se $\exists A = A^T \in \mathbb{R}^{n \times n}$ tale che $q(x)=\innerprod{x}{Ax} \iff q(x) = \sum\limits_{i,j=1}^n a_{ij}x_i x_j$ con $A = (a_{ij})_{i=1, \ldots n \atop j=1, \ldots, n}$
 \end{definition}
 \begin{prop}
 Sia $q(x)$ una forma quadratica, allora 
@@ -746,12 +741,12 @@ g(x_0 + h) = \int_{0}^1 \innerprod{\nabla g(x_0 + th)}{h}dt
 $$
 da cui segue, tramite la~\ref{prop:dis_cs} (disuguaglianza di Cauchy-Schwarz), che 
 \begin{align*}
-& & |g(x_0 + h)| = \Bigg| \int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt  \Bigg| &\leq \Bigg| \int_{0}^{1} | \innerprod{\nabla g(x_0+th)}{h}|dt \Bigg| \leq \\
-& & &\leq \Bigg| \Bigg| \int_0^1 \nabla g(x_0 + th) dt \Bigg| \Bigg| \, \, | h |
+& & |g(x_0 + h)| = \Bigg| \int_{0}^1 \innerprod{\nabla g(x_0 + h)}{h}dt  \Bigg| &\leq \int_{0}^{1} | \innerprod{\nabla g(x_0+th)}{h}|dt \leq \\
+& & &\leq |h| \int_0^1 |\nabla g(x_0 + th)| dt
 \end{align*}
 e poiché $\nabla g(x_0) = 0$ allora
 $$
-\int_0^1 |\nabla g(x_0 + th)| = o(1) \, \, \text{per h } \to 0
+\int_0^1 |\nabla g(x_0 + th)| = o(1) \, \, \text{per h } \to 0,
 $$
 dunque $g(x_0 + h) \leq o(h) \implies g(x_0 + h) = o(h)$, ovvero $g(x)=o(x-x_0)$. Abbiamo quindi mostrato il caso $k=1$, ma adesso, supponendo che questo sia vero per induzione per $k-1$, e sapendo che $\partial_{x_{i_1}} \ldots \partial_{x_{i_k}} g(x_0) = 0 \, \forall i_1 \ldots i_k \in \{1, \ldots n \}$, vogliamo adesso mostrare che $g(x_0 + h) = o(h^{k})$. \\
 Osserviamo che $\partial_{x_i} g$ soddisfa le ipotesi della proprietà induttiva per $k-1$, infatti abbiamo che
@@ -770,7 +765,7 @@ da cui segue che
 \begin{align*}
 &g(x_0 + h) = \int_0^1 \innerprod{\nabla g(x_0 + th)}{h}dt = \int_0^1 \sum_{j=1}^n \partial_{x_j} g(x_0 + th)h_j \stackrel{\text{ip.induttiva}}{=} \\
 &\stackrel{\text{ip. induttiva}}{=} \int_0^1 \sum_{j=1}^n o_j(|th|^{k-1})h_j dt = \int_0^1 \sum_{j=1}^n o_j(|h|^{k-1})h_j dt \implies & & \\
-&\implies |g(x_0+h)| \leq |h| \int_0^1 |(o_1(|h|^{k-1}, \ldots o_n(|h|^{k-1}))|dt = o(|h|^k) \, \text{ per } h \to 0 & &
+&\implies |g(x_0+h)| \leq |h| \int_0^1 |(o_1(|h|^{k-1}, \ldots o_n(|h|^{k-1})))|dt = o(|h|^k) \, \text{ per } h \to 0 & &
 \end{align*}
 ovvero la tesi.
 \end{proof}
@@ -808,11 +803,11 @@ q(\lambda x) = \lambda^{j_0} q(x) \, \, \forall \lambda \in \mathbb{R} \, \foral
 $$
 Consideriamo il seguente rapporto
 $$
-\frac{P(x)}{|x|^k} = \frac{1}{|x|^{k-j_0}} \left(\sum_{|\alpha|=j_0} c_{\alpha} \left( \frac{x}{|x|} \right)^{\alpha} + o(1) \right) = q \left( \frac{x}{|x|} \right)+o(1)
+\frac{P(x)}{|x|^k} = \frac{1}{|x|^{k-j_0}} \left(\sum_{|\alpha|=j_0} c_{\alpha} \left( \frac{x}{|x|} \right)^{\alpha} + o(1) \right) = \frac{1}{|x|^{k-j_0}} \left( q \left( \frac{x}{|x|} \right)+o(1) \right).
 $$
-Sappiamo allora, per il lemma precedente, che $\exists \xi \in \mathbb{S}^{n-1}: q(\xi) \neq 0$, dunque considerando la quantità $\frac{t\xi}{|t|}$ per $t \to 0$ abbiamo che
+Sappiamo allora, per il lemma precedente, che $\exists \xi \in \mathbb{S}^{n-1}: q(\xi) \neq 0$, dunque considerando la quantità $t\xi$ per $t \to 0$ abbiamo che
 $$
-\frac{P(t\xi)}{|t|^k} = \frac{1}{|t|^{k-j_0}} \left(q \left( \frac{t}{|t|}\xi \right) + o(1) \right) = \frac{1}{|t|^{k-j_0}} \left( \left( \frac{t}{|t|} \right)^{j_0} q(\xi) + o(1) \right) \not\to 0
+\frac{P(t\xi)}{|t|^k} = \frac{1}{|t|^{k-j_0}} \left( q \left(\frac{t\xi}{|t\xi|}\right) + o(1) \right) = \frac{1}{|t|^{k-j_0}} \left( \left( \frac{t}{|t|} \right)^{j_0} q(\xi) + o(1) \right) \not\to 0
 $$
 che contraddice l'ipotesi che $P(x) = o(x^k)$. Abbiamo dunque la tesi.
 \end{proof}
