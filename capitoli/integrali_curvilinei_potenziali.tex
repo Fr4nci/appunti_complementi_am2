@@ -54,11 +54,11 @@ e possiamo allora prendere una suddivisione tale che $\max\{t_{j+1} - t_{j}\} < 
 $$
 |\gamma(x)-\gamma(y)| \leq \varepsilon \, \, \forall x, y \in [t_j, t_{j+1}]
 $$
-dunque
+dunque si ha che
 $$
-\gamma(t_{j+1}) - \gamma(t_j) = \int_{t_j}^{t_{j+1}} \dot{\gamma}(t)dt = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s) + \dot{\gamma}(s)dt) = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt + \dot{\gamma}(s)(t_{j+1} - t_j).
+\gamma(t_{j+1}) - \gamma(t_j) = \int_{t_j}^{t_{j+1}} \dot{\gamma}(t)dt = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s) + \dot{\gamma}(s)dt) = \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt + \dot{\gamma}(s)(t_{j+1} - t_j),
 $$
-Esplicitiamo a questo punto il termine con $\dot{\gamma}(s)$ e passiamo ai valori assoluti:
+che vale $\forall s \in [t_j, t_{j+1}]$. Esplicitiamo a questo punto il termine $\dot{\gamma}(s)$ (non quello sotto al segno di integrale) e passiamo ai valori assoluti:
 \begin{align*}
 &|\dot{\gamma}(s)|(t_{j+1} - t_j) \leq |\gamma(t_{j+1}) - \gamma(t_j) - \int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt| \stackrel{\text{dis. triang}}{\leq} \\
 &\stackrel{\text{dis. triang}}{\leq} |\gamma(t_{j+1}) - \gamma(t_j)| + |\int_{t_j}^{t_{j+1}} (\dot{\gamma}(t) - \dot{\gamma}(s))dt| \stackrel{|\dot{\gamma}(t)-\dot{\gamma}(s)| \leq \varepsilon}{\leq} |\dot{\gamma}(t_{j+1}) - \dot{\gamma}(t_j)| + \varepsilon(t_{j+1} - t_{j})
@@ -351,11 +351,11 @@ $$
 Andiamo a mostrare l'additività dell'integrazione curvilinea di seconda specie rispetto alla "somma" di curve.
 Per la prossima serie di proposizioni faremo implicitamente uso del seguente lemma che, geometricamente, garantisce il fatto di poter individuare, presi due punti $a$ e $b$ di un sottoinsieme aperto e connesso per archi $\Omega \subseteq \mathbb{R}^n$, una poligonale $C^1_\text{tratti}$ che li unisce.
 \begin{lemma}
-	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Per ogni coppia $x, y \in \Omega$ esiste $\gamma:[a, b] \to \Omega$ tale che $\gamma(a) = x$, $\gamma(b)=1$ e $\gamma \in C^1_\text{tratti}$.
+	Sia $\Omega \subseteq \mathbb{R}^n$ aperto e connesso per archi. Per ogni coppia $x, y \in \Omega$ esiste $\gamma:[a, b] \to \Omega$ tale che $\gamma(a) = x$, $\gamma(b)=y$ e $\gamma \in C^1_\text{tratti}$.
 \end{lemma}
 \begin{proof}
 	Dalla connessione per archi di $\Omega$ sappiamo che esiste $\gamma: [a, b] \to \Omega$ continua tale che $\gamma(a) = x$ e $\gamma(b) = y$. \\
-	Potremo a questo punto pensare di "ricoprire" con un numero finito di palle aperte\footnote{il fatto di poter ricoprire con un numero finito di palle deriva dal fatto che la funzione $\gamma$ è continua, dunque l'intervallo $[x,y] = \gamma([a, b])$ è un insieme compatto, pertanto è, per definizione di compattezza in senso topologico, possibile per ogni ricoprimento di insiemi aperti trovare un sottoricoprimento finito di aperti.} la linea $\gamma([a, b])$ osservando che $\forall x \in \Omega, \exists r > 0: B_r(x) \subseteq \Omega$. Preso $a = x_0$ allora prendiamo $r_0 > 0: B_{r_0} \subseteq \Omega$ (garantito dall'ipotesi che $\Omega$ sia aperto) e consideriamo l'insieme
+	Potremo a questo punto pensare di "ricoprire" con un numero finito di palle aperte\footnote{il fatto di poter ricoprire con un numero finito di palle deriva dal fatto che la funzione $\gamma$ è continua, dunque l'intervallo $\gamma([a, b])$ è un insieme compatto, pertanto è, per definizione di compattezza in senso topologico, possibile per ogni ricoprimento di insiemi aperti trovare un sottoricoprimento finito di aperti.} la linea $\gamma([a, b])$ osservando che $\forall x \in \Omega, \exists r > 0: B_r(x) \subseteq \Omega$. Preso $a = x_0$ allora prendiamo $r_0 > 0: B_{r_0} \subseteq \Omega$ (garantito dall'ipotesi che $\Omega$ sia aperto) e consideriamo l'insieme
 	$B_r(x_0) \cap \gamma([a, b]) \neq \emptyset$ (se fosse vuoto allora avremmo un assurdo riguardo all'ipotesi che $\Omega$ sia connesso per archi). Preso $x_1 \in B_r(x_0) \cap \gamma([a, b])$ con $x_1 \neq x_0$, possiamo, a questo punto, iterare il procedimento descritto e ottenere il partizionamento di una curva $C^1_\text{tratti}$ fra $a$ e $b$.
 \end{proof}
 \begin{prop}
@@ -421,11 +421,11 @@ V(x) = \int_{\gamma_x} \omega
 $$
 dove $\gamma_x \in C^1_\text{tratti}([a, b], \Omega)$ e consideriamo una palla $B_r(x) \subseteq \Omega$ (la sua esistenza è assicurata dal fatto che $\Omega$ è un insieme aperto), pertanto possiamo considerare, per $0 < |h| < r$, un cammino che va da $x$ a $x+h$. Vogliamo mostrare che $dV =\omega$, il che è equivalente a mostrare che $$V(x+h) - V(x) - \innerprod{\omega(x)}{h} = o(|h|)$$ per $h \to 0$:
 $$
-F(x+h) - F(x) = \int_{\gamma_x + [x, x+h]} \omega - \int_{\gamma_x} \omega \stackrel{\text{proposizione~\ref{prop:somma_curve}}}{=} \int_{[x, x+h]} \omega
+V(x+h) - V(x) = \int_{\gamma_x + [x, x+h]} \omega - \int_{\gamma_x} \omega \stackrel{\text{proposizione~\ref{prop:somma_curve}}}{=} \int_{[x, x+h]} \omega
 $$
 parametrizzando il cammino $[x, x+h]$ con $x + th$ dove $t \in [0,1]$ allora
 $$
-F(x+h)-F(x) - \innerprod{\omega(x)}{h} = \int_0^1 \innerprod{\omega(x + th)}{h} dt - \int_0^1 \innerprod{\omega(x)}{h}dt = \int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt
+V(x+h)-V(x) - (\omega(x))(h) = \int_0^1 (\omega(x + th))(h) dt - \int_0^1 (\omega(x))(h) dt = \int_0^1 (\omega(x + th) - \omega(x))(h)dt
 $$
 Siccome $\omega \in C^0(\Omega, (\mathbb{R}^n)^*)$ allora sappiamo che
 $$
@@ -433,7 +433,7 @@ $$
 $$
 dunque, se fissiamo $\varepsilon > 0$, allora sappiamo che per $|h| < \delta$ abbiamo che
 \begin{align*}
-&\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x) | \, |h| \leq \varepsilon |h| \implies \\
+&\int_0^1 (\omega(x + th) - \omega(x))(h)dt \leq \int\limits_0^1 |\omega(x + th) - \omega(x) | \, |h| \leq \varepsilon |h| \implies \\
 &\frac{|\int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt|}{|h|} \leq \varepsilon \implies \int_0^1 \innerprod{\omega(x + th) - \omega(x)}{h}dt = o(|h|) 
 \end{align*}
 dunque $V(x)$ è differenziabile con $dV = \omega$ (per unicità del differenziale) e, dunque, $V \in C^1(\Omega)$. \\
@@ -668,7 +668,6 @@ Il concetto di omotopia generalizza il concetto di \emph{deformare} con continui
 La dimostrazione proposta per l'implicazione verso destra ($\Rightarrow$) riporta qua sotto vale nel caso di insiemi stellati rispetto a $x_0$, ovvero insiemi in cui esiste almeno un punto $x_0$ per cui ogni segmento fra $x_0$ e $x$ appartenente all'insieme è contenuto in esso. Tuttavia sebbene $\text{insieme stellato} \implies \text{insieme semplicemente connesso}$, non vale il viceversa.
 Nelle appendici riporterò la dimostrazione per insiemi semplicemente connessi, dove necessito di usare alcuni strumenti della geometria differenziale.
 \begin{proof} 
-	la dimostrazione verrà fatta, senza perdere di generalità, nel caso delle $1-$forme differenziali. \\
 	$\boxed{\Leftarrow}:$ già dimostrato nella proposizione~\ref{prop:esattezza_imp_chiusura} \\
 	$\boxed{\Rightarrow}:$ %questa dimostrazione si rifà a delle proprietà del \emph{prodotto wedge}, che trovate nelle appendici.
 	%Sappiamo che $\omega = a_1(x)dx_1 + \ldots + a_n(x)dx_n$ e, siccome la forma $\omega$ è chiusa, abbiamo che $d\omega = 0$, dunque

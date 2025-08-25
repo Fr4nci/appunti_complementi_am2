@@ -393,7 +393,7 @@ e per $\beta \to 0$ osserviamo che $|| B - A || \to 0$, dunque la mappa che asso
 \section{Dimostrazione del teorema}
 Procediamo nella dimostrazione del teorema della funzione inversa
 \begin{proof}[Dimostrazione (del teorema \ref{thm:inverse_function})]
-	Denotiamo con $\mathbb{R}^{n \times n} \ni A = Df(x_0)$. L'idea è quello di utilizzare il teorema di Banach-Caccioppoli per mostrare che, preso un insieme $U \subset f(B(x_0, r))$ aperto sufficientemente piccolo\\
+	Denotiamo con $\mathbb{R}^{n \times n} \ni A = (Df(x_0))^{-1}$. L'idea è quello di utilizzare il teorema di Banach-Caccioppoli per mostrare che, preso un insieme $U \subset f(B(x_0, r))$ aperto sufficientemente piccolo, la funzione $T: \mathbb{R}^n \to \mathbb{R}^n$ tale che $T(x) = x + A(y - f(x))$ abbia un unico punto fisso, il che necessariamente implica che $y = f(x)$ (infatti $T(x) = x \iff x + A(y-f(x)) = x \iff A(y-f(x)) = \underline{0} \iff y - f(x) = \underline{0}$ in quanto $A$ è invertibile, dunque l'unica soluzione all'equazione $Ax = \underline{0}$ è $x = \underline{0}$). \\
 	Siccome $\Omega$ è aperto e $f \in C^1(\Omega, \mathbb{R}^n) \implies Df: \Omega \to \mathbb{R}^n$ è continuo, allora possiamo scegliere $\rho > 0$ in maniera tale che
 	\begin{align*}
 	&\overline{B_{\rho}(x_0)} \subset \Omega \text{    e    } |Df(x) - Df(x_0)| < \frac{1}{2 || A ||} \forall x \in \overline{B_\rho(x_0)}.
@@ -402,7 +402,7 @@ Procediamo nella dimostrazione del teorema della funzione inversa
 	$$
 	T : \overline{B_{\rho}(x_0)} \mapsto \mathbb{R}^n \text{ tale che } 	T(x) = x + A(y-f(x))
 	$$
-	e osserviamo che $T(x) = x \iff y=f(x)$. Allora, ricordando che $ADf(x_0) = \text{Id}$, avremo, per $x \in \overline{B_p(x_0)}$, che
+	e osserviamo, come già anticipato, che $T(x) = x \iff y=f(x)$. Allora, ricordando che $ADf(x_0) = \text{Id}$, avremo, per $x \in \overline{B_p(x_0)}$, che
 	$$
 	|| DT(x) || = || \text{Id} - ADf(x) ||  \leq || A || \, || Df(x) - Df(x_0) || \leq || A || \frac{1}{2 || A ||} = \frac{1}{2}
 	$$
@@ -415,12 +415,12 @@ Procediamo nella dimostrazione del teorema della funzione inversa
 	$$
 		T(x) = x.
 	$$
-	Ma prendendo arbitrariamente $y_0 \in B_\rho(y_0)$ possiamo trovare un unico $x \in B_\rho(x_0)$ che risolve l'equazione $f(x) = y$
+	Ma prendendo arbitrariamente $y \in B_\rho(y_0)$ possiamo trovare un unico $x \in B_\rho(x_0)$ che risolve l'equazione $f(x) = y$
 	pertanto possiamo definire $g$ l'applicazione $y \in B_{r}(y_0) \mapsto x \in B_{\rho}(x_0)$
 	\begin{align*}
 		&g: B_{r}(y_0) \subset \overline{B_{\rho} (x_0)} \mapsto \overline{B_\rho(x_0)}, & &f(g(y)) = x.
     \end{align*}
-	Cerchiamo di capire, adesso, dove viene mandata la frontiera di $B_\rho(x_0)$. Consideriamo l'insieme $\Sigma = f(\text{Fr} \, B_\rho(x_0))$: dalla continuità di $f$ e dal fatto che $\text{Fr} \, B_\rho(x_0)$ è compatto (è banalmente limitato, è chiuso in virtù del lemma \ref{lemma:frontiera_chiusa} e, dunque, è compatto per il teorema \ref{thm:heine_borel}) deriva che $\Sigma$ è compatto. Inoltre
+	Cerchiamo di capire, adesso, dove viene mandata la frontiera di $B_\rho(x_0)$ tramite $f$: per fare ciò si consideri l'insieme $\Sigma = f(\text{Fr} \, B_\rho(x_0))$, osservando che la continuità di $f$ e il fatto che $\text{Fr} \, B_\rho(x_0)$ è compatto (è banalmente limitato, è chiuso in virtù del lemma \ref{lemma:frontiera_chiusa} e, dunque, è compatto per il teorema \ref{thm:heine_borel}) garantiscono che $\Sigma$ sia compatto. Inoltre
     $y_0 \neq \Sigma$ siccome, per quanto mostrato in precedenza, $\exists ! x \in \overline{B_\rho(x_0)}$ per cui $f(x) = y_0$ e tale punto è proprio $x_0 \neq \text{Fr} \, B_\rho(x_0)$. Dunque avremo che $V = B_r(y_0) \setminus \Sigma$ è un insieme aperto (in virtù del lemma \ref{lemma:diff_open_closed_set}). Posto $U = g(V)$ risulta che $f_{|U} : U \to V$ è bigettiva
     e ha $g$ come inversa. Inoltre, per costruzione, abbiamo evitato che $U$ possieda tutti i punti di $\text{Fr} \, B_\rho(x_0)$ e, dunque, risulta che $U \subset B_\rho(x_0)$. \\
     Vogliamo mostrare adesso che $U$ è aperto: preso $x \in U$ poniamo $y = f(x)$ da cui, per come abbiamo definito $U$ e $V$, si deduce che $y \in V$. Siccome quest'ultimo insieme è aperto, sappiamo che $\exists \varepsilon > 0: B_\varepsilon(y) \subset V$ ed, essendo $f$ continua, possiamo trovare $\delta > 0$ tale che

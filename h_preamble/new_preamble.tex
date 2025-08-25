@@ -3,14 +3,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\usepackage[tmargin=2cm,bmargin=2cm,footskip=.2in, rmargin=1.5in,lmargin=1.5in, margin=0.85in, a4paper]{geometry}
+\usepackage[tmargin=2cm,rmargin=1.5in,lmargin=1.5in,margin=0.85in,bmargin=2cm,footskip=.2in, a4paper]{geometry}
 \usepackage{bookmark}
 \usepackage{libertinus}
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage[varbb]{newpxmath}
 %\usepackage[libertine]{newtxmath}
 \usepackage{chemfig}
-\usepackage{ragged2e}
 \usepackage{xfrac}
 \usepackage{mhchem}
 \usepackage[italian]{babel}
@@ -25,7 +24,8 @@
 	colorlinks=true, linkcolor=doc!90,
 	bookmarksnumbered=true,
 	bookmarksopen=true,
-	pdfauthor={Francesco Sermi}
+	pdftitle={\@title},
+	pdfauthor={\@author}
 }
 \usepackage[most,many,breakable]{tcolorbox}
 \usepackage{xcolor}
@@ -57,11 +57,14 @@
 \usepackage{float}
 \usepackage[toc, page]{appendix}
 \renewcommand\qedsymbol{$\square$}
+\newcommand\quotient[2]{{#1}/{#2}}
 \usepackage{hyperref}
 \usepackage{mwe}
 \usepackage{fancyhdr}
 \usepackage{pgfplots}
 \usepackage{bm}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
 %\usepackage{import}
 %\usepackage{xifthen}
 %\usepackage{pdfpages}

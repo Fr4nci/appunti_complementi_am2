@@ -6,33 +6,23 @@ In questo capitolo affronteremo il concetto di misura e daremo alcuni accenni al
 del suo concetto di misura. Alcuni approfondimenti inseriti sono stati presi da \cite{rudin} oppure \cite{tao}. Per una trattazione completa e, naturalmente, rigorosa consiglio un testo molto famoso della materia, ovvero \cite{measure_theory}.
 
 \section{La misura esterna}
-Vogliamo adesso determinare una funzione di insiemi $m_n: \mathcal{P}(\mathbb{R}^n) \to [0; +\infty]$ che rappresenta il nostro concetto intuitivo di \emph{volume} dell'insieme, detto \emph{misura dell'insieme}. \\
-L'intuizione ci porta a pensare che questa funzione goda delle seguenti proprietà:
+
+L'integrale di Riemann, sviluppato nel corso di Analisi Matematica del primo anno nel caso di funzioni a singola variabile, potrebbe essere esteso a funzioni di più variabili; tuttavia, anche a dimensioni maggiori, tale integrale ci consente di integrare sempre e solamente funzioni "Riemann-integrabili" che rappresentano una classe di funzioni molto piccola. Inoltre studiando spazi come $L^2$ possiamo costruire delle successioni di funzioni $f_n$ tali che $\forall n \in \mathbb{f_n}, f_n$ è Riemann-integrabile ma $f = \lim\limits_{n \to +\infty} f_n$ non necessariamente lo è: è necessario, infatti, che la successione converga uniformemente. \\
+Possiamo estendere la nostra nozione di integrale introducendo il concetto di \emph{integrale di Lebesgue}, che consente di ottenere una classe di funzioni integrabili (che diremo \emph{Lebesgue-integrabili}) molto più grande e che include tutte le funzioni Riemann-integrabili. 
+Partiamo attaccando il problema con una discussione informale della faccenda: se volessi calcolare l'integrale di $f$ sopra un dominio $\Omega$, dovremmo innanzitutto rispondere ad una domanda che, apparentemente, appare più \emph{basilare}: come possiamo determinare il volume di un insieme? Per capire come questa domanda sia connessa al problema della nozione di integrale, è sufficiente notare che ponendo $f = 1$ allora l'integrale $\int_\Omega f$ dovrebbe restituire il volume di tale insieme. Inizialmente, per estendere la nostra nozione di integrale, partiamo cercando una funzione $m_n: \mathcal{P}(X) \to [0; +\infty]$ (a priori si potrebbe trattare anche il caso di $X \neq \mathbb{R}^n$, ovvero a insiemi qualunque, però chiaramente il nostro oggetto di interesse è proprio lo spazio euclideo) che assegna ad ogni sottoinsieme di $X$ un numero $\geq 0$ che rappresenta il nostro concetto intuitivo di \emph{volume} dell'insieme, che chiameremo \emph{misura dell'insieme}. \\
+Chiaramente l'intuizione geometrica che abbiamo sul volume ci porta a pensare che questa funzione debba godere delle seguenti proprietà:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item $m_n(\emptyset) = 0$
 	\item Se $A, B \subseteq X$ tali che $A \subseteq B \implies m_n(A) \leq m_n(B)$
 	\item Se $A, B \subseteq X$ tali che $A \cap B = \emptyset \implies m_n(A \cup B) = m_n(A) + m_n(B)$
 \end{enumerate}
-Prima di procedere ulteriormente sullo sviluppo della teoria della misura di Lebesgue, vorrei aprire una breve parentesi "qualitativa" su come trovare la misura di un insieme: l'approccio più \emph{naive} possibile consiste nel coprire il nostro insieme con dei rettangoli e sommare i volumi di questi rettangoli. Questo approccio ci consente di ottenere quello che viene chiamata \emph{misura esterna}, ovvero una funzione d'insieme che è ben definita su ogni insieme e che soddisfa tutte le buone
-proprietà che ci aspettiamo da una misura che generalizza il nostro concetto di misura tranne quella di additività della misura. Per essere una misura "vera e propria" (ovvero che goda anche di additività) si può mostrare che è necessario restringerci
-ad una classe di insiemi (che saranno gli insiemi \emph{misurabili}) su cui la nostra misura esterna godrà di additività (questo risultato prende il nome di \emph{teorema di Caratheodory}, di cui non daremo dimostrazione).
-\begin{definition}[misura di un intervallo e di un $n-$intervallo]
-	Per ogni intervallo $I \subseteq \mathbb{R}$ limitato definiamo
-	$$
-	\mathit{l}(I) = \sup{I} - \inf{I}.
-	$$
-	Sia adesso $I_1 \times \ldots \times I_n \subseteq \mathbb{R}^n$ definiamo
-	$$
-		v_n \left( \varprod_{i=1}^n I_i \right) = \prod_{i=1}^n \mathit{l}(I_i) 
-	$$
-\end{definition}
-\begin{definition}[misura di Lebesgue di un insieme $E$]
-	Sia $E \subseteq \mathbb{R}^n$, definiamo la misura di Lebesgue di $E$ come
-	\begin{equation}
-		m_n(E) = \inf \left\{ \sum_{i=1}^{+\infty} v_n(J_i) : E \subseteq \bigcup_{i=1}^{+\infty} J_i \text{ e } J_i \subseteq \mathbb{R}^n \text{ è un } n\text{-intervallo} \right\}
-		\label{eq:def_lebesgue}
-	\end{equation}
-\end{definition}
+Purtroppo, una tale misura non esiste, ovvero non è possibile trovare una misura definita su ogni sottoinsieme di $X$ che goda di tutte le proprietà che abbiamo richiesto sopra, in particolare non è rispettata l'additività della misura rispetto a insiemi disgiunti. \\
+E' tuttavia possibile mostrare che esiste una classe di sottoinsiemi di $X$ su cui tale funzione è una misura vera e propria, ovvero soddisfa tutte le buone e ragionevoli proprietà che abbiamo richiesto precedentemente: tale risultato, di cui non daremo una dimostrazione, prende il nome di \emph{teorema di Caratheodory}, che fornisce anche un criterio per individuare la classe di insiemi misurabili. 
+%Prima di procedere ulteriormente sullo sviluppo della teoria della misura di Lebesgue, vorrei aprire una breve parentesi "qualitativa" su come trovare la misura di un insieme: l'approccio più \emph{naive} possibile consiste nel coprire il nostro insieme con dei rettangoli e sommare i volumi di questi rettangoli. Questo approccio ci consente di ottenere quello che viene chiamata \emph{misura esterna}, ovvero una funzione d'insieme che è ben definita su ogni insieme e che soddisfa tutte le buone
+%proprietà che ci aspettiamo da una misura che generalizza il nostro concetto di misura tranne quella di additività della misura. Per essere una misura "vera e propria" (ovvero che goda anche di additività) si può mostrare che è necessario restringerci
+%ad una classe di insiemi (che saranno gli insiemi \emph{misurabili}) su cui la nostra misura esterna godrà di additività (questo risultato prende il nome di \emph{teorema di Caratheodory}, di cui non daremo dimostrazione).
+
+Prima di definire la misura di Lebesgue, partiamo introducendo il concetto di \emph{misura esterna}. Per individuare la misura di un insieme possiamo, in maniera piuttosto \emph{naive}, andare a ricoprirlo con $n-$intervalli e sommarne il volume: tale approccio definisce la misura esterna, ovvero una funzione che soddisfa tutte le proprietà da noi richieste tranne quelle riguardo all'additività:
 \begin{definition}
 	Diremo che $\mu^*: \mathcal{P}(X) \mapsto [0; +\infty]$ è una misura esterna se
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -40,6 +30,7 @@ ad una classe di insiemi (che saranno gli insiemi \emph{misurabili}) su cui la n
 		\item $\mu^*(E) \leq \sum\limits_{i=1}^{+\infty} \mu^*(E_i)$ se $E \subseteq \bigcup\limits_{i=1}^{+\infty} E_i$
 	\end{enumerate}
 \end{definition}
+Possiamo mostrare che tale funzione gode di una serie di ulteriori proprietà:
 \begin{prop}[monotonia della misura esterna]
 	Se $\mu^*$ è una misura esterna allora
 	$$
@@ -75,10 +66,29 @@ ad una classe di insiemi (che saranno gli insiemi \emph{misurabili}) su cui la n
 	$$
 	ma allora, siccome abbiamo banalmente che $\bigcup\limits_{i=1}^{k} E_i \subseteq \bigcup\limits_{i=1}^k E_i$, allora
 	$$
-	\mu^* \left( \bigcup_{i=1}^k E_i \right) \leq \sum_{i=1}^k \mu^*(E_i)
+	\mu^* \left( \bigcup_{i=1}^k E_i \right) \leq \sum_{i=1}^k \mu^*(E_i).
 	$$
 \end{proof}
-Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effettivamente una misura esterna, dunque, in virtù di quanto detto, possiamo individuare e restringere $m_n$ ad una classe di insiemi per cui $m_n$ rappresenta una vera e propria misura.
+Mettiamo momenteneamente da parte la misura esterna e definiamo la misura di un intervallo e di un $n-$intervallo:
+\begin{definition}[misura di un intervallo e di un $n-$intervallo]
+	Per ogni intervallo $I \subseteq \mathbb{R}$ limitato definiamo
+	$$
+	\mathit{l}(I) = \sup{I} - \inf{I}.
+	$$
+	Sia adesso $I_1 \times \ldots \times I_n \subseteq \mathbb{R}^n$ definiamo
+	$$
+		v_n \left( \varprod_{i=1}^n I_i \right) = \prod_{i=1}^n \mathit{l}(I_i). 
+	$$
+\end{definition}
+Tramite questa definizione, è possibile dare già una definizione della misura di Lebesgue, che è la funzione d'insieme che noi cerchiamo. L'idea per definirla è sempre quella \emph{naive} esposta sopra, ovvero ricoprendo gli insiemi con $n$-intervalli: 
+\begin{definition}[misura di Lebesgue di un insieme $E$]
+	Sia $E \subseteq \mathbb{R}^n$, definiamo la misura di Lebesgue di $E$ come
+	\begin{equation}
+		m_n(E) = \inf \left\{ \sum_{i=1}^{+\infty} v_n(J_i) : E \subseteq \bigcup_{i=1}^{+\infty} J_i \text{ e } J_i \subseteq \mathbb{R}^n \text{ è un } n\text{-intervallo} \right\}
+		\label{eq:def_lebesgue}
+	\end{equation}
+\end{definition}
+Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effettivamente una misura esterna, dunque, in virtù di quanto all'inizio, è possibile individuare e restringere $m_n$ ad una classe di insiemi per cui $m_n$ rappresenta una vera e propria misura.
 \begin{prop}[misura di Lebesgue è una misura esterna]
 	$m_n: \mathcal{P}(X) \to [0; +\infty]$ è una misura esterna
 	\label{prop:lebesgue_mis_esterna}
@@ -100,6 +110,7 @@ Vogliamo adesso mostrare che la funzione d'insieme $m_n$ da noi definita è effe
 	$$
 	e, siccome $\varepsilon$ era arbitrario, otteniamo la tesi facendo il limite.
 \end{proof}
+Enunciamo adesso, come definizione, il criterio secondo cui un insieme è misurabile secondo Lebesgue: in realtà questo criterio sarebbe parte della tesi del \emph{teorema di Caratheodory}, che tuttavia non dimostreremo.
 \begin{definition}[insieme misurabile secondo Lebesgue]
 	Diremo che $A \subseteq X$ è misurabile secondo Lebesgue se
 	$$
@@ -194,7 +205,7 @@ dunqque si perderebbe la $\sigma-$additività su insiemi disgiunti.
 	$\mathbb{Q}^n$ è un insieme trascurabile
 \end{cor}
 \begin{proof}
-$\mathbb{Q}^n \cong \mathbb{N}$ dunque $m_n(\mathbb{Q}^n) = 0$
+$|\mathbb{Q}^n| = |\mathbb{N}|$ (dove con $|\cdot|$ intendiamo la cardinalità) dunque $m_n(\mathbb{Q}^n) = 0$
 \end{proof}
 \begin{cor}
 	Gli insiemi a misura nulla sono misurabili per Lebesgue.
@@ -271,13 +282,13 @@ Sia $E \in \mathfrak{M}(\mathbb{R}^n)$ misurabile e $f: E \to \bar{\mathbb{R}}$.
 	Ogni aperto di $[-\infty, +\infty]$ è un'unione arbitraria di intervalli che possono essere sia aperti oppure del tipo $[-\infty, t)$ o $(t, +\infty]$.
 \end{remark}
 \begin{prop}[caratterizzazione delle funzioni misurabili]
-	$E \in \mathfrak{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ è misurabile se e solo se $\forall O \subseteq \bar{\mathbb{R}}$ aperto di $[-\infty, +\infty]$ abbiamo che $f^{-1}(O) \in M(\mathbb{R}^n)$
+	$E \in \mathfrak{M}(\mathbb{R}^n), f: E \to \bar{\mathbb{R}}$ è misurabile se e solo se $\forall O \subseteq \bar{\mathbb{R}}$ aperto di $[-\infty, +\infty]$ abbiamo che $f^{-1}(O) \in \mathfrak{M}(\mathbb{R}^n)$
 \end{prop}
 \begin{prop}[le funzioni continue sono misurabili]
-	Se $E \in \mathcal{R}^n, f: E \to \mathbb{R}$ è continua, allora è misurabile
+	Se $E \in \mathfrak{M}(\mathbb{R}^n), f: E \to \mathbb{R}$ è continua, allora è misurabile
 \end{prop}
 \begin{proof}
-	Se $O \subseteq [-\infty, +\infty]$ è un aperto contenuto in $\mathbb{R}$ in realtà è un aperto di $\mathbb{R} \implies f^{-1}(O)$ è aperto in $E$ in virtù del teorema~\ref{thm:teo_cf1}, dunque avremo che $\exists \Omega \subseteq \mathbb{R}^n$ tale che
+	Se $O \subseteq [-\infty, +\infty]$ è un aperto contenuto in $\mathbb{R}$ $\implies f^{-1}(O)$ è aperto in $E$ in virtù del teorema~\ref{thm:teo_cf1}, dunque avremo che $\exists \Omega \subseteq \mathbb{R}^n$ tale che
 	$$
 	f^{-1}(0) = E \cap \Omega \in \mathfrak{M}(\mathbb{R}^n) \implies f \text{ è misurabile }
 	$$
@@ -461,7 +472,7 @@ $|f| = f^+ + f^-$ dove $f^{+} = \max\{f, 0 \}$ e $f^{-}=\max\{0, -f \}$. Sappiam
 	Osserviamo che possiamo "spaccare" il nostro integrale, per linearità rispetto agli ordini di integrazione, fra multipli interi di $\pi$:
 	\begin{align*}
 	&\int_1^{+\infty} \Big| \frac{\sin{x}}{x} \Big| = \int_1^{\pi} \frac{\sin{x}}{x} + \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{x} \Big|dx \geq \sum_{k=1}^{+\infty} \int_{k\pi}^{(k+1)\pi} \Big|\frac{\sin{x}}{(k+1)\pi} \Big| = \\
-	&=\sum_{k=1}^{+\infty} \frac{1}{(k+1)\pi}\int_{k\pi}^{(k+1)\pi} |\sin{x}|dx = \sum_{k=1}^{+\infty} \frac{2}{(k+1)\pi} = \frac{2}{\pi}\sum_{k=1} \frac{1}{k+1} \geq \frac{2}{\pi} \sum_{k=1} \frac{1}{k} = +\infty
+	&=\sum_{k=1}^{+\infty} \frac{1}{(k+1)\pi}\int_{k\pi}^{(k+1)\pi} |\sin{x}|dx = \sum_{k=1}^{+\infty} \frac{2}{(k+1)\pi} = \frac{2}{\pi}\sum_{k=1} \frac{1}{k+1} \sim \frac{2}{\pi} \sum_{k=1} \frac{1}{k} = +\infty
 	\end{align*}
 	Possiamo anche far vedere che la funzione $\frac{\sin{x}}{x}$ ammette integrale convergente in $(1, +\infty)$, infatti:
 	$$
@@ -1448,7 +1459,7 @@ $$
 \end{proof}
 Un'operazione molto utile che possiamo fare è il cosiddetto \emph{pull-back} di una forma differenziale rispetto a delle coordinate: questo è particolarmente interessante per le forme differenziali di un'area, le quali rappresentano, in un certo senso, l'elemento infinitesimo di area.
 \begin{definition}[pull-back di una $1-$forma differenziale]
-	Sia $T$ una funzione differenziabile tale che $T: \mathcal{V} \to \mathcal{V}$ e $\omega$ una $1-$forma differenziale tale che $\omega \in C^0(\mathcal{U}, (\mathbb{R}^n)^*) \implies$
+	Sia $T$ una funzione differenziabile tale che $T: \mathcal{V} \to \mathcal{U}$ e $\omega$ una $1-$forma differenziale tale che $\omega \in C^0(\mathcal{U}, (\mathbb{R}^n)^*) \implies$
 	$$
 	T^*\omega \in C^0(\mathcal{V}, (\mathbb{R}^n)^*)
 	$$
