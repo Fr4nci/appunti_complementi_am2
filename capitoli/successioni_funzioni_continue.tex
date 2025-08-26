@@ -293,14 +293,23 @@ Se il minimo e il massimo della funzione sono ben definiti, allora l'immagine è
 Per quanto riguarda il secondo caso, possiamo supporre, senza perdere di generalità, che $\not\exists \max\limits_{A} f$. Naturalmente, per caratterizzazione del $\sup$ abbiamo che $\forall \varepsilon > 0, \sup\limits_{A}{f} - \varepsilon \in f(A)$, dunque $\exists x \in A: f(x) = \sup\limits_{A}{f} - \varepsilon$, dunque $[\min\limits_{A} f, f(x)] \subseteq [\min\limits_A{f}, \sup\limits_{A}{f})$, dunque la tesi.
 \end{proof}
 \section{Accenni ai limiti in più variabili}
+Per poter parlare dei limiti di funzioni a più variabili bisogna rivedere il concetto di punto di accumulazione, la cui definizione dev'essere leggermente modificata
+\begin{definition}[punto di accumulazione]
+	Sia $A \subseteq \mathbb{R}^n e x_0 \in \mathbb{R}^n$, diremo che $x_0$ è un punto di accumulazione di $A$ se
+	$$
+		\forall r > 0, B(x, r) \cap A \setminus \{ x \} \neq \emptyset.
+	$$
+	Indichiamo con $D(A)$ l'insieme di tutti i punti di accumulazione di $A$.
+\end{definition}
+Possiamo adesso introdurre la definizione di limite:
 \begin{definition}[definizione di limite]
-Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ e sia $x_0 \in \text{Fr} A$. Allora diciamo che $f$ tende a $v \in \mathbb{R}^k$ per $x$ che tende a $x_0$ e scriviamo che
+Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ e sia $x_0 \in D(A)$. Allora diciamo che $f$ tende a $v \in \mathbb{R}^k$ per $x$ che tende a $x_0$ e scriviamo che
 $$
 \lim_{x \to x_0} f(x) = v \iff \forall \varepsilon > 0 \exists \delta > 0 : \forall x \in B(x_0, \delta) \cap A \setminus \{ x_0 \}, |f(x) - v| < \varepsilon
 $$
 \end{definition}
 \noindent Diamo adesso la definizione di limite di $f(x)$ che tende all'infinito:
-\begin{definition}
+\begin{definition}[limite che tende all'infinito]
 Sia data $f: A \to \mathbb{R}^k, A \subseteq \mathbb{R}^n$ illimitato. Diremo che $f$ tende all'infinito per $x$ che tende all'infinito e scriveremo che
 $$
 \lim_{|x| \to \infty} f(x) = \infty \iff \forall M > 0, \exists N > 0: \forall x \in A, |x| > N, |f(x)| > M
