@@ -192,7 +192,7 @@ $$
 \end{remark}
 Alla luce dell'osservazione qua sopra possiamo dunque dare la seguente definizione:
 \begin{definition}[1-forma differenziale]
-Diremo che $\omega: \Omega \to (\mathbb{R}^n)^{*}$ con $\Omega \subseteq \mathbb{R}^n$ aperto è una $1$-forma differenziale su $\Omega$. Inoltre, $\forall p \in \Omega$ avremo un'unica $n$-upla di coefficiente $(a_1(p), \ldots a_n(p))$ dipendenti da $p$ tali che
+Diremo che $\omega: \Omega \to (\mathbb{R}^n)^{*}$ con $\Omega \subseteq \mathbb{R}^n$ aperto è una $1$-forma differenziale su $\Omega$. Inoltre, $\forall p \in \Omega$ avremo un'unica $n$-upla di coefficienti $(a_1(p), \ldots a_n(p))$ dipendenti da $p$ tali che
 $$
 \omega(x) = \sum_{i=1}^n a_i(x)dx_i
 $$
@@ -306,16 +306,45 @@ f(p_0 + h) - f(p_0) - L(h) = o(h)
 $$
 ovvero la tesi.
 \end{proof}
-Prima di procedere con la prossima dimostrazione, introduciamo la norma di Hilbert-Schmidt
+Vogliamo adesso dimostrare che una funzione differenziabile in un punto $x_0$ è anche continua in tale punto: per fare questo è necessario introdurre la norma di Hilbert-Schmidt
 \begin{definition}[norma di Hilbert-Schmidt]
 Sia $A \in \mathbb{R}^{m \times n}$, definiamo
 $$
 || A || = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
 $$
 \end{definition}
-\begin{remark}
-$|Lx| \leq ||A|| \, |x| \, \, \forall x \in \mathbb{R}^n$
-\end{remark}
+Mostriamo adesso il legame fra differenziabilità e continuità. Per fare questo dobbiamo mostrare il seguente lemma:
+\begin{lemma}
+Ogni funzione lineare $L: \mathbb{R}^n \to \mathbb{R}^m$ è continua e se $A = (a_{ij}) \in \mathbb{R}^{m \times n}$ è la sua matrice allora 
+$$
+|Lx| \leq | A | |x|  \, \forall x \in \mathbb{R}^n
+$$
+\end{lemma}
+\begin{proof}
+Dalla regola del prodotto matriciale abbiamo che
+$$
+|Lx|^2 = \Bigg| \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)e_i \Bigg|^2 = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij}^2 \right)  \left( \sum_{j=1}^n x_j^2 \right) = || A ||^2 |x|^2
+$$
+e possiamo osservare che $L$ è continua, infatti se $x_0 \in \mathbb{R}^n$
+$$
+|Lx - Lx_0| = |L(x-x_0)| \leq || A || |x-x_0|
+$$
+pertanto se $p_k \to x_0$ allora
+$$
+|Lp_k - Lx_0| \leq || A || |p_k-x_0| \stackrel{k \to +\infty}{\to} 0
+$$
+\end{proof}
+Possiamo anche mostrare che la composizione di funzioni differenziabili è ancora una funzione differenziabile
+\begin{prop}
+Se $f: \Omega \to \mathbb{R}^m, p_0 \in \Omega$ differenziabile in $p_0$, allora $f$ è continua in $p_0$
+\end{prop}
+\begin{proof}
+Osserviamo che se $f$ è differenziale in $p_0$ allora $\exists df(p_0): \Omega \to \mathbb{R}^m$ tale che
+$$
+f(p_0 + h) = f(p_0) + df(p_0)h + o(h) \stackrel{h \to 0}{\to} f(p_0)
+$$
+in quanto $df(p_0)$ è lineare e quindi continua in $\mathbb{R}^n$ e $o(h) \stackrel{h \to 0}{\to} 0$
+\end{proof}
 \begin{theorem}[differenziale della composizione]
 Sia $f: \Omega \to \mathbb{R}^m, g: U \to \mathbb{R}^k$ con $\Omega \subseteq \mathbb{R}^n$ aperto, $U \subseteq \mathbb{R}^m$ aperto, $f(\Omega) \subseteq U$ e sia $p_0 \in \Omega$. Allora se $f$ differenziabile in $p_0$ e $g$ differenziabile in $f(p_0)$ allora
 $$
@@ -324,7 +353,7 @@ $$
 Inoltre, in tal caso, avremo che
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item $d(g \circ f)(p_0) = dg(f(p_0)) \circ df(p_0)$
-	\item $D(g \circ f)(p_0) = (Dg(f(p_0))(Df(p_0))$
+	\item $D(g \circ f)(p_0) = (Dg(f(p_0)))(Df(p_0))$
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -443,41 +472,9 @@ Sia adesso $f: \Omega \to \mathbb{R}$, con $\Omega \subseteq \mathbb{R}^m$ apert
 &= \{ (x, t) \in \mathbb{R}^{n+1} : \innerprod{\begin{pmatrix} -\nabla{f(x_0)}, & 1 \end{pmatrix}}{\begin{pmatrix} x-p, & t-f(p) \end{pmatrix}} = 0 \}
 \end{align*}
 Dunque possiamo interpretare come la differenziabilità della funzione in un punto come quella funzione che descrive il piano tangente alla funzione nel punto.
-\subsection{Legame fra differenziabilità e continuità}
-Mostriamo adesso il legame fra differenziabilità e continuità. Per fare questo dobbiamo mostrare il seguente lemma:
-\begin{lemma}
-Ogni funzione lineare $L: \mathbb{R}^n \to \mathbb{R}^m$ continua e se $A = (a_{ij}) \in \mathbb{R}^{m \times n}$ è la sua matrice allora $|Lx| \leq | A | |x|  \, \forall x \in \mathbb{R}^n$, dove
-$$
-|| A || = \sqrt{\sum a_{ij}^2} \text{ è la norma di Hilbert-Schmidt}
-$$
-\end{lemma}
-\begin{proof}
-Dalla regola del prodotto matriciale abbiamo che
-$$
-|Lx|^2 = \Bigg| \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)e_i \Bigg|^2 = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij}^2 \right)  \left( \sum_{j=1}^n x_j^2 \right) = || A ||^2 |x|^2
-$$
-e possiamo osservare che $L$ è continua, infatti se $x_0 \in \mathbb{R}^n$
-$$
-|Lx - Lx_0| = |L(x-x_0)| \leq || A || |x-x_0|
-$$
-pertanto se $p_k \to x_0$ allora
-$$
-|Lp_k - Lx_0| \leq || A || |p_k-x_0| \stackrel{k \to +\infty}{\to} 0
-$$
-\end{proof}
-A questo punto possiamo dunque mostrare la seguente proposizione
-\begin{prop}
-Se $f: \Omega \to \mathbb{R}^m, p_0 \in \Omega$ differenziabile in $p_0$, allora $f$ è continua in $p_0$
-\end{prop}
-\begin{proof}
-Osserviamo che se $f$ è differenziale in $p_0$ allora $\exists df(p_0): \Omega \to \mathbb{R}^m$ tale che
-$$
-f(p_0 + h) = f(p_0) + df(p_0)h + o(h) \stackrel{h \to 0}{\to} f(p_0)
-$$
-in quanto $df(p_0)$ è lineare e quindi continua in $\mathbb{R}^n$ e $o(h) \stackrel{h \to 0}{\to} 0$
-\end{proof}
 \section{Derivate di ordine successivo}
-Per trattare i massimi e i minimi in più variabili è necessario ricostruire il comportamento della funzione anche al "secondo ordine" (riprendendo la terminologia del polinomio di Taylor che verrà comunque ripreso più avanti), ovvero osservare le derivate seconde (che non abbiamo ancora introdotto, però la sostanza rimane a grandi linee quella nel caso ad una singola variabile): se nel caso delle funzioni a singola variabile non era necessario studiare la concavità della funzione (che ricordiamo essere il comportamento al secondo ordine della funzione a variabile singola), nel caso a più variabile è quasi inevitabile (a meno che non si voglia procedere per ragionamenti più "raffinati"). Andiamo dunque a vedere il concetto di derivate di ordine superiore al primo. \\
+Più avanti vedremo come la formula di Taylor troncata al secondo ordine fornisca un criterio con cui stabilire se un punto $x_0$ in cui $\nabla f(x_0) = 0$ abbiamo un punto di massimo locale o di minimo locale. Per fare ciò, abbiamo quindi bisogno di ricostruire il comportamento della funzione ad "ordini" successivi al primo, pertanto andiamo ad enunciare alcuni
+risultati che ci consentiranno di raggiungere tale scopo. \\
 In generale, presa la funzione $f: \Omega \to \mathbb{R}, \Omega \subseteq \mathbb{R}^n$ aperto tale che $\exists \partial_{x_i}f: \Omega \to \mathbb{R}$ con $i \in \{ 1, \ldots n \}$, allora la derivata parziale rispetto a $x_i$ o anche derivata parziale $i$-esima può ammettere un'ulteriore derivata parziale rispetto a $x_j$:
 $$
 \partial_{x_j}(\partial_{x_i} f) = \frac{\partial^2 f}{\partial x_j \partial x_i} = (f_{x_i})_{x_j} = f_{x_i x_j}
@@ -492,7 +489,7 @@ $$
 $$
 tale derivata parziale iterata diremo essere la derivata parziale di ordine $k$ o derivata parziale $k$-esima rispetto a $x_{i_1}, \ldots x_{i_k}$
 \begin{theorem}[di Schwarz]
-Sia $f:\Omega \to \mathbb{R}, x_0 \in \Omega \subseteq \mathbb{R}^n$ con $\Omega$ aperto e $\exists \partial_{x_i} f, \partial_{x_j} f, \partial_{x_i x_j} f, \partial_{x_j x_i} f$ continue in $x_0$. Allora
+Sia $f:\Omega \to \mathbb{R}, x_0 \in \Omega \subseteq \mathbb{R}^n$ con $\Omega$ aperto e supponiamo che $\exists \partial_{x_i} f, \partial_{x_j} f, \partial_{x_i x_j} f, \partial_{x_j x_i} f$ continue in $x_0$. Allora
 $$
 \partial_{x_i x_j} f(x_0) = \partial_{x_j x_i} f(x_0)
 $$
@@ -505,24 +502,22 @@ $$
 dove $t$ è sufficientemente piccolo e fissato. Osserviamo che
 \begin{align*}
 &\varphi(t) - \varphi(0) = f(x_0 + te_i + te_j) - f(x_0 + te_i) + f(x_0 + te_j) - f(x_0) = \\
-&=f(x_0 + te_i + te_j) - f(x_0 + te_j) + f(x_0 + te_j) + f(x_0)
+&=f(x_0 + te_i + te_j) - f(x_0 + te_j) + f(x_0 + te_j) + f(x_0),
 \end{align*}
-Adesso sappiamo, per il teorema di Lagrange, che
+osservando che si tratta di un'espressione simmetrica nei due indici. Adesso sappiamo, per il teorema di Lagrange, che
 $$
 \varphi(t) - \varphi(0) = \varphi'(\theta t)t
 $$
-con $0 < \theta < 1$. Possiamo "accorpare" i termini come
-$$\varphi(t) - \varphi(0) = [(f(x_0 + te_i + te_j)-f(x_0 + te_j)) - (f(x_0 + te_j) - f(x_0))]t$$
-e per il teorema di Lagrange, definendo le funzioni $z(\tau) = f(x_0 + \tau e_i + t e_j)$ e $h(\tau) = f(x_0 + \tau e_i)$ e ponendo $0 < \theta < 1$, avremo che
-$$
-\varphi(t) - \varphi(0) = [(z(t) - z(0)) + (h(t) - h(0))]t = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t.
-$$
+con $0 < \theta < 1$. Abbiamo allora che 
+\begin{align*}
+&\varphi(t) - \varphi(0) = (\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i))t. & &(\star)
+\end{align*}
 Possiamo riapplicare nuovamente il teorema di Lagrange su questa differenza, ponendo $0 < \theta' < 1$
 \begin{align*}
 [\partial_{x_i} f(x_0 + \theta te_i + te_j) - \partial_{x_i} f(x_0 + \theta te_i)]t = [\partial_{x_i} (f(x_0 + \theta te_i + te_j)) - \partial_{x_i} f(x_0 + \theta te_i)]t = \\
 =\partial_{x_i} (\partial_{x_j} f) (x_0 + \theta t e_i + \theta' e_j)t^2.
 \end{align*}
-Ripetendo questo ragionamento invertendo gli indici, possiamo dunque concludere, per continuità delle derivate seconde nel punto $x_0$, che:
+Ripetendo questo ragionamento invertendo gli indici nella relazione (che, ricordiamo nuovamente, è simmetrica negli indici) $(\star)$, possiamo dunque concludere, per continuità delle derivate seconde nel punto $x_0$, che:
 $$
 \lim_{t \to 0} \frac{\varphi(t) - \varphi(0)}{t^2} = \partial_{x_i} \partial_{x_j} f(x_0) = \partial_{x_j} \partial_{x_i} f(x_0)
 $$
@@ -591,7 +586,7 @@ Sia $f \in C^k (\Omega), x_0 \in \Omega, v \in \mathbb{R}^n$ con $v = (\xi_1, \l
 \implies \boxed{\frac{\partial^k f(x_0)}{\partial v^k} = d^l f(x_0)(v)}
 \end{equation}
 \end{remark}
-Come per le derivate prime, possiamo "definire" anche una matrice delle derivate. Particolarmente importante, oltre alla matrice jacobiana, è la matrice hessiana, ovvero la matrice delle derivate seconde:
+Come per le derivate prime, possiamo introdurre anche una matrice delle derivate seconde: tale matrice prende il nome di matrice hessiana:
 \begin{equation}
 Hf(x_0) = \begin{pmatrix}
 \frac{\partial^2 f}{\partial x_1^2}(x_0) & \frac{\partial^2 f}{\partial x_2 \partial x_1}(x_0) & \ldots & \frac{\partial^2 f}{\partial x_n \partial x_1}(x_0) \\
@@ -600,7 +595,7 @@ Hf(x_0) = \begin{pmatrix}
 \frac{\partial^2 f}{\partial x_n \partial x_1}(x_0) & \frac{\partial f}{\partial x_n \partial x_2}(x_0) & \ldots & \frac{\partial f}{\partial x_n \partial x_n}(x_0)
 \end{pmatrix}
 \end{equation}
-Per il teorema di Schwarz, abbiamo che per funzioni di cui esistono derivate seconde continue, allora 
+Per il teorema di Schwarz, abbiamo che 
 $$
 Hf(x_0) = Hf(x_0)^T
 $$
@@ -619,12 +614,11 @@ Riprendiamo il concetto di forma quadratica dal corso di Geometria
 \begin{definition}[forma quadratica]
 $q: \mathbb{R}^n \to \mathbb{R}$ è una forma quadratica se $\exists A = A^T \in \mathbb{R}^{n \times n}$ tale che $q(x)=\innerprod{x}{Ax} \iff q(x) = \sum\limits_{i,j=1}^n a_{ij}x_i x_j$ con $A = (a_{ij})_{i=1, \ldots n \atop j=1, \ldots, n}$
 \end{definition}
-\begin{prop}
-Sia $q(x)$ una forma quadratica, allora 
+Si può facilmente vedere che se $q(x)$ una forma quadratica, allora 
 $$
 q(x) = \sum_{i=1}^n a_{ii}x_i^2 + 2 \sum_{i \leq i < j \leq n} a_{ij} x_i x_j
 $$
-pertanto possiamo scrivere il nostro polinomio $q(x)$ quadratico e omogeneo come
+pertanto possiamo scrivere il nostro polinomio $h(x)$ quadratico e omogeneo come
 $$
 h(x) = \innerprod{x}{Bx}
 $$
@@ -637,27 +631,7 @@ b_{11} & \frac{b_{12}}{2} & \frac{b_{13}}{2} & \ldots & \frac{b_{1n}}{2} \\
 \frac{b_{n1}}{2} & \frac{b_{n2}}{2} & \ldots & \ldots & b_{nn}
 \end{pmatrix}
 \end{equation*}
-\end{prop}
-\begin{proof}
-In virtù della definizione precedente sappiamo che 
-$$
-q(x) = \sum_{i, j=1}^n b_{ij} x_i x_j = \sum_{i=1}^n a_{ii} x_i^2 + \sum_{1 \leq i < j \leq n} b_{ij} x_i x_j 
-$$
-con un semplice "riarrangiamento" dei termini presenti. Si vede facilmente che
-$$
-B = \begin{pmatrix}
-b_{11} & \frac{b_{12}}{2} & \ldots & \frac{b_{1n}}{2} \\
-\frac{b_{21}}{2} & b_{22} & \ldots & \frac{b_{2n}}{2} \\
-\vdots & \vdots & \ddots & \vdots \\
-\frac{b_{n1}}{2} & \ldots & \ldots & b_{nn}
-\end{pmatrix}
-$$
-dunque, utilizzando le semplici proprietà dei prodotti scalari, abbiamo che
-$$
- q(x) = \innerprod{x}{Bx}
-$$
-\end{proof}
-Possiamo generalizzare questo concetto anche a polinomi di $n$ variabili $P: \mathbb{R}^n \to \mathbb{R}$
+Per i polinomi di $n$ variabili $P: \mathbb{R}^n \to \mathbb{R}$, in generale, non possiamo facilmente scriverli tramite una matrice simmetrica come fatto per le forme quadratiche, tuttavia possiamo sempre esprimerli sotto forma di sommatoria.
 \begin{definition}[polinomio di $n$ variabili omogeneo]
 Sia $P:\mathbb{R}^n \to \mathbb{R}$ un polinomio in $n$ variabili, quindi esiste una famiglia di numeri $c_{i_1, \ldots i_l} \in \mathbb{R}, 1 \leq l \leq k$ tale che
 $$
@@ -665,7 +639,7 @@ P(x) = \sum_{l=1}^k \sum_{(i_1, \ldots i_l) \in \mathcal{I}_l} c_{i_1, \ldots i_
 $$
 dove $\mathcal{I}_l \subseteq \mathbb{N}^2$ è un sottoinsieme di indici, diremo che $P$ è omogeneo di grado $k \geq 1$ se
 \begin{align*}
-\forall x \in \mathbb{R}^n \, \forall t \in \mathbb{R}, P(tx) = t^k P(x)
+\forall x \in \mathbb{R}^n \, \forall t \in \mathbb{R}, P(tx) = t^k P(x),
 \end{align*}
 tutti i polinomi omogenei di grado $k$ saranno quindi della forma
 $$
