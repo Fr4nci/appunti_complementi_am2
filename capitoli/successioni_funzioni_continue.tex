@@ -320,7 +320,7 @@ In generale tutte queste definizioni che stiamo dando funzionano in qualunque sp
 \end{remark}
 \noindent Potremo scrivere anche le definizioni per gli altri due casi che ci restano, ma è banale e lo lasciamo come semplice esercizio teorico al lettore. \\
 \begin{theorem}[caratterizzazione del limite per successioni]
-Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in \text{Fr} A, v \in \mathbb{R}^m$. Abbiamo che
+Sia $f: A \to \mathbb{R}^m, A \subseteq \mathbb{R}^n, q \in D(A) A, v \in \mathbb{R}^m$. Abbiamo che
 $$
 \lim_{x \to q} f(x) = v \iff (\forall \{ p_k \} \subseteq A \setminus \{ q \}, p_k \to q) \implies \lim_{k \to +\infty} f(p_k) = v
 $$
@@ -338,7 +338,7 @@ $\boxed{\Leftarrow}$: osserviamo che se procedessimo per assurdo, negando la def
 	\end{enumerate}
 \end{cor}
 \begin{theorem}[del confronto]
-Siano $h, g, f: A \to \mathbb{R}, x_0 \in \text{Fr} A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
+Siano $h, g, f: A \to \mathbb{R}, x_0 \in D(A) A, l \in \mathbb{R}$ e supponiamo che $\exists \delta > 0$ con
 \begin{align*}
 h(x) \leq f(x) \leq g(x) \, \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}
 \end{align*} \\
@@ -350,14 +350,14 @@ La dimostrazione è analoga a quella di Analisi 1 con qualche accorgimento sugli
 \end{proof}
 \noindent Prima di procedere sulla parte del calcolo differenziale, diamo una breve introduzione ai simboli di Landau (i cosiddetti o-piccoli e O-grandi) che semplificano notevolmente il calcolo in più variabili:
 \begin{definition}[o-piccolo]
-Siano $x_0 \in \text{Fr} A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
+Siano $x_0 \in D(A) A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un o-piccolo di $g$ per $x$ che tende a $x_0$, in simboli
 $$
 f = o(g) \text{ per } x \to x_0
 $$
 se $$\forall \varepsilon > 0 \, \exists \delta > 0 : |f(x)| \leq \varepsilon |g(x)| \, \forall x \in A \cap B(x_0, \delta) \setminus \{ x_0 \}$$
 \end{definition}
 \begin{definition}[O-grande]
-Siano $x_0 \in \text{Fr} A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
+Siano $x_0 \in D(A) A, A \subseteq \mathbb{R}^n$ e $f: A \to \mathbb{R}^m$ e $g: A \to \mathbb{R}^k$. Diremo che $f$ è un O-grande di $g$ per $x$ che tende a $x_0$, in simboli
 $$
 f = O(g) \text{ per } x \to x_0
 $$

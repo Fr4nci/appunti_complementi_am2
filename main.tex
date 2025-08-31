@@ -43,42 +43,10 @@
 	{\Large\itshape Francesco Sermi\par}
 	\vfill
 	\begin{figure}[H]
-		\centering
-		\includegraphics[scale=0.125]{immagini/grey_burningship.png}
+    	\centering
+		\includegraphics[width=\textwidth]{immagini/superficie.pdf}
 	\end{figure}
-    	%\begin{tikzpicture}
-	% Definisco lo stile dei vettori
-    	%\tikzset{vector/.style={-stealth, thick, color=black}}
-
-    % Parametri per il punto di contatto
-    	%\def\xo{1}
-    	%\def\yo{2}
-    	%\def\zo{5} % Calcola z0 = f(x0, y0)
-
-    % Derivate parziali della funzione f(x, y) = x^2 + y^2 nel punto (x0, y0)
-    	%\def\fx{2*\xo} % = 2
-    	%\def\fy{2*\yo} % = 4
-
-    % Disegno la superficie
-    	%\begin{axis}[
-    	%    width=12cm,
-    	%    view={60}{30}, % Angolazione impostata
-    	%    axis lines=middle,
-    	%    zlabel={$f(x,y)$},
-    	%    clip=false,
-    	%    domain=-5:5,
-    	%    y domain=-5:5,
-    	%    samples=30,
-    	%    colormap/viridis,
-    	%    z buffer=sort
-    	%]
-
-    % Grafico della superficie con colore visibile
-    	%\addplot3[surf, opacity=0.8, shader=interp]
-    	%    {x^2 - y^2}; % Superficie f(x, y) = x^2 + y^2
-    	%\end{axis}
-	%\end{tikzpicture}
-	\vfill	
+	\vfill
 	\end{titlepage}
 	\pagestyle{empty}
 	\vspace*{\fill}
@@ -208,7 +176,7 @@
 		\input{capitoli/prodotto_esterno_applicazioni}
 	\end{appendices}
 	\cleardoublepage
-	\addcontentsline{toc}{chapter}{Bibliografia}
-	\bibliographystyle{unsrt}
-	\bibliography{bibliography.bib}
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
 \end{document}
