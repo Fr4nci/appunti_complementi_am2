@@ -814,7 +814,7 @@ Q(h) - R(h) = o(|h|^k) \text{ per } h \to 0 \implies Q - R = 0 \implies Q=R
 $$
 per il lemma precedente.
 \end{proof}
-Per ricostruire il comportamento nei punti critici (che verranno definiti più avanti) di una funzione siamo interessati alla positività delle forme quadratiche: infatti, il comportamento della funzione intorno a quei punti è determinato dal comportamento al secondo ordine della funzione (naturalmente per funzioni per cui valgono le ipotesi del teorema di Schwarz, altrimenti bisogna attaccare il problema con dei ragionamenti più sofisticati). \\
+Per ricostruire il comportamento nei punti critici (che verranno definiti più avanti) di una funzione siamo interessati alla positività delle forme quadratiche: infatti, più avanti, dimostreremo un criterio per stabilire se un punto critico è un punto di massimo o di minimo facendo uso del comportamento al secondo ordine della funzione, tramite lo studio del differenziale di ordine $2$ della funzione, che, come abbiamo visto, è una forma quadratica. \\
 Consideriamo $q: \mathbb{R}^n \to \mathbb{R}$ forma quadratica, allora sappiamo che $q(x) = \innerprod{Ax}{x}$ con $A \in \mathbb{R}^{n \times n}$ simmetrica. Diamo adesso la definizione di positività o negatività della forma quadratica:
 \begin{definition}[forma quadratica definita positiva o negativa]
 Sia $q:\mathbb{R}^n \to \mathbb{R}$ una forma quadratica con matrice $A$ in base canonica, allora diremo che $q$ o $A$ è definita positiva se
@@ -856,7 +856,7 @@ $$
 $$
 \end{remark}
 \begin{proof} \hspace{1cm} \\
-$\boxed{\Rightarrow}$: osservando che $\innerprod{Ax}{x} = (Ax)^T \text{Id} x = x^T A^T x = x^T A x$, allora possiamo considerare il prodotto scalare che in base canonica è rappresentato dalla matrice $A$, dunque la positività del prodotto scalare $\varphi > 0$ implica che $\varphi_{V_k} > 0 \, \forall k \implies A_i$ congruente a $Id_k \, \forall k \implies \det{[A]_k}$ ha lo stesso segno di $\det{Id_k} = 1$ (infatti, presa una matrice $A$ e la matrice del cambio di base $A \to B$ allora $\det{B} = \det{B^T A B} \stackrel{\text{Binet}}{=} \det{B^T}\det{B}\det{A} = \det{B}^2 \det{A}$ siccome il determinante di una matrice coincide con quello della sua trasposta). \\
+$\boxed{\Rightarrow}$: osservando che $\innerprod{Ax}{x} = (Ax)^T \text{Id} x = x^T A^T x = x^T A x$, allora possiamo considerare il prodotto scalare che in base canonica è rappresentato dalla matrice $A$, dunque la positività del prodotto scalare $\varphi > 0$ implica che $\varphi_{|_{V_k}} > 0 \, \forall k \implies A_i$ congruente a $Id_k \, \forall k \implies \det{[A]_k}$ ha lo stesso segno di $\det{Id_k} = 1$ (infatti, presa una matrice $A$ e la matrice del cambio di base $A \to B$ allora $\det{B} = \det{B^T A B} \stackrel{\text{Binet}}{=} \det{B^T}\det{B}\det{A} = (\det{B})^2 \det{A}$ siccome il determinante di una matrice coincide con quello della sua trasposta). \\
 $\boxed{\Leftarrow}$: possiamo procedere per induzione sulle dimensioni della matrice $A$. Il caso $n=1$ è banale e mostriamo adesso che $n-1 \implies n$: se consideriamo una matrice di ordine $n$ tale che $\det{[A]_{k}} > 0 \, \forall k \in \{1, \ldots n+1 \}$ allora sappiamo che la restrizione a $V_{n-1} = \text{Span}(\{e_1, \ldots, e_{n-1} \})$ della matrice $A$ ha determinante positivo e, per ipotesi induttiva, è definita positiva. L'aggiunta del vettore $e_n$ può provocare che $3$ casi possibili per la segnatura del prodotto scalare
 \begin{align*}
 &(k, 1, 0) & &(k, 0, 1) & &(k+1, 0, 0)
@@ -867,7 +867,7 @@ da cui notiamo che il primo caso con $\iota_-$ uguale a $1$ è impossibile, sicc
 Una matrice simmetrica $A=A^T$ è definita positiva se e solo se tutti i suoi autovalori sono positivi. Equivalentemente, una matrice simmetrica è definita negativa se e solo se tutti i suoi autovalori sono negativi
 \end{cor}
 \begin{proof}
-Senza perdità di generalità supponiamo che $A$ sia definita positiva: il determinante è invariante per cambio di base e coincide con il prodotto degli autovalori, pertanto siccome per ogni sotto-matrice di ordine $k$ avremo che il determinante è positivo, allora segue che gli autovalori sono tutti positivi.
+Senza perdità di generalità supponiamo che $A$ sia definita positiva e, in virtù del teorema spettrale, sappiamo che è diagonalizzabile: il determinante è invariante per cambio di base e coincide con il prodotto degli autovalori, quindi è chiaro che il determinante di ogni sotto-matrice di ordine $k$ è positivo se e solo se tutti gli autovalori sono tutti positivi.
 \end{proof}
 Propongo anche un'altra dimostrazione di questa fatto, presente sulle note degli appunti del professore
 \begin{proof}[Dimostrazione alternativa]
