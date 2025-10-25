@@ -9,7 +9,7 @@ In questo capitolo andremo a generalizzare il concetto di derivata  alle funzion
 \begin{definition}[funzione differenziabile in un punto e matrice jacobiana]
 Sia $\Omega \subseteq \mathbb{R}^n$ aperto e $x_0 \in \Omega$. Diremo che $f: \Omega \to \mathbb{R}^m$ è differenziabile in $x_0$ se $\exists L: \mathbb{R}^n \to \mathbb{R}^m$ lineare tale che
 $$
-\frac{f(x_0 + h)-f(x) - L(h)}{|h|} \stackrel{h \to 0}{\to} 0
+\frac{f(x_0 + h)-f(x_0) - L(h)}{|h|} \stackrel{h \to 0}{\to} 0
 $$
 dove l'applicazione $L = df(x_0): \mathbb{R}^n \to \mathbb{R}^m$ è detto il differenziale di $f$ in $x_0$. La matrice $Df(x_0) \in \mathbb{R}^{m \times n}$ che rappresenta $df(x_0)$ rispetto alla base canonica è detta \textbf{matrice jacobiana} di $f$ in $x_0$.
 \end{definition}
