@@ -233,7 +233,7 @@ Possiamo andare a definire il concetto di integrale curvilineo di seconda specie
 \begin{remark}
 Dalla definizione di una forma differenziale sappiamo che
 $$
-\omega(\gamma(t))(\dot{\gamma}(t)) = \sum_{i=1}^n a_i(\gamma(t))dx_i(\gamma(t)) = \sum_{i=1}^n a_i(\gamma(t))\gamma_i(t) 
+\omega(\gamma(t))(\dot{\gamma}(t)) = \sum_{i=1}^n a_i(\gamma(t))dx_i(\gamma(t)) = \sum_{i=1}^n a_i(\gamma(t))(\dot{\gamma_i}(t)) 
 $$
 \end{remark}
 
@@ -291,12 +291,12 @@ ovvero la tesi. Nel caso in cui $\varphi$ fosse strettamente crescente e, dunque
 \begin{proof}
 E' quasi un conto siccome
 \begin{align*}
-	&\int_\gamma \omega = \int_\gamma dP = \sum_{j=1}^k \int_{\gamma_{|_{[t_{j-1}, t_j]}}} dP = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} dP(\gamma(t))(\dot{\gamma}(t))dt = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} \sum_{i=1}^n \frac{\partial P}{\partial x_j}(\gamma(t))\dot{\gamma_j}(t)dt = \\
+	&\int_\gamma \omega = \int_\gamma dP = \sum_{j=1}^k \int_{\gamma_{|_{[t_{j-1}, t_j]}}} dP = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} dP(\gamma(t))(\dot{\gamma}(t))dt = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} \sum_{i=1}^n \frac{\partial P}{\partial x_j}(\gamma(t))(\dot{\gamma_j}(t))dt = \\
 	&= \sum_{j=1}^k \int_{t_{j-1}}^{t_j} \frac{d}{dt}((P \circ \gamma)(t)) dt = \sum_{j=1}^k (P \circ \gamma)(t_{j}) - (P \circ \gamma)(t_{j-1}) = (P \circ \gamma)(b) - (P \circ \gamma)(a)
 \end{align*}
 ovvero la tesi. Per quanto riguarda il campo vettoriale, osserviamo che
 $$
-\int_{\gamma} F = \int_{\gamma} \nabla V = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} \sum_{i=1}^n \frac{\partial V}{\partial x_i}(\gamma(t))\dot{\gamma_i}(t)
+\int_{\gamma} F = \int_{\gamma} \nabla V = \sum_{j=1}^k \int_{t_{j-1}}^{t_j} \sum_{i=1}^n \frac{\partial V}{\partial x_i}(\gamma(t))(\dot{\gamma_i}(t))
 $$
 e con ragionamenti simili a quanto fatto prima possiamo arrivare alla tesi.
 \end{proof}
